@@ -140,7 +140,18 @@ namespace artiMech
                 return;
             }
 
+            string stateMachName = utlDataAndFile.ReadReplaceAndWrite(FileName,m_GameObject.name,pathName,pathAndFileName, "stateMachineTemplate", "aMech");
 
+            Debug.Log("<color=green>Finished Creating StateMachine</color>.");
+
+            AssetDatabase.Refresh();
+
+            m_StateMachineName = stateMachName;
+            m_AddStateMachine = true;
+
+
+
+            /*
             string text = "";
             FileStream fileStream = new FileStream(FileName, FileMode.Open, FileAccess.Read);
             using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
@@ -160,14 +171,8 @@ namespace artiMech
 
             writeStream.Write(modText);
 
-            writeStream.Close();
+            writeStream.Close();*/
 
-            Debug.Log("<color=green>Finished Creating StateMachine</color>.");
-
-            AssetDatabase.Refresh();
-
-            m_StateMachineName = replaceName;
-            m_AddStateMachine = true;
 
         }
 
