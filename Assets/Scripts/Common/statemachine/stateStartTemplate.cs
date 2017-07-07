@@ -20,18 +20,16 @@ using System.Collections;
 
 #endif
 
-public class stateTemplate : baseState
+public class stateStartTemplate : baseState
 {
-
     /// <summary>
     /// State constructor.
     /// </summary>
     /// <param name="gameobject"></param>
-    public stateTemplate(GameObject gameobject)
+    public stateStartTemplate(GameObject gameobject)
     {
         m_GameObject = gameobject;
     }
-
     /// <summary>
     /// Updates from the game object.
     /// </summary>

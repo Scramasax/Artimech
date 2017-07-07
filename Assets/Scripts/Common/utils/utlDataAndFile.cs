@@ -8,6 +8,19 @@ using System.Text;
 /// </summary>
 public static class utlDataAndFile
 {
+
+    public static string LoadTextFromFile(string fileName)
+    {
+        string strBuff = "";
+        FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+        {
+            strBuff = streamReader.ReadToEnd();
+        }
+        fileStream.Close();
+        return strBuff;
+    }
+
     public static string ReadReplaceAndWrite(
                         string fileName,
                         string objectName,
@@ -16,20 +29,15 @@ public static class utlDataAndFile
                         string findName,
                         string replaceName)
     {
-        string text = "";
-        FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-        using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-        {
-            text = streamReader.ReadToEnd();
-        }
-        fileStream.Close();
+
+        string text = LoadTextFromFile(fileName);
 
         string changedName = replaceName + objectName;
         string modText = text.Replace(findName, changedName);
 
-        string directoryName = pathName + replaceName + objectName;
+//        string directoryName = pathName + replaceName + objectName;
 
-        Directory.CreateDirectory(directoryName);
+//        Directory.CreateDirectory(directoryName);
 
         StreamWriter writeStream = new StreamWriter(pathAndFileName);
 

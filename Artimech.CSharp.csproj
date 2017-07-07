@@ -78,11 +78,12 @@
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateNode.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineTemplate.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateStartBase.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateStartTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
@@ -93,7 +94,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
