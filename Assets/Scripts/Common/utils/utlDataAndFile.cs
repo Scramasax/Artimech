@@ -8,7 +8,11 @@ using System.Text;
 /// </summary>
 public static class utlDataAndFile
 {
-
+    /// <summary>
+    /// Load text from a file and returns that text.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
     public static string LoadTextFromFile(string fileName)
     {
         string strBuff = "";
@@ -21,6 +25,35 @@ public static class utlDataAndFile
         return strBuff;
     }
 
+    /// <summary>
+    /// Used to replace sub a string in a file.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="findText"></param>
+    /// <param name="changeText"></param>
+    public static void ReplaceTextInFile(string fileName,string findText,string changeText)
+    {
+  
+        string strBuff = "";
+        strBuff = LoadTextFromFile(fileName);
+        string modText = strBuff.Replace(findText, changeText);
+
+        StreamWriter writeStream = new StreamWriter(fileName);
+        writeStream.Write(modText);
+        writeStream.Close();
+    }
+
+    /// <summary>
+    /// This function is really more specific to the Artimech project and its 
+    /// code generation system.  Move somewhere better.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="objectName"></param>
+    /// <param name="pathName"></param>
+    /// <param name="pathAndFileName"></param>
+    /// <param name="findName"></param>
+    /// <param name="replaceName"></param>
+    /// <returns></returns>
     public static string ReadReplaceAndWrite(
                         string fileName,
                         string objectName,
@@ -35,14 +68,8 @@ public static class utlDataAndFile
         string changedName = replaceName + objectName;
         string modText = text.Replace(findName, changedName);
 
-//        string directoryName = pathName + replaceName + objectName;
-
-//        Directory.CreateDirectory(directoryName);
-
         StreamWriter writeStream = new StreamWriter(pathAndFileName);
-
         writeStream.Write(modText);
-
         writeStream.Close();
 
         return changedName;

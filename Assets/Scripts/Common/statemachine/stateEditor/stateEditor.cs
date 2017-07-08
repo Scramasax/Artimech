@@ -11,7 +11,7 @@ namespace artiMech
 {
     public class stateEditor : EditorWindow
     {
-        IList<stateNode> m_StateList;
+        IList<stateWindowsNode> m_StateList;
         public GameObject m_GameObject = null;
         bool m_AddStateMachine = false;
         string m_StateMachineName = "";
@@ -19,7 +19,7 @@ namespace artiMech
 
         stateEditor()
         {
-            m_StateList = new List<stateNode>();
+            m_StateList = new List<stateWindowsNode>();
         }
 
         [MenuItem("Window/ArtiMech/State Editor")]
@@ -120,11 +120,23 @@ namespace artiMech
 
         }
 
+
+        /// <summary>
+        /// Removes the visual components of the state machine.
+        /// </summary>
+        void ClearStatesAndRefresh()
+        {
+            m_StateList.Clear();
+        }
+
+        //paths and filenames
         public string FileName = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
         public string FileNameStartState = "Assets/Scripts/Common/statemachine/stateStartTemplate.cs";
-
         public string pathName = "Assets/Scripts/artiMechStates/";
 
+        /// <summary>
+        /// Artimech's statemachine and startState generation system.
+        /// </summary>
         void CreateStateMachineScriptAndLink()
         {
 
@@ -151,19 +163,25 @@ namespace artiMech
                 return;
             }
 
+            //clear the visual list if there are any in the editor
+            ClearStatesAndRefresh();
+
             //create the aMech directory 
             string replaceName = "aMech";
             string directoryName = pathName + replaceName + m_GameObject.name;
             Directory.CreateDirectory(directoryName);
 
             //creates a start state from a template and populate aMech directory
-            string stateStartName = utlDataAndFile.ReadReplaceAndWrite(FileNameStartState, m_GameObject.name + "StartState", pathName, pathAndFileNameStartState, "stateStartTemplate", "aMech");
+            string stateStartName = stateEditorUtils.ReadReplaceAndWrite(FileNameStartState, m_GameObject.name + "StartState", pathName, pathAndFileNameStartState, "stateStartTemplate", "aMech");
 
             //creates the statemachine from a template
-            string stateMachName = utlDataAndFile.ReadReplaceAndWrite(FileName, m_GameObject.name, pathName, pathAndFileName, "stateMachineTemplate", replaceName);
+            string stateMachName = stateEditorUtils.ReadReplaceAndWrite(FileName, m_GameObject.name, pathName, pathAndFileName, "stateMachineTemplate", replaceName);
+
+            //replace the startStartStateTemplate
+            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateStartTemplate", stateStartName);
 
             Debug.Log(
-                        "<b><color=navy>Artimech Report Log\n</color></b>"
+                        "<b><color=navy>Artimech Report Log Section A\n</color></b>"
                         + "<i><color=grey>Click to view details</color></i>"
                         + "\n"
                         + "<color=blue>Finished creating a state machine named </color><b>" 
@@ -174,7 +192,6 @@ namespace artiMech
                         + "<color=blue> to </color>"
                         + stateMachName 
                         + "\n\n");
-            //Debug.Log("<color=green>Created and added start state = </color>" + stateStartName);
 
             AssetDatabase.Refresh();
 

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.5.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -80,7 +82,8 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateNode.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateStartTemplate.cs" />
@@ -94,6 +97,8 @@
     <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStartState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

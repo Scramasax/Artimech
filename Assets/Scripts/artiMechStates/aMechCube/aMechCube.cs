@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace artiMech
 {
-    public class stateMachineTemplate : stateMachineBase
+    public class aMechCube : stateMachineBase
     {
 
         new void Awake()
@@ -34,7 +34,7 @@ namespace artiMech
         /// </summary>
         void CreateStates()
         {
-            m_CurrentState = AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+            m_CurrentState = AddState(new aMechCubeStartState(this.gameObject), "aMechCubeStartState", "new state change system");
             /// <ArtiMechStates>
 
             /// </ArtiMechStates>

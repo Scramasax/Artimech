@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class stateNode
+public class stateWindowsNode
 {
     protected Rect m_WinRect;
     protected string m_WindowTitle = "";
