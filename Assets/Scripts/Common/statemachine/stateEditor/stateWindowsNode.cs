@@ -3,6 +3,32 @@ using System.Collections;
 
 public class stateWindowsNode
 {
-    protected Rect m_WinRect;
-    protected string m_WindowTitle = "";
+    Rect m_WinRect;
+    string m_WindowTitle = "";
+
+    public Rect WinRect
+    {
+        get
+        {
+            return m_WinRect;
+        }
+
+        set
+        {
+            m_WinRect = value;
+        }
+    }
+
+    public string WindowTitle
+    {
+        get
+        {
+            return m_WindowTitle;
+        }
+
+        set
+        {
+            m_WindowTitle = value;
+        }
+    }
 }

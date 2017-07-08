@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace artiMech
@@ -9,6 +10,22 @@ namespace artiMech
     /// </summary>
     public static class stateEditorUtils
     {
+
+        static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
+
+        public static IList<stateWindowsNode> StateList
+        {
+            get
+            {
+                return m_StateList;
+            }
+
+            set
+            {
+                m_StateList = value;
+            }
+        }
+
         /// <summary>
         /// This function is really more specific to the Artimech project and its 
         /// code generation system.

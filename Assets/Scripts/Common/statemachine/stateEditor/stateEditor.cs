@@ -11,7 +11,7 @@ namespace artiMech
 {
     public class stateEditor : EditorWindow
     {
-        IList<stateWindowsNode> m_StateList;
+        //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
         public GameObject m_GameObject = null;
         bool m_AddStateMachine = false;
         string m_StateMachineName = "";
@@ -19,7 +19,7 @@ namespace artiMech
 
         stateEditor()
         {
-            m_StateList = new List<stateWindowsNode>();
+            //m_StateList = new List<stateWindowsNode>();
         }
 
         [MenuItem("Window/ArtiMech/State Editor")]
@@ -38,7 +38,18 @@ namespace artiMech
             {
                 m_GameObject.AddComponent(System.Type.GetType("artiMech." + m_StateMachineName));
                 m_AddStateMachine = false;
-                Debug.Log("added a statemachine to an object....");
+                Debug.Log(
+                            "<b><color=navy>Artimech Report Log Section B\n</color></b>"
+                            + "<i><color=grey>Click to view details</color></i>"
+                            + "\n"
+                            + "<color=blue>Added a statemachine </color><b>"
+                            + m_StateMachineName
+                            + "</b>"
+                            + "<color=blue> to a gameobject named </color>"
+                            + m_GameObject.name
+                            + " .\n\n");
+
+
 
             }
         }
@@ -64,6 +75,18 @@ namespace artiMech
                     e.Use();
                 }
             }
+
+            BeginWindows();
+            for(int i=0;i<stateEditorUtils.StateList.Count;i++)
+            {
+                GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
+            }
+            EndWindows();
+        }
+
+        void DrawNodeWindow(int id)
+        {
+            GUI.DragWindow();
         }
 
         void ContextCallback(object obj)
@@ -126,7 +149,7 @@ namespace artiMech
         /// </summary>
         void ClearStatesAndRefresh()
         {
-            m_StateList.Clear();
+            //m_StateList.Clear();
         }
 
         //paths and filenames
@@ -197,6 +220,11 @@ namespace artiMech
 
             m_StateMachineName = stateMachName;
             m_AddStateMachine = true;
+
+            stateWindowsNode node = new stateWindowsNode();
+            node.WindowTitle = stateStartName;
+            node.WinRect = new Rect(10, 30, 128, 128);
+            stateEditorUtils.StateList.Add(node);
 
 
 
