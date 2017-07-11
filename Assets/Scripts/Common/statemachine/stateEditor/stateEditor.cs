@@ -76,6 +76,15 @@ namespace artiMech
                 }
             }
 
+            // System.Type.GetType("artiMech." + m_StateMachineName).
+            //stateEditorUtils.CreateStateWindows();
+
+            // get states from the statemanager script
+            //Resources.Fin
+            //string[] scripts = AssetDatabase.FindAssets(m_StateMachineName+".cs");
+
+
+
             BeginWindows();
             for(int i=0;i<stateEditorUtils.StateList.Count;i++)
             {
@@ -221,10 +230,14 @@ namespace artiMech
             m_StateMachineName = stateMachName;
             m_AddStateMachine = true;
 
-            stateWindowsNode node = new stateWindowsNode();
-            node.WindowTitle = stateStartName;
-            node.WinRect = new Rect(10, 30, 128, 128);
-            stateEditorUtils.StateList.Add(node);
+            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName,true);
+
+            //Debug.Log("<color=blue>" + "<b>" + "cs files = " + "</b></color>" + "<color=grey>" + file + "</color>");
+
+            /*            stateWindowsNode node = new stateWindowsNode();
+                        node.WindowTitle = stateStartName;
+                        node.WinRect = new Rect(10, 30, 128, 128);
+                        stateEditorUtils.StateList.Add(node); */
 
 
 
