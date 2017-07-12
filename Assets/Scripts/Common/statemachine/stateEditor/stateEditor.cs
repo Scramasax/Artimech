@@ -7,12 +7,15 @@ using System.Text;
 using System.Threading;
 using System;
 
+#if UNITY_EDITOR
+
 namespace artiMech
 {
     public class stateEditor : EditorWindow
     {
         //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
         public GameObject m_GameObject = null;
+        GameObject m_WasGameObject = null;
         bool m_AddStateMachine = false;
         string m_StateMachineName = "";
         Vector2 m_MousePos;
@@ -32,8 +35,35 @@ namespace artiMech
 
         }
 
+        /// <summary>
+        /// Editor Update.
+        /// </summary>
         void Update()
         {
+            if (m_GameObject == null)
+            {
+                //sets the 'was' gameobject so as to dectect a gameobject swap.
+                m_WasGameObject = m_GameObject;
+                return;
+            }
+
+            //A gameobject has been selected and the editor will try to find a statemachine.
+            //If a statemachine is found then populated the visual representations populated
+            //in the aforementioned.
+            if (m_GameObject!=m_WasGameObject)
+            {
+                stateMachineBase machine = null;
+                machine = m_GameObject.GetComponent<stateMachineBase> ();
+
+                //load states and their metadata
+                if(machine!=null)
+                {
+                    Debug.Log("<color=green>" + "<b>" + "Object Changed new object is = " + "</b></color>" + "<color=grey>" + m_GameObject.name + "</color>" + " .");
+                }
+            }
+
+            //Once the statemachine is created and unity has refreshed itself the statemachine is 
+            //added to the currently selected gameobject.
             if (m_AddStateMachine && System.Type.GetType("artiMech." + m_StateMachineName) != null)
             {
                 m_GameObject.AddComponent(System.Type.GetType("artiMech." + m_StateMachineName));
@@ -52,6 +82,9 @@ namespace artiMech
 
 
             }
+
+            //sets the 'was' gameobject so as to dectect a gameobject swap.
+            m_WasGameObject = m_GameObject;
         }
 
         void OnGUI()
@@ -84,7 +117,7 @@ namespace artiMech
             //string[] scripts = AssetDatabase.FindAssets(m_StateMachineName+".cs");
 
 
-
+            // render populated state windows
             BeginWindows();
             for(int i=0;i<stateEditorUtils.StateList.Count;i++)
             {
@@ -306,3 +339,4 @@ namespace artiMech
         }*/
     }
 }
+#endif
