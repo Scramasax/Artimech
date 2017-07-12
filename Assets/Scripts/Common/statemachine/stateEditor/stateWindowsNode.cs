@@ -44,7 +44,7 @@ public class stateWindowsNode
     {
         m_WindowTitle = title;
         m_WinRect.x = x;
-        m_WinRect.x = y;
+        m_WinRect.y = y;
         m_WinRect.width = width;
         m_WinRect.height = height;
     }

@@ -67,10 +67,16 @@ namespace artiMech
                 }
             }
 
+            //sets the 'was' gameobject so as to dectect a gameobject swap.
+            m_WasGameObject = m_GameObject;
+
             //Once the statemachine is created and unity has refreshed itself the statemachine is 
             //added to the currently selected gameobject.
             if (m_AddStateMachine && System.Type.GetType("artiMech." + m_StateMachineName) != null)
             {
+                //makes the editor re pop the state windows.
+                m_WasGameObject = null;
+
                 m_GameObject.AddComponent(System.Type.GetType("artiMech." + m_StateMachineName));
                 m_AddStateMachine = false;
                 Debug.Log(
@@ -84,12 +90,8 @@ namespace artiMech
                             + m_GameObject.name
                             + " .\n\n");
 
-
-
             }
 
-            //sets the 'was' gameobject so as to dectect a gameobject swap.
-            m_WasGameObject = m_GameObject;
         }
 
         void OnGUI()
@@ -113,14 +115,6 @@ namespace artiMech
                     e.Use();
                 }
             }
-
-            // System.Type.GetType("artiMech." + m_StateMachineName).
-            //stateEditorUtils.CreateStateWindows();
-
-            // get states from the statemanager script
-            //Resources.Fin
-            //string[] scripts = AssetDatabase.FindAssets(m_StateMachineName+".cs");
-
 
             // render populated state windows
             BeginWindows();
@@ -172,7 +166,7 @@ namespace artiMech
                // toolsMenu.AddItem(new GUIContent("Save"), false, OnCreateState);
                // toolsMenu.AddItem(new GUIContent("Load"), false, OnCreateState);
                 toolsMenu.AddSeparator("");
-                toolsMenu.AddItem(new GUIContent("About"), false, OnCreateState);
+                toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
                 toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
 
                 EditorGUIUtility.ExitGUI();
@@ -185,9 +179,16 @@ namespace artiMech
             CreateStateMachineScriptAndLink();
         }
 
-        void OnCreateState()
+        void PrintAboutToConsole()
         {
-
+            Debug.Log(
+            "<b><color=navy>Artimech (c) 2017 by George A Lancaster \n</color></b>"
+            + "<i><color=grey>Click to view details</color></i>"
+            + "\n"
+            + "<color=blue>An Opensource Visual State Editor\n</color><b>"
+            + "</b>"
+            + "<color=teal>developed in Unity 5.x</color>"
+            + " .\n\n");
         }
 
 

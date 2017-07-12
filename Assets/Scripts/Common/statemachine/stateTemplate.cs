@@ -10,11 +10,11 @@ using System.Collections;
 
 <stateMetaData>
   <State>
-    <name>State Name to be set by user.</name>
-    <posX>10</posX>
-    <posY>10</posY>
-    <sizeX>64</sizeX>
-    <sizeY>64</sizeY>
+    <name>nada</name>
+    <posX>20</posX>
+    <posY>40</posY>
+    <sizeX>150</sizeX>
+    <sizeY>80</sizeY>
   </State>
 </stateMetaData>
 

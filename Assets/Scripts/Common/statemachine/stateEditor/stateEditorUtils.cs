@@ -88,16 +88,19 @@ namespace artiMech
             float y = 0;
             float width = 0;
             float height = 0;
+            string winName = typeName;
 
 //            TextAsset text = Resources.Load(typeName+".cs") as TextAsset;
             string strBuff = "";
             string fileName = "";
             fileName = utlDataAndFile.FindPathAndFileByClassName(typeName,true);
             strBuff = utlDataAndFile.LoadTextFromFile(fileName);
-            string[] words = strBuff.Split(new char[] { ' ', '<', '>' });
+            string[] words = strBuff.Split(new char[] { '<', '>' });
 
             for (int i = 0; i < words.Length; i++)
             {
+                if (words[i] == "name" && words[i + 1]!="nada")
+                    winName = words[i + 1];
                 if (words[i] == "posX")
                     x = Convert.ToSingle(words[i + 1]);
                 if (words[i] == "posY")
@@ -108,7 +111,7 @@ namespace artiMech
                     height = Convert.ToSingle(words[i + 1]);
             }
 
-            winNode.Set(typeName, x, y, width, height);
+            winNode.Set(winName, x, y, width, height);
             return winNode;
         }
 
