@@ -52,13 +52,18 @@ namespace artiMech
             //in the aforementioned.
             if (m_GameObject!=m_WasGameObject)
             {
+                stateEditorUtils.StateList.Clear();
+
                 stateMachineBase machine = null;
                 machine = m_GameObject.GetComponent<stateMachineBase> ();
 
                 //load states and their metadata
                 if(machine!=null)
                 {
-                    Debug.Log("<color=green>" + "<b>" + "Object Changed new object is = " + "</b></color>" + "<color=grey>" + m_GameObject.name + "</color>" + " .");
+                    Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
+
+                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name,true);
+                    stateEditorUtils.CreateStateWindows(strBuff);
                 }
             }
 

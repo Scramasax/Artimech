@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 namespace artiMech
@@ -19,7 +17,7 @@ namespace artiMech
 
         // This is a list filled by scanning the source code of the 
         // generated statemachine and populating them with their class names.
-        static IList<string> m_StateName = new List<string>();
+        static IList<string> m_StateNameList = new List<string>();
 
         #region Accessors 
         public static IList<stateWindowsNode> StateList
@@ -74,9 +72,10 @@ namespace artiMech
             string strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             PopulateStateStrings(strBuff);
 
-            for(int i=0;i<m_StateName.Count;i++)
+            for(int i=0;i<m_StateNameList.Count;i++)
             {
-                m_StateList.Add(CreateStateWindowsNode(m_StateName[i]));
+                stateWindowsNode node = CreateStateWindowsNode(m_StateNameList[i]);
+                m_StateList.Add(node);
             }
         }
 
@@ -90,54 +89,54 @@ namespace artiMech
             float width = 0;
             float height = 0;
 
-            TextAsset text = Resources.Load(typeName+".cs") as TextAsset;
-            string strBuff = text.ToString();
-
+//            TextAsset text = Resources.Load(typeName+".cs") as TextAsset;
+            string strBuff = "";
+            string fileName = "";
+            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName,true);
+            strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             string[] words = strBuff.Split(new char[] { ' ', '<', '>' });
 
             for (int i = 0; i < words.Length; i++)
             {
                 if (words[i] == "posX")
-                    x = Int32.Parse(words[i + 1]);
+                    x = Convert.ToSingle(words[i + 1]);
                 if (words[i] == "posY")
-                    y = Int32.Parse(words[i + 1]);
+                    y = Convert.ToSingle(words[i + 1]);
                 if (words[i] == "sizeX")
-                    width = Int32.Parse(words[i + 1]);
+                    width = Convert.ToSingle(words[i + 1]);
                 if (words[i] == "sizeY")
-                    height = Int32.Parse(words[i + 1]);
+                    height = Convert.ToSingle(words[i + 1]);
             }
 
-            winNode.WinRect.Set(x, y, width, height);
+            winNode.Set(typeName, x, y, width, height);
             return winNode;
         }
 
         public static void PopulateStateStrings(string strBuff)
         {
-            m_StateName.Clear();
-
-            //string strBuff = utlDataAndFile.LoadTextFromFile(fileName);
+            m_StateNameList.Clear();
 
             string[] words = strBuff.Split(new char[] { ' ', '(' });
 
-            string tokenA = "CreateStates";
-            string tokenB = "new";
-
-            bool scanForStatesBool = false;
-
             for(int i=0;i<words.Length;i++)
             {
-                //only scan in after the CreateStates function.
-                if(words[i]==tokenA)
+                if (words[i] == "new")
                 {
-                    scanForStatesBool = true;
-                }
+                    Type type = Type.GetType(words[i + 1]);
 
-                if(words[i]==tokenB && scanForStatesBool)
-                {
-                    m_StateName.Add(words[i+1]);
+                    if (type != null)
+                    {
+                        string buffer = "";
+                        buffer = type.BaseType.Name;
+                        if (buffer == "baseState")
+                        {
+                            m_StateNameList.Add(words[i + 1]);
+                            Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
+                        }
+
+                    }
                 }
             }
-
         }
     }
 }
