@@ -25,6 +25,13 @@ public static class utlDataAndFile
         return strBuff;
     }
 
+    public static void SaveTextToFile(string fileName,string fileContent)
+    {
+        StreamWriter writeStream = new StreamWriter(fileName);
+        writeStream.Write(fileContent);
+        writeStream.Close();
+    }
+
     /// <summary>
     /// Used to replace sub a string in a file.
     /// </summary>
@@ -93,4 +100,53 @@ public static class utlDataAndFile
         return null;
     }
 
+    public static string GetBetween(string strSource, string strStart, string strEnd)
+    {
+        int Start, End;
+        if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+        {
+            Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+            End = strSource.IndexOf(strEnd, Start);
+            return strSource.Substring(Start, End - Start);
+        }
+
+        return null;
+    }
+
+    public static string InsertInFrontOf(string strSource, string strStart, string strInsert)
+    {
+        string strOut = "";
+        int startIndex = 0;
+
+        if (strSource.Contains(strStart))
+        {
+            startIndex = strSource.IndexOf(strStart, 0) + strStart.Length;
+
+            StringBuilder stringBuilder = new StringBuilder(strSource);
+            stringBuilder.Insert(startIndex, strInsert);
+            strOut = stringBuilder.ToString();
+            return strOut;
+        }
+
+        return null;
+    }
+
+    public static string ReplaceBetween(string strSource, string strStart, string strEnd, string strReplace)
+    {
+        int Start, End;
+        string strOut = "";
+        if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+        {
+            Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+            End = strSource.IndexOf(strEnd, Start);
+
+            StringBuilder stringBuilder = new StringBuilder(strSource);
+            stringBuilder.Remove(Start, End - Start);
+            stringBuilder.Insert(Start, strReplace);
+            strOut = stringBuilder.ToString();
+            return strOut;
+        }
+
+        return null;
+    }
 }

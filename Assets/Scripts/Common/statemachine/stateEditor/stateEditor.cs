@@ -20,6 +20,8 @@ namespace artiMech
         string m_StateMachineName = "";
         Vector2 m_MousePos;
 
+        stateWindowsNode m_AddStateWindow = null;
+
         stateEditor()
         {
             //m_StateList = new List<stateWindowsNode>();
@@ -28,11 +30,7 @@ namespace artiMech
         [MenuItem("Window/ArtiMech/State Editor")]
         static void ShowEditor()
         {
-            //stateEditor editor = EditorWindow.GetWindow<stateEditor>();
-            //editor.stopWatch.Start();
-
             EditorWindow.GetWindow<stateEditor>();
-
         }
 
         /// <summary>
@@ -42,6 +40,8 @@ namespace artiMech
         {
             if (m_GameObject == null)
             {
+                if (m_WasGameObject != m_GameObject)
+                    stateEditorUtils.StateList.Clear();
                 //sets the 'was' gameobject so as to dectect a gameobject swap.
                 m_WasGameObject = m_GameObject;
                 return;
@@ -116,13 +116,45 @@ namespace artiMech
                 }
             }
 
-            // render populated state windows
-            BeginWindows();
-            for(int i=0;i<stateEditorUtils.StateList.Count;i++)
+            // input
+            Event ev = Event.current;
+            //Debug.Log(ev.mousePosition);
+            if (ev.type == EventType.MouseDown  || ev.type==EventType.MouseDrag)
             {
-                GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
+                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                {
+                    float x = stateEditorUtils.StateList[i].WinRect.x;
+                    float y = stateEditorUtils.StateList[i].WinRect.y;
+                    float width = stateEditorUtils.StateList[i].WinRect.width;
+                    float height = stateEditorUtils.StateList[i].WinRect.height;
+                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                    {
+                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        {
+                            stateEditorUtils.StateList[i].SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                        }
+                    }
+
+                }
+            }
+
+                // render populated state windows
+            BeginWindows();
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
+                stateEditorUtils.StateList[i].Update();
+                if (m_AddStateWindow != null)
+                    m_AddStateWindow.Update();
             }
             EndWindows();
+        }
+
+        void OnFocus()
+        {
+            Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
+            if (m_GameObject!=null && stateEditorUtils.StateList.Count==0)
+                m_WasGameObject = null;
         }
 
         void DrawNodeWindow(int id)
@@ -134,15 +166,27 @@ namespace artiMech
         {
             //make the passed object to a string
             string clb = obj.ToString();
-            string stateName = "";
+            //string stateName = "";
 
-            if (clb.Equals("addState"))
+            if (clb.Equals("addState") && m_GameObject!=null)
             {
+                string stateName = "aMech" + m_GameObject.name + "State" + stateEditorUtils.GetCode(stateEditorUtils.StateList.Count);
+                if (stateEditorUtils.CreateAndAddStateCodeToProject(m_GameObject,stateName))
+                {
+                    stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
+                    windowNode.Set(stateName, m_MousePos.x, m_MousePos.y, 150, 80);
+                    stateEditorUtils.StateList.Add(windowNode);
 
-                //InputNode inputNode = new InputNode();
-                //inputNode.windowRect = new Rect(mousePos.x, mousePos.y, 200, 150);
-                //new Rect(m_MousePos.x, m_MousePos.y, 200, 150);
-                stateName = GUI.TextField(new Rect(250, 93, 250, 25), stateName, 40);
+                    string fileAndPath = "";
+                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
+                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)m_MousePos.x, (int)m_MousePos.y, 150, 80);
+
+                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName);
+
+                    stateEditorUtils.AddStateCodeToStateMachineCode(fileAndPath,stateName);
+
+                    AssetDatabase.Refresh();
+                }                
             }
         }
 
@@ -255,13 +299,13 @@ namespace artiMech
                         "<b><color=navy>Artimech Report Log Section A\n</color></b>"
                         + "<i><color=grey>Click to view details</color></i>"
                         + "\n"
-                        + "<color=blue>Finished creating a state machine named </color><b>" 
-                        + stateMachName 
+                        + "<color=blue>Finished creating a state machine named </color><b>"
+                        + stateMachName
                         + "</b>:\n"
-                        + "<color=blue>Created and added a start state named </color>" 
+                        + "<color=blue>Created and added a start state named </color>"
                         + stateStartName
                         + "<color=blue> to </color>"
-                        + stateMachName 
+                        + stateMachName
                         + "\n\n");
 
             AssetDatabase.Refresh();
@@ -269,76 +313,10 @@ namespace artiMech
             m_StateMachineName = stateMachName;
             m_AddStateMachine = true;
 
-            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName,true);
-
-            //Debug.Log("<color=blue>" + "<b>" + "cs files = " + "</b></color>" + "<color=grey>" + file + "</color>");
-
-            /*            stateWindowsNode node = new stateWindowsNode();
-                        node.WindowTitle = stateStartName;
-                        node.WinRect = new Rect(10, 30, 128, 128);
-                        stateEditorUtils.StateList.Add(node); */
-
-
-
-            /*
-            string text = "";
-            FileStream fileStream = new FileStream(FileName, FileMode.Open, FileAccess.Read);
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
-            {
-                text = streamReader.ReadToEnd();
-            }
-            fileStream.Close();
-
-            string replaceName = "aMech" + m_GameObject.name;
-            string modText = text.Replace("stateMachineTemplate", replaceName);
-
-            string directoryName = pathName + "aMech" + m_GameObject.name;
-
-            Directory.CreateDirectory(directoryName);
-
-            StreamWriter writeStream = new StreamWriter(pathAndFileName);
-
-            writeStream.Write(modText);
-
-            writeStream.Close();*/
-
-
+            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName, true);
         }
 
-        /*
-        void DrawToolBar()
-        {
-            if (GUILayout.Button("Create...", EditorStyles.toolbarButton))
-            {
-                OnMenu_Create();
-                EditorGUIUtility.ExitGUI();
-            }
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("Tools", EditorStyles.toolbarDropDown))
-            {
-                GenericMenu toolsMenu = new GenericMenu();
-                if (Selection.activeGameObject != null)
-                    toolsMenu.AddItem(new GUIContent("Optimize Selected"), false, OnTools_OptimizeSelected);
-                else
-                    toolsMenu.AddDisabledItem(new GUIContent("Optimize Selected"));
-                toolsMenu.AddSeparator("");
-                toolsMenu.AddItem(new GUIContent("Help..."), false, OnTools_Help);
-                // Offset menu from right of editor window
-                toolsMenu.DropDown(new Rect(Screen.width - 216 - 40, 0, 0, 16));
-                EditorGUIUtility.ExitGUI();
-            }
-        }
-
-        void OnMenu_Create()
-        {
-            // Do something!
-        }
-
-        void OnTools_OptimizeSelected()
-        {
-            // Do something!
-        }
-
+/*
         void OnTools_Help()
         {
             Help.BrowseURL("http://example.com/product/help");

@@ -34,10 +34,11 @@ namespace artiMech
         /// </summary>
         void CreateStates()
         {
-            m_CurrentState = AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
-            /// <ArtiMechStates>
 
-            /// </ArtiMechStates>
+            m_CurrentState = AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+
+            //<ArtiMechStates>
+
         }
     }
 }

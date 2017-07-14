@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+#region XML_DATA
+
 #if ARTIMECH_META_DATA
 <!-- Atrimech metadata for positioning and other info using the visual editor.  -->
 <!-- The format is XML. -->
@@ -19,6 +21,8 @@ using System.Collections;
 </stateMetaData>
 
 #endif
+
+#endregion
 
 public class stateStartTemplate : baseState
 {

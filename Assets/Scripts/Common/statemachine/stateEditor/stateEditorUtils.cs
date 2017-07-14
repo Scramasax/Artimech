@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Xml;
 using UnityEngine;
 
 namespace artiMech
@@ -81,7 +83,7 @@ namespace artiMech
 
         public static stateWindowsNode CreateStateWindowsNode(string typeName)
         {
-            stateWindowsNode winNode = new stateWindowsNode();
+            stateWindowsNode winNode = new stateWindowsNode(StateList.Count);
             winNode.WindowTitle = typeName;
 
             float x = 0;
@@ -140,6 +142,111 @@ namespace artiMech
                     }
                 }
             }
+        }
+
+        public static bool CreateAndAddStateCodeToProject(GameObject gameobject,string stateName)
+        {
+
+            string pathName = "Assets/Scripts/artiMechStates/";
+            string FileName = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
+
+            string pathAndFileNameStartState = pathName
+                                + "aMech"
+                                + gameobject.name
+                                + "/"
+                                + stateName
+                                + ".cs";
+
+            if (File.Exists(pathAndFileNameStartState))
+            {
+                Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileNameStartState + "</color> <color=red>Already exists and can't be overridden...</color>");
+                return false;
+            }
+
+            //creates a start state from a template and populate aMech directory
+            string stateStartName = stateEditorUtils.ReadReplaceAndWrite(FileName, stateName, pathName, pathAndFileNameStartState, "stateTemplate", "");
+
+            return true;
+        }
+
+        public static bool AddStateCodeToStateMachineCode(string fileAndPath,string stateName)
+        {
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
+
+            if (strBuff == null || strBuff.Length == 0)
+                return false;
+
+            string modStr = "";
+            //AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+            string insertString = "\n            AddState(new "
+                                + stateName
+                                + "(this.gameObject),"
+                                + "\""
+                                + stateName
+                                + "\""
+                                + " , "
+                                + "\""
+                                + "nada"
+                                + "\""
+                                + ");";
+
+            modStr = utlDataAndFile.InsertInFrontOf(strBuff, 
+                                                    "<ArtiMechStates>",
+                                                    insertString);
+
+            utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
+
+            return true;
+        }
+
+        public static bool SetPositionAndSizeOfAStateFile(string fileName,int x, int y, int width, int height)
+        {
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileName);
+
+            if (strBuff == null || strBuff.Length == 0)
+                return false;
+
+            string modStr = "";
+            modStr = utlDataAndFile.ReplaceBetween(strBuff, "<posX>", "</posX>",x.ToString());
+            modStr = utlDataAndFile.ReplaceBetween(modStr, "<posY>", "</posY>", y.ToString());
+            modStr = utlDataAndFile.ReplaceBetween(modStr, "<sizeX>", "</sizeX>", width.ToString());
+            modStr = utlDataAndFile.ReplaceBetween(modStr, "<sizeY>", "</sizeY>", height.ToString());
+
+            utlDataAndFile.SaveTextToFile(fileName, modStr);
+
+            return true;
+        }
+
+        public static string GetCode(int number)
+        {
+            int start = (int)'A' - 1;
+            if (number <= 26) return ((char)(number + start)).ToString();
+
+            StringBuilder str = new StringBuilder();
+            int nxt = number;
+
+            List<char> chars = new List<char>();
+
+            while (nxt != 0)
+            {
+                int rem = nxt % 26;
+                if (rem == 0) rem = 26;
+
+                chars.Add((char)(rem + start));
+                nxt = nxt / 26;
+
+                if (rem == 26) nxt = nxt - 1;
+            }
+
+
+            for (int i = chars.Count - 1; i >= 0; i--)
+            {
+                str.Append((char)(chars[i]));
+            }
+
+            return str.ToString();
         }
     }
 }
