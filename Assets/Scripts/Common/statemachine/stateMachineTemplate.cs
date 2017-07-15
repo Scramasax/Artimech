@@ -35,7 +35,7 @@ namespace artiMech
         void CreateStates()
         {
 
-            m_CurrentState = AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+            m_CurrentState = AddState(new stateTemplate(this.gameObject), "stateTemplate");
 
             //<ArtiMechStates>
 

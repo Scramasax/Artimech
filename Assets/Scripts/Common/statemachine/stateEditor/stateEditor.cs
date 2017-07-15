@@ -246,7 +246,7 @@ namespace artiMech
 
         //paths and filenames
         public string FileName = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
-        public string FileNameStartState = "Assets/Scripts/Common/statemachine/stateStartTemplate.cs";
+        const string FileNameStartState = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
         public string pathName = "Assets/Scripts/artiMechStates/";
 
         /// <summary>
@@ -287,13 +287,27 @@ namespace artiMech
             Directory.CreateDirectory(directoryName);
 
             //creates a start state from a template and populate aMech directory
-            string stateStartName = stateEditorUtils.ReadReplaceAndWrite(FileNameStartState, m_GameObject.name + "StartState", pathName, pathAndFileNameStartState, "stateStartTemplate", "aMech");
+            string stateStartName = "";
+            stateStartName = stateEditorUtils.ReadReplaceAndWrite(
+                                                        FileNameStartState, 
+                                                        m_GameObject.name + "StartState", 
+                                                        pathName, 
+                                                        pathAndFileNameStartState, 
+                                                        "stateTemplate", 
+                                                        "aMech");
 
             //creates the statemachine from a template
-            string stateMachName = stateEditorUtils.ReadReplaceAndWrite(FileName, m_GameObject.name, pathName, pathAndFileName, "stateMachineTemplate", replaceName);
+            string stateMachName = "";
+            stateMachName = stateEditorUtils.ReadReplaceAndWrite(
+                                                        FileName, 
+                                                        m_GameObject.name, 
+                                                        pathName, 
+                                                        pathAndFileName, 
+                                                        "stateMachineTemplate", 
+                                                        replaceName);
 
             //replace the startStartStateTemplate
-            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateStartTemplate", stateStartName);
+            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateTemplate", stateStartName);
 
             Debug.Log(
                         "<b><color=navy>Artimech Report Log Section A\n</color></b>"

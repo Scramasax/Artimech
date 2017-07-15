@@ -6,95 +6,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class stateChanger
+namespace artiMech
 {
-    public stateChanger()
+    public class stateChanger
     {
-
-    }
-
-    public baseState ForceChangeState(IList<baseState> stateList, baseState currentState, string forceStateName, GameObject gameObject, bool displayStates)
-    {
-        if (currentState != null)
+        public stateChanger()
         {
-            foreach (baseState state in stateList)
+
+        }
+
+        public baseState ForceChangeState(IList<baseState> stateList, baseState currentState, string forceStateName, GameObject gameObject, bool displayStates)
+        {
+            if (currentState != null)
             {
-                if (forceStateName.GetHashCode() == state.m_StateName.GetHashCode())
+                foreach (baseState state in stateList)
                 {
-                    if (displayStates)
+                    if (forceStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
-                        //print("change="+state.GetGameState());
-                        utlDebugPrint.Inst.printbox("forcechangestate : " + gameObject.name);
-                        utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                        utlDebugPrint.Inst.print("force state = " + state.m_StateName);
+                        if (displayStates)
+                        {
+                            //print("change="+state.GetGameState());
+                            utlDebugPrint.Inst.printbox("forcechangestate : " + gameObject.name);
+                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
+                            utlDebugPrint.Inst.print("force state = " + state.m_StateName);
+                        }
+
+                        currentState.Exit();
+                        currentState.m_ChangeBool = false;
+                        state.Enter();
+
+                        return state;
                     }
-
-                    currentState.Exit();
-                    currentState.m_ChangeBool = false;
-                    state.Enter();
-
-                    return state;
                 }
             }
+            return null;
         }
-        return null;
-    }
 
-    public baseState UpdateChangeStates(IList<baseState> stateList, baseState currentState, GameObject gameObject, bool displayStates)
-    {
-        if (currentState != null && currentState.m_ChangeBool)
+        public baseState UpdateChangeStates(IList<baseState> stateList, baseState currentState, GameObject gameObject, bool displayStates)
         {
-            foreach (baseState state in stateList)
+            if (currentState != null && currentState.m_ChangeBool)
             {
-                if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
+                foreach (baseState state in stateList)
                 {
-                    //some debug love
-                    if (displayStates)
+                    if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
-                        //print("change="+state.GetGameState());
-                        utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
-                        utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                        utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                        //some debug love
+                        if (displayStates)
+                        {
+                            //print("change="+state.GetGameState());
+                            utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
+                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
+                            utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                        }
+
+                        currentState.Exit();
+                        currentState.m_ChangeBool = false;
+                        state.Enter();
+
+                        return state;
                     }
-
-                    currentState.Exit();
-                    currentState.m_ChangeBool = false;
-                    state.Enter();
-
-                    return state;
                 }
             }
+            return null;
         }
-        return null;
-    }
 
-    public baseState UpdateChangeStates(baseState[] stateList, baseState currentState, GameObject gameObject, bool displayStates)
-    {
-        if (currentState != null && currentState.m_ChangeBool)
+        public baseState UpdateChangeStates(baseState[] stateList, baseState currentState, GameObject gameObject, bool displayStates)
         {
-            foreach (baseState state in stateList)
+            if (currentState != null && currentState.m_ChangeBool)
             {
-                if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
+                foreach (baseState state in stateList)
                 {
-                    //some debug love
-                    if (displayStates)
+                    if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
-                        //print("change="+state.GetGameState());
-                        utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
-                        utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                        utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                        //some debug love
+                        if (displayStates)
+                        {
+                            //print("change="+state.GetGameState());
+                            utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
+                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
+                            utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                        }
+
+                        currentState.Exit();
+                        currentState.m_ChangeBool = false;
+                        state.Enter();
+
+                        return state;
                     }
-
-                    currentState.Exit();
-                    currentState.m_ChangeBool = false;
-                    state.Enter();
-
-                    return state;
                 }
             }
+            return null;
         }
-        return null;
+
+
     }
-
-
 }

@@ -22,9 +22,9 @@ namespace artiMech
         /// </summary>
         /// <param name="gameObj"></param>
         /// <returns>true or false depending if transition conditions are met.</returns>
-        bool UpdateConditionalTest(GameObject gameObj)
+        public string UpdateConditionalTest(baseState state)
         {
-            return false;
+            return m_ChangeStateName;
         }
     }
 }

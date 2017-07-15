@@ -38,7 +38,7 @@ namespace artiMech
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
 
-            m_CurrentState = AddState(new stateStartTemplate(gameObject), "Start", "NotSet");
+            m_CurrentState = AddState(new stateTemplate(gameObject), "Start");
         }
 
         // Use this for initialization
@@ -72,10 +72,9 @@ namespace artiMech
             m_CurrentState.FixedUpdate();
         }
 
-        public baseState AddState(baseState state, string statename, string changestatename)
+        public baseState AddState(baseState state, string statename)
         {
             state.m_StateName = statename;
-            state.m_ChangeStateName = changestatename;
             m_StateList.Add(state);
             return state;
         }
