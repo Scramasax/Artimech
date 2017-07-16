@@ -127,7 +127,7 @@ namespace artiMech
             {
                 if (words[i] == "new")
                 {
-                    Type type = Type.GetType(words[i + 1]);
+                    Type type = Type.GetType("artiMech." + words[i + 1]);
 
                     if (type != null)
                     {
@@ -184,10 +184,6 @@ namespace artiMech
                                 + "(this.gameObject),"
                                 + "\""
                                 + stateName
-                                + "\""
-                                + " , "
-                                + "\""
-                                + "nada"
                                 + "\""
                                 + ");";
 

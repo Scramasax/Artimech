@@ -81,7 +81,9 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalTemplate.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStateTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineBase.cs" />

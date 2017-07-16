@@ -11,7 +11,7 @@ using System;
 
 namespace artiMech
 {
-    public class stateEditor : EditorWindow
+    public class stateEditor : stateEditorBase
     {
         //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
         public GameObject m_GameObject = null;
@@ -20,24 +20,26 @@ namespace artiMech
         string m_StateMachineName = "";
         Vector2 m_MousePos;
 
-        stateWindowsNode m_AddStateWindow = null;
+        //stateWindowsNode m_AddStateWindow = null;
 
-        stateEditor()
+        public stateEditor() : base()
         {
             //m_StateList = new List<stateWindowsNode>();
         }
-
+/*
         [MenuItem("Window/ArtiMech/State Editor")]
         static void ShowEditor()
         {
             EditorWindow.GetWindow<stateEditor>();
-        }
+        }*/
 
         /// <summary>
         /// Editor Update.
         /// </summary>
-        void Update()
+        new void Update()
         {
+            base.Update();
+
             if (m_GameObject == null)
             {
                 if (m_WasGameObject != m_GameObject)
@@ -50,19 +52,19 @@ namespace artiMech
             //A gameobject has been selected and the editor will try to find a statemachine.
             //If a statemachine is found then populated the visual representations populated
             //in the aforementioned.
-            if (m_GameObject!=m_WasGameObject)
+            if (m_GameObject != m_WasGameObject)
             {
                 stateEditorUtils.StateList.Clear();
 
                 stateMachineBase machine = null;
-                machine = m_GameObject.GetComponent<stateMachineBase> ();
+                machine = m_GameObject.GetComponent<stateMachineBase>();
 
                 //load states and their metadata
-                if(machine!=null)
+                if (machine != null)
                 {
                     Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
 
-                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name,true);
+                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, true);
                     stateEditorUtils.CreateStateWindows(strBuff);
                 }
             }
@@ -94,8 +96,9 @@ namespace artiMech
 
         }
 
-        void OnGUI()
+        new void OnGUI()
         {
+
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             DrawToolBar();
             GUILayout.EndHorizontal();
@@ -119,7 +122,7 @@ namespace artiMech
             // input
             Event ev = Event.current;
             //Debug.Log(ev.mousePosition);
-            if (ev.type == EventType.MouseDown  || ev.type==EventType.MouseDrag)
+            if (ev.type == EventType.MouseDown || ev.type == EventType.MouseDrag)
             {
                 for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                 {
@@ -138,14 +141,12 @@ namespace artiMech
                 }
             }
 
-                // render populated state windows
+            // render populated state windows
             BeginWindows();
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
                 stateEditorUtils.StateList[i].Update();
-                if (m_AddStateWindow != null)
-                    m_AddStateWindow.Update();
             }
             EndWindows();
         }
