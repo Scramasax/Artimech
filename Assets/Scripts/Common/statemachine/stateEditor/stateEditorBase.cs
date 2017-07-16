@@ -41,7 +41,8 @@ namespace artiMech
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
 
-            m_CurrentState = AddState(new stateTemplate(null), "Start");
+            m_CurrentState = AddState(new editorStartState(null), "Start");
+            AddState(new editorDisplayWindowsState(null), "DisplayWindows");
         }
 
         [MenuItem("Window/ArtiMech/State Editor")]

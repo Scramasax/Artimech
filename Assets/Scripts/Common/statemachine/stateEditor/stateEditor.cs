@@ -119,27 +119,7 @@ namespace artiMech
                 }
             }
 
-            // input
-            Event ev = Event.current;
-            //Debug.Log(ev.mousePosition);
-            if (ev.type == EventType.MouseDown || ev.type == EventType.MouseDrag)
-            {
-                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-                {
-                    float x = stateEditorUtils.StateList[i].WinRect.x;
-                    float y = stateEditorUtils.StateList[i].WinRect.y;
-                    float width = stateEditorUtils.StateList[i].WinRect.width;
-                    float height = stateEditorUtils.StateList[i].WinRect.height;
-                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
-                    {
-                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
-                        {
-                            stateEditorUtils.StateList[i].SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
-                        }
-                    }
-
-                }
-            }
+            m_CurrentState.UpdateEditorGUI();
 
             // render populated state windows
             BeginWindows();

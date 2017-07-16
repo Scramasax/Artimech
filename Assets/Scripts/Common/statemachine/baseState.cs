@@ -17,6 +17,7 @@ namespace artiMech
 
         abstract public void Update();
         abstract public void FixedUpdate();
+        abstract public void UpdateEditorGUI();
         abstract public void Enter();
         abstract public void Exit();
 

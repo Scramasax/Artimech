@@ -26,7 +26,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class stateTemplate : baseState
+    public class editorDisplayWindowsState : baseState
     {
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
 
-        public stateTemplate(GameObject gameobject)
+        public editorDisplayWindowsState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
@@ -74,7 +74,27 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            // input
+            Event ev = Event.current;
+            //Debug.Log(ev.mousePosition);
+            if (ev.type == EventType.MouseDown || ev.type == EventType.MouseDrag)
+            {
+                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                {
+                    float x = stateEditorUtils.StateList[i].WinRect.x;
+                    float y = stateEditorUtils.StateList[i].WinRect.y;
+                    float width = stateEditorUtils.StateList[i].WinRect.width;
+                    float height = stateEditorUtils.StateList[i].WinRect.height;
+                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                    {
+                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        {
+                            stateEditorUtils.StateList[i].SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                        }
+                    }
 
+                }
+            }
         }
 
         /// <summary>
