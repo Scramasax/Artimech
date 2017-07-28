@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 #region XML_DATA
 
@@ -35,12 +36,26 @@ namespace artiMech
         /// <param name="gameobject"></param>
         /// 
         IList<stateConditionalBase> m_ConditionalList;
+        static Texture2D m_BackGroundImage = null;
 
         public editorDisplayWindowsState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
+
+            //InitImage();
+        }
+
+        void InitImage()
+        {
+            string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "hexpaper.png");
+            byte[] fileData;
+            fileData = File.ReadAllBytes(fileAndPath);
+
+            m_BackGroundImage = null;
+            m_BackGroundImage = new Texture2D(1056*2, 848*2);
+            m_BackGroundImage.LoadImage(fileData);
         }
 
         /// <summary>
@@ -74,6 +89,8 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            GUILayout.Label(m_BackGroundImage);
+
             // input
             Event ev = Event.current;
             //Debug.Log(ev.mousePosition);

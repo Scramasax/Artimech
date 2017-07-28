@@ -25,10 +25,13 @@ namespace artiMech
                     {
                         if (displayStates)
                         {
-                            //print("change="+state.GetGameState());
-                            utlDebugPrint.Inst.printbox("forcechangestate : " + gameObject.name);
-                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                            utlDebugPrint.Inst.print("force state = " + state.m_StateName);
+                            Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>" );
+                            if (gameObject != null)
+                                Debug.Log("<color=blue>" + "<b>" + "ForceChangeState : " + "</b></color>" + "<color=#660066>" + gameObject.name + "</color>" + " .");
+                            else
+                                Debug.Log("<color=blue>" + "<b>" + "ForceChangeState : " + "</b></color>" + "<color=#660066>" + "State Editor" + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "change state = " + "</b></color>" + "<color=#b3002d>" + state.m_StateName + "</color>" + " .");
                         }
 
                         currentState.Exit();
@@ -53,10 +56,13 @@ namespace artiMech
                         //some debug love
                         if (displayStates)
                         {
-                            //print("change="+state.GetGameState());
-                            utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
-                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                            utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                            Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>");
+                            if (gameObject!=null)
+                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + gameObject.name + "</color>" + " .");
+                            else
+                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + "State Editor" + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "change state = " + "</b></color>" + "<color=#b3002d>" + state.m_StateName + "</color>" + " .");
                         }
 
                         currentState.Exit();
@@ -81,10 +87,13 @@ namespace artiMech
                         //some debug love
                         if (displayStates)
                         {
-                            //print("change="+state.GetGameState());
-                            utlDebugPrint.Inst.printbox("objname : " + gameObject.name);
-                            utlDebugPrint.Inst.print("current state = " + currentState.m_StateName);
-                            utlDebugPrint.Inst.print("change state = " + state.m_StateName);
+                            Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>");
+                            if (gameObject != null)
+                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + gameObject.name + "</color>" + " .");
+                            else
+                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + "State Editor" + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");
+                            Debug.Log("<color=teal>" + "<b>" + "change state = " + "</b></color>" + "<color=#b3002d>" + state.m_StateName + "</color>" + " .");
                         }
 
                         currentState.Exit();

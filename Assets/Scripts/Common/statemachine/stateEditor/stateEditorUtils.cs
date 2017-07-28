@@ -21,6 +21,8 @@ namespace artiMech
         // generated statemachine and populating them with their class names.
         static IList<string> m_StateNameList = new List<string>();
 
+        static GameObject m_EditorCurrentGameObject = null;
+
         #region Accessors 
         public static IList<stateWindowsNode> StateList
         {
@@ -32,6 +34,19 @@ namespace artiMech
             set
             {
                 m_StateList = value;
+            }
+        }
+
+        public static GameObject EditorCurrentGameObject
+        {
+            get
+            {
+                return m_EditorCurrentGameObject;
+            }
+
+            set
+            {
+                m_EditorCurrentGameObject = value;
             }
         }
 
@@ -95,7 +110,7 @@ namespace artiMech
 //            TextAsset text = Resources.Load(typeName+".cs") as TextAsset;
             string strBuff = "";
             string fileName = "";
-            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName,true);
+            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName,false);
             strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             string[] words = strBuff.Split(new char[] { '<', '>' });
 
@@ -136,7 +151,7 @@ namespace artiMech
                         if (buffer == "baseState")
                         {
                             m_StateNameList.Add(words[i + 1]);
-                            Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
+                            // Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
                         }
 
                     }

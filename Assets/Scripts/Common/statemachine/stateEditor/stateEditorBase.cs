@@ -11,7 +11,7 @@ namespace artiMech
     {
 #region Variables 
 
-        protected bool m_DisplayStates = false;
+        protected bool m_DisplayStates = true;
         protected string m_CurrentStateName = "";
 
         protected IList<baseState> m_StateList;
@@ -41,8 +41,7 @@ namespace artiMech
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
 
-            m_CurrentState = AddState(new editorStartState(null), "Start");
-            AddState(new editorDisplayWindowsState(null), "DisplayWindows");
+            InitStates();
         }
 
         [MenuItem("Window/ArtiMech/State Editor")]
@@ -51,13 +50,23 @@ namespace artiMech
             EditorWindow.GetWindow<stateEditor>();
         }
 
+        void InitStates()
+        {
+            m_CurrentState = AddState(new editorStartState(null), "Start");
+            AddState(new editorLoadState(null), "Load");
+            AddState(new editorEmptyState(null), "Empty");
+            AddState(new editorDisplayWindowsState(null), "Display Windows");
+        }
+
         // Update is called once per frame
         protected void Update()
         {
+            //m_DisplayStates = true;
             if (m_CurrentState == null)
             {
-                Debug.LogWarning(this.name + " stateEditorBase doesn't have an m_CurrentState.");
-                return;
+                //Debug.LogWarning(this.name + " stateEditorBase doesn't have an m_CurrentState.");
+                //return;
+                InitStates();
             }
 
             baseState state = m_StateChanger.UpdateChangeStates(m_StateList, m_CurrentState, null, m_DisplayStates);
@@ -70,7 +79,7 @@ namespace artiMech
 
         protected void OnGUI()
         {
-
+            m_CurrentState.UpdateEditorGUI();
         }
 
         protected void FixedUpdate()

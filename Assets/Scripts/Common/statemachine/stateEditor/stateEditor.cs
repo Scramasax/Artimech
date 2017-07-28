@@ -38,6 +38,8 @@ namespace artiMech
         /// </summary>
         new void Update()
         {
+            stateEditorUtils.EditorCurrentGameObject = m_GameObject;
+
             base.Update();
 
             if (m_GameObject == null)
@@ -62,9 +64,9 @@ namespace artiMech
                 //load states and their metadata
                 if (machine != null)
                 {
-                    Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
+                    //Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
 
-                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, true);
+                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, false);
                     stateEditorUtils.CreateStateWindows(strBuff);
                 }
             }
@@ -133,7 +135,7 @@ namespace artiMech
 
         void OnFocus()
         {
-            Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
+            //Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
             if (m_GameObject!=null && stateEditorUtils.StateList.Count==0)
                 m_WasGameObject = null;
         }
@@ -308,7 +310,7 @@ namespace artiMech
             m_StateMachineName = stateMachName;
             m_AddStateMachine = true;
 
-            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName, true);
+            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName, false);
         }
 
 /*

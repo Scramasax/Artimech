@@ -7,7 +7,7 @@ namespace artiMech
     public abstract class stateConditionalBase
     {
         protected string m_ChangeStateName = "";
-        protected stateConditionalBase(string changeStateName)
+        public stateConditionalBase(string changeStateName)
         {
             m_ChangeStateName = changeStateName;
         }

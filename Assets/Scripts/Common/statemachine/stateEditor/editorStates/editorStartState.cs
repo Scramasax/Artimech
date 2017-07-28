@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 #region XML_DATA
 
@@ -26,7 +28,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class editorStartState : baseState
+    public class editorStartState : editorDisplayImageBaseState
     {
 
         /// <summary>
@@ -34,13 +36,15 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        IList<stateConditionalBase> m_ConditionalList;
+        //IList<stateConditionalBase> m_ConditionalList;
+        //static Texture2D m_StartScreenImage = null;
 
-        public editorStartState(GameObject gameobject)
+        public editorStartState(GameObject gameobject) : base (gameobject, "StartBackground.png")
         {
-            m_GameObject = gameobject;
-            m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new editorStartToLoadConditional("Load"));
+
+            //InitImage();
         }
 
         /// <summary>
@@ -48,17 +52,7 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
-            for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                string changeNameToThisState = null;
-                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
-                if (changeNameToThisState != null)
-                {
-                    m_ChangeStateName = changeNameToThisState;
-                    m_ChangeBool = true;
-                    return;
-                }
-            }
+            base.Update();
         }
 
         /// <summary>
@@ -74,7 +68,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
+            base.UpdateEditorGUI();
         }
 
         /// <summary>
