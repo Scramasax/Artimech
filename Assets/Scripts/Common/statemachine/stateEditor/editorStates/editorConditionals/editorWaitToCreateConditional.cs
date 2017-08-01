@@ -9,9 +9,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorStartToLoadConditional : stateConditionalBase
+    public class editorWaitToCreateConditional : stateConditionalBase
     {
-        public editorStartToLoadConditional(string changeStateName) : base(changeStateName)
+        public editorWaitToCreateConditional(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -31,7 +31,8 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            if(stateEditorUtils.EditorCurrentGameObject!=null)
+            editorWaitState waitState = state as editorWaitState;
+            if(waitState.CreateBool)
                 strOut = m_ChangeStateName;
 
 

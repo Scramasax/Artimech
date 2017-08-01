@@ -14,11 +14,11 @@ namespace artiMech
     public class stateEditor : stateEditorBase
     {
         //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
-        public GameObject m_GameObject = null;
-        GameObject m_WasGameObject = null;
+        //public GameObject m_GameObject = null;
+        //GameObject m_WasGameObject = null;
         bool m_AddStateMachine = false;
-        string m_StateMachineName = "";
-        Vector2 m_MousePos;
+        //string m_StateMachineName = "";
+        //Vector2 m_MousePos;
 
         //stateWindowsNode m_AddStateWindow = null;
 
@@ -38,28 +38,23 @@ namespace artiMech
         /// </summary>
         new void Update()
         {
-            stateEditorUtils.EditorCurrentGameObject = m_GameObject;
+            stateEditorUtils.EditorCurrentGameObject = stateEditorUtils.GameObject;
 
             base.Update();
 
-            if (m_GameObject == null)
-            {
-                if (m_WasGameObject != m_GameObject)
-                    stateEditorUtils.StateList.Clear();
-                //sets the 'was' gameobject so as to dectect a gameobject swap.
-                m_WasGameObject = m_GameObject;
-                return;
-            }
+
 
             //A gameobject has been selected and the editor will try to find a statemachine.
             //If a statemachine is found then populated the visual representations populated
             //in the aforementioned.
-            if (m_GameObject != m_WasGameObject)
+
+            /*
+            if (stateEditorUtils.GameObject != stateEditorUtils.WasGameObject)
             {
                 stateEditorUtils.StateList.Clear();
 
                 stateMachineBase machine = null;
-                machine = m_GameObject.GetComponent<stateMachineBase>();
+                machine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
 
                 //load states and their metadata
                 if (machine != null)
@@ -70,31 +65,35 @@ namespace artiMech
                     stateEditorUtils.CreateStateWindows(strBuff);
                 }
             }
+            */
 
             //sets the 'was' gameobject so as to dectect a gameobject swap.
-            m_WasGameObject = m_GameObject;
+            stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
 
+
+            /*
             //Once the statemachine is created and unity has refreshed itself the statemachine is 
             //added to the currently selected gameobject.
-            if (m_AddStateMachine && System.Type.GetType("artiMech." + m_StateMachineName) != null)
+            if (m_AddStateMachine && System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
             {
                 //makes the editor re pop the state windows.
-                m_WasGameObject = null;
+                stateEditorUtils.WasGameObject = null;
 
-                m_GameObject.AddComponent(System.Type.GetType("artiMech." + m_StateMachineName));
+                stateEditorUtils.GameObject.AddComponent(System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName));
                 m_AddStateMachine = false;
                 Debug.Log(
                             "<b><color=navy>Artimech Report Log Section B\n</color></b>"
                             + "<i><color=grey>Click to view details</color></i>"
                             + "\n"
                             + "<color=blue>Added a statemachine </color><b>"
-                            + m_StateMachineName
+                            + stateEditorUtils.StateMachineName
                             + "</b>"
                             + "<color=blue> to a gameobject named </color>"
-                            + m_GameObject.name
+                            + stateEditorUtils.GameObject.name
                             + " .\n\n");
 
             }
+            */
 
         }
 
@@ -105,39 +104,17 @@ namespace artiMech
             DrawToolBar();
             GUILayout.EndHorizontal();
 
-            Event e = Event.current;
-
-            //check mouse position
-            m_MousePos = e.mousePosition;
-
-            if (e.button == 1)
-            {
-                if (e.type == EventType.MouseDown)
-                {
-                    GenericMenu menu = new GenericMenu();
-                    menu.AddItem(new GUIContent("Add State"), false, ContextCallback, "addState");
-                    menu.ShowAsContext();
-                    e.Use();
-                }
-            }
-
-            m_CurrentState.UpdateEditorGUI();
-
             // render populated state windows
             BeginWindows();
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
-                stateEditorUtils.StateList[i].Update();
-            }
+            m_CurrentState.UpdateEditorGUI();
             EndWindows();
         }
 
         void OnFocus()
         {
             //Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
-            if (m_GameObject!=null && stateEditorUtils.StateList.Count==0)
-                m_WasGameObject = null;
+            if (stateEditorUtils.GameObject != null && stateEditorUtils.StateList.Count==0)
+                stateEditorUtils.WasGameObject = null;
         }
 
         void DrawNodeWindow(int id)
@@ -145,53 +122,21 @@ namespace artiMech
             GUI.DragWindow();
         }
 
-        void ContextCallback(object obj)
-        {
-            //make the passed object to a string
-            string clb = obj.ToString();
-            //string stateName = "";
-
-            if (clb.Equals("addState") && m_GameObject!=null)
-            {
-                string stateName = "aMech" + m_GameObject.name + "State" + stateEditorUtils.GetCode(stateEditorUtils.StateList.Count);
-                if (stateEditorUtils.CreateAndAddStateCodeToProject(m_GameObject,stateName))
-                {
-                    stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
-                    windowNode.Set(stateName, m_MousePos.x, m_MousePos.y, 150, 80);
-                    stateEditorUtils.StateList.Add(windowNode);
-
-                    string fileAndPath = "";
-                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
-                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)m_MousePos.x, (int)m_MousePos.y, 150, 80);
-
-                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName);
-
-                    stateEditorUtils.AddStateCodeToStateMachineCode(fileAndPath,stateName);
-
-                    AssetDatabase.Refresh();
-                }                
-            }
-        }
-
         void DrawToolBar()
         {
 
             GUILayout.FlexibleSpace();
 
-            m_GameObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", m_GameObject, typeof(GameObject));
-
-
-            /*if (obj)
-                if (GUI.Button(new Rect(3, 25, position.width - 20, 16), "Check Dependencies"))
-                    Selection.objects = EditorUtility.CollectDependencies(new GameObject[] { obj });*/
+            stateEditorUtils.GameObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", stateEditorUtils.GameObject, typeof(GameObject));
 
             if (GUILayout.Button("File", EditorStyles.toolbarDropDown))
             {
                 GenericMenu toolsMenu = new GenericMenu();
-                toolsMenu.AddItem(new GUIContent("Create"), false, OnCreateStateMachine);
-               // toolsMenu.AddSeparator("");
-               // toolsMenu.AddItem(new GUIContent("Save"), false, OnCreateState);
-               // toolsMenu.AddItem(new GUIContent("Load"), false, OnCreateState);
+                //In the wait state and an object is selected.
+                if (m_CurrentState.m_StateName == "Wait" && stateEditorUtils.GameObject != null)
+                    toolsMenu.AddItem(new GUIContent("Create"), false, OnCreateStateMachine);
+                else
+                    toolsMenu.AddDisabledItem(new GUIContent("Create"));
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
                 toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
@@ -203,7 +148,11 @@ namespace artiMech
 
         void OnCreateStateMachine()
         {
-            CreateStateMachineScriptAndLink();
+            if(m_CurrentState is editorWaitState)
+            {
+                editorWaitState waitState = m_CurrentState as editorWaitState;
+                //stateEditorUtils.CreateStateMachineScriptAndLink();
+            }
         }
 
         void PrintAboutToConsole()
@@ -227,97 +176,11 @@ namespace artiMech
             //m_StateList.Clear();
         }
 
-        //paths and filenames
-        public string FileName = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
-        const string FileNameStartState = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
-        public string pathName = "Assets/Scripts/artiMechStates/";
-
-        /// <summary>
-        /// Artimech's statemachine and startState generation system.
-        /// </summary>
-        void CreateStateMachineScriptAndLink()
-        {
-
-            string pathAndFileName = pathName
-                                                        + "aMech"
-                                                        + m_GameObject.name
-                                                        + "/"
-                                                        + "aMech"
-                                                        + m_GameObject.name
-                                                        + ".cs";
-
-            string pathAndFileNameStartState = pathName
-                                            + "aMech"
-                                            + m_GameObject.name
-                                            + "/"
-                                            + "aMech"
-                                            + m_GameObject.name
-                                            + "StartState"
-                                            + ".cs";
-
-            if (File.Exists(pathAndFileName))
-            {
-                Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileName + "</color> <color=red>Already exists and can't be overridden...</color>");
-                return;
-            }
-
-            //clear the visual list if there are any in the editor
-            ClearStatesAndRefresh();
-
-            //create the aMech directory 
-            string replaceName = "aMech";
-            string directoryName = pathName + replaceName + m_GameObject.name;
-            Directory.CreateDirectory(directoryName);
-
-            //creates a start state from a template and populate aMech directory
-            string stateStartName = "";
-            stateStartName = stateEditorUtils.ReadReplaceAndWrite(
-                                                        FileNameStartState, 
-                                                        m_GameObject.name + "StartState", 
-                                                        pathName, 
-                                                        pathAndFileNameStartState, 
-                                                        "stateTemplate", 
-                                                        "aMech");
-
-            //creates the statemachine from a template
-            string stateMachName = "";
-            stateMachName = stateEditorUtils.ReadReplaceAndWrite(
-                                                        FileName, 
-                                                        m_GameObject.name, 
-                                                        pathName, 
-                                                        pathAndFileName, 
-                                                        "stateMachineTemplate", 
-                                                        replaceName);
-
-            //replace the startStartStateTemplate
-            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateTemplate", stateStartName);
-
-            Debug.Log(
-                        "<b><color=navy>Artimech Report Log Section A\n</color></b>"
-                        + "<i><color=grey>Click to view details</color></i>"
-                        + "\n"
-                        + "<color=blue>Finished creating a state machine named </color><b>"
-                        + stateMachName
-                        + "</b>:\n"
-                        + "<color=blue>Created and added a start state named </color>"
-                        + stateStartName
-                        + "<color=blue> to </color>"
-                        + stateMachName
-                        + "\n\n");
-
-            AssetDatabase.Refresh();
-
-            m_StateMachineName = stateMachName;
-            m_AddStateMachine = true;
-
-            utlDataAndFile.FindPathAndFileByClassName(m_StateMachineName, false);
-        }
-
-/*
-        void OnTools_Help()
-        {
-            Help.BrowseURL("http://example.com/product/help");
-        }*/
+        /*
+                void OnTools_Help()
+                {
+                    Help.BrowseURL("http://example.com/product/help");
+                }*/
     }
 }
 #endif

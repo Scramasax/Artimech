@@ -19,7 +19,7 @@ namespace artiMech
         /// <summary>
         /// Test conditionals are placed here.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state"></param>6666666666  `  
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
@@ -31,7 +31,7 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            if(stateEditorUtils.EditorCurrentGameObject!=null)
+            if(stateEditorUtils.StateList.Count>0)
                 strOut = m_ChangeStateName;
 
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -43,19 +44,8 @@ namespace artiMech
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-
-            //InitImage();
-        }
-
-        void InitImage()
-        {
-            string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "hexpaper.png");
-            byte[] fileData;
-            fileData = File.ReadAllBytes(fileAndPath);
-
-            m_BackGroundImage = null;
-            m_BackGroundImage = new Texture2D(1056*2, 848*2);
-            m_BackGroundImage.LoadImage(fileData);
+            m_ConditionalList.Add(new editorDisplayToWaitConditional("Wait"));
+            m_ConditionalList.Add(new editorDisplayToLoadConditional("Load"));
         }
 
         /// <summary>
@@ -112,6 +102,33 @@ namespace artiMech
 
                 }
             }
+
+            //check mouse position
+            //e.mousePosition;
+
+            if (ev.button == 1)
+            {
+                if (ev.type == EventType.MouseDown)
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("Add State"), false, ContextCallback, "addState");
+                    menu.ShowAsContext();
+                    ev.Use();
+                }
+            }
+
+            // render populated state windows
+      
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
+                stateEditorUtils.StateList[i].Update();
+            }
+        }
+
+        void ContextCallback(object obj)
+        {
+            stateEditorUtils.ContextCallback(obj);
         }
 
         /// <summary>

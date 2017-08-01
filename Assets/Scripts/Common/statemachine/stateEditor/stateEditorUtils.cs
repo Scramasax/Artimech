@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using UnityEditor;
 using UnityEngine;
 
 namespace artiMech
@@ -22,6 +23,12 @@ namespace artiMech
         static IList<string> m_StateNameList = new List<string>();
 
         static GameObject m_EditorCurrentGameObject = null;
+
+        static Vector2 m_MousePos;
+
+        static GameObject m_GameObject = null;
+        static GameObject m_WasGameObject = null;
+        static string m_StateMachineName = "";
 
         #region Accessors 
         public static IList<stateWindowsNode> StateList
@@ -47,6 +54,45 @@ namespace artiMech
             set
             {
                 m_EditorCurrentGameObject = value;
+            }
+        }
+
+        public static GameObject GameObject
+        {
+            get
+            {
+                return m_GameObject;
+            }
+
+            set
+            {
+                m_GameObject = value;
+            }
+        }
+
+        public static string StateMachineName
+        {
+            get
+            {
+                return m_StateMachineName;
+            }
+
+            set
+            {
+                m_StateMachineName = value;
+            }
+        }
+
+        public static GameObject WasGameObject
+        {
+            get
+            {
+                return m_WasGameObject;
+            }
+
+            set
+            {
+                m_WasGameObject = value;
             }
         }
 
@@ -258,6 +304,128 @@ namespace artiMech
             }
 
             return str.ToString();
+        }
+
+        //paths and filenames
+        public const string k_StateMachineTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
+        public const string k_StateTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
+        public const string k_PathName = "Assets/Scripts/artiMechStates/";
+
+        /// <summary>
+        /// Artimech's statemachine and startState generation system.
+        /// </summary>
+        public static void CreateStateMachineScriptAndLink()
+        {
+
+            string pathAndFileName = k_PathName
+                                                        + "aMech"
+                                                        + stateEditorUtils.GameObject.name
+                                                        + "/"
+                                                        + "aMech"
+                                                        + stateEditorUtils.GameObject.name
+                                                        + ".cs";
+
+            string pathAndFileNameStartState = k_PathName
+                                            + "aMech"
+                                            + stateEditorUtils.GameObject.name
+                                            + "/"
+                                            + "aMech"
+                                            + stateEditorUtils.GameObject.name
+                                            + "StartState"
+                                            + ".cs";
+
+            if (File.Exists(pathAndFileName))
+            {
+                Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileName + "</color> <color=red>Already exists and can't be overridden...</color>");
+                return;
+            }
+
+            //clear the visual list if there are any in the editor
+           // ClearStatesAndRefresh();
+
+            //create the aMech directory 
+            string replaceName = "aMech";
+            string directoryName = k_PathName + replaceName + stateEditorUtils.GameObject.name;
+            Directory.CreateDirectory(directoryName);
+
+            //creates a start state from a template and populate aMech directory
+            string stateStartName = "";
+            stateStartName = stateEditorUtils.ReadReplaceAndWrite(
+                                                        k_StateTemplateFileAndPath,
+                                                        stateEditorUtils.GameObject.name + "StartState",
+                                                        k_PathName,
+                                                        pathAndFileNameStartState,
+                                                        "stateTemplate",
+                                                        "aMech");
+
+            //creates the statemachine from a template
+            string stateMachName = "";
+            stateMachName = stateEditorUtils.ReadReplaceAndWrite(
+                                                        k_StateMachineTemplateFileAndPath,
+                                                        stateEditorUtils.GameObject.name,
+                                                        k_PathName,
+                                                        pathAndFileName,
+                                                        "stateMachineTemplate",
+                                                        replaceName);
+
+            //replace the startStartStateTemplate
+            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateTemplate", stateStartName);
+
+            Debug.Log(
+                        "<b><color=navy>Artimech Report Log Section A\n</color></b>"
+                        + "<i><color=grey>Click to view details</color></i>"
+                        + "\n"
+                        + "<color=blue>Finished creating a state machine named </color><b>"
+                        + stateMachName
+                        + "</b>:\n"
+                        + "<color=blue>Created and added a start state named </color>"
+                        + stateStartName
+                        + "<color=blue> to </color>"
+                        + stateMachName
+                        + "\n\n");
+
+            AssetDatabase.Refresh();
+
+            stateEditorUtils.StateMachineName = stateMachName;
+//            m_AddStateMachine = true;
+
+            utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
+        }
+
+
+        public static void ContextCallback(object obj)
+        {
+            //make the passed object to a string
+            string clb = obj.ToString();
+            //string stateName = "";
+
+
+
+            if (clb.Equals("addState") && GameObject != null)
+            {
+                if (StateList.Count == 0)
+                {
+                    Debug.LogError("StateList is Empty so you can't create a state.");
+                    return;
+                }
+                string stateName = "aMech" + GameObject.name + "State" + GetCode(StateList.Count);
+                if (stateEditorUtils.CreateAndAddStateCodeToProject(GameObject, stateName))
+                {
+                    stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
+                    windowNode.Set(stateName, m_MousePos.x, m_MousePos.y, 150, 80);
+                    stateEditorUtils.StateList.Add(windowNode);
+
+                    string fileAndPath = "";
+                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
+                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)m_MousePos.x, (int)m_MousePos.y, 150, 80);
+
+                    fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
+
+                    stateEditorUtils.AddStateCodeToStateMachineCode(fileAndPath, stateName);
+
+                    AssetDatabase.Refresh();
+                }
+            }
         }
     }
 }

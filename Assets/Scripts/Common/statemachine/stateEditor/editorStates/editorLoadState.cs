@@ -46,6 +46,7 @@ namespace artiMech
             //InitImage();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editorLoadToDisplayConditional("Display Windows"));
+            m_ConditionalList.Add(new editorLoadToWaitConditional("Wait"));
         }
 
         void InitImage()

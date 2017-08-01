@@ -40,7 +40,10 @@ namespace artiMech
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
+
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new editorCreateToDisplayConditional("Display Windows"));
+
         }
 
         /// <summary>
@@ -90,7 +93,13 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            if (stateEditorUtils.GameObject == null)
+            {
+                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
+                    stateEditorUtils.StateList.Clear();
+                //sets the 'was' gameobject so as to dectect a gameobject swap.
+                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+            }
         }
     }
 }

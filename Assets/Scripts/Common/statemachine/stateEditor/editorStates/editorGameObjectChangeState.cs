@@ -26,7 +26,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class editorEmptyState : baseState
+    public class editorGameObjectChangeState : baseState
     {
 
         /// <summary>
@@ -36,11 +36,12 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
 
-        public editorEmptyState(GameObject gameobject)
+        public editorGameObjectChangeState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
+            //m_ConditionalList.Add(new editorEmptyToLoadConditional("Load"));
         }
 
         /// <summary>

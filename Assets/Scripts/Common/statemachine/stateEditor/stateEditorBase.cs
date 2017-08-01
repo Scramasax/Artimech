@@ -54,10 +54,10 @@ namespace artiMech
         {
             m_CurrentState = AddState(new editorStartState(null), "Start");
             AddState(new editorLoadState(null), "Load");
-            AddState(new editorEmptyState(null), "Empty");
+            AddState(new editorWaitState(null), "Wait");
             AddState(new editorDisplayWindowsState(null), "Display Windows");
+            AddState(new editorCreateState(null), "Create");
         }
-
         // Update is called once per frame
         protected void Update()
         {

@@ -26,7 +26,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class editorClearState : baseState
+    public class editorWaitState : baseState
     {
 
         /// <summary>
@@ -36,11 +36,27 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
 
-        public editorClearState(GameObject gameobject)
+        //so
+        bool m_CreateBool = false;
+        public bool CreateBool
+        {
+            get
+            {
+                return m_CreateBool;
+            }
+
+            set
+            {
+                m_CreateBool = value;
+            }
+        }
+
+        public editorWaitState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new editorWaitToLoadConditional("Load"));
         }
 
         /// <summary>
@@ -90,7 +106,14 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            m_CreateBool = false;
+            if (stateEditorUtils.GameObject == null)
+            {
+                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
+                    stateEditorUtils.StateList.Clear();
+                //sets the 'was' gameobject so as to dectect a gameobject swap.
+                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+            }
         }
     }
 }
