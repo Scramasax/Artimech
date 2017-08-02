@@ -32,7 +32,7 @@ namespace artiMech
                 strOut = m_ChangeStateName;
 #endif
 
-            if(stateEditorUtils.StateList.Count > 0)
+            if (System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
                 strOut = m_ChangeStateName;
 
             return strOut;

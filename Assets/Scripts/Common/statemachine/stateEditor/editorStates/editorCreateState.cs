@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -42,7 +43,7 @@ namespace artiMech
             m_ConditionalList = new List<stateConditionalBase>();
 
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorCreateToDisplayConditional("Display Windows"));
+            //m_ConditionalList.Add(new editorCreateToDisplayConditional("Display Windows"));
 
         }
 
@@ -51,6 +52,22 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
+            if (System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
+            {
+                stateEditorUtils.GameObject.AddComponent(System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName));
+                Debug.Log(
+                            "<b><color=navy>Artimech Report Log Section B\n</color></b>"
+                            + "<i><color=grey>Click to view details</color></i>"
+                            + "\n"
+                            + "<color=blue>Added a statemachine </color><b>"
+                            + stateEditorUtils.StateMachineName
+                            + "</b>"
+                            + "<color=blue> to a gameobject named </color>"
+                            + stateEditorUtils.GameObject.name
+                            + " .\n\n");
+            }
+
+            /*
             for (int i = 0; i < m_ConditionalList.Count; i++)
             {
                 string changeNameToThisState = null;
@@ -62,6 +79,7 @@ namespace artiMech
                     return;
                 }
             }
+            */
         }
 
         /// <summary>
@@ -85,7 +103,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            stateEditorUtils.CreateStateMachineScriptAndStartState();
         }
 
         /// <summary>
