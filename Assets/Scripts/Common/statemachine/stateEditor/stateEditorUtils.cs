@@ -314,7 +314,7 @@ namespace artiMech
         /// <summary>
         /// Artimech's statemachine and startState generation system.
         /// </summary>
-        public static void CreateStateMachineScriptAndLink()
+        public static void CreateStateMachineScriptAndStartState()
         {
 
             string pathAndFileName = k_PathName
@@ -384,6 +384,8 @@ namespace artiMech
                         + stateMachName
                         + "\n\n");
 
+            SaveStateInfo(stateMachName, stateEditorUtils.GameObject.name);
+
             AssetDatabase.Refresh();
 
             stateEditorUtils.StateMachineName = stateMachName;
@@ -391,6 +393,14 @@ namespace artiMech
 
             utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
         }
+
+        public static void SaveStateInfo(string stateMachineName,string gameObjectName)
+        {
+            string pathAndFile = Application.dataPath + "StateMachine.txt";
+            string stateInfo = stateMachineName + " " + gameObjectName;
+            utlDataAndFile.SaveTextToFile(pathAndFile, stateInfo);
+            
+        } 
 
 
         public static void ContextCallback(object obj)

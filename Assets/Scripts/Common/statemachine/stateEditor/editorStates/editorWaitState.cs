@@ -57,6 +57,7 @@ namespace artiMech
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editorWaitToLoadConditional("Load"));
+            m_ConditionalList.Add(new editorWaitToCreateConditional("Create"));
         }
 
         /// <summary>

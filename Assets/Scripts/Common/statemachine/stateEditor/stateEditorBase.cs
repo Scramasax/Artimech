@@ -58,6 +58,7 @@ namespace artiMech
             AddState(new editorDisplayWindowsState(null), "Display Windows");
             AddState(new editorCreateState(null), "Create");
         }
+
         // Update is called once per frame
         protected void Update()
         {

@@ -113,8 +113,8 @@ namespace artiMech
         void OnFocus()
         {
             //Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
-            if (stateEditorUtils.GameObject != null && stateEditorUtils.StateList.Count==0)
-                stateEditorUtils.WasGameObject = null;
+  //          if (stateEditorUtils.GameObject != null && stateEditorUtils.StateList.Count==0)
+  //              stateEditorUtils.WasGameObject = null;
         }
 
         void DrawNodeWindow(int id)
@@ -151,6 +151,7 @@ namespace artiMech
             if(m_CurrentState is editorWaitState)
             {
                 editorWaitState waitState = m_CurrentState as editorWaitState;
+                waitState.CreateBool = true;
                 //stateEditorUtils.CreateStateMachineScriptAndLink();
             }
         }
