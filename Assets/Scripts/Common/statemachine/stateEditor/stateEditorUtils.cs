@@ -396,10 +396,8 @@ namespace artiMech
 
         public static void SaveStateInfo(string stateMachineName,string gameObjectName)
         {
-            string pathAndFile = Application.dataPath + "StateMachine.txt";
             string stateInfo = stateMachineName + " " + gameObjectName;
-            utlDataAndFile.SaveTextToFile(pathAndFile, stateInfo);
-            
+            utlDataAndFile.SaveTextToFile(Application.dataPath + "/StateMachine.txt", stateInfo);   
         } 
 
 

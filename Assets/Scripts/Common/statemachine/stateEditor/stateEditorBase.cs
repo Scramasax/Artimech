@@ -53,6 +53,7 @@ namespace artiMech
         void InitStates()
         {
             m_CurrentState = AddState(new editorStartState(null), "Start");
+            AddState(new editorRestoreState(null), "Restore");
             AddState(new editorLoadState(null), "Load");
             AddState(new editorWaitState(null), "Wait");
             AddState(new editorDisplayWindowsState(null), "Display Windows");

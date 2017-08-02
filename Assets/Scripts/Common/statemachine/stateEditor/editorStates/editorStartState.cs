@@ -42,8 +42,8 @@ namespace artiMech
         public editorStartState(GameObject gameobject) : base (gameobject, "StartBackground.png")
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new editorStartToRestoreConditional("Restore"));
             m_ConditionalList.Add(new editorStartToWaitConditional("Wait"));
-
             //InitImage();
         }
 

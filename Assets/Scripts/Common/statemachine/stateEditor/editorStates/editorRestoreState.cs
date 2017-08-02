@@ -26,7 +26,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class editorGameObjectChangeState : baseState
+    public class editorRestoreState : baseState
     {
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
 
-        public editorGameObjectChangeState(GameObject gameobject)
+        public editorRestoreState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
