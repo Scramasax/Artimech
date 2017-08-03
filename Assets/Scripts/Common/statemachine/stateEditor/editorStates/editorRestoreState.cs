@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -83,6 +84,30 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
+            const string fileAndPath = "Assets/StateMachine.txt";
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
+            if(strBuff==null)
+            {
+                Debug.LogError("<color=maroon>" + "<b>" + "Restore file not found = " + "</b></color>" + "<color=red>" + "Assets/StateMachine.txt" + "</color>" + " .");
+                return;
+            }
+
+            FileUtil.DeleteFileOrDirectory(fileAndPath);
+
+            string[] words = strBuff.Split(new char[] { ' ' });
+
+            GameObject gameObject = utlDataAndFile.FindGameObjectByName(words[1]);
+            if(gameObject==null)
+            {
+                Debug.LogError("<color=maroon>" + "<b>" + "Restore gameObject not found = " + "</b></color>" + "<color=red>" + words[0] + "</color>" + " .");
+                return;
+            }
+
+            stateEditorUtils.GameObject = gameObject;
+            stateEditorUtils.EditorCurrentGameObject = gameObject;
+
+
 
         }
 

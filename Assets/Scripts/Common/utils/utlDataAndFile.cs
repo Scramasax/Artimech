@@ -15,7 +15,7 @@ public static class utlDataAndFile
     /// <returns></returns>
     public static string LoadTextFromFile(string fileName)
     {
-        string strBuff = "";
+        string strBuff = null;
         FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
         using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
         {
@@ -25,7 +25,7 @@ public static class utlDataAndFile
         return strBuff;
     }
 
-    public static void SaveTextToFile(string fileName,string fileContent)
+    public static void SaveTextToFile(string fileName, string fileContent)
     {
         StreamWriter writeStream = new StreamWriter(fileName);
         writeStream.Write(fileContent);
@@ -38,9 +38,9 @@ public static class utlDataAndFile
     /// <param name="fileName"></param>
     /// <param name="findText"></param>
     /// <param name="changeText"></param>
-    public static void ReplaceTextInFile(string fileName,string findText,string changeText)
+    public static void ReplaceTextInFile(string fileName, string findText, string changeText)
     {
-  
+
         string strBuff = "";
         strBuff = LoadTextFromFile(fileName);
         string modText = strBuff.Replace(findText, changeText);
@@ -57,7 +57,7 @@ public static class utlDataAndFile
     /// <param name="className"></param>
     /// <param name="showInfo"></param>
     /// <returns>The filename with the associated directory.</returns>
-    public static string FindPathAndFileByClassName(string className,bool showInfo=false)
+    public static string FindPathAndFileByClassName(string className, bool showInfo = false)
     {
         string strBuff = "";
 
@@ -66,7 +66,7 @@ public static class utlDataAndFile
 
         strBuff = FindAFileInADirectoryRecursively(pathName, searchName);
 
-        if(showInfo)
+        if (showInfo)
             Debug.Log("<color=blue>" + "<b>" + "Class was found at = " + "</b></color>" + "<color=grey>" + strBuff + "</color>" + " .");
 
         return strBuff;
@@ -82,8 +82,8 @@ public static class utlDataAndFile
     {
         foreach (string file in Directory.GetFiles(startDir))
         {
-            string[] words = file.Split(new char[] { '/','\\' });
-            for(int i=0; i<words.Length;i++)
+            string[] words = file.Split(new char[] { '/', '\\' });
+            for (int i = 0; i < words.Length; i++)
             {
                 if (words[i] == findName)
                     return file;
@@ -92,7 +92,7 @@ public static class utlDataAndFile
 
         foreach (string dir in Directory.GetDirectories(startDir))
         {
-            string strBuff = FindAFileInADirectoryRecursively(dir,findName);
+            string strBuff = FindAFileInADirectoryRecursively(dir, findName);
             if (strBuff != null)
                 return strBuff;
         }
@@ -149,4 +149,16 @@ public static class utlDataAndFile
 
         return null;
     }
+
+    public static GameObject FindGameObjectByName(string name)
+    {
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
+        for (int i = 0; i < allObjects.Length; i++)
+        {
+            if (allObjects[i].name == name)
+                return allObjects[i];
+        }
+        return null;
+    }
+       
 }

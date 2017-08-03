@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorDisplayToWaitConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorLoadToDisplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorLoadToWaitConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToCreateConditional.cs" />
@@ -113,9 +114,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\StateMachine.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
