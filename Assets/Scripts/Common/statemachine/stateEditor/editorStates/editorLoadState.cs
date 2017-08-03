@@ -99,7 +99,17 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
+            stateMachineBase machine = null;
+            machine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
 
+            //load states and their metadata
+            if (machine != null)
+            {
+                //Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
+
+                string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, false);
+                stateEditorUtils.CreateStateWindows(strBuff);
+            }
         }
 
         /// <summary>

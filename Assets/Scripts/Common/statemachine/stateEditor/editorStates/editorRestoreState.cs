@@ -42,7 +42,7 @@ namespace artiMech
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            //m_ConditionalList.Add(new editorEmptyToLoadConditional("Load"));
+            m_ConditionalList.Add(new editorRestoreToLoadConditional("Load"));
         }
 
         /// <summary>
@@ -100,14 +100,14 @@ namespace artiMech
             GameObject gameObject = utlDataAndFile.FindGameObjectByName(words[1]);
             if(gameObject==null)
             {
-                Debug.LogError("<color=maroon>" + "<b>" + "Restore gameObject not found = " + "</b></color>" + "<color=red>" + words[0] + "</color>" + " .");
+                Debug.LogError("<color=maroon>" + "<b>" + "Restore gameObject not found = " + "</b></color>" + "<color=red>" + words[1] + "</color>" + " .");
                 return;
             }
 
             stateEditorUtils.GameObject = gameObject;
             stateEditorUtils.EditorCurrentGameObject = gameObject;
 
-
+            stateEditorUtils.GameObject.AddComponent(System.Type.GetType("artiMech." + words[0]));
 
         }
 
