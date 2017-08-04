@@ -96,6 +96,19 @@ namespace artiMech
             }
         }
 
+        public static Vector2 MousePos
+        {
+            get
+            {
+                return m_MousePos;
+            }
+
+            set
+            {
+                m_MousePos = value;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -174,7 +187,7 @@ namespace artiMech
                     height = Convert.ToSingle(words[i + 1]);
             }
 
-            winNode.Set(winName, x, y, width, height);
+            winNode.Set(fileName,winName, x, y, width, height);
             return winNode;
         }
 
@@ -419,19 +432,27 @@ namespace artiMech
                 string stateName = "aMech" + GameObject.name + "State" + GetCode(StateList.Count);
                 if (stateEditorUtils.CreateAndAddStateCodeToProject(GameObject, stateName))
                 {
-                    stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
-                    windowNode.Set(stateName, m_MousePos.x, m_MousePos.y, 150, 80);
-                    stateEditorUtils.StateList.Add(windowNode);
 
                     string fileAndPath = "";
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
-                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)m_MousePos.x, (int)m_MousePos.y, 150, 80);
+
+                    stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
+                    windowNode.Set(fileAndPath,stateName, MousePos.x, MousePos.y, 150, 80);
+                    stateEditorUtils.StateList.Add(windowNode);
+
+                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)MousePos.x, (int)MousePos.y, 150, 80);
 
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
 
+
+
+                    SaveStateInfo(StateMachineName, stateEditorUtils.GameObject.name);
+
                     stateEditorUtils.AddStateCodeToStateMachineCode(fileAndPath, stateName);
 
-                    AssetDatabase.Refresh();
+
+
+                    //AssetDatabase.Refresh();
                 }
             }
         }

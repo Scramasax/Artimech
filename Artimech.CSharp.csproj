@@ -83,9 +83,11 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorDisplayToLoadConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorDisplayToMoveConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorDisplayToWaitConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorLoadToDisplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorLoadToWaitConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorMoveToDisplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayImageBaseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayWindowsState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorLoadState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorWaitState.cs" />

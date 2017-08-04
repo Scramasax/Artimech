@@ -137,13 +137,29 @@ namespace artiMech
                     toolsMenu.AddItem(new GUIContent("Create"), false, OnCreateStateMachine);
                 else
                     toolsMenu.AddDisabledItem(new GUIContent("Create"));
+
+                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+                    toolsMenu.AddItem(new GUIContent("Save"), false, OnSaveMetaData);
+                else
+                    toolsMenu.AddDisabledItem(new GUIContent("Save"));
+
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
+                toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
+                
                 toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
 
                 EditorGUIUtility.ExitGUI();
             }
 
+        }
+
+        void OnSaveMetaData()
+        {
+            for(int i=0;i<stateEditorUtils.StateList.Count;i++)
+            {
+                stateEditorUtils.StateList[i].SaveMetaData();
+            }
         }
 
         void OnCreateStateMachine()
@@ -166,22 +182,14 @@ namespace artiMech
             + "</b>"
             + "<color=teal>developed in Unity 5.x</color>"
             + " .\n\n");
+
+         
         }
 
-
-        /// <summary>
-        /// Removes the visual components of the state machine.
-        /// </summary>
-        void ClearStatesAndRefresh()
+        void OnWiki()
         {
-            //m_StateList.Clear();
+            Help.BrowseURL("http://example.com/product/help");
         }
-
-        /*
-                void OnTools_Help()
-                {
-                    Help.BrowseURL("http://example.com/product/help");
-                }*/
     }
 }
 #endif

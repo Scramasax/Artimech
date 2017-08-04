@@ -79,19 +79,26 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            GUILayout.Label(m_BackGroundImage);
+         //   GUILayout.Label(m_BackGroundImage);
 
             // input
             Event ev = Event.current;
-            //Debug.Log(ev.mousePosition);
-            if (ev.type == EventType.MouseDown || ev.type == EventType.MouseDrag)
+            //           Debug.Log(ev.mousePosition);
+            //           Debug.Log(ev.type);
+            //           Debug.Log("---> " + ev.button);
+
+            stateEditorUtils.MousePos = ev.mousePosition;
+
+            if (Event.current.button == 0)
             {
+                //Debug.Log("-------------> " + ev.type);
                 for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                 {
                     float x = stateEditorUtils.StateList[i].WinRect.x;
                     float y = stateEditorUtils.StateList[i].WinRect.y;
                     float width = stateEditorUtils.StateList[i].WinRect.width;
                     float height = stateEditorUtils.StateList[i].WinRect.height;
+
                     if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                     {
                         if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
@@ -103,10 +110,15 @@ namespace artiMech
                 }
             }
 
-            //check mouse position
-            //e.mousePosition;
+            if(Event.current.rawType == EventType.MouseUp)
+            {
+                Debug.Log("here");
+            }
 
-            if (ev.button == 1)
+                //check mouse position
+                //e.mousePosition;
+
+                if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
                 {

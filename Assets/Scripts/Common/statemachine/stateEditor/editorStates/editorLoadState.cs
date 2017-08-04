@@ -107,7 +107,9 @@ namespace artiMech
             {
                 //Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
 
-                string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, false);
+                //remember what the state machine class name is.
+                stateEditorUtils.StateMachineName = machine.GetType().Name;
+                string strBuff = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
                 stateEditorUtils.CreateStateWindows(strBuff);
             }
         }

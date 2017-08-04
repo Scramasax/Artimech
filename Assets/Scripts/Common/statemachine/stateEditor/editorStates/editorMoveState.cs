@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 
 #region XML_DATA
 
@@ -27,7 +26,7 @@ using UnityEditor;
 #endregion
 namespace artiMech
 {
-    public class editorRestoreState : baseState
+    public class editorMoveState : baseState
     {
 
         /// <summary>
@@ -37,12 +36,27 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
 
-        public editorRestoreState(GameObject gameobject)
+        //so
+        bool m_CreateBool = false;
+        public bool CreateBool
+        {
+            get
+            {
+                return m_CreateBool;
+            }
+
+            set
+            {
+                m_CreateBool = value;
+            }
+        }
+
+        public editorMoveState(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorRestoreToLoadConditional("Load"));
+            m_ConditionalList.Add(new editorMoveToDisplayConditional("Display Windows"));
         }
 
         /// <summary>
@@ -84,33 +98,6 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-            const string fileAndPath = "Assets/StateMachine.txt";
-            string strBuff = "";
-            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
-            if(strBuff==null)
-            {
-                Debug.LogError("<color=maroon>" + "<b>" + "Restore file not found = " + "</b></color>" + "<color=red>" + "Assets/StateMachine.txt" + "</color>" + " .");
-                return;
-            }
-
-            FileUtil.DeleteFileOrDirectory(fileAndPath);
-
-            string[] words = strBuff.Split(new char[] { ' ' });
-
-            GameObject gameObject = utlDataAndFile.FindGameObjectByName(words[1]);
-            if(gameObject==null)
-            {
-                Debug.LogError("<color=maroon>" + "<b>" + "Restore gameObject not found = " + "</b></color>" + "<color=red>" + words[1] + "</color>" + " .");
-                return;
-            }
-
-            stateEditorUtils.GameObject = gameObject;
-            stateEditorUtils.EditorCurrentGameObject = gameObject;
-            stateEditorUtils.StateMachineName = words[0];
-
-            //this will allow only one statemachine per game object which isn't optimal.
-            if(stateEditorUtils.GameObject.GetComponent<stateMachineBase>()==null)
-                stateEditorUtils.GameObject.AddComponent(System.Type.GetType("artiMech." + words[0]));
 
         }
 
@@ -119,7 +106,14 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            m_CreateBool = false;
+            if (stateEditorUtils.GameObject == null)
+            {
+                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
+                    stateEditorUtils.StateList.Clear();
+                //sets the 'was' gameobject so as to dectect a gameobject swap.
+                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+            }
         }
     }
 }

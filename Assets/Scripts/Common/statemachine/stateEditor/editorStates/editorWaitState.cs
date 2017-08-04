@@ -99,7 +99,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            stateEditorUtils.StateList.Clear();
         }
 
         /// <summary>
