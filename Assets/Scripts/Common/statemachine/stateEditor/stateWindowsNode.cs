@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using artiMech;
+using UnityEditor;
 
 public class stateWindowsNode
 {
@@ -8,6 +9,7 @@ public class stateWindowsNode
     string m_WindowTitle = "";
     int m_Id = -1;
     string m_PathAndFileOfClass = "";
+    baseState m_State = null;
 
     #region Accessors
     public Rect WinRect
@@ -73,8 +75,30 @@ public class stateWindowsNode
         m_WinRect.y = y;
     }
 
-    public void Update()
+    public Vector3 GetPos()
     {
+        Vector3 tempVect= new Vector3();
+        tempVect.x = m_WinRect.x;
+        tempVect.y = m_WinRect.y;
+        tempVect.z = 0;
+        return tempVect;
+    }
+
+    public bool IsWithin(Vector2 vect)
+    {
+        if (vect.x >= m_WinRect.x && vect.x < m_WinRect.x + m_WinRect.width)
+        {
+            if (vect.y >= m_WinRect.y && vect.y < m_WinRect.y + m_WinRect.height)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void Update(baseState state)
+    {
+        m_State = state;
         GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowTitle);
     }
 
@@ -85,7 +109,23 @@ public class stateWindowsNode
     
     void DrawNodeWindow(int id)
     {
+        if (Event.current.button == 1 && Event.current.isMouse)
+        {
+            if (m_State != null && m_State is editorDisplayWindowsState)
+            {
+                editorDisplayWindowsState dState = (editorDisplayWindowsState)m_State;
+                if (dState != null && Event.current.type == EventType.MouseDown)
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("Add Conditional"), false, dState.AddConditionalCallback, this);
+                    stateEditorUtils.SelectedNode = this;
+                    menu.ShowAsContext();
+                    Event.current.Use();
+                }
+                //Debug.Log("--------------------------------------");
+                return;
+            }
+        }
         GUI.DragWindow();
-        //GUI.FocusWindow(id);
     }
 }

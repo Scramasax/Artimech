@@ -9,10 +9,10 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    class stateConditionalTemplate : stateConditionalBase
+    public class stateConditionalTemplate : stateConditionalBase
     {
         
-        stateConditionalTemplate(string changeStateName) : base (changeStateName)
+        public stateConditionalTemplate(string changeStateName) : base (changeStateName)
         {
             
         }

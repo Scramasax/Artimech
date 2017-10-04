@@ -24,11 +24,13 @@ namespace artiMech
 
         static GameObject m_EditorCurrentGameObject = null;
 
-        static Vector2 m_MousePos;
+        static Vector3 m_MousePos;
 
         static GameObject m_GameObject = null;
         static GameObject m_WasGameObject = null;
         static string m_StateMachineName = "";
+
+        static stateWindowsNode m_SelectedWindowsNode = null;
 
         #region Accessors 
         public static IList<stateWindowsNode> StateList
@@ -96,7 +98,7 @@ namespace artiMech
             }
         }
 
-        public static Vector2 MousePos
+        public static Vector3 MousePos
         {
             get
             {
@@ -106,6 +108,19 @@ namespace artiMech
             set
             {
                 m_MousePos = value;
+            }
+        }
+
+        public static stateWindowsNode SelectedNode
+        {
+            get
+            {
+                return m_SelectedWindowsNode;
+            }
+
+            set
+            {
+                m_SelectedWindowsNode = value;
             }
         }
 
@@ -243,6 +258,41 @@ namespace artiMech
             return true;
         }
 
+        public static bool AddConditionCodeToStateCode(string fileAndPath,string conditionName,string changeName)
+        {
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
+
+            if (strBuff == null || strBuff.Length == 0)
+                return false;
+
+            string modStr = "";
+            //AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+            string insertString = "\n            m_ConditionalList.Add(new "
+                                + conditionName
+                                + "("
+                                + "\""
+                                + changeName
+                                + "\""
+                                + "));";
+
+            modStr = utlDataAndFile.InsertInFrontOf(strBuff,
+                                                    "<ArtiMechConditions>",
+                                                    insertString);
+
+            utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
+
+            AssetDatabase.Refresh();
+
+            return true;
+        }
+
+        /// <summary>
+        /// Adds states to the statemachine
+        /// </summary>
+        /// <param name="fileAndPath"></param>
+        /// <param name="stateName"></param>
+        /// <returns></returns>
         public static bool AddStateCodeToStateMachineCode(string fileAndPath,string stateName)
         {
             string strBuff = "";
@@ -323,6 +373,62 @@ namespace artiMech
         public const string k_StateMachineTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
         public const string k_StateTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
         public const string k_PathName = "Assets/Scripts/artiMechStates/";
+
+        public const string k_StateConditionalFileAndPath = "Assets/Scripts/Common/statemachine/stateConditionalTemplate.cs";
+
+        /// <summary>
+        /// Create the conditional code and add it to the state that has called us.
+        /// </summary>
+        /// <param name="fromState"></param>
+        /// <param name="toState"></param>
+        public static void CreateConditionalAndAddToState(string fromState,string toState)
+        {
+
+            
+            string replaceName = fromState + "_To_" + toState;
+
+            string text = utlDataAndFile.LoadTextFromFile(k_StateConditionalFileAndPath);
+
+            string modText = text.Replace("stateConditionalTemplate", replaceName);
+
+            string pathAndFileName = k_PathName
+                                + "aMech"
+                                + stateEditorUtils.GameObject.name
+                                + "/"
+                                + replaceName
+                                + ".cs";
+
+
+            StreamWriter writeStream = new StreamWriter(pathAndFileName);
+            writeStream.Write(modText);
+            writeStream.Close();
+
+            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
+
+            AddConditionCodeToStateCode(fileAndPathOfState,replaceName,fromState);
+
+            /*
+            string replaceName = "aMech" + fromState + "To" + toState;
+
+            string pathAndFileName = k_PathName
+                                            + "aMech"
+                                            + stateEditorUtils.GameObject.name
+                                            + "/"
+                                            + replaceName
+                                            + ".cs";
+
+            //creates the statemachine from a template
+            string stateMachName = "";
+            stateMachName = stateEditorUtils.ReadReplaceAndWrite(
+                                                        k_StateConditionalFileAndPath,      //this is the template to be used
+                                                        stateEditorUtils.GameObject.name,   //game object name
+                                                        k_PathName,                         //pathname
+                                                        pathAndFileName,
+                                                        "stateConditionalTemplate",
+                                                        replaceName);*/
+
+
+        }
 
         /// <summary>
         /// Artimech's statemachine and startState generation system.
@@ -413,6 +519,11 @@ namespace artiMech
             utlDataAndFile.SaveTextToFile(Application.dataPath + "/StateMachine.txt", stateInfo);   
         } 
 
+        public static void AddConditionalCallback(object obj)
+        {
+            Debug.Log("Add conditional.");
+
+        }
 
         public static void ContextCallback(object obj)
         {

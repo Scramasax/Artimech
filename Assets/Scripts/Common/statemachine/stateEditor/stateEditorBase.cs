@@ -58,6 +58,7 @@ namespace artiMech
             AddState(new editorWaitState(null), "Wait");
             AddState(new editorDisplayWindowsState(null), "Display Windows");
             AddState(new editorCreateState(null), "Create");
+            AddState(new editorAddConditionalState(null), "Add Conditional");
         }
 
         // Update is called once per frame

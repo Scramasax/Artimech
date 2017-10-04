@@ -9,9 +9,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorAddConditionalToDisplay : stateConditionalBase
+    public class editorDisplayToAddConditional : stateConditionalBase
     {
-        public editorAddConditionalToDisplay(string changeStateName) : base(changeStateName)
+        public editorDisplayToAddConditional(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -31,14 +31,10 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            //            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.GameObject == null)
-            //                strOut = m_ChangeStateName;
-
-            editorAddConditionalState addConditionalState = (editorAddConditionalState)state;
-            if (addConditionalState.RightClickBool)
-            {
+            editorDisplayWindowsState dState = (editorDisplayWindowsState)state;
+            if (dState != null && dState.AddConditionalBool==true)
                 strOut = m_ChangeStateName;
-            }
+
 
             return strOut;
         }

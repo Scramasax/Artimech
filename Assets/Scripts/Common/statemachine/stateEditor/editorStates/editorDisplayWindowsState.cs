@@ -38,14 +38,25 @@ namespace artiMech
         /// 
         IList<stateConditionalBase> m_ConditionalList;
         static Texture2D m_BackGroundImage = null;
+        bool m_AddConditionalBool = false;
+
+        public bool AddConditionalBool
+        {
+            get
+            {
+                return m_AddConditionalBool;
+            }
+        }
 
         public editorDisplayWindowsState(GameObject gameobject)
         {
+            m_AddConditionalBool = false;
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editorDisplayToWaitConditional("Wait"));
             m_ConditionalList.Add(new editorDisplayToLoadConditional("Load"));
+            m_ConditionalList.Add(new editorDisplayToAddConditional("Add Conditional"));
         }
 
         /// <summary>
@@ -64,6 +75,10 @@ namespace artiMech
                     return;
                 }
             }
+
+
+
+
         }
 
         /// <summary>
@@ -110,15 +125,7 @@ namespace artiMech
                 }
             }
 
-            if(Event.current.rawType == EventType.MouseUp)
-            {
-                Debug.Log("here");
-            }
-
-                //check mouse position
-                //e.mousePosition;
-
-                if (ev.button == 1)
+            if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
                 {
@@ -134,13 +141,31 @@ namespace artiMech
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
-                stateEditorUtils.StateList[i].Update();
+                stateEditorUtils.StateList[i].Update(this);
             }
         }
+
+        /*
+            void DrawNodeCurve(Rect start, Rect end) {
+        Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
+        Vector3 endPos = new Vector3(end.x, end.y + end.height / 2, 0);
+        Vector3 startTan = startPos + Vector3.right * 50;
+        Vector3 endTan = endPos + Vector3.left * 50;
+        Color shadowCol = new Color(0, 0, 0, 0.06f);
+        for (int i = 0; i < 3; i++) // Draw a shadow
+            Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
+        Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
+    }
+        */
 
         void ContextCallback(object obj)
         {
             stateEditorUtils.ContextCallback(obj);
+        }
+
+        public void AddConditionalCallback(object obj)
+        {
+            m_AddConditionalBool = true;
         }
 
         /// <summary>
@@ -148,7 +173,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            m_AddConditionalBool = false;
         }
 
         /// <summary>
