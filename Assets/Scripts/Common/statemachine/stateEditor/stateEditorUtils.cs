@@ -258,7 +258,7 @@ namespace artiMech
             return true;
         }
 
-        public static bool AddConditionCodeToStateCode(string fileAndPath,string conditionName,string changeName)
+        public static bool AddConditionCodeToStateCode(string fileAndPath,string conditionName,string toStateName)
         {
             string strBuff = "";
             strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
@@ -272,17 +272,17 @@ namespace artiMech
                                 + conditionName
                                 + "("
                                 + "\""
-                                + changeName
+                                + toStateName
                                 + "\""
                                 + "));";
+
+            //Debug.Log("changeName = " + changeName);
 
             modStr = utlDataAndFile.InsertInFrontOf(strBuff,
                                                     "<ArtiMechConditions>",
                                                     insertString);
 
             utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
-
-            AssetDatabase.Refresh();
 
             return true;
         }
@@ -339,36 +339,6 @@ namespace artiMech
             return true;
         }
 
-        public static string GetCode(int number)
-        {
-            int start = (int)'A' - 1;
-            if (number <= 26) return ((char)(number + start)).ToString();
-
-            StringBuilder str = new StringBuilder();
-            int nxt = number;
-
-            List<char> chars = new List<char>();
-
-            while (nxt != 0)
-            {
-                int rem = nxt % 26;
-                if (rem == 0) rem = 26;
-
-                chars.Add((char)(rem + start));
-                nxt = nxt / 26;
-
-                if (rem == 26) nxt = nxt - 1;
-            }
-
-
-            for (int i = chars.Count - 1; i >= 0; i--)
-            {
-                str.Append((char)(chars[i]));
-            }
-
-            return str.ToString();
-        }
-
         //paths and filenames
         public const string k_StateMachineTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
         public const string k_StateTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
@@ -405,7 +375,11 @@ namespace artiMech
 
             string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
 
-            AddConditionCodeToStateCode(fileAndPathOfState,replaceName,fromState);
+            AddConditionCodeToStateCode(fileAndPathOfState,replaceName,toState);
+
+            //SaveStateInfo(stateMachName, stateEditorUtils.GameObject.name);
+
+            AssetDatabase.Refresh();
 
             /*
             string replaceName = "aMech" + fromState + "To" + toState;
@@ -540,7 +514,7 @@ namespace artiMech
                     Debug.LogError("StateList is Empty so you can't create a state.");
                     return;
                 }
-                string stateName = "aMech" + GameObject.name + "State" + GetCode(StateList.Count);
+                string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(StateList.Count);
                 if (stateEditorUtils.CreateAndAddStateCodeToProject(GameObject, stateName))
                 {
 
@@ -554,8 +528,6 @@ namespace artiMech
                     stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)MousePos.x, (int)MousePos.y, 150, 80);
 
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
-
-
 
                     SaveStateInfo(StateMachineName, stateEditorUtils.GameObject.name);
 

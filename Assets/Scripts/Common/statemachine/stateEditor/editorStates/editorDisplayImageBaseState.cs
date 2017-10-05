@@ -28,7 +28,7 @@ using System.IO;
 #endregion
 namespace artiMech
 {
-    public class editorDisplayImageBaseState : baseState
+    public class editorDisplayImageBaseState : stateConditionalUpdateBase
     {
 
         /// <summary>
@@ -36,11 +36,10 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        protected IList<stateConditionalBase> m_ConditionalList;
         Texture2D m_BackgroundImage = null;
         string m_ImageName = "";
 
-        public editorDisplayImageBaseState(GameObject gameobject,string imageName)
+        public editorDisplayImageBaseState(GameObject gameobject,string imageName) : base(gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
@@ -66,17 +65,7 @@ namespace artiMech
             if (m_BackgroundImage == null)
                 InitImage();
 
-            for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                string changeNameToThisState = null;
-                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
-                if (changeNameToThisState != null)
-                {
-                    m_ChangeStateName = changeNameToThisState;
-                    m_ChangeBool = true;
-                    return;
-                }
-            }
+            base.Update();
         }
 
         /// <summary>

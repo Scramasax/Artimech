@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalTemplate.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalUpdateBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddConditionalToDisplay.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />

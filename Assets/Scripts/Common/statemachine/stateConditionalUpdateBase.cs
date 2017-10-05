@@ -26,7 +26,7 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class editorWaitState : editorDisplayImageBaseState
+    public class stateConditionalUpdateBase : baseState
     {
 
         /// <summary>
@@ -34,28 +34,13 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        //IList<stateConditionalBase> m_ConditionalList;
+        protected IList<stateConditionalBase> m_ConditionalList;
 
-        //so
-        bool m_CreateBool = false;
-        public bool CreateBool
+        public stateConditionalUpdateBase(GameObject gameobject)
         {
-            get
-            {
-                return m_CreateBool;
-            }
-
-            set
-            {
-                m_CreateBool = value;
-            }
-        }
-
-        public editorWaitState(GameObject gameobject) : base(gameobject, "StartBackground.png")
-        {
+            m_GameObject = gameobject;
+            m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorWaitToLoadConditional("Load"));
-            m_ConditionalList.Add(new editorWaitToCreateConditional("Create"));
         }
 
         /// <summary>
@@ -63,8 +48,17 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
-            //updates conditions
-            base.Update();
+            for (int i = 0; i < m_ConditionalList.Count; i++)
+            {
+                string changeNameToThisState = null;
+                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
+                if (changeNameToThisState != null)
+                {
+                    m_ChangeStateName = changeNameToThisState;
+                    m_ChangeBool = true;
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -80,7 +74,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            base.UpdateEditorGUI();
+
         }
 
         /// <summary>
@@ -88,7 +82,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-            stateEditorUtils.StateList.Clear();
+
         }
 
         /// <summary>
@@ -96,14 +90,7 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-            m_CreateBool = false;
-            if (stateEditorUtils.GameObject == null)
-            {
-                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
-                    stateEditorUtils.StateList.Clear();
-                //sets the 'was' gameobject so as to dectect a gameobject swap.
-                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
-            }
+
         }
     }
 }

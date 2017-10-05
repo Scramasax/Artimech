@@ -1,10 +1,29 @@
-﻿using System.IO;
+﻿/// Artimech
+/// 
+/// Copyright © <2017> <George A Lancaster>
+/// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+/// and associated documentation files (the "Software"), to deal in the Software without restriction, 
+/// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+/// sublicense, and/or sell copies of the Software, and to permit persons to whom the Software 
+/// is furnished to do so, subject to the following conditions:
+/// The above copyright notice and this permission notice shall be included in all copies 
+/// or substantial portions of the Software.
+/// 
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+/// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+/// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+/// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+/// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+/// OTHER DEALINGS IN THE SOFTWARE.
+
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEngine;
 
 /// <summary>
 /// A static class to help read and write files as well as do some search
-/// search an replace.  TODO xml or json.
+/// search an replace.  Some misc string functions. TODO xml or json.
 /// </summary>
 public static class utlDataAndFile
 {
@@ -25,6 +44,11 @@ public static class utlDataAndFile
         return strBuff;
     }
 
+    /// <summary>
+    /// Saves a string to a file.  File argument needs to be provided via the argument 'string fileName'
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="fileContent"></param>
     public static void SaveTextToFile(string fileName, string fileContent)
     {
         StreamWriter writeStream = new StreamWriter(fileName);
@@ -100,6 +124,13 @@ public static class utlDataAndFile
         return null;
     }
 
+    /// <summary>
+    /// Returns a string between two str tokens.
+    /// </summary>
+    /// <param name="strSource"></param>
+    /// <param name="strStart"></param>
+    /// <param name="strEnd"></param>
+    /// <returns></returns>
     public static string GetBetween(string strSource, string strStart, string strEnd)
     {
         int Start, End;
@@ -113,6 +144,13 @@ public static class utlDataAndFile
         return null;
     }
 
+    /// <summary>
+    /// Returns a string that has had a string inserted from a str token.
+    /// </summary>
+    /// <param name="strSource"></param>
+    /// <param name="strStart"></param>
+    /// <param name="strInsert"></param>
+    /// <returns></returns>
     public static string InsertInFrontOf(string strSource, string strStart, string strInsert)
     {
         string strOut = "";
@@ -131,6 +169,14 @@ public static class utlDataAndFile
         return null;
     }
 
+    /// <summary>
+    /// Returns a string with find and replace between two str tokens.
+    /// </summary>
+    /// <param name="strSource"></param>
+    /// <param name="strStart"></param>
+    /// <param name="strEnd"></param>
+    /// <param name="strReplace"></param>
+    /// <returns>string</returns>
     public static string ReplaceBetween(string strSource, string strStart, string strEnd, string strReplace)
     {
         int Start, End;
@@ -150,15 +196,55 @@ public static class utlDataAndFile
         return null;
     }
 
-    public static GameObject FindGameObjectByName(string name)
+    /// <summary>
+    /// Searches the UnityEngine for an object that matches the 'strIn' parameter
+    /// </summary>
+    /// <param name="strIn"></param>
+    /// <returns>GameObject</returns>
+    public static GameObject FindGameObjectByName(string strIn)
     {
         GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         for (int i = 0; i < allObjects.Length; i++)
         {
-            if (allObjects[i].name == name)
+            if (allObjects[i].name == strIn)
                 return allObjects[i];
         }
         return null;
     }
-       
+
+    /// <summary>
+    /// Returns an alpha from a number.
+    /// </summary>
+    /// <param name="numIn"></param>
+    /// <returns>string</returns>
+    public static string GetCode(int numIn)
+    {
+        int start = (int)'A' - 1;
+        if (numIn <= 26) return ((char)(numIn + start)).ToString();
+
+        StringBuilder strBuilder = new StringBuilder();
+        int nextNum = numIn;
+
+        List<char> listOfChars = new List<char>();
+
+        while (nextNum != 0)
+        {
+            int remainder = nextNum % 26;
+            if (remainder == 0) remainder = 26;
+
+            listOfChars.Add((char)(remainder + start));
+            nextNum = nextNum / 26;
+
+            if (remainder == 26) nextNum = nextNum - 1;
+        }
+
+
+        for (int i = listOfChars.Count - 1; i >= 0; i--)
+        {
+            strBuilder.Append((char)(listOfChars[i]));
+        }
+
+        return strBuilder.ToString();
+    }
+
 }
