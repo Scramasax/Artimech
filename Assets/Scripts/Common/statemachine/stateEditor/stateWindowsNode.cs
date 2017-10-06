@@ -178,8 +178,21 @@ public class stateWindowsNode
 
     void DrawConditionCurve(Vector3 startPos,Vector3 endPos)
     {
-        Vector3 startTan = startPos + Vector3.right * 50;
-        Vector3 endTan = endPos + Vector3.left * 50;
+        Vector3 startTan = new Vector3();
+        Vector3 endTan = new Vector3();
+        float inSize = 50;
+        float outSize = 75;
+        if (startPos.x < endPos.x)
+        {
+            startTan = startPos + Vector3.right * inSize;
+            endTan = endPos + Vector3.left * outSize;
+        }
+        else
+        {
+            startTan = startPos + Vector3.right * -inSize;
+            endTan = endPos + Vector3.left * -outSize;
+        }
+
         Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
 
         //draw shadow
