@@ -161,10 +161,17 @@ namespace artiMech
             string strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             PopulateStateStrings(strBuff);
 
-            for(int i=0;i<m_StateNameList.Count;i++)
+            for (int i = 0; i < m_StateNameList.Count; i++)
             {
                 stateWindowsNode node = CreateStateWindowsNode(m_StateNameList[i]);
                 m_StateList.Add(node);
+            }
+
+            for (int i = 0; i < m_StateList.Count; i++)
+            {
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(m_StateList[i].WindowTitle, false);
+                string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
+                PopulateLinkedConditionStates(m_StateList[i], buffer);
             }
         }
 
@@ -202,6 +209,52 @@ namespace artiMech
 
             winNode.Set(fileName,winName, x, y, width, height);
             return winNode;
+        }
+
+        /// <summary>
+        /// Parse the conditions from the state c sharp file.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="strBuff"></param>
+        static void PopulateLinkedConditionStates(stateWindowsNode node, string strBuff)
+        {
+            string[] words = strBuff.Split(new char[] { ' ', '/','\n','_','(' });
+            bool lookForConditionals = false;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == "<ArtiMechConditions>")
+                {
+                    lookForConditionals = true;
+                }
+
+                if (lookForConditionals && words[i] == "new")
+                {
+                    //check to see if stateConditionalBase
+                    Type type = Type.GetType("artiMech." + words[i + 3]);
+                    if (type != null)
+                    {
+                        string buffer = "";
+                        buffer = type.BaseType.Name;
+                        if (buffer == "baseState")
+                        {
+                            stateWindowsNode compNode = FindStateWindowsNodeByName(words[i + 3]);
+                            if (compNode != null)
+                                node.ConditionLineList.Add(compNode);
+                        }
+                    }
+                }
+            }
+        }
+
+        static stateWindowsNode FindStateWindowsNodeByName(string name)
+        {
+            stateWindowsNode node = null;
+            for (int i = 0; i < m_StateList.Count; i++)
+            {
+                if (m_StateList[i].WindowTitle == name)
+                    return m_StateList[i];
+            }
+            return node;
         }
 
         public static void PopulateStateStrings(string strBuff)
@@ -405,10 +458,7 @@ namespace artiMech
             {
                 Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileName + "</color> <color=red>Already exists and can't be overridden...</color>");
                 return;
-            }
-
-            //clear the visual list if there are any in the editor
-           // ClearStatesAndRefresh();
+            }  
 
             //create the aMech directory 
             string replaceName = "aMech";
@@ -473,6 +523,11 @@ namespace artiMech
 
         }
 
+
+        /// <summary>
+        /// adds a state.
+        /// </summary>
+        /// <param name="obj"></param>
         public static void ContextCallback(object obj)
         {
             //make the passed object to a string

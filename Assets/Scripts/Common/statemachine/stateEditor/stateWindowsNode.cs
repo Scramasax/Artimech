@@ -70,6 +70,19 @@ public class stateWindowsNode
             m_PathAndFileOfClass = value;
         }
     }
+
+    public IList<stateWindowsNode> ConditionLineList
+    {
+        get
+        {
+            return m_ConditionLineList;
+        }
+
+        set
+        {
+            m_ConditionLineList = value;
+        }
+    }
     #endregion
 
     public stateWindowsNode(int id)
@@ -127,9 +140,12 @@ public class stateWindowsNode
         startPos.x += WinRect.width * 0.5f;
         startPos.y += WinRect.height * 0.5f;
         
-        for(int i=0;i<this.m_ConditionLineList.Count;i++)
+        for(int i=0;i<this.ConditionLineList.Count;i++)
         {
-            DrawConditionCurve(startPos, m_ConditionLineList[i].GetPos());
+            Vector3 endPos = ConditionLineList[i].GetPos();
+            endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
+            endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+            DrawConditionCurve(startPos, endPos);
         }
     }
 
@@ -169,6 +185,6 @@ public class stateWindowsNode
         //draw shadow
         Color shadowCol = new Color(0, 0, 0, 0.06f);
         for (int i = 0; i < 3; i++)
-            Handles.DrawBezier(startPos, stateEditorUtils.MousePos, startTan, endTan, shadowCol, null, (i + 1) * 4);
+            Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 4);
     }
 }
