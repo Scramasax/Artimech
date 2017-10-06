@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
@@ -302,7 +300,7 @@ namespace artiMech
                 return false;
 
             string modStr = "";
-            //AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+
             string insertString = "\n            AddState(new "
                                 + stateName
                                 + "(this.gameObject),"
@@ -377,31 +375,7 @@ namespace artiMech
 
             AddConditionCodeToStateCode(fileAndPathOfState,replaceName,toState);
 
-            //SaveStateInfo(stateMachName, stateEditorUtils.GameObject.name);
-
             AssetDatabase.Refresh();
-
-            /*
-            string replaceName = "aMech" + fromState + "To" + toState;
-
-            string pathAndFileName = k_PathName
-                                            + "aMech"
-                                            + stateEditorUtils.GameObject.name
-                                            + "/"
-                                            + replaceName
-                                            + ".cs";
-
-            //creates the statemachine from a template
-            string stateMachName = "";
-            stateMachName = stateEditorUtils.ReadReplaceAndWrite(
-                                                        k_StateConditionalFileAndPath,      //this is the template to be used
-                                                        stateEditorUtils.GameObject.name,   //game object name
-                                                        k_PathName,                         //pathname
-                                                        pathAndFileName,
-                                                        "stateConditionalTemplate",
-                                                        replaceName);*/
-
-
         }
 
         /// <summary>

@@ -1,7 +1,25 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/// Artimech
+/// 
+/// Copyright © <2017> <George A Lancaster>
+/// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+/// and associated documentation files (the "Software"), to deal in the Software without restriction, 
+/// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+/// sublicense, and/or sell copies of the Software, and to permit persons to whom the Software 
+/// is furnished to do so, subject to the following conditions:
+/// The above copyright notice and this permission notice shall be included in all copies 
+/// or substantial portions of the Software.
+/// 
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+/// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+/// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+/// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+/// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+/// OTHER DEALINGS IN THE SOFTWARE.
+
+using UnityEngine;
 using artiMech;
 using UnityEditor;
+using System.Collections.Generic;
 
 public class stateWindowsNode
 {
@@ -10,6 +28,8 @@ public class stateWindowsNode
     int m_Id = -1;
     string m_PathAndFileOfClass = "";
     baseState m_State = null;
+
+    IList<stateWindowsNode> m_ConditionLineList = new List<stateWindowsNode>();
 
     #region Accessors
     public Rect WinRect
@@ -99,7 +119,18 @@ public class stateWindowsNode
     public void Update(baseState state)
     {
         m_State = state;
+
         GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowTitle);
+
+        //draw conditions
+        Vector3 startPos = GetPos();
+        startPos.x += WinRect.width * 0.5f;
+        startPos.y += WinRect.height * 0.5f;
+        
+        for(int i=0;i<this.m_ConditionLineList.Count;i++)
+        {
+            DrawConditionCurve(startPos, m_ConditionLineList[i].GetPos());
+        }
     }
 
     public void SaveMetaData()
@@ -127,5 +158,17 @@ public class stateWindowsNode
             }
         }
         GUI.DragWindow();
+    }
+
+    void DrawConditionCurve(Vector3 startPos,Vector3 endPos)
+    {
+        Vector3 startTan = startPos + Vector3.right * 50;
+        Vector3 endTan = endPos + Vector3.left * 50;
+        Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
+
+        //draw shadow
+        Color shadowCol = new Color(0, 0, 0, 0.06f);
+        for (int i = 0; i < 3; i++)
+            Handles.DrawBezier(startPos, stateEditorUtils.MousePos, startTan, endTan, shadowCol, null, (i + 1) * 4);
     }
 }
