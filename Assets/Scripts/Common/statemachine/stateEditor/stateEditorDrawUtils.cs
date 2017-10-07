@@ -38,6 +38,48 @@ namespace artiMech
             Handles.color = lineColor;
             Handles.DrawWireCube(startPos, new Vector3(10,10,10));
 
+            const int arrowHeadSize = 3;
+
+            Vector3[] arrowHead = new Vector3[arrowHeadSize];
+
+            float arrowSize = 15;
+            arrowHead[0] = new Vector3(0, 0, 0);
+            arrowHead[1] = new Vector3(0, arrowSize * 0.5f, arrowSize);
+
+            arrowHead[2] = new Vector3(0, -arrowSize * 0.5f, arrowSize);
+
+
+            utlMatrix34 mtx = new utlMatrix34(endPos);
+            Vector3 lookAtPos = new Vector3(startPos.x,startPos.y,startPos.z); //new Vector3(winRectEnd.x + (winRectEnd.width * 0.5f), winRectEnd.y + (winRectEnd.height * 0.5f), 0);
+            mtx.LookAt(lookAtPos);
+
+            Vector3[] arrowHeadWorld = new Vector3[arrowHeadSize];
+
+            for(int i=0;i<arrowHeadWorld.Length;i++)
+            {
+                arrowHeadWorld[i] = new Vector3();
+                arrowHeadWorld[i] = mtx.Transform(arrowHead[i]);
+            }
+
+            float slice = 0.05f;
+            for (float i = slice; i < 1.0f-slice; i += slice)
+            {
+                Vector3 lerpVect = Vector3.Lerp(arrowHeadWorld[1], arrowHeadWorld[2], i);
+                Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], Color.white, null, 3);
+            }
+
+
+            Handles.DrawBezier(arrowHeadWorld[0], arrowHeadWorld[1], arrowHeadWorld[1], arrowHeadWorld[0], shadowColor, null, 3);
+            Handles.DrawBezier(arrowHeadWorld[0], arrowHeadWorld[2], arrowHeadWorld[2], arrowHeadWorld[0], shadowColor, null, 3);
+            Handles.DrawBezier(arrowHeadWorld[1], arrowHeadWorld[2], arrowHeadWorld[2], arrowHeadWorld[1], shadowColor, null, 3);
+
+            Handles.color = lineColor;
+
+            Handles.DrawLine(arrowHeadWorld[0], arrowHeadWorld[1]);
+            Handles.DrawLine(arrowHeadWorld[0], arrowHeadWorld[2]);
+            Handles.DrawLine(arrowHeadWorld[1], arrowHeadWorld[2]);
+
+
         }
 
         public static void DrawBezierCurve(Vector3 startPos, Vector3 endPos,float inSize,float outSize)
