@@ -40,6 +40,11 @@ namespace artiMech
                 strOut = m_ChangeStateName;
             }
 
+            if(addConditionalState.ConditionCreatedBool)
+            {
+                strOut = m_ChangeStateName;
+            }
+
             return strOut;
         }
     }

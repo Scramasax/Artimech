@@ -78,20 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStartState_To_aMechCubeStateA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateA_To_aMechCubeStateB.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateB.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateB_To_aMechCubeStateA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateB_To_aMechCubeStateC.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateC.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateC_To_aMechCubeStateD.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateC_To_aMechCubeStateE.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateD.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateE.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateE_To_aMechCubeStateA.cs" />
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />

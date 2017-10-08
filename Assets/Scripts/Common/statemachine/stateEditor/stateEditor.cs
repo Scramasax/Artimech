@@ -24,14 +24,9 @@ namespace artiMech
 
         public stateEditor() : base()
         {
-            //m_StateList = new List<stateWindowsNode>();
+            stateEditorUtils.StateEditor = this;
         }
-/*
-        [MenuItem("Window/ArtiMech/State Editor")]
-        static void ShowEditor()
-        {
-            EditorWindow.GetWindow<stateEditor>();
-        }*/
+
 
         /// <summary>
         /// Editor Update.
@@ -42,58 +37,8 @@ namespace artiMech
 
             base.Update();
 
-
-
-            //A gameobject has been selected and the editor will try to find a statemachine.
-            //If a statemachine is found then populated the visual representations populated
-            //in the aforementioned.
-
-            /*
-            if (stateEditorUtils.GameObject != stateEditorUtils.WasGameObject)
-            {
-                stateEditorUtils.StateList.Clear();
-
-                stateMachineBase machine = null;
-                machine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
-
-                //load states and their metadata
-                if (machine != null)
-                {
-                    //Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
-
-                    string strBuff = utlDataAndFile.FindPathAndFileByClassName(machine.GetType().Name, false);
-                    stateEditorUtils.CreateStateWindows(strBuff);
-                }
-            }
-            */
-
             //sets the 'was' gameobject so as to dectect a gameobject swap.
             stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
-
-
-            /*
-            //Once the statemachine is created and unity has refreshed itself the statemachine is 
-            //added to the currently selected gameobject.
-            if (m_AddStateMachine && System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
-            {
-                //makes the editor re pop the state windows.
-                stateEditorUtils.WasGameObject = null;
-
-                stateEditorUtils.GameObject.AddComponent(System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName));
-                m_AddStateMachine = false;
-                Debug.Log(
-                            "<b><color=navy>Artimech Report Log Section B\n</color></b>"
-                            + "<i><color=grey>Click to view details</color></i>"
-                            + "\n"
-                            + "<color=blue>Added a statemachine </color><b>"
-                            + stateEditorUtils.StateMachineName
-                            + "</b>"
-                            + "<color=blue> to a gameobject named </color>"
-                            + stateEditorUtils.GameObject.name
-                            + " .\n\n");
-
-            }
-            */
 
         }
 
@@ -112,9 +57,7 @@ namespace artiMech
 
         void OnFocus()
         {
-            //Debug.Log("<color=blue>" + "<b>" + "focus " + "</b></color>" + "<color=grey>" + "" + "</color>");
-  //          if (stateEditorUtils.GameObject != null && stateEditorUtils.StateList.Count==0)
-  //              stateEditorUtils.WasGameObject = null;
+
         }
 
         void DrawNodeWindow(int id)
@@ -189,6 +132,11 @@ namespace artiMech
         void OnWiki()
         {
             Help.BrowseURL("http://example.com/product/help");
+        }
+
+        public void EditorRepaint()
+        {
+            Repaint();
         }
     }
 }

@@ -104,21 +104,24 @@ namespace artiMech
 
             stateEditorUtils.MousePos = ev.mousePosition;
 
-            if (Event.current.button == 0)
+            if (ev.button == 0)
             {
                 //Debug.Log("-------------> " + ev.type);
-                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                if (ev.type == EventType.Used)
+                    //Debug.Log("-------------> " + ev.type);
+                    for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                 {
                     float x = stateEditorUtils.StateList[i].WinRect.x;
                     float y = stateEditorUtils.StateList[i].WinRect.y;
                     float width = stateEditorUtils.StateList[i].WinRect.width;
                     float height = stateEditorUtils.StateList[i].WinRect.height;
-
+                    
                     if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                     {
                         if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
                         {
                             stateEditorUtils.StateList[i].SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                            stateEditorUtils.Repaint();
                         }
                     }
 
@@ -140,23 +143,9 @@ namespace artiMech
       
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
-                //GUI.Window(i, stateEditorUtils.StateList[i].WinRect, DrawNodeWindow, stateEditorUtils.StateList[i].WindowTitle);
                 stateEditorUtils.StateList[i].Update(this);
             }
         }
-
-        /*
-            void DrawNodeCurve(Rect start, Rect end) {
-        Vector3 startPos = new Vector3(start.x + start.width, start.y + start.height / 2, 0);
-        Vector3 endPos = new Vector3(end.x, end.y + end.height / 2, 0);
-        Vector3 startTan = startPos + Vector3.right * 50;
-        Vector3 endTan = endPos + Vector3.left * 50;
-        Color shadowCol = new Color(0, 0, 0, 0.06f);
-        for (int i = 0; i < 3; i++) // Draw a shadow
-            Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 5);
-        Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
-    }
-        */
 
         void ContextCallback(object obj)
         {

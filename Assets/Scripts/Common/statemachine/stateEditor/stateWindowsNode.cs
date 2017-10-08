@@ -148,7 +148,7 @@ namespace artiMech
                 endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
 
                 Color shadowCol = new Color(0, 0, 1, 0.06f);
-                stateEditorDrawUtils.DrawArrow( startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol);
+                stateEditorDrawUtils.DrawArrow( startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol,Color.white);
             }
 
         }

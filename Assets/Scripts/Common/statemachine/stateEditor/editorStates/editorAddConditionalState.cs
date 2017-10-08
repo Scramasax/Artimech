@@ -90,11 +90,17 @@ namespace artiMech
 
             //check to see if 
             stateWindowsNode stateNode = GetWindowsNodeAtThisLocation(ev.mousePosition);
-            if (Event.current.button == 0 && stateNode!=null && m_CondtionCreatedBool==false)
+
+            if (ev.button == 0)
             {
-                m_CondtionCreatedBool = true;
-                stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
-                
+                //Debug.Log("-------------> " + ev.type);
+                if (ev.type == EventType.Used && stateNode != null && m_CondtionCreatedBool == false)
+                {
+                    m_CondtionCreatedBool = true;
+                    stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
+                    Debug.Log("window = " + stateNode.WindowTitle);
+                }
+
                 //Debug.Log("window = " + stateNode.WindowTitle);
             }
 
@@ -106,14 +112,14 @@ namespace artiMech
                 }
             }
 
-            DrawConditionCurve();
-
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
             }
 
+            DrawConditionalTemp();
 
+            stateEditorUtils.Repaint();
         }
 
         stateWindowsNode GetWindowsNodeAtThisLocation(Vector2 vect)
@@ -129,19 +135,13 @@ namespace artiMech
             return null;
         }
 
-        void DrawConditionCurve()
+        void DrawConditionalTemp()
         {
             Vector3 startPos = m_WindowsSelectedNode.GetPos();
             startPos.x += m_WindowsSelectedNode.WinRect.width * 0.5f;
             startPos.y += m_WindowsSelectedNode.WinRect.height * 0.5f;
-            Vector3 startTan = startPos + Vector3.right * 50;
-            Vector3 endTan = stateEditorUtils.MousePos + Vector3.left * 50;
-            Handles.DrawBezier(startPos, stateEditorUtils.MousePos, startTan, endTan, Color.black, null, 1);
-
-            //draw shadow
-            Color shadowCol = new Color(0, 0, 0, 0.06f);
-            for (int i = 0; i < 3; i++) 
-                Handles.DrawBezier(startPos, stateEditorUtils.MousePos, startTan, endTan, shadowCol, null, (i + 1) * 4);
+            Color shadowCol = new Color(1, 1, 1, 0.2f);
+            stateEditorDrawUtils.DrawArrow(startPos, stateEditorUtils.MousePos, m_WindowsSelectedNode.WinRect, new Rect(0,0,0,0), 2, Color.black, 2, shadowCol,Color.cyan);
         }
 
         void ContextCallback(object obj)
@@ -157,6 +157,7 @@ namespace artiMech
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             m_RightClickBool = false;
             m_CondtionCreatedBool = false;
+            stateEditorUtils.Repaint();
         }
 
         /// <summary>

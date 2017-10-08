@@ -12,7 +12,7 @@ namespace artiMech
     /// </summary>
     public static class stateEditorDrawUtils
     {
-        public static void DrawArrow(Vector3 startPos, Vector3 endPos,Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor)
+        public static void DrawArrow(Vector3 startPos, Vector3 endPos,Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor,Color bodyColor)
         {
 
             //clip the line through the window rects
@@ -31,7 +31,7 @@ namespace artiMech
 
             Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
 
-            Handles.color = Color.white;
+            Handles.color = bodyColor;
             for (float i=0;i<10;i+=0.5f)
                 Handles.DrawWireCube(startPos, new Vector3(i, i, i));
 
@@ -65,7 +65,7 @@ namespace artiMech
             for (float i = slice; i < 1.0f-slice; i += slice)
             {
                 Vector3 lerpVect = Vector3.Lerp(arrowHeadWorld[1], arrowHeadWorld[2], i);
-                Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], Color.white, null, 3);
+                Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], bodyColor, null, 3);
             }
 
 

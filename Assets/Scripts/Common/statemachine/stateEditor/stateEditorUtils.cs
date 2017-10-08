@@ -30,6 +30,8 @@ namespace artiMech
 
         static stateWindowsNode m_SelectedWindowsNode = null;
 
+        static stateEditor m_StateEditor = null;
+
         #region Accessors 
         public static IList<stateWindowsNode> StateList
         {
@@ -119,6 +121,19 @@ namespace artiMech
             set
             {
                 m_SelectedWindowsNode = value;
+            }
+        }
+
+        public static stateEditor StateEditor
+        {
+            get
+            {
+                return m_StateEditor;
+            }
+
+            set
+            {
+                m_StateEditor = value;
             }
         }
 
@@ -335,6 +350,8 @@ namespace artiMech
 
             utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
 
+            
+
             return true;
         }
 
@@ -428,7 +445,24 @@ namespace artiMech
 
             AddConditionCodeToStateCode(fileAndPathOfState,replaceName,toState);
 
-            AssetDatabase.Refresh();
+            stateWindowsNode node = FindStateWindowsNodeByName(fromState);
+            if (node != null)
+            {
+                /*
+                Type windowsNodeType = Type.GetType(toState);
+                stateConditionalBase compNode = (stateConditionalBase)Activator.CreateInstance(conditionType);*/
+                for(int i=0;i<m_StateList.Count;i++)
+                {
+                    if (m_StateList[i].WindowTitle == toState)
+                    {
+                        node.ConditionLineList.Add(m_StateList[i]);
+                        return;
+                    }
+                }
+                
+            }
+
+            //AssetDatabase.Refresh();
         }
 
         /// <summary>
@@ -567,6 +601,12 @@ namespace artiMech
                     //AssetDatabase.Refresh();
                 }
             }
+        }
+
+        public static void Repaint()
+        {
+            if (m_StateEditor != null)
+                m_StateEditor.EditorRepaint();
         }
     }
 }
