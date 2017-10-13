@@ -134,7 +134,10 @@ namespace artiMech
         {
             m_State = state;
 
-            GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowTitle);
+            if(state is editorAddPostCondtionalState)
+                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, WindowTitle);
+            else
+                GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowTitle);
 
             //draw conditions
             Vector3 startPos = GetPos();
@@ -156,6 +159,11 @@ namespace artiMech
         public void SaveMetaData()
         {
             stateEditorUtils.SetPositionAndSizeOfAStateFile(m_PathAndFileOfClass, (int)m_WinRect.x, (int)m_WinRect.y, (int)m_WinRect.width, (int)m_WinRect.height);
+        }
+
+        void DrawNodeWindowNoDrag(int id)
+        {
+            //GUI.DragWindow();
         }
 
         void DrawNodeWindow(int id)

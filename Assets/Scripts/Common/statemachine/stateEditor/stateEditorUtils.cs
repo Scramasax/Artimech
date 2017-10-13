@@ -603,6 +603,19 @@ namespace artiMech
             }
         }
 
+        public static stateWindowsNode GetWindowsNodeAtThisLocation(Vector2 vect)
+        {
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                if (stateEditorUtils.StateList[i].IsWithin(vect))
+                {
+                    return stateEditorUtils.StateList[i];
+                }
+            }
+
+            return null;
+        }
+
         public static void Repaint()
         {
             if (m_StateEditor != null)

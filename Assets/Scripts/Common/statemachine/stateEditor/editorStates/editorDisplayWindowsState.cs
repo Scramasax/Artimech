@@ -128,6 +128,19 @@ namespace artiMech
                 }
             }
 
+            //if( ev.control)
+            //    Debug.Log("<color=blue>" + "<b>" + "ev = " + "</b></color>" + ev.ToString());
+
+            //saves meta data for the visual window system
+            if (ev.control &&  ev.keyCode == KeyCode.S)
+            {
+                Debug.Log("<color=blue>" + "<b>" + "Saving...." + "</b></color>");
+                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                {
+                    stateEditorUtils.StateList[i].SaveMetaData();
+                }
+            }
+
             if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
@@ -140,7 +153,7 @@ namespace artiMech
             }
 
             // render populated state windows
-      
+
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
@@ -163,6 +176,7 @@ namespace artiMech
         public override void Enter()
         {
             m_AddConditionalBool = false;
+            stateEditorUtils.Repaint();
         }
 
         /// <summary>

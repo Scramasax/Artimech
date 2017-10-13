@@ -56,7 +56,7 @@ namespace artiMech
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorMoveToDisplayConditional("Display Windows"));
+            m_ConditionalList.Add(new editorAddCondToPosAddConditional("Display Windows"));
         }
 
         /// <summary>

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 
 #region XML_DATA
 
@@ -26,32 +26,26 @@ using UnityEditor;
 #endif
 
 #endregion
+
+/// <summary>
+/// This looks for the up click and then a condition is added and
+/// the state is returned to 'Display Windows'
+/// </summary>
 namespace artiMech
 {
-    public class editorAddConditionalState : baseState
+    public class editorAddPostCondtionalState : stateConditionalUpdateBase
     {
-
+        stateWindowsNode m_WindowsSelectedNode = null;
+        bool m_ExitAddPostState = false;
+        public bool ExitAddPostState { get { return m_ExitAddPostState; } }
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        /// 
-        IList<stateConditionalBase> m_ConditionalList;
-        static Texture2D m_BackGroundImage = null;
-        stateWindowsNode m_WindowsSelectedNode = null;
-        bool m_RightClickBool = false;
-        bool m_LeftClickBool = false;
-
-        public bool RightClickBool { get { return m_RightClickBool; } }
-        public bool LeftClickBool { get { return m_LeftClickBool; } }
-
-        public editorAddConditionalState(GameObject gameobject)
+        public editorAddPostCondtionalState(GameObject gameobject) : base(gameobject)
         {
-            m_GameObject = gameobject;
-            m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorAddConditionalToDisplay("Display Windows"));
-            m_ConditionalList.Add(new editorAddCondToPosAddConditional("Post Add Condition"));
+            m_ConditionalList.Add(new editorAddPostConditionalToDisplay("Display Windows"));
         }
 
         /// <summary>
@@ -59,17 +53,7 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
-            for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                string changeNameToThisState = null;
-                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
-                if (changeNameToThisState != null)
-                {
-                    m_ChangeStateName = changeNameToThisState;
-                    m_ChangeBool = true;
-                    return;
-                }
-            }
+            base.Update();
         }
 
         /// <summary>
@@ -85,34 +69,23 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
-            //check to see if 
-            stateWindowsNode stateNode = stateEditorUtils.GetWindowsNodeAtThisLocation(ev.mousePosition);
-
             if (ev.button == 0)
             {
-                //Debug.Log("-------------> " + ev.type);
-                if (ev.type == EventType.Used && stateNode != null && m_LeftClickBool == false)
+                stateWindowsNode stateNode = stateEditorUtils.GetWindowsNodeAtThisLocation(ev.mousePosition);
+                if (ev.type == EventType.mouseUp && m_ExitAddPostState == false)
                 {
-                    m_LeftClickBool = true;
-                    //stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
+                    if(stateNode != null)
+                        stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
+                    m_ExitAddPostState = true;
                 }
             }
 
             if (ev.keyCode == KeyCode.Escape)
             {
-                m_RightClickBool = true;
-            }
-
-            if (ev.button == 1)
-            {
-                if (ev.type == EventType.MouseDown)
-                {
-                    m_RightClickBool = true;
-                }
+                m_ExitAddPostState = true;
             }
 
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
@@ -132,13 +105,8 @@ namespace artiMech
             startPos.y += m_WindowsSelectedNode.WinRect.height * 0.5f;
             Color shadowCol = new Color(1, 1, 1, 0.2f);
             Color arrowCol = new Color(204 / 255, 255 / 255, 102 / 255, 1.0f);
-            
-            stateEditorDrawUtils.DrawArrow(startPos, stateEditorUtils.MousePos, m_WindowsSelectedNode.WinRect, new Rect(0,0,0,0), 2, Color.black, 2, shadowCol,arrowCol);
-        }
 
-        void ContextCallback(object obj)
-        {
-            stateEditorUtils.ContextCallback(obj);
+            stateEditorDrawUtils.DrawArrow(startPos, stateEditorUtils.MousePos, m_WindowsSelectedNode.WinRect, new Rect(0, 0, 0, 0), 2, Color.black, 2, shadowCol, arrowCol);
         }
 
         /// <summary>
@@ -147,8 +115,7 @@ namespace artiMech
         public override void Enter()
         {
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
-            m_RightClickBool = false;
-            m_LeftClickBool = false;
+            m_ExitAddPostState = false;
             stateEditorUtils.Repaint();
         }
 
