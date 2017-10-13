@@ -176,6 +176,7 @@ namespace artiMech
         public override void Enter()
         {
             m_AddConditionalBool = false;
+            stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.GameObject.name);
             stateEditorUtils.Repaint();
         }
 
