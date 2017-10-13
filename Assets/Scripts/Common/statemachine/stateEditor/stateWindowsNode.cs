@@ -185,6 +185,22 @@ namespace artiMech
                     return;
                 }
             }
+            Color shadowCol = new Color(0, 0, 0, 0.2f);
+            float xOffset = 8.0f;
+            float yOffset = 9.0f;
+            float boxSize = 8;
+            stateEditorDrawUtils.DrawCubeFilled(new Vector3(this.WinRect.width-xOffset,yOffset,0), boxSize, 1, Color.black, 1, shadowCol, Color.clear);
+
+            stateEditorDrawUtils.DrawX(new Vector3(this.WinRect.width - (xOffset * 1.5f), yOffset * 0.5f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
+            stateEditorDrawUtils.DrawX(new Vector3(this.WinRect.width - (xOffset*1.5f), yOffset*0.5f, 0), boxSize-1 , boxSize-1 , 1, Color.black);
+
+            float sizerSize = 15;
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width-2 , this.WinRect.height-2,0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            sizerSize = 10;
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            sizerSize = 5;
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+
             GUI.DragWindow();
         }
 

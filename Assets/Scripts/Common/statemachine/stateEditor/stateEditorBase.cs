@@ -63,7 +63,7 @@ namespace artiMech
             InitStates();
         }
 
-        [MenuItem("Window/ArtiMech/State Editor")]
+        [MenuItem("Window/Artimech/State Editor")]
         static void ShowEditor()
         {
             EditorWindow.GetWindow<stateEditor>();

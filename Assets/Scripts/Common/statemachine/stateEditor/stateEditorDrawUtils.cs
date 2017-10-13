@@ -31,6 +31,68 @@ namespace artiMech
     /// </summary>
     public static class stateEditorDrawUtils
     {
+
+        public static void DrawCubeFilled(Vector3 startPos, float boxSize,  int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
+        {
+            Handles.color = shadowColor;
+            Handles.DrawWireCube(startPos, new Vector3(boxSize+1, boxSize+1, boxSize+1));
+
+            Handles.color = bodyColor;
+            for (float i = 0; i < boxSize; i += 0.5f)
+                Handles.DrawWireCube(startPos, new Vector3(i, i, i));
+
+            Handles.color = lineColor;
+            Handles.DrawWireCube(startPos, new Vector3(boxSize, boxSize, boxSize));
+
+        }
+
+        public static void DrawX(Vector3 startPos,float sizeX,float sizeY,int lineWidth,Color lineColor)
+        {
+            Vector3 lineStart = new Vector3();
+            lineStart = startPos;
+
+            Vector3 lineEnd = new Vector3();
+            lineEnd = startPos;
+            lineEnd.y += sizeY;
+            lineEnd.x += sizeX;
+
+            DrawLine(lineStart, lineEnd, lineWidth, lineColor);
+
+            lineStart.y += sizeY;
+            lineEnd.y -= sizeY;
+
+            DrawLine(lineStart, lineEnd, lineWidth, lineColor);
+
+        }
+
+        public static void DrawWindowSizer(Vector3 startPos, float sizeX, float sizeY, int lineWidth, Color lineColor)
+        {
+            Vector3 lineStart = new Vector3();
+            lineStart = startPos;
+
+            Vector3 lineEnd = new Vector3();
+            lineEnd = startPos;
+            lineEnd.y -= sizeY;
+
+            Vector3 finalEnd = new Vector3();
+            finalEnd = lineEnd;
+
+            DrawLine(lineStart, lineEnd, lineWidth, lineColor);
+
+            lineEnd = startPos;
+            lineEnd.x -= sizeX;
+
+            DrawLine(lineStart, lineEnd, lineWidth, lineColor);
+
+            DrawLine(finalEnd, lineEnd, lineWidth, lineColor);
+
+        }
+
+        public static void DrawLine(Vector3 startPos, Vector3 endPos, int lineWidth, Color lineColor)
+        {
+            Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
+        }
+
         public static void DrawArrow(Vector3 startPos, Vector3 endPos,Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor,Color bodyColor)
         {
 
