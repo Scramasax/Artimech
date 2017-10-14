@@ -36,9 +36,9 @@ namespace artiMech
     public class editorMoveState : stateConditionalUpdateBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
-
         bool m_ActionConfirmed = false;
-        
+        Vector2 m_MoveOffsetPercent;
+
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
@@ -93,7 +93,7 @@ namespace artiMech
                     {
                         if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
                         {
-                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
                             stateEditorUtils.Repaint();
                         }
                     }
@@ -118,6 +118,15 @@ namespace artiMech
         {
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             m_ActionConfirmed = false;
+
+            float diff = stateEditorUtils.MousePos.x - stateEditorUtils.SelectedNode.WinRect.x;
+            m_MoveOffsetPercent.x = diff / stateEditorUtils.SelectedNode.WinRect.width;
+
+            diff = stateEditorUtils.MousePos.y - stateEditorUtils.SelectedNode.WinRect.y;
+            m_MoveOffsetPercent.y = diff / stateEditorUtils.SelectedNode.WinRect.height;
+            //Debug.Log("m_MoveOffsetPercent.x = " + m_MoveOffsetPercent.x);
+
+
             stateEditorUtils.Repaint();
         }
 

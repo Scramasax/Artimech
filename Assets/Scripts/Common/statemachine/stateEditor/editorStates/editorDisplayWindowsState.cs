@@ -35,6 +35,7 @@ namespace artiMech
         IList<stateConditionalBase> m_ConditionalList;
         bool m_AddConditionalBool = false;
         bool m_MoveWindowNode = false;
+
         #endregion
 
         #region Accessors
@@ -126,9 +127,12 @@ namespace artiMech
                         {
                             if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
                             {
-                                m_MoveWindowNode = true;
-                                stateEditorUtils.SelectedNode = stateEditorUtils.StateList[i];
-                                stateEditorUtils.Repaint();
+                                if (stateEditorUtils.StateList[i].MainBodyHover)
+                                {
+                                    m_MoveWindowNode = true;
+                                    stateEditorUtils.SelectedNode = stateEditorUtils.StateList[i];
+                                    stateEditorUtils.Repaint();
+                                }
                             }
                         }       
                 }
@@ -185,6 +189,7 @@ namespace artiMech
         {
             m_AddConditionalBool = false;
             m_MoveWindowNode = false;
+
             stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.GameObject.name);
             stateEditorUtils.Repaint();
         }
