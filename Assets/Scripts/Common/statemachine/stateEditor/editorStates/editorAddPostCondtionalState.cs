@@ -78,7 +78,7 @@ namespace artiMech
                 if (ev.type == EventType.mouseUp && m_ExitAddPostState == false)
                 {
                     if(stateNode != null)
-                        stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
+                        stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.ClassName, stateNode.ClassName);
                     m_ExitAddPostState = true;
                 }
             }

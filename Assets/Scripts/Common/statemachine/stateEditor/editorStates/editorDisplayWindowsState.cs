@@ -39,6 +39,7 @@ namespace artiMech
         IList<stateConditionalBase> m_ConditionalList;
         static Texture2D m_BackGroundImage = null;
         bool m_AddConditionalBool = false;
+        Vector2 scrollPosition;
 
         public bool AddConditionalBool
         {
@@ -100,7 +101,7 @@ namespace artiMech
             Event ev = Event.current;
             //           Debug.Log(ev.mousePosition);
             //           Debug.Log(ev.type);
-            //           Debug.Log("---> " + ev.button);
+            //           Debug.Log("---> " + ev.button);            
 
             stateEditorUtils.MousePos = ev.mousePosition;
 
@@ -158,6 +159,8 @@ namespace artiMech
             {
                 stateEditorUtils.StateList[i].Update(this);
             }
+
+            stateEditorUtils.Repaint();
         }
 
         void ContextCallback(object obj)

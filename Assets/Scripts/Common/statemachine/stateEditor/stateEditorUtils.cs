@@ -184,7 +184,7 @@ namespace artiMech
 
             for (int i = 0; i < m_StateList.Count; i++)
             {
-                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(m_StateList[i].WindowTitle, false);
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(m_StateList[i].ClassName, false);
                 string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
                 PopulateLinkedConditionStates(m_StateList[i], buffer);
             }
@@ -193,7 +193,7 @@ namespace artiMech
         public static stateWindowsNode CreateStateWindowsNode(string typeName)
         {
             stateWindowsNode winNode = new stateWindowsNode(StateList.Count);
-            winNode.WindowTitle = typeName;
+            winNode.ClassName = typeName;
 
             float x = 0;
             float y = 0;
@@ -266,7 +266,7 @@ namespace artiMech
             stateWindowsNode node = null;
             for (int i = 0; i < m_StateList.Count; i++)
             {
-                if (m_StateList[i].WindowTitle == name)
+                if (m_StateList[i].ClassName == name)
                     return m_StateList[i];
             }
             return node;
@@ -453,7 +453,7 @@ namespace artiMech
                 stateConditionalBase compNode = (stateConditionalBase)Activator.CreateInstance(conditionType);*/
                 for(int i=0;i<m_StateList.Count;i++)
                 {
-                    if (m_StateList[i].WindowTitle == toState)
+                    if (m_StateList[i].ClassName == toState)
                     {
                         node.ConditionLineList.Add(m_StateList[i]);
                         return;

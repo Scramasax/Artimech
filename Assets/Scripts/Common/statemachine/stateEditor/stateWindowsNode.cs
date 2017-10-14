@@ -25,14 +25,39 @@ namespace artiMech
     public class stateWindowsNode
     {
         Rect m_WinRect;
-        string m_WindowTitle = "";
+        string m_ClassName = "";
+        string m_WindowName = "";
         int m_Id = -1;
         string m_PathAndFileOfClass = "";
         baseState m_State = null;
 
         IList<stateWindowsNode> m_ConditionLineList = new List<stateWindowsNode>();
 
+        Rect m_CloseButtonRect;
+        Rect m_MainBodyRectA;
+        Rect m_MainBodyRectB;
+        Rect m_ResizeBodyRect;
+        Rect m_TitleRect;
+
+        bool m_CloseButtonHover = false;
+        bool m_MainBodyHover = false;
+        bool m_ResizeBodyHover = false;
+        bool m_TitleHover = false;
         #region Accessors
+
+        /// <summary>  Returns true if the mouse cursor is hovering over the close button. </summary>
+        public bool CloseButtonHover { get { return m_CloseButtonHover; } }
+
+        /// <summary>  Returns true if the mouse cursor is hovering over the main body of the window. </summary>
+        public bool MainBodyHover { get { return m_MainBodyHover; } }
+
+        /// <summary>  Returns true if the mouse cursor is hovering over the resize widget. </summary>
+        public bool ResizeBodyHover { get { return m_ResizeBodyHover; } }
+
+        /// <summary>  Returns true if the mouse cursor is hovering over the window title area. </summary>
+        public bool TitleHover { get { return m_TitleHover; } }
+
+        /// <summary>  The entire window rectangle. </summary>
         public Rect WinRect
         {
             get
@@ -46,19 +71,21 @@ namespace artiMech
             }
         }
 
-        public string WindowTitle
+        /// <summary> Returns the name of the refrencing class the state. </summary>
+        public string ClassName
         {
             get
             {
-                return m_WindowTitle;
+                return m_ClassName;
             }
 
             set
             {
-                m_WindowTitle = value;
+                m_ClassName = value;
             }
         }
 
+        /// <summary> Returns the path of the class. </summary>
         public string PathAndFileOfClass
         {
             get
@@ -72,6 +99,7 @@ namespace artiMech
             }
         }
 
+        /// <summary> Returns a list of conditions. </summary>
         public IList<stateWindowsNode> ConditionLineList
         {
             get
@@ -84,31 +112,69 @@ namespace artiMech
                 m_ConditionLineList = value;
             }
         }
+
+        /// <summary> Returns the name of the window in the title. </summary>
+        public string WindowName
+        {
+            get
+            {
+                return m_WindowName;
+            }
+
+            set
+            {
+                m_WindowName = value;
+            }
+        }
         #endregion
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
         public stateWindowsNode(int id)
         {
             m_WinRect = new Rect();
-            m_WindowTitle = "not filled in...";
+            m_ClassName = "not filled in...";
+            m_WindowName = "not filled in yet...";
             m_Id = id;
         }
 
+        /// <summary>
+        /// Sets the various configuration varibles. 
+        /// </summary>
+        /// <param name="pathAndFileOfClass"></param>
+        /// <param name="title"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void Set(string pathAndFileOfClass, string title, float x, float y, float width, float height)
         {
             m_PathAndFileOfClass = pathAndFileOfClass;
-            m_WindowTitle = title;
+            m_ClassName = title;
+            m_WindowName = title;
             m_WinRect.x = x;
             m_WinRect.y = y;
             m_WinRect.width = width;
             m_WinRect.height = height;
         }
 
+        /// <summary>
+        /// Set the position of the window.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void SetPos(float x, float y)
         {
             m_WinRect.x = x;
             m_WinRect.y = y;
         }
 
+        /// <summary>
+        /// Returns a Vector3 that contains the position of the window.
+        /// </summary>
+        /// <returns></returns>
         public Vector3 GetPos()
         {
             Vector3 tempVect = new Vector3();
@@ -118,6 +184,11 @@ namespace artiMech
             return tempVect;
         }
 
+        /// <summary>
+        /// Check to see if a position is inside the main window.
+        /// </summary>
+        /// <param name="vect"></param>
+        /// <returns></returns>
         public bool IsWithin(Vector2 vect)
         {
             if (vect.x >= m_WinRect.x && vect.x < m_WinRect.x + m_WinRect.width)
@@ -135,9 +206,9 @@ namespace artiMech
             m_State = state;
 
             if(state is editorAddPostCondtionalState)
-                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, WindowTitle);
+                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, WindowName);
             else
-                GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowTitle);
+                GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowName);
 
             //draw conditions
             Vector3 startPos = GetPos();
@@ -155,17 +226,27 @@ namespace artiMech
             }
 
         }
-
+        /// <summary>
+        /// Saves the positioning and other data in the comments via xml formatting in the refrencing state.
+        /// </summary>
         public void SaveMetaData()
         {
             stateEditorUtils.SetPositionAndSizeOfAStateFile(m_PathAndFileOfClass, (int)m_WinRect.x, (int)m_WinRect.y, (int)m_WinRect.width, (int)m_WinRect.height);
         }
 
+        /// <summary>
+        /// Draw the window without any funtionality.
+        /// </summary>
+        /// <param name="id"></param>
         void DrawNodeWindowNoDrag(int id)
         {
             //GUI.DragWindow();
         }
 
+        /// <summary>
+        /// Draws the "Display" window of this window.  Everything is active.
+        /// </summary>
+        /// <param name="id"></param>
         void DrawNodeWindow(int id)
         {
             if (Event.current.button == 1 && Event.current.isMouse)
@@ -185,48 +266,78 @@ namespace artiMech
                     return;
                 }
             }
+
+            //draw the exit button in the title bar
             Color shadowCol = new Color(0, 0, 0, 0.2f);
             float xOffset = 8.0f;
             float yOffset = 9.0f;
             float boxSize = 8;
-            stateEditorDrawUtils.DrawCubeFilled(new Vector3(this.WinRect.width-xOffset,yOffset,0), boxSize, 1, Color.black, 1, shadowCol, Color.clear);
 
-            stateEditorDrawUtils.DrawX(new Vector3(this.WinRect.width - (xOffset * 1.5f), yOffset * 0.5f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
-            stateEditorDrawUtils.DrawX(new Vector3(this.WinRect.width - (xOffset*1.5f), yOffset*0.5f, 0), boxSize-1 , boxSize-1 , 1, Color.black);
+            //create the close button rectangle
+            m_CloseButtonRect = new Rect(this.WinRect.width  - (xOffset+(boxSize*0.5f)), yOffset - (boxSize * 0.5f), boxSize, boxSize);
 
-            float sizerSize = 15;
-            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width-2 , this.WinRect.height-2,0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            //EditorGUI.DrawRect(closeBoxRect, new Color(0.9f, 0.9f, 0.9f));
+
+            if (m_CloseButtonRect.Contains(Event.current.mousePosition))
+                stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width - xOffset, yOffset, 0), boxSize, 1, Color.black, 1, shadowCol, Color.red);
+            else
+                stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width-xOffset,yOffset,0), boxSize, 1, Color.black, 1, shadowCol, new Color(0.9f, 0.9f, 0.9f));
+
+            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 1.5f), yOffset * 0.5f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
+            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset*1.5f), yOffset*0.5f, 0), boxSize-1 , boxSize-1 , 1, Color.black);
+
+            //draw the resizer
+            const float initSizerSize = 15;
+            float sizerSize = initSizerSize;
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width-2 , this.WinRect.height-2,0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 10;
-            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 5;
-            stateEditorDrawUtils.DrawWindowSizer(new Vector3(this.WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+
+            const float titleHeight = 15;
+            //create the main body rectangle.
+            m_MainBodyRectA = new Rect(0, titleHeight, WinRect.width, WinRect.height - initSizerSize - titleHeight);
+            m_MainBodyRectB = new Rect(0, titleHeight, WinRect.width - initSizerSize, WinRect.height);
+
+            //main body of the window
+            EditorGUIUtility.AddCursorRect(m_MainBodyRectA, MouseCursor.MoveArrow);
+            EditorGUIUtility.AddCursorRect(m_MainBodyRectB, MouseCursor.MoveArrow);
+
+            //resize
+            m_ResizeBodyRect = new Rect(new Rect(WinRect.width - initSizerSize, WinRect.height - initSizerSize, initSizerSize, initSizerSize));
+            EditorGUIUtility.AddCursorRect(m_ResizeBodyRect, MouseCursor.ResizeUpLeft);
+
+            //title
+            const float rightMarginSize = 15;
+            m_TitleRect = new Rect(0, 0, WinRect.width - rightMarginSize, titleHeight);
+            EditorGUIUtility.AddCursorRect(m_TitleRect, MouseCursor.Text);
+
+            //close box
+            EditorGUIUtility.AddCursorRect(m_CloseButtonRect, MouseCursor.ArrowMinus);
+
+            UpdateMouseHover(Event.current.mousePosition);
 
             GUI.DragWindow();
         }
 
-        void DrawConditionCurve(Vector3 startPos, Vector3 endPos)
+        /// <summary>
+        /// Sets the various hover bools so that the selected node can tell an external 
+        /// peice of code what mouse is hovering over.  That way contextual input can be
+        /// achieved.
+        /// </summary>
+        /// <param name="mousePos"></param>
+        void UpdateMouseHover(Vector2 mousePos)
         {
-            Vector3 startTan = new Vector3();
-            Vector3 endTan = new Vector3();
-            float inSize = 50;
-            float outSize = 75;
-            if (startPos.x < endPos.x)
-            {
-                startTan = startPos + Vector3.right * inSize;
-                endTan = endPos + Vector3.left * outSize;
-            }
-            else
-            {
-                startTan = startPos + Vector3.right * -inSize;
-                endTan = endPos + Vector3.left * -outSize;
-            }
+            m_CloseButtonHover = m_CloseButtonRect.Contains(mousePos);
+            m_ResizeBodyHover = m_ResizeBodyRect.Contains(mousePos);
+            m_TitleHover = m_TitleRect.Contains(mousePos);
 
-            Handles.DrawBezier(startPos, endPos, startTan, endTan, Color.black, null, 1);
+            m_MainBodyHover = m_MainBodyRectA.Contains(mousePos);
+            if (m_MainBodyHover)
+                return;
 
-            //draw shadow
-            Color shadowCol = new Color(0, 0, 0, 0.06f);
-            for (int i = 0; i < 3; i++)
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowCol, null, (i + 1) * 4);
+            m_MainBodyHover = m_MainBodyRectB.Contains(mousePos);
         }
     }
 }
