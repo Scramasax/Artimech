@@ -388,7 +388,7 @@ namespace artiMech
             return true;
         }
 
-        public static bool SetPositionAndSizeOfAStateFile(string fileName,int x, int y, int width, int height)
+        public static bool SaveStateWindowsNodeData(string fileName,string titleAlias, int x, int y, int width, int height)
         {
             string strBuff = "";
             strBuff = utlDataAndFile.LoadTextFromFile(fileName);
@@ -397,6 +397,7 @@ namespace artiMech
                 return false;
 
             string modStr = "";
+            modStr = utlDataAndFile.ReplaceBetween(strBuff, "<alias>", "</alias>", titleAlias);
             modStr = utlDataAndFile.ReplaceBetween(strBuff, "<posX>", "</posX>",x.ToString());
             modStr = utlDataAndFile.ReplaceBetween(modStr, "<posY>", "</posY>", y.ToString());
             modStr = utlDataAndFile.ReplaceBetween(modStr, "<sizeX>", "</sizeX>", width.ToString());
@@ -566,9 +567,6 @@ namespace artiMech
         {
             //make the passed object to a string
             string clb = obj.ToString();
-            //string stateName = "";
-
-
 
             if (clb.Equals("addState") && GameObject != null)
             {
@@ -586,19 +584,15 @@ namespace artiMech
 
                     stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
                     windowNode.Set(fileAndPath,stateName, MousePos.x, MousePos.y, 150, 80);
-                    stateEditorUtils.StateList.Add(windowNode);
+                    StateList.Add(windowNode);
 
-                    stateEditorUtils.SetPositionAndSizeOfAStateFile(fileAndPath, (int)MousePos.x, (int)MousePos.y, 150, 80);
+                    SaveStateWindowsNodeData(fileAndPath, stateName, (int)MousePos.x, (int)MousePos.y, 150, 80);
 
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
 
-                    SaveStateInfo(StateMachineName, stateEditorUtils.GameObject.name);
+                    SaveStateInfo(StateMachineName, GameObject.name);
 
-                    stateEditorUtils.AddStateCodeToStateMachineCode(fileAndPath, stateName);
-
-
-
-                    //AssetDatabase.Refresh();
+                    AddStateCodeToStateMachineCode(fileAndPath, stateName);
                 }
             }
         }

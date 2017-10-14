@@ -33,16 +33,19 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorMoveState : stateConditionalUpdateBase
+    public class editorDeleteState : stateConditionalUpdateBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
 
         bool m_ActionConfirmed = false;
-        
+        bool m_ActionCancelled = false;
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
         public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+
+        /// <summary>  Returns true if the action is cancelled. </summary>
+        public bool ActionCancelled { get { return m_ActionCancelled; } }
 
         #endregion
 
@@ -50,10 +53,10 @@ namespace artiMech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public editorMoveState(GameObject gameobject) : base(gameobject)
+        public editorDeleteState(GameObject gameobject) : base(gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editor_Move_To_Display("Display Windows"));
+            m_ConditionalList.Add(new editor_Delete_To_Display("Display Windows"));
         }
 
         /// <summary>
@@ -77,38 +80,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            Event ev = Event.current;
-            stateEditorUtils.MousePos = ev.mousePosition;
 
-            if (ev.button == 0)
-            {
-                if (ev.type != EventType.mouseUp)
-                {
-                    float x = m_WindowsSelectedNode.WinRect.x;
-                    float y = m_WindowsSelectedNode.WinRect.y;
-                    float width = m_WindowsSelectedNode.WinRect.width;
-                    float height = m_WindowsSelectedNode.WinRect.height;
-
-                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
-                    {
-                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
-                        {
-                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
-                            stateEditorUtils.Repaint();
-                        }
-                    }
-                }
-                else
-                    m_ActionConfirmed = true;
-
-            }
-
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                stateEditorUtils.StateList[i].Update(this);
-            }
-
-            stateEditorUtils.Repaint();
         }
 
         /// <summary>

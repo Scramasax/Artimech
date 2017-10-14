@@ -71,6 +71,7 @@ namespace artiMech
 
         void InitStates()
         {
+            // all the states for the state editor
             m_CurrentState = AddState(new editorStartState(null), "Start");
             AddState(new editorRestoreState(null), "Restore");
             AddState(new editorLoadState(null), "Load");
@@ -79,6 +80,10 @@ namespace artiMech
             AddState(new editorCreateState(null), "Create");
             AddState(new editorAddConditionalState(null), "Add Conditional");
             AddState(new editorAddPostCondtionalState(null), "Post Add Condition");
+            AddState(new editorDeleteState(null), "Delete");
+            AddState(new editorResizeState(null), "Resize");
+            AddState(new editorRenameState(null), "Rename");
+            AddState(new editorMoveState(null), "Move");
         }
 
         // Update is called once per frame

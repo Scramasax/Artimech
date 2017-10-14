@@ -31,7 +31,7 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <name>nada</name>
+    <alias>nada</alias>
     <posX>20</posX>
     <posY>40</posY>
     <sizeX>150</sizeX>

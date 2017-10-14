@@ -24,9 +24,11 @@ namespace artiMech
 {
     public class stateWindowsNode
     {
+        #region Variables
+
         Rect m_WinRect;
         string m_ClassName = "";
-        string m_WindowName = "";
+        string m_WindowStateAlias = "";
         int m_Id = -1;
         string m_PathAndFileOfClass = "";
         baseState m_State = null;
@@ -43,6 +45,8 @@ namespace artiMech
         bool m_MainBodyHover = false;
         bool m_ResizeBodyHover = false;
         bool m_TitleHover = false;
+
+        #endregion
         #region Accessors
 
         /// <summary>  Returns true if the mouse cursor is hovering over the close button. </summary>
@@ -114,18 +118,19 @@ namespace artiMech
         }
 
         /// <summary> Returns the name of the window in the title. </summary>
-        public string WindowName
+        public string WindowStateAlias
         {
             get
             {
-                return m_WindowName;
+                return m_WindowStateAlias;
             }
 
             set
             {
-                m_WindowName = value;
+                m_WindowStateAlias = value;
             }
         }
+
         #endregion
 
         /// <summary>
@@ -136,7 +141,7 @@ namespace artiMech
         {
             m_WinRect = new Rect();
             m_ClassName = "not filled in...";
-            m_WindowName = "not filled in yet...";
+            m_WindowStateAlias = "not filled in yet...";
             m_Id = id;
         }
 
@@ -153,7 +158,7 @@ namespace artiMech
         {
             m_PathAndFileOfClass = pathAndFileOfClass;
             m_ClassName = title;
-            m_WindowName = title;
+            m_WindowStateAlias = title;
             m_WinRect.x = x;
             m_WinRect.y = y;
             m_WinRect.width = width;
@@ -205,10 +210,10 @@ namespace artiMech
         {
             m_State = state;
 
-            if(state is editorAddPostCondtionalState)
-                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, WindowName);
+            if(state is editorAddPostCondtionalState || state is editorMoveState)
+                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, m_WindowStateAlias);
             else
-                GUI.Window(m_Id, WinRect, DrawNodeWindow, WindowName);
+                GUI.Window(m_Id, WinRect, DrawNodeWindow, m_WindowStateAlias);
 
             //draw conditions
             Vector3 startPos = GetPos();
@@ -231,7 +236,7 @@ namespace artiMech
         /// </summary>
         public void SaveMetaData()
         {
-            stateEditorUtils.SetPositionAndSizeOfAStateFile(m_PathAndFileOfClass, (int)m_WinRect.x, (int)m_WinRect.y, (int)m_WinRect.width, (int)m_WinRect.height);
+            stateEditorUtils.SaveStateWindowsNodeData(m_PathAndFileOfClass, m_WindowStateAlias, (int)m_WinRect.x, (int)m_WinRect.y, (int)m_WinRect.width, (int)m_WinRect.height);
         }
 
         /// <summary>

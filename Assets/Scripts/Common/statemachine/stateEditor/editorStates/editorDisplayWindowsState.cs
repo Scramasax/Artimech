@@ -31,16 +31,13 @@ namespace artiMech
     public class editorDisplayWindowsState : baseState
     {
 
-        /// <summary>
-        /// State constructor.
-        /// </summary>
-        /// <param name="gameobject"></param>
-        /// 
+        #region Variables
         IList<stateConditionalBase> m_ConditionalList;
-        static Texture2D m_BackGroundImage = null;
         bool m_AddConditionalBool = false;
-        Vector2 scrollPosition;
+        bool m_MoveWindowNode = false;
+        #endregion
 
+        #region Accessors
         public bool AddConditionalBool
         {
             get
@@ -49,6 +46,18 @@ namespace artiMech
             }
         }
 
+        /// <summary>  Returns true if the mouse cursor is hovering over the window title area. </summary>
+        public bool MoveWindowNode { get { return m_MoveWindowNode; } }
+
+        #endregion
+
+        #region Member Functions
+
+        /// <summary>
+        /// State constructor.
+        /// </summary>
+        /// <param name="gameobject"></param>
+        /// 
         public editorDisplayWindowsState(GameObject gameobject)
         {
             m_AddConditionalBool = false;
@@ -58,6 +67,7 @@ namespace artiMech
             m_ConditionalList.Add(new editorDisplayToWaitConditional("Wait"));
             m_ConditionalList.Add(new editorDisplayToLoadConditional("Load"));
             m_ConditionalList.Add(new editorDisplayToAddConditional("Add Conditional"));
+            m_ConditionalList.Add(new editor_Display_To_Move("Move"));
         }
 
         /// <summary>
@@ -76,10 +86,6 @@ namespace artiMech
                     return;
                 }
             }
-
-
-
-
         }
 
         /// <summary>
@@ -99,10 +105,6 @@ namespace artiMech
 
             // input
             Event ev = Event.current;
-            //           Debug.Log(ev.mousePosition);
-            //           Debug.Log(ev.type);
-            //           Debug.Log("---> " + ev.button);            
-
             stateEditorUtils.MousePos = ev.mousePosition;
 
             if (ev.button == 0)
@@ -111,21 +113,24 @@ namespace artiMech
                 if (ev.type == EventType.Used)
                     //Debug.Log("-------------> " + ev.type);
                     for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-                {
-                    float x = stateEditorUtils.StateList[i].WinRect.x;
-                    float y = stateEditorUtils.StateList[i].WinRect.y;
-                    float width = stateEditorUtils.StateList[i].WinRect.width;
-                    float height = stateEditorUtils.StateList[i].WinRect.height;
-                    
-                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                     {
-                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        if (!stateEditorUtils.StateList[i].MainBodyHover)
+                            continue;
+                        
+                        float x = stateEditorUtils.StateList[i].WinRect.x;
+                        float y = stateEditorUtils.StateList[i].WinRect.y;
+                        float width = stateEditorUtils.StateList[i].WinRect.width;
+                        float height = stateEditorUtils.StateList[i].WinRect.height;
+                    
+                        if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                         {
-                            stateEditorUtils.StateList[i].SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
-                            stateEditorUtils.Repaint();
-                        }
-                    }
-
+                            if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                            {
+                                m_MoveWindowNode = true;
+                                stateEditorUtils.SelectedNode = stateEditorUtils.StateList[i];
+                                stateEditorUtils.Repaint();
+                            }
+                        }       
                 }
             }
 
@@ -179,6 +184,7 @@ namespace artiMech
         public override void Enter()
         {
             m_AddConditionalBool = false;
+            m_MoveWindowNode = false;
             stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.GameObject.name);
             stateEditorUtils.Repaint();
         }
@@ -190,5 +196,6 @@ namespace artiMech
         {
 
         }
+#endregion
     }
 }
