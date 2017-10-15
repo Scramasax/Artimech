@@ -210,7 +210,7 @@ namespace artiMech
 
             for (int i = 0; i < words.Length; i++)
             {
-                if (words[i] == "name" && words[i + 1]!="nada")
+                if (words[i] == "alias")
                     winName = words[i + 1];
                 if (words[i] == "posX")
                     x = Convert.ToSingle(words[i + 1]);
@@ -222,7 +222,7 @@ namespace artiMech
                     height = Convert.ToSingle(words[i + 1]);
             }
 
-            winNode.Set(fileName,winName, x, y, width, height);
+            winNode.Set(fileName,typeName,winName, x, y, width, height);
             return winNode;
         }
 
@@ -398,7 +398,7 @@ namespace artiMech
 
             string modStr = "";
             modStr = utlDataAndFile.ReplaceBetween(strBuff, "<alias>", "</alias>", titleAlias);
-            modStr = utlDataAndFile.ReplaceBetween(strBuff, "<posX>", "</posX>",x.ToString());
+            modStr = utlDataAndFile.ReplaceBetween(modStr, "<posX>", "</posX>",x.ToString());
             modStr = utlDataAndFile.ReplaceBetween(modStr, "<posY>", "</posY>", y.ToString());
             modStr = utlDataAndFile.ReplaceBetween(modStr, "<sizeX>", "</sizeX>", width.ToString());
             modStr = utlDataAndFile.ReplaceBetween(modStr, "<sizeY>", "</sizeY>", height.ToString());
@@ -546,17 +546,24 @@ namespace artiMech
             utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
         }
 
+        /// <summary>
+        /// This function is used to save what Unity game object I'm working on.  That way when I'm 
+        /// rebuilt I remember where I was at.
+        /// </summary>
+        /// <param name="stateMachineName"></param>
+        /// <param name="gameObjectName"></param>
         public static void SaveStateInfo(string stateMachineName,string gameObjectName)
         {
             string stateInfo = stateMachineName + " " + gameObjectName;
             utlDataAndFile.SaveTextToFile(Application.dataPath + "/StateMachine.txt", stateInfo);   
         } 
 
+        /*
         public static void AddConditionalCallback(object obj)
         {
             Debug.Log("Add conditional.");
 
-        }
+        }*/
 
 
         /// <summary>
@@ -583,7 +590,7 @@ namespace artiMech
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
 
                     stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
-                    windowNode.Set(fileAndPath,stateName, MousePos.x, MousePos.y, 150, 80);
+                    windowNode.Set(fileAndPath,stateName,stateName, MousePos.x, MousePos.y, 150, 80);
                     StateList.Add(windowNode);
 
                     SaveStateWindowsNodeData(fileAndPath, stateName, (int)MousePos.x, (int)MousePos.y, 150, 80);

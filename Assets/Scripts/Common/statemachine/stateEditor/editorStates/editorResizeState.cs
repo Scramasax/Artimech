@@ -38,14 +38,11 @@ namespace artiMech
         stateWindowsNode m_WindowsSelectedNode = null;
 
         bool m_ActionConfirmed = false;
-        bool m_ActionCancelled = false;
+        
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
         public bool ActionConfirmed { get { return m_ActionConfirmed; } }
-
-        /// <summary>  Returns true if the action is cancelled. </summary>
-        public bool ActionCancelled { get { return m_ActionCancelled; } }
 
         #endregion
 
@@ -80,7 +77,29 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            Event ev = Event.current;
+            stateEditorUtils.MousePos = ev.mousePosition;
 
+
+             Rect rect = m_WindowsSelectedNode.WinRect;
+
+                    rect.width = ev.mousePosition.x - m_WindowsSelectedNode.WinRect.x;
+                    rect.height = ev.mousePosition.y - m_WindowsSelectedNode.WinRect.y;
+
+                    rect.width = Mathf.Clamp(rect.width, 64, 512);
+                    rect.height = Mathf.Clamp(rect.height, 64, 512);
+
+                    m_WindowsSelectedNode.WinRect = rect;
+
+            if (ev.type == EventType.mouseUp)
+                m_ActionConfirmed = true;
+
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                stateEditorUtils.StateList[i].Update(this);
+            }
+
+            stateEditorUtils.Repaint();
         }
 
         /// <summary>

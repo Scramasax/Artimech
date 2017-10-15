@@ -154,11 +154,16 @@ namespace artiMech
         /// <param name="y"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void Set(string pathAndFileOfClass, string title, float x, float y, float width, float height)
+        public void Set(string pathAndFileOfClass, string classname, string title, float x, float y, float width, float height)
         {
             m_PathAndFileOfClass = pathAndFileOfClass;
-            m_ClassName = title;
-            m_WindowStateAlias = title;
+            m_ClassName = classname;
+
+            if(title!="nada")
+                m_WindowStateAlias = title;
+            else
+                m_WindowStateAlias = classname;
+
             m_WinRect.x = x;
             m_WinRect.y = y;
             m_WinRect.width = width;
@@ -210,7 +215,7 @@ namespace artiMech
         {
             m_State = state;
 
-            if(state is editorAddPostCondtionalState || state is editorMoveState)
+            if(state is editorAddPostCondtionalState || state is editorMoveState || state is editorRenameState)
                 GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, m_WindowStateAlias);
             else
                 GUI.Window(m_Id, WinRect, DrawNodeWindow, m_WindowStateAlias);

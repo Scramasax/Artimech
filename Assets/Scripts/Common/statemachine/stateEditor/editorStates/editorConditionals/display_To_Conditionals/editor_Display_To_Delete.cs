@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editor_Resize_To_Display : stateConditionalBase
+    public class editor_Display_To_Delete : stateConditionalBase
     {
-        public editor_Resize_To_Display(string changeStateName) : base(changeStateName)
+        public editor_Display_To_Delete(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -50,8 +50,8 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            editorDeleteState theState = (editorDeleteState) state;
-            if (theState.ActionCancelled || theState.ActionConfirmed)
+            editorDisplayWindowsState theState = (editorDisplayWindowsState) state;
+            if (theState.DeleteWindowNode)
                 strOut = m_ChangeStateName;
 
             return strOut;

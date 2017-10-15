@@ -39,13 +39,15 @@ namespace artiMech
 
         bool m_ActionConfirmed = false;
         bool m_ActionCancelled = false;
+
+        stateRenameWindow m_RenameWindow = null;
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
-        public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+        public bool ActionConfirmed { get { return m_ActionConfirmed; } set { m_ActionConfirmed = value; } }
 
         /// <summary>  Returns true if the action is cancelled. </summary>
-        public bool ActionCancelled { get { return m_ActionCancelled; } }
+        public bool ActionCancelled { get { return m_ActionCancelled; } set { m_ActionCancelled = value; }}
 
         #endregion
 
@@ -55,8 +57,10 @@ namespace artiMech
         /// <param name="gameobject"></param>
         public editorRenameState(GameObject gameobject) : base(gameobject)
         {
+            m_RenameWindow = new stateRenameWindow(999999);
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editor_Rename_To_Display("Display Windows"));
+
         }
 
         /// <summary>
@@ -80,7 +84,42 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            if (m_WindowsSelectedNode == null)
+                return;
 
+            Event ev = Event.current;
+            stateEditorUtils.MousePos = ev.mousePosition;
+
+            //Debug.Log("ev.type = " + ev.type.ToString());
+            if (ev.button == 0)
+            {
+                //Debug.Log("ev = " + ev.button.ToString());
+                if (ev.type == EventType.MouseDrag)
+                {
+                    float x = m_RenameWindow.WinRect.x;
+                    float y = m_RenameWindow.WinRect.y;
+                    float width = m_RenameWindow.WinRect.width;
+                    float height = m_RenameWindow.WinRect.height;
+
+                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                    {
+                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        {
+                            m_RenameWindow.SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                            stateEditorUtils.Repaint();
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                stateEditorUtils.StateList[i].Update(this);
+            }
+
+            m_RenameWindow.Update(this);
+
+            //stateEditorUtils.Repaint();
         }
 
         /// <summary>
@@ -89,7 +128,12 @@ namespace artiMech
         public override void Enter()
         {
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
+            const float windowSizeX = 300;
+            const float windowSizeY = 100;
+            m_RenameWindow.Set("Rename Window Alias", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
+            m_RenameWindow.ChangeName = m_WindowsSelectedNode.WindowStateAlias;
             m_ActionConfirmed = false;
+            m_ActionCancelled = false;
             stateEditorUtils.Repaint();
         }
 

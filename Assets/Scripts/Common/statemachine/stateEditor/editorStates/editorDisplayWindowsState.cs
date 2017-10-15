@@ -33,22 +33,31 @@ namespace artiMech
 
         #region Variables
         IList<stateConditionalBase> m_ConditionalList;
-        bool m_AddConditionalBool = false;
-        bool m_MoveWindowNode = false;
+
+        bool m_bAddCondtion = false;
+        bool m_bDeleteWindowNode = false;
+        bool m_bMoveWindowNode = false;
+        bool m_bRenameWindowNode = false;
+        bool m_bResizeWindowNode = false;
 
         #endregion
 
         #region Accessors
-        public bool AddConditionalBool
-        {
-            get
-            {
-                return m_AddConditionalBool;
-            }
-        }
 
-        /// <summary>  Returns true if the mouse cursor is hovering over the window title area. </summary>
-        public bool MoveWindowNode { get { return m_MoveWindowNode; } }
+        /// <summary>  State wants to add a condition and has set this bool. </summary>
+        public bool AddConditional { get { return m_bAddCondtion; } }
+
+        /// <summary>  State wants to delete a state/window and has set this bool. </summary>
+        public bool DeleteWindowNode { get { return m_bDeleteWindowNode; } }
+
+        /// <summary>  State wants to move a state window around and has set this bool. </summary>
+        public bool MoveWindowNode { get { return m_bMoveWindowNode; } }
+
+        /// <summary>  State wants to rename a statewindow and has set this bool. </summary>
+        public bool RenameWindowNode { get { return m_bRenameWindowNode; } }
+
+        /// <summary>  State wants to resize a statewindow and has set this bool. </summary>
+        public bool ResizeWindowNode { get { return m_bResizeWindowNode; } }
 
         #endregion
 
@@ -61,14 +70,17 @@ namespace artiMech
         /// 
         public editorDisplayWindowsState(GameObject gameobject)
         {
-            m_AddConditionalBool = false;
+            m_bAddCondtion = false;
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editorDisplayToWaitConditional("Wait"));
             m_ConditionalList.Add(new editorDisplayToLoadConditional("Load"));
             m_ConditionalList.Add(new editorDisplayToAddConditional("Add Conditional"));
+            m_ConditionalList.Add(new editor_Display_To_Delete("Delete"));
             m_ConditionalList.Add(new editor_Display_To_Move("Move"));
+            m_ConditionalList.Add(new editor_Display_To_Rename("Rename"));
+            m_ConditionalList.Add(new editor_Display_To_Resize("Resize"));
         }
 
         /// <summary>
@@ -102,46 +114,49 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-         //   GUILayout.Label(m_BackGroundImage);
-
             // input
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
+            //if the mouse button is down.
             if (ev.button == 0)
             {
-                //Debug.Log("-------------> " + ev.type);
+                //if the mouse has clicked a visual state
                 if (ev.type == EventType.Used)
-                    //Debug.Log("-------------> " + ev.type);
+                {
+                    //loop through and find what state has been clicked.
                     for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                     {
-                        if (!stateEditorUtils.StateList[i].MainBodyHover)
-                            continue;
-                        
+                        //For shortening up the test position conditionals when it comes to code layout.
                         float x = stateEditorUtils.StateList[i].WinRect.x;
                         float y = stateEditorUtils.StateList[i].WinRect.y;
                         float width = stateEditorUtils.StateList[i].WinRect.width;
                         float height = stateEditorUtils.StateList[i].WinRect.height;
-                    
+
+                        //Test to see if the mouse position is within the global limit of the window in the x.
                         if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                         {
+                            //Test to see if the mouse position is within the global limit of the window in the y.
                             if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
                             {
-                                if (stateEditorUtils.StateList[i].MainBodyHover)
-                                {
-                                    m_MoveWindowNode = true;
-                                    stateEditorUtils.SelectedNode = stateEditorUtils.StateList[i];
-                                    stateEditorUtils.Repaint();
-                                }
+                                // If the mouse button is clicked then check to see what to do depending and where
+                                // in the visual state window your are pointing at.
+                                stateEditorUtils.SelectedNode = stateEditorUtils.StateList[i];
+                                stateEditorUtils.Repaint();
+
+                                // Set these for state conditions.
+                                m_bMoveWindowNode = stateEditorUtils.SelectedNode.MainBodyHover;
+                                m_bResizeWindowNode = stateEditorUtils.SelectedNode.ResizeBodyHover;
+                                m_bRenameWindowNode = stateEditorUtils.SelectedNode.TitleHover;
+                                m_bDeleteWindowNode = stateEditorUtils.SelectedNode.CloseButtonHover;
                             }
-                        }       
+                        }
+                    }
                 }
             }
 
-            //if( ev.control)
-            //    Debug.Log("<color=blue>" + "<b>" + "ev = " + "</b></color>" + ev.ToString());
 
-            //saves meta data for the visual window system
+            //Saves meta data for the visual window system via the keyboard
             if (ev.control &&  ev.keyCode == KeyCode.S)
             {
                 Debug.Log("<color=blue>" + "<b>" + "Saving...." + "</b></color>");
@@ -151,6 +166,7 @@ namespace artiMech
                 }
             }
 
+            //Right click and not on a state.
             if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
@@ -163,7 +179,6 @@ namespace artiMech
             }
 
             // render populated state windows
-
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
@@ -179,7 +194,7 @@ namespace artiMech
 
         public void AddConditionalCallback(object obj)
         {
-            m_AddConditionalBool = true;
+            m_bAddCondtion = true;
         }
 
         /// <summary>
@@ -187,9 +202,9 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-            m_AddConditionalBool = false;
-            m_MoveWindowNode = false;
 
+            ResetBools();
+           
             stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.GameObject.name);
             stateEditorUtils.Repaint();
         }
@@ -201,6 +216,17 @@ namespace artiMech
         {
 
         }
-#endregion
+        /// <summary>
+        /// Set state bools back to false.
+        /// </summary>
+        void ResetBools()
+        {
+            m_bAddCondtion = false;
+            m_bDeleteWindowNode = false;
+            m_bMoveWindowNode = false;
+            m_bRenameWindowNode = false;
+            m_bResizeWindowNode = false;
+        }
+        #endregion
     }
 }
