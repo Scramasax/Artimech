@@ -86,8 +86,8 @@ namespace artiMech
                     rect.width = ev.mousePosition.x - m_WindowsSelectedNode.WinRect.x;
                     rect.height = ev.mousePosition.y - m_WindowsSelectedNode.WinRect.y;
 
-                    rect.width = Mathf.Clamp(rect.width, 64, 512);
-                    rect.height = Mathf.Clamp(rect.height, 64, 512);
+                    rect.width = Mathf.Clamp(rect.width, 32, 1024);
+                    rect.height = Mathf.Clamp(rect.height, 32, 1024);
 
                     m_WindowsSelectedNode.WinRect = rect;
 

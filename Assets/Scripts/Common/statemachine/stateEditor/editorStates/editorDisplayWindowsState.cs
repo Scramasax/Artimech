@@ -182,7 +182,50 @@ namespace artiMech
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
+
+                // highlight the current state
+                if (Application.isPlaying)
+                {
+                    stateMachineBase stateMachine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
+
+                    string currentClassName = stateMachine.CurrentState.GetType().ToString();
+                    currentClassName = currentClassName.Replace("artiMech.", "");
+
+                    if(stateEditorUtils.StateList[i].ClassName==currentClassName)
+                    {
+                        float margin = 8.0f;
+                        Rect lastRect = new Rect();
+                        Vector4 startColor = new Vector4(0, 1, 1, 1);
+                        Vector4 endColor = new Vector4(0.5f, 1, 1, 0.1f);
+                        for (float edgleCoef = 0; edgleCoef<=1.0f; edgleCoef += 0.15f)
+                        {
+                            Vector4 colorVector = Vector4.Lerp(startColor, endColor, edgleCoef);
+                            Color backroundColor = new Color(colorVector.x,colorVector.y,colorVector.z,colorVector.w);
+
+                            Rect rect = new Rect(stateEditorUtils.StateList[i].WinRect.x - margin * edgleCoef,
+                                                    stateEditorUtils.StateList[i].WinRect.y - margin * edgleCoef,
+                                                    stateEditorUtils.StateList[i].WinRect.width + (margin * 2 * edgleCoef),
+                                                    stateEditorUtils.StateList[i].WinRect.height + (margin * 2 * edgleCoef));
+
+                            EditorGUI.DrawRect(rect, backroundColor);
+                            lastRect = rect;
+                        }
+                        Vector3 centerPos = new Vector3();
+                        centerPos.x = lastRect.x + (lastRect.width * 0.5f);
+                        centerPos.y = lastRect.y + (lastRect.height * 0.5f);
+
+                        Vector3 windowSize = new Vector3();
+                        windowSize.x = (lastRect.width);
+                        windowSize.y = (lastRect.height);
+
+                        Handles.color = new Color(0.5f,1,1,0.8f);
+                       
+                        Handles.DrawWireCube(centerPos, windowSize);
+                    }
+                }
             }
+
+
 
             stateEditorUtils.Repaint();
         }
@@ -195,6 +238,12 @@ namespace artiMech
         public void AddConditionalCallback(object obj)
         {
             m_bAddCondtion = true;
+        }
+
+        public void EditScriptCallback(object obj)
+        {
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.SelectedNode.ClassName);
+            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
         }
 
         /// <summary>

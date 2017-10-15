@@ -63,7 +63,6 @@ namespace artiMech
 
         new void OnGUI()
         {
-
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             DrawToolBar();
             GUILayout.EndHorizontal();

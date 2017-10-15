@@ -268,6 +268,8 @@ namespace artiMech
                     {
                         GenericMenu menu = new GenericMenu();
                         menu.AddItem(new GUIContent("Add Conditional"), false, dState.AddConditionalCallback, this);
+                        menu.AddSeparator("");
+                        menu.AddItem(new GUIContent("Edit Script"), false, dState.EditScriptCallback, this);
                         stateEditorUtils.SelectedNode = this;
                         menu.ShowAsContext();
                         Event.current.Use();
