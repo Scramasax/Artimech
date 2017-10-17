@@ -215,7 +215,10 @@ namespace artiMech
         {
             m_State = state;
 
-            if(state is editorAddPostCondtionalState || state is editorMoveState || state is editorRenameState)
+            if( state is editorAddPostCondtionalState || 
+                state is editorMoveState ||
+                state is editorDeleteState ||
+                state is editorRenameState)
                 GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, m_WindowStateAlias);
             else
                 GUI.Window(m_Id, WinRect, DrawNodeWindow, m_WindowStateAlias);
@@ -267,7 +270,16 @@ namespace artiMech
                     if (dState != null && Event.current.type == EventType.MouseDown)
                     {
                         GenericMenu menu = new GenericMenu();
-                        menu.AddItem(new GUIContent("Add Conditional"), false, dState.AddConditionalCallback, this);
+                        menu.AddItem(new GUIContent("Add Conditional/Empty Conditional"),
+                            false,
+                            dState.AddConditionalCallback,
+                            new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs", "stateConditionalTemplate"));
+
+                        menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"), 
+                            false, 
+                            dState.AddConditionalCallback,
+                            new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateCondSubExample.cs", "stateCondSubExample"));
+
                         menu.AddSeparator("");
                         menu.AddItem(new GUIContent("Edit Script"), false, dState.EditScriptCallback, this);
                         stateEditorUtils.SelectedNode = this;

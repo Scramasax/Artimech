@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -15,35 +15,42 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-/// 
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// GameObject helpers
+/// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-public static class utlGameObject
+namespace artiMech
 {
-    /// <summary>
-    /// Rotate game object at a target on y axis.
-    /// </summary>
-    /// <param name="gameobject"></param>
-    /// <param name="target"></param>
-    /// <param name="turnSpeed"></param>
-    public static void RotateTowardsFlat(GameObject gameobject,Vector3 target, float turnSpeed)
+    public class aMechCubeStartState_To_aMechCubeStateA : stateConditionalBase
     {
-        Vector3 modTargetPos = new Vector3();
-        modTargetPos = target;
-        modTargetPos.y = gameobject.transform.position.y;
-        Vector3 direction = (modTargetPos - gameobject.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
-        gameobject.transform.rotation = Quaternion.Slerp(gameobject.transform.rotation, lookRotation, gameMgr.GetSeconds() * turnSpeed);
-    }
+        
+        public aMechCubeStartState_To_aMechCubeStateA(string changeStateName) : base (changeStateName)
+        {
+            
+        }
 
-    public static float GetTargetAngle(GameObject gameobject,Vector3 target)
-    {
-        Vector3 localPos = gameobject.transform.InverseTransformPoint(target);
-        float angle = Mathf.Abs(Mathf.Atan2(localPos.x, localPos.z) * Mathf.Rad2Deg);
-        return angle;
+        /// <summary>
+        /// Test conditionals are placed here.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <returns>true or false depending if transition conditions are met.</returns>
+        public override string UpdateConditionalTest(baseState state)
+        {
+            string strOut = null;
+
+            //time method of changing states
+            stateGameBase gamebase = (stateGameBase)state;
+            aMechCube script = gamebase.StateGameObject.GetComponent<aMechCube>();
+            if (gamebase.StateTime > script.m_InitTime)
+                strOut = m_ChangeStateName;
+
+            return strOut;
+        }
     }
 }

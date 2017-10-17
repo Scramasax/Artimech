@@ -79,10 +79,19 @@ using UnityEngine;
 /// 	</code>
 /// </example>
 public class utlEventRouter {
-	/// <summary>
-	/// 	Event data class, passed in to the subscriber whenever an event occours.
-	/// </summary>
-	public class utlEvent {
+
+    public enum EventCode
+    {
+        Standard,
+        Simulation,
+        GUI,
+        System
+    };
+
+    /// <summary>
+    /// 	Event data class, passed in to the subscriber whenever an event occours.
+    /// </summary>
+    public class utlEvent {
 		public string Type;
 		public Component Sender;
 		public object[] Data;

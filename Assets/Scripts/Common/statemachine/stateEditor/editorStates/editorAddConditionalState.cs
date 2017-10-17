@@ -138,7 +138,7 @@ namespace artiMech
 
         void ContextCallback(object obj)
         {
-            stateEditorUtils.ContextCallback(obj);
+            stateEditorUtils.CreateStateContextCallback(obj);
         }
 
         /// <summary>

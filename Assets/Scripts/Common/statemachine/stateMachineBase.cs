@@ -56,7 +56,7 @@ namespace artiMech
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
 
-            m_CurrentState = AddState(new stateTemplate(gameObject), "Start");
+            m_CurrentState = AddState(new stateEmptyExample(gameObject), "Start");
         }
 
         // Use this for initialization

@@ -20,31 +20,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-#region XML_DATA
-
-#if ARTIMECH_META_DATA
-<!-- Atrimech metadata for positioning and other info using the visual editor.  -->
-<!-- The format is XML. -->
-<!-- __________________________________________________________________________ -->
-<!-- Note: Never make ARTIMECH_META_DATA true since this is just metadata       -->
-<!-- Note: for the visual editor to work.                                       -->
-
-<stateMetaData>
-  <State>
-    <alias>nada</alias>
-    <posX>20</posX>
-    <posY>40</posY>
-    <sizeX>150</sizeX>
-    <sizeY>80</sizeY>
-  </State>
-</stateMetaData>
-
-#endif
-
-#endregion
 namespace artiMech
 {
-    public class stateTemplate : baseState
+    public class stateGameBase : baseState
     {
 
         /// <summary>
@@ -52,9 +30,16 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        IList<stateConditionalBase> m_ConditionalList;
+        protected IList<stateConditionalBase> m_ConditionalList;
+        protected float m_StateTime = 0.0f;
 
-        public stateTemplate(GameObject gameobject)
+        /// <summary>  Returns the time in seconds since state has been entered. </summary>
+        public float StateTime { get { return m_StateTime; }}
+
+        /// <summary>Returns current gameobject that owns this state. </summary>
+        public GameObject StateGameObject { get { return m_GameObject; } }
+
+        public stateGameBase(GameObject gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
@@ -66,6 +51,7 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
+            m_StateTime += gameMgr.GetSeconds();
             for (int i = 0; i < m_ConditionalList.Count; i++)
             {
                 string changeNameToThisState = null;
@@ -100,7 +86,15 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            m_StateTime = 0.0f;
+            for(int i=0;i<m_ConditionalList.Count;i++)
+            {
+                if(m_ConditionalList[i] is iSubscriptionConditional)
+                {
+                    iSubscriptionConditional subscriptionCon = (iSubscriptionConditional) m_ConditionalList[i];
+                    subscriptionCon.Subscribe();
+                }
+            }
         }
 
         /// <summary>
@@ -108,7 +102,14 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            for (int i = 0; i < m_ConditionalList.Count; i++)
+            {
+                if (m_ConditionalList[i] is iSubscriptionConditional)
+                {
+                    iSubscriptionConditional subscriptionCon = (iSubscriptionConditional)m_ConditionalList[i];
+                    subscriptionCon.Unsubscribe();
+                }
+            }
         }
     }
 }

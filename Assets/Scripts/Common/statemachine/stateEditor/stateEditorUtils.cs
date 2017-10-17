@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,6 +32,11 @@ namespace artiMech
         static stateWindowsNode m_SelectedWindowsNode = null;
 
         static stateEditor m_StateEditor = null;
+
+        static string m_AddConditionPath = "";
+        static string m_AddConditionReplace = "";
+
+
 
         #region Accessors 
         public static IList<stateWindowsNode> StateList
@@ -134,6 +140,32 @@ namespace artiMech
             set
             {
                 m_StateEditor = value;
+            }
+        }
+
+        public static string AddConditionPath
+        {
+            get
+            {
+                return m_AddConditionPath;
+            }
+
+            set
+            {
+                m_AddConditionPath = value;
+            }
+        }
+
+        public static string AddConditionReplace
+        {
+            get
+            {
+                return m_AddConditionReplace;
+            }
+
+            set
+            {
+                m_AddConditionReplace = value;
             }
         }
 
@@ -250,7 +282,7 @@ namespace artiMech
                     {
                         string buffer = "";
                         buffer = type.BaseType.Name;
-                        if (buffer == "baseState")
+                        if (buffer == "baseState" || buffer == "stateGameBase")
                         {
                             stateWindowsNode compNode = FindStateWindowsNodeByName(words[i + 3]);
                             if (compNode != null)
@@ -288,7 +320,7 @@ namespace artiMech
                     {
                         string buffer = "";
                         buffer = type.BaseType.Name;
-                        if (buffer == "baseState")
+                        if (buffer == "baseState" || buffer == "stateGameBase")
                         {
                             m_StateNameList.Add(words[i + 1]);
                             // Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
@@ -299,11 +331,11 @@ namespace artiMech
             }
         }
 
-        public static bool CreateAndAddStateCodeToProject(GameObject gameobject,string stateName)
+        public static bool CreateAndAddStateCodeToProject(GameObject gameobject,string stateName,string exampleToCopy,string replaceName,bool showLog=true)
         {
 
             string pathName = "Assets/Scripts/artiMechStates/";
-            string FileName = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
+            //string FileName = "Assets/Scripts/Common/statemachine/state_examples/stateTemplate.cs";
 
             string pathAndFileNameStartState = pathName
                                 + "aMech"
@@ -314,12 +346,13 @@ namespace artiMech
 
             if (File.Exists(pathAndFileNameStartState))
             {
-                Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileNameStartState + "</color> <color=red>Already exists and can't be overridden...</color>");
+                if(showLog)
+                    Debug.Log("<color=red>stateEditor.CreateStateMachine = </color> <color=blue> " + pathAndFileNameStartState + "</color> <color=red>Already exists and can't be overridden...</color>");
                 return false;
             }
 
             //creates a start state from a template and populate aMech directory
-            string stateStartName = stateEditorUtils.ReadReplaceAndWrite(FileName, stateName, pathName, pathAndFileNameStartState, "stateTemplate", "");
+            string stateStartName = ReadReplaceAndWrite(exampleToCopy, stateName, pathName, pathAndFileNameStartState, replaceName, "");
 
             return true;
         }
@@ -409,11 +442,11 @@ namespace artiMech
         }
 
         //paths and filenames
-        public const string k_StateMachineTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateMachineTemplate.cs";
-        public const string k_StateTemplateFileAndPath = "Assets/Scripts/Common/statemachine/stateTemplate.cs";
+        public const string k_StateMachineTemplateFileAndPath = "Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs";
+        public const string k_StateTemplateFileAndPath = "Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs";
         public const string k_PathName = "Assets/Scripts/artiMechStates/";
 
-        public const string k_StateConditionalFileAndPath = "Assets/Scripts/Common/statemachine/stateConditionalTemplate.cs";
+        //public const string k_StateConditionalFileAndPath = "Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs";
 
         /// <summary>
         /// Create the conditional code and add it to the state that has called us.
@@ -426,9 +459,9 @@ namespace artiMech
             
             string replaceName = fromState + "_To_" + toState;
 
-            string text = utlDataAndFile.LoadTextFromFile(k_StateConditionalFileAndPath);
+            string text = utlDataAndFile.LoadTextFromFile(AddConditionPath);
 
-            string modText = text.Replace("stateConditionalTemplate", replaceName);
+            string modText = text.Replace(AddConditionReplace, replaceName);
 
             string pathAndFileName = k_PathName
                                 + "aMech"
@@ -507,7 +540,7 @@ namespace artiMech
                                                         stateEditorUtils.GameObject.name + "StartState",
                                                         k_PathName,
                                                         pathAndFileNameStartState,
-                                                        "stateTemplate",
+                                                        "stateEmptyExample",
                                                         "aMech");
 
             //creates the statemachine from a template
@@ -521,7 +554,7 @@ namespace artiMech
                                                         replaceName);
 
             //replace the startStartStateTemplate
-            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateTemplate", stateStartName);
+            utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateEmptyExample", stateStartName);
 
             Debug.Log(
                         "<b><color=navy>Artimech Report Log Section A\n</color></b>"
@@ -570,21 +603,35 @@ namespace artiMech
         /// adds a state.
         /// </summary>
         /// <param name="obj"></param>
-        public static void ContextCallback(object obj)
+        public static void CreateStateContextCallback(object obj)
         {
             //make the passed object to a string
-            string clb = obj.ToString();
+            //string clb = obj.ToString();
+            editorDisplayWindowsState.menuData menuData = (editorDisplayWindowsState.menuData)obj;
 
-            if (clb.Equals("addState") && GameObject != null)
+
+            if (/*clb.Equals("addState") && */ GameObject != null)
             {
+                SaveAllVisualStateMetaData();
+
                 if (StateList.Count == 0)
                 {
                     Debug.LogError("StateList is Empty so you can't create a state.");
                     return;
                 }
-                string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(StateList.Count);
-                if (stateEditorUtils.CreateAndAddStateCodeToProject(GameObject, stateName))
+                //string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(StateList.Count);
+
+                int codeIndex = StateList.Count;
+                string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
+                while (!CreateAndAddStateCodeToProject(GameObject, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName,false))
                 {
+                    codeIndex += 1;
+                    stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
+                    //sanity check
+                    if (codeIndex > 10000)
+                        return;
+                }
+                
 
                     string fileAndPath = "";
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
@@ -600,7 +647,7 @@ namespace artiMech
                     SaveStateInfo(StateMachineName, GameObject.name);
 
                     AddStateCodeToStateMachineCode(fileAndPath, stateName);
-                }
+              
             }
         }
 
@@ -615,6 +662,79 @@ namespace artiMech
             }
 
             return null;
+        }
+
+        public static void DeleteAndRemoveState(stateWindowsNode node, string className)
+        {
+            SaveAllVisualStateMetaData();
+
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            string strBuff = utlDataAndFile.LoadTextFromFile(pathAndFileForClassName);
+            string[] wordsA = strBuff.Split(new char[] { ' ', '(' });
+
+            for (int i = 0; i < wordsA.Length; i++)
+            {
+                if (wordsA[i] == "new")
+                {
+                    Type type = Type.GetType("artiMech." + wordsA[i + 1]);
+
+                    if (type != null)
+                    {
+                        string buffer = "";
+                        buffer = type.BaseType.Name;
+                        if (buffer == "stateConditionBase")
+                        {
+                            string pathAndFileForConditionClass = utlDataAndFile.FindPathAndFileByClassName(wordsA[i + 1]);
+                            File.Delete(pathAndFileForConditionClass);
+                        }
+                    }
+                }
+            }
+
+            File.Delete(pathAndFileForClassName);
+            m_StateList.Remove(node);
+            for(int i=0;i<m_StateNameList.Count;i++)
+            {
+                if(m_StateNameList[i]==className)
+                {
+                    m_StateNameList.RemoveAt(i);
+                    break;
+                }
+            }
+
+            
+
+            //Delete the state inside the statemachine.
+            string pathAndFileForStateMachine = utlDataAndFile.FindPathAndFileByClassName(StateMachineName, false);
+
+            int lineIndex = 0;
+            using (StreamReader reader = new StreamReader(pathAndFileForStateMachine))
+            {
+                string line = "";
+                
+                while ((line = reader.ReadLine()) != null)
+                {
+                    lineIndex += 1;
+                    if (line.IndexOf(className) >= 0)
+                        break;            
+                }
+            }
+
+            var file = new List<string>(System.IO.File.ReadAllLines(pathAndFileForStateMachine));
+            file.RemoveAt(lineIndex-1);
+            File.WriteAllLines(pathAndFileForStateMachine, file.ToArray());
+
+            //Refresh because there is a visual bug if not done after adding a state.
+            AssetDatabase.Refresh();
+
+        }
+
+        public static void SaveAllVisualStateMetaData()
+        {
+            for(int i=0;i<m_StateList.Count;i++)
+            {
+                m_StateList[i].SaveMetaData();
+            }
         }
 
         public static void Repaint()

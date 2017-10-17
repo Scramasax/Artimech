@@ -31,6 +31,18 @@ namespace artiMech
     public class editorDisplayWindowsState : baseState
     {
 
+        public class menuData
+        {
+            public menuData(string fileAndPath,string replaceName)
+            {
+                m_FileAndPath = fileAndPath;
+                m_ReplaceName = replaceName;
+            }
+
+            public string m_FileAndPath = "";
+            public string m_ReplaceName = "";
+        }
+
         #region Variables
         IList<stateConditionalBase> m_ConditionalList;
 
@@ -172,7 +184,25 @@ namespace artiMech
                 if (ev.type == EventType.MouseDown)
                 {
                     GenericMenu menu = new GenericMenu();
-                    menu.AddItem(new GUIContent("Add State"), false, ContextCallback, "addState");
+
+                    //TODO: add this from the xml.
+                    menu.AddItem(new GUIContent("Add State/Empty State"), 
+                                                false, 
+                                                CreateAddStateCallback, 
+                                                new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs", "stateEmptyExample"));
+
+                    menu.AddItem(new GUIContent("Add State/Subscribe State"),
+                                                false,
+                                                CreateAddStateCallback,
+                                                new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEventSubscribeExample.cs", "stateEventSubscribeExample"));
+
+                    menu.AddItem(new GUIContent("Add State/Publish State"),
+                                                false,
+                                                CreateAddStateCallback,
+                                                new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEventPublishExample.cs", "stateEventPublishExample"));
+                    
+
+
                     menu.ShowAsContext();
                     ev.Use();
                 }
@@ -230,14 +260,20 @@ namespace artiMech
             stateEditorUtils.Repaint();
         }
 
-        void ContextCallback(object obj)
+        void CreateAddStateCallback(object obj)
         {
-            stateEditorUtils.ContextCallback(obj);
+            stateEditorUtils.CreateStateContextCallback(obj);
         }
 
         public void AddConditionalCallback(object obj)
         {
+            //some ugly data exchange.  TODO: messaging. 
+            menuData data = (menuData)obj;
+            stateEditorUtils.AddConditionPath = data.m_FileAndPath;
+            stateEditorUtils.AddConditionReplace = data.m_ReplaceName;
+
             m_bAddCondtion = true;
+
         }
 
         public void EditScriptCallback(object obj)

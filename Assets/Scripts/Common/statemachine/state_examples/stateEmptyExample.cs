@@ -32,6 +32,7 @@ using System.Collections.Generic;
 <stateMetaData>
   <State>
     <alias>nada</alias>
+    <comment></comment>
     <posX>20</posX>
     <posY>40</posY>
     <sizeX>150</sizeX>
@@ -44,20 +45,15 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class stateConditionalUpdateBase : baseState
+    public class stateEmptyExample : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        /// 
-        protected IList<stateConditionalBase> m_ConditionalList;
-
-        public stateConditionalUpdateBase(GameObject gameobject)
+        public stateEmptyExample(GameObject gameobject) : base (gameobject)
         {
-            m_GameObject = gameobject;
-            m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
         }
 
@@ -66,17 +62,7 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
-            for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                string changeNameToThisState = null;
-                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
-                if (changeNameToThisState != null)
-                {
-                    m_ChangeStateName = changeNameToThisState;
-                    m_ChangeBool = true;
-                    return;
-                }
-            }
+            base.Update();
         }
 
         /// <summary>
@@ -84,7 +70,7 @@ namespace artiMech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -92,7 +78,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
+            base.UpdateEditorGUI();
         }
 
         /// <summary>
@@ -100,7 +86,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            base.Enter();
         }
 
         /// <summary>
@@ -108,7 +94,7 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            base.Exit();
         }
     }
 }

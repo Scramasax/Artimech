@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorRenameState : stateConditionalUpdateBase
+    public class editorRenameState : stateGameBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
 
@@ -130,7 +130,7 @@ namespace artiMech
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             const float windowSizeX = 300;
             const float windowSizeY = 100;
-            m_RenameWindow.Set("Rename Window Alias", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
+            m_RenameWindow.Set("Delete State", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
             m_RenameWindow.ChangeName = m_WindowsSelectedNode.WindowStateAlias;
             m_ActionConfirmed = false;
             m_ActionCancelled = false;

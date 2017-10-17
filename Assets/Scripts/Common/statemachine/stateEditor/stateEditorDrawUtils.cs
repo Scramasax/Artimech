@@ -31,7 +31,6 @@ namespace artiMech
     /// </summary>
     public static class stateEditorDrawUtils
     {
-
         public static void DrawCubeFilled(Vector3 startPos, float boxSize,  int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
             Handles.color = shadowColor;

@@ -91,15 +91,15 @@ public class utlMatrix34
     /// <summary>
     /// Local to world.
     /// </summary>
-    /// <param name="localVect"></param>
+    /// <param name="localPos"></param>
     /// <returns></returns>
-    public Vector3 Transform(Vector3 localVect)
+    public Vector3 Transform(Vector3 localPos)
     {
-        Vector3 outVect = new Vector3();
-        outVect.x = localVect.x * m_A.x + localVect.y * m_B.x + localVect.z * m_C.x + m_D.x;
-        outVect.y = localVect.x * m_A.y + localVect.y * m_B.y + localVect.z * m_C.y + m_D.y;
-        outVect.z = localVect.x * m_A.z + localVect.y * m_B.z + localVect.z * m_C.z + m_D.z;
-        return outVect;
+        Vector3 worldPos = new Vector3();
+        worldPos.x = localPos.x * m_A.x + localPos.y * m_B.x + localPos.z * m_C.x + m_D.x;
+        worldPos.y = localPos.x * m_A.y + localPos.y * m_B.y + localPos.z * m_C.y + m_D.y;
+        worldPos.z = localPos.x * m_A.z + localPos.y * m_B.z + localPos.z * m_C.z + m_D.z;
+        return worldPos;
     }
 #endregion
 }

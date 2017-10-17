@@ -33,19 +33,20 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorDeleteState : stateConditionalUpdateBase
+    public class editorDeleteState : stateGameBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
+        stateDeleteWindow m_DeleteWindowMessageBox = null;
 
         bool m_ActionConfirmed = false;
         bool m_ActionCancelled = false;
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
-        public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+        public bool ActionConfirmed { get { return m_ActionConfirmed; } set { m_ActionConfirmed = value; } }
 
         /// <summary>  Returns true if the action is cancelled. </summary>
-        public bool ActionCancelled { get { return m_ActionCancelled; } }
+        public bool ActionCancelled { get { return m_ActionCancelled; } set { m_ActionCancelled = value; } }
 
         #endregion
 
@@ -55,6 +56,7 @@ namespace artiMech
         /// <param name="gameobject"></param>
         public editorDeleteState(GameObject gameobject) : base(gameobject)
         {
+            m_DeleteWindowMessageBox = new stateDeleteWindow(999998);
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editor_Delete_To_Display("Display Windows"));
         }
@@ -80,7 +82,40 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            if (m_WindowsSelectedNode == null)
+                return;
 
+            Event ev = Event.current;
+            stateEditorUtils.MousePos = ev.mousePosition;
+
+            //Debug.Log("ev.type = " + ev.type.ToString());
+            if (ev.button == 0)
+            {
+                //Debug.Log("ev = " + ev.button.ToString());
+                if (ev.type == EventType.MouseDrag)
+                {
+                    float x = m_DeleteWindowMessageBox.WinRect.x;
+                    float y = m_DeleteWindowMessageBox.WinRect.y;
+                    float width = m_DeleteWindowMessageBox.WinRect.width;
+                    float height = m_DeleteWindowMessageBox.WinRect.height;
+
+                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                    {
+                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        {
+                            m_DeleteWindowMessageBox.SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
+                            stateEditorUtils.Repaint();
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                stateEditorUtils.StateList[i].Update(this);
+            }
+
+            m_DeleteWindowMessageBox.Update(this);
         }
 
         /// <summary>
@@ -89,7 +124,13 @@ namespace artiMech
         public override void Enter()
         {
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
+            const float windowSizeX = 300;
+            const float windowSizeY = 120;
+            m_DeleteWindowMessageBox.Set("Rename Window Alias", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX, windowSizeY);
+            m_DeleteWindowMessageBox.StateToDeleteName = m_WindowsSelectedNode.WindowStateAlias;
+            m_DeleteWindowMessageBox.InitImage();
             m_ActionConfirmed = false;
+            m_ActionCancelled = false;
             stateEditorUtils.Repaint();
         }
 

@@ -16,8 +16,10 @@
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -247,4 +249,24 @@ public static class utlDataAndFile
         return strBuilder.ToString();
     }
 
+    /// <summary>
+    /// Load a png.
+    /// </summary>
+    /// <param name="fileAndPath"></param>
+    /// <returns></returns>
+    public static Texture2D LoadPNG(string fileAndPath)
+    {
+
+        Texture2D tex = null;
+        byte[] fileData;
+
+        if (File.Exists(fileAndPath))
+        {
+            fileData = File.ReadAllBytes(fileAndPath);
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+        }
+        return tex;
+
+    }
 }

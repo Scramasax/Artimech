@@ -78,13 +78,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStartState_To_aMechCubeStateA.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateA.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateA_To_aMechCubeStateB.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateB.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCubeStateB_To_aMechCubeStateA.cs" />
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventPublishExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventSubscribeExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateMachineTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalTemplate.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalUpdateBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddPostCondtionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Delete.cs" />
@@ -121,28 +133,29 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorWaitState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateDeleteWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorDrawUtils.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRenameWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateGameBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineTemplate.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlDataAndFile.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlDebugDraw.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlDebugPrint.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlEventHandler.cs" />
+    <Compile Include="Assets\Scripts\Common\utils\utlEventRouter.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <None Include="Assets\StateMachine.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

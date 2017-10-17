@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<stateEditor>
+  <!-- Add menu 'State' entries for the different examples to be copied. -->
+  <addStateMenu>
+    <addStateEntry>
+      <alias>Empty State</alias>
+      <code>Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs</code>
+      <callback>CreateConditionalStateCallback</callback>
+    </addStateEntry>
+    <addStateEntry>
+      <alias>Publish Message State</alias>
+      <code>Assets/Scripts/Common/statemachine/state_examples/stateEventPublishExample.cs</code>
+      <callback>CreateConditionalStateCallback</callback>
+    </addStateEntry>
+    <addStateEntry>
+      <alias>Message Subsciption State</alias>
+      <code>Assets/Scripts/Common/statemachine/state_examples/stateEventSubscribeExample.cs</code>
+      <callback>CreateConditionalStateCallback</callback>
+    </addStateEntry>    
+  </addStateMenu>
+
+  <!-- Add menu 'Conditon' entries for the different exmaples to be compied -->
+  <addCoditionMenu>
+    <addConditionEntry>
+      <alias>Empty Condition</alias>
+      <code>Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs</code>
+      <callback>CreateConditionalStateCallback</callback>
+    </addConditionEntry>
+    <addConditionEntry>
+      <alias>Message Subsciption Condition</alias>
+      <code>Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs</code>
+      <callback>CreateConditionalStateCallback</callback>
+    </addConditionEntry>    
+  </addCoditionMenu>
+  
+</stateEditor>

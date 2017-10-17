@@ -1,8 +1,24 @@
-﻿using UnityEngine;
-using UnityEditor;
+/// Artimech
+/// 
+/// Copyright © <2017> <George A Lancaster>
+/// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+/// and associated documentation files (the "Software"), to deal in the Software without restriction, 
+/// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+/// sublicense, and/or sell copies of the Software, and to permit persons to whom the Software 
+/// is furnished to do so, subject to the following conditions:
+/// The above copyright notice and this permission notice shall be included in all copies 
+/// or substantial portions of the Software.
+/// 
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+/// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+/// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+/// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+/// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+/// OTHER DEALINGS IN THE SOFTWARE.
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 #region XML_DATA
 
@@ -15,7 +31,8 @@ using System.IO;
 
 <stateMetaData>
   <State>
-    <name>nada</name>
+    <alias>Start</alias>
+    <comment></comment>
     <posX>20</posX>
     <posY>40</posY>
     <sizeX>150</sizeX>
@@ -28,33 +45,17 @@ using System.IO;
 #endregion
 namespace artiMech
 {
-    public class editorDisplayImageBaseState : stateGameBase
+    public class aMechCubeStartState : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        /// 
-        Texture2D m_BackgroundImage = null;
-        string m_ImageName = "";
-
-        public editorDisplayImageBaseState(GameObject gameobject,string imageName) : base(gameobject)
+        public aMechCubeStartState(GameObject gameobject) : base (gameobject)
         {
-            m_GameObject = gameobject;
-            m_ConditionalList = new List<stateConditionalBase>();
-            m_ImageName = imageName;
-        }
-
-        protected void InitImage()
-        {
-            string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, m_ImageName);
-            byte[] fileData;
-            fileData = File.ReadAllBytes(fileAndPath);
-
-            m_BackgroundImage = null;
-            m_BackgroundImage = new Texture2D(2048, 2048);
-            m_BackgroundImage.LoadImage(fileData);
+            //<ArtiMechConditions>
+            m_ConditionalList.Add(new aMechCubeStartState_To_aMechCubeStateA("aMechCubeStateA"));
         }
 
         /// <summary>
@@ -62,9 +63,6 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
-            if (m_BackgroundImage == null)
-                InitImage();
-
             base.Update();
         }
 
@@ -73,7 +71,7 @@ namespace artiMech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -81,7 +79,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            GUILayout.Label(m_BackgroundImage);
+            base.UpdateEditorGUI();
         }
 
         /// <summary>
@@ -89,7 +87,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-
+            base.Enter();
         }
 
         /// <summary>
@@ -97,7 +95,7 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            base.Exit();
         }
     }
 }

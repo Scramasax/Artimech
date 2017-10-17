@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorMoveState : stateConditionalUpdateBase
+    public class editorMoveState : stateGameBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_ActionConfirmed = false;
