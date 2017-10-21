@@ -209,6 +209,7 @@ namespace artiMech
                 stateEditorUtils.SelectedNode.ClassName = m_ChangeName;
                 //stateEditorUtils.SelectedNode.SaveMetaData();
                 refactorState.ActionConfirmed = true;
+                AssetDatabase.Refresh();
             }
             GUILayout.Space(kButtonCenterSpace);
             if(GUILayout.Button("Cancel"))

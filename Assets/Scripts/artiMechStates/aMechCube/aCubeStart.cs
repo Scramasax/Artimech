@@ -31,10 +31,10 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Rest</alias>
+    <alias>Start</alias>
     <comment></comment>
-    <posX>328</posX>
-    <posY>301</posY>
+    <posX>20</posX>
+    <posY>40</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>
@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class aMechCubeStateB : stateGameBase
+    public class aCubeStart : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aMechCubeStateB(GameObject gameobject) : base (gameobject)
+        public aCubeStart(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new aMechCubeStateB_To_aMechCubeStateA("aMechCubeStateA"));
+            m_ConditionalList.Add(new aCubeStart_To_aCubeUp("aCubeUp"));
         }
 
         /// <summary>

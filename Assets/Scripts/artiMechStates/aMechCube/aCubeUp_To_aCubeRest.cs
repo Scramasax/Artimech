@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class aMechCubeStartState_To_aMechCubeStateA : stateConditionalBase
+    public class aCubeUp_To_aCubeRest : stateConditionalBase
     {
         
-        public aMechCubeStartState_To_aMechCubeStateA(string changeStateName) : base (changeStateName)
+        public aCubeUp_To_aCubeRest(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -54,12 +54,10 @@ namespace artiMech
         {
             string strOut = null;
 
-            //time method of changing states
             stateGameBase gamebase = (stateGameBase)state;
             aMechCube script = gamebase.StateGameObject.GetComponent<aMechCube>();
-            if (gamebase.StateTime > script.m_InitTime)
+            if (gamebase.StateTime > script.m_UpTime)
                 strOut = m_ChangeStateName;
-
 
             return strOut;
         }

@@ -58,11 +58,11 @@ namespace artiMech
         void CreateStates()
         {
 
-            m_CurrentState = AddState(new aMechCubeStartState(this.gameObject), "aMechCubeStartState");
+            m_CurrentState = AddState(new aCubeStart(this.gameObject), "aCubeStart");
 
             //<ArtiMechStates>
-            AddState(new aMechCubeStateB(this.gameObject),"aMechCubeStateB");
-            AddState(new aMechCubeStateA(this.gameObject),"aMechCubeStateA");
+            AddState(new aCubeRest(this.gameObject),"aCubeRest");
+            AddState(new aCubeUp(this.gameObject),"aCubeUp");
 
         }
     }

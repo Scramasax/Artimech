@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace artiMech
 {
-    public class aMechCubeStateA : stateGameBase
+    public class aCubeUp : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aMechCubeStateA(GameObject gameobject) : base (gameobject)
+        public aCubeUp(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new aMechCubeStateA_To_aMechCubeStateB("aMechCubeStateB"));
+            m_ConditionalList.Add(new aCubeUp_To_aCubeRest("aCubeRest"));
         }
 
         /// <summary>
