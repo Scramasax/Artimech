@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -130,7 +130,7 @@ namespace artiMech
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             const float windowSizeX = 300;
             const float windowSizeY = 100;
-            m_RenameWindow.Set("Delete State", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
+            m_RenameWindow.Set("Rename the Alias of the State", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
             m_RenameWindow.ChangeName = m_WindowsSelectedNode.WindowStateAlias;
             m_ActionConfirmed = false;
             m_ActionCancelled = false;

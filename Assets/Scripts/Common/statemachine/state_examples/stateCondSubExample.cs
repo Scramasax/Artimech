@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -73,8 +73,6 @@ namespace artiMech
         {
             if (evt.HasData)
             {
-                string name = "";
-                name = evt.Data[0].ToString();
 
                 if (evt.Data[0].ToString() == "Condition Change")
                 {
@@ -82,6 +80,16 @@ namespace artiMech
                 }
 
             }
+        }
+
+        public override void Enter(baseState state)
+        {
+            Subscribe();
+        }
+
+        public override void Exit(baseState state)
+        {
+            Unsubscribe();
         }
     }
 }

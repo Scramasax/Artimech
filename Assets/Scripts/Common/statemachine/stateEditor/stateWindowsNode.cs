@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -282,6 +282,8 @@ namespace artiMech
 
                         menu.AddSeparator("");
                         menu.AddItem(new GUIContent("Edit Script"), false, dState.EditScriptCallback, this);
+                        menu.AddSeparator("");
+                        menu.AddItem(new GUIContent("Refactor State Class"), false, dState.RefactorClassCallback, this);
                         stateEditorUtils.SelectedNode = this;
                         menu.ShowAsContext();
                         Event.current.Use();

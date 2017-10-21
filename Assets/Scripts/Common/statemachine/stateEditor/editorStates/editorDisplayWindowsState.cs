@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +51,7 @@ namespace artiMech
         bool m_bMoveWindowNode = false;
         bool m_bRenameWindowNode = false;
         bool m_bResizeWindowNode = false;
-
+        bool m_bRefactor = false;
         #endregion
 
         #region Accessors
@@ -70,6 +70,9 @@ namespace artiMech
 
         /// <summary>  State wants to resize a statewindow and has set this bool. </summary>
         public bool ResizeWindowNode { get { return m_bResizeWindowNode; } }
+
+        /// <summary>  State wants to refactor a class and has set this bool. </summary>
+        public bool RefactorClass { get { return m_bRefactor; } }
 
         #endregion
 
@@ -93,6 +96,7 @@ namespace artiMech
             m_ConditionalList.Add(new editor_Display_To_Move("Move"));
             m_ConditionalList.Add(new editor_Display_To_Rename("Rename"));
             m_ConditionalList.Add(new editor_Display_To_Resize("Resize"));
+            m_ConditionalList.Add(new editor_Display_To_Refactor("Refactor"));
         }
 
         /// <summary>
@@ -282,6 +286,12 @@ namespace artiMech
             UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
         }
 
+        public void RefactorClassCallback(object obj)
+        {
+            m_bRefactor = true;
+            //utlDataAndFile.RefactorAllAssets(stateEditorUtils.SelectedNode.ClassName,renameStr);
+        }
+
         /// <summary>
         /// When the state becomes active Enter() is called once.
         /// </summary>
@@ -311,6 +321,7 @@ namespace artiMech
             m_bMoveWindowNode = false;
             m_bRenameWindowNode = false;
             m_bResizeWindowNode = false;
+            m_bRefactor = false;
         }
         #endregion
     }

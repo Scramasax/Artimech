@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorLoadToDisplayConditional : stateConditionalBase
+    public class editor_Refactor_To_Display : stateConditionalBase
     {
-        public editorLoadToDisplayConditional(string changeStateName) : base(changeStateName)
+        public editor_Refactor_To_Display(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -48,21 +48,15 @@ namespace artiMech
         /// <summary>
         /// Test conditionals are placed here.
         /// </summary>
-        /// <param name="state"></param>6666666666  `  
+        /// <param name="state"></param>
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
             string strOut = null;
 
-#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
-            This is an example of setting a contition to true if the gameobject
-            falls below a certain height ingame.
-            if (state.m_GameObject.transform.position.y <= 1000)
+            editorRefactorState theState = (editorRefactorState) state;
+            if (theState.ActionCancelled || theState.ActionConfirmed)
                 strOut = m_ChangeStateName;
-#endif
-            if(stateEditorUtils.StateList.Count>0)
-                strOut = m_ChangeStateName;
-
 
             return strOut;
         }

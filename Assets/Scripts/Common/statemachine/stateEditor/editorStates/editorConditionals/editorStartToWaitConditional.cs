@@ -1,4 +1,4 @@
-﻿
+
 /// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
@@ -34,6 +34,16 @@ namespace artiMech
         public editorStartToWaitConditional(string changeStateName) : base(changeStateName)
         {
 
+        }
+
+        public override void Enter(baseState state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Exit(baseState state)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

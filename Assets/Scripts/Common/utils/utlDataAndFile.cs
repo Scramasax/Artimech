@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -268,5 +268,77 @@ public static class utlDataAndFile
         }
         return tex;
 
+    }
+
+    /// <summary>
+    /// Finds filenames that match and replace them.
+    /// </summary>
+    /// <param name="startDir"></param>
+    /// <param name="findName"></param>
+    /// <returns></returns>
+    public static string ReplaceAFileNamesBySubStringRecursively(string startDir, string findName, string replaceName,bool showDebugInfo = false)
+    {
+        foreach (string file in Directory.GetFiles(startDir))
+        {
+            if(file.IndexOf(findName)!=-1)
+            {
+                string oldFileName = file;
+                string moveFileName = file.Replace(findName, replaceName);
+                File.Move(oldFileName, moveFileName);
+            }
+
+            /*
+            string[] words = file.Split(new char[] { '/', '\\' });
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == findName)
+                    return file;
+            }*/
+        }
+
+        foreach (string dir in Directory.GetDirectories(startDir))
+        {
+            string strBuff = ReplaceAFileNamesBySubStringRecursively(dir, findName, replaceName);
+            if (strBuff != null)
+                return strBuff;
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Finds files that match the fileFindName recursively.  From there is starts to replace file contents
+    /// that use the fineName and the replace name as their arguments.
+    /// </summary>
+    /// <param name="startDir"></param>
+    /// <param name="fileFindName"></param>
+    /// <param name="findName"></param>
+    /// <param name="replaceName"></param>
+    /// <param name="showDebugInfo"></param>
+    /// <returns></returns>
+    public static string ReplaceNamesInFilesRecursively(string startDir, string fileFindName, string findName, string replaceName, bool showDebugInfo = false)
+    {
+        foreach (string file in Directory.GetFiles(startDir))
+        {
+            if (file.IndexOf(fileFindName) != -1)
+            {
+                ReplaceTextInFile(file, findName, replaceName);
+            }
+        }
+
+        foreach (string dir in Directory.GetDirectories(startDir))
+        {
+            string strBuff = ReplaceNamesInFilesRecursively(dir, fileFindName,findName, replaceName, showDebugInfo);
+            if (strBuff != null)
+                return strBuff;
+        }
+
+        return null;
+    }
+
+    public static void RefactorAllAssets(string pathStr, string searchStr, string renameStr, bool showDebugInfo=false)
+    {
+        ReplaceAFileNamesBySubStringRecursively(Application.dataPath, searchStr, renameStr,showDebugInfo);
+        ReplaceNamesInFilesRecursively(Application.dataPath, ".cs", searchStr, renameStr,showDebugInfo);
     }
 }

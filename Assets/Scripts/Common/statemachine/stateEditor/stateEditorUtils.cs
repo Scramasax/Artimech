@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -280,9 +280,16 @@ namespace artiMech
                     Type type = Type.GetType("artiMech." + words[i + 3]);
                     if (type != null)
                     {
-                        string buffer = "";
-                        buffer = type.BaseType.Name;
-                        if (buffer == "baseState" || buffer == "stateGameBase")
+                        string baseOneStr = "";
+                        string baseTwoStr = "";
+                        string baseThreeStr = "";
+
+                        baseOneStr = type.BaseType.Name;
+                        baseTwoStr = type.BaseType.BaseType.Name;
+                        baseThreeStr = type.BaseType.BaseType.BaseType.Name;
+
+                        //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
+                        if (baseOneStr == "baseState" || baseTwoStr == "baseState" || baseThreeStr == "baseState")
                         {
                             stateWindowsNode compNode = FindStateWindowsNodeByName(words[i + 3]);
                             if (compNode != null)
@@ -318,9 +325,16 @@ namespace artiMech
 
                     if (type != null)
                     {
-                        string buffer = "";
-                        buffer = type.BaseType.Name;
-                        if (buffer == "baseState" || buffer == "stateGameBase")
+                        string baseOneStr = "";
+                        string baseTwoStr = "";
+                        string baseThreeStr = "";
+
+                        baseOneStr = type.BaseType.Name;
+                        baseTwoStr = type.BaseType.BaseType.Name;
+                        baseThreeStr = type.BaseType.BaseType.BaseType.Name;
+
+                        //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
+                        if (baseOneStr == "baseState" || baseTwoStr == "baseState" || baseThreeStr == "baseState")
                         {
                             m_StateNameList.Add(words[i + 1]);
                             // Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
@@ -352,7 +366,7 @@ namespace artiMech
             }
 
             //creates a start state from a template and populate aMech directory
-            string stateStartName = ReadReplaceAndWrite(exampleToCopy, stateName, pathName, pathAndFileNameStartState, replaceName, "");
+            ReadReplaceAndWrite(exampleToCopy, stateName, pathName, pathAndFileNameStartState, replaceName, "");
 
             return true;
         }

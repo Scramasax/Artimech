@@ -35,6 +35,16 @@ namespace artiMech
             
         }
 
+        public override void Enter(baseState state)
+        {
+            
+        }
+
+        public override void Exit(baseState state)
+        {
+            
+        }
+
         /// <summary>
         /// Test conditionals are placed here.
         /// </summary>

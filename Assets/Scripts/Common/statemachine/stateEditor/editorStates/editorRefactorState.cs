@@ -33,16 +33,21 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorMoveState : stateGameBase
+    public class editorRefactorState : stateGameBase
     {
         stateWindowsNode m_WindowsSelectedNode = null;
-        bool m_ActionConfirmed = false;
-        Vector2 m_MoveOffsetPercent;
 
+        bool m_ActionConfirmed = false;
+        bool m_ActionCancelled = false;
+
+        stateRefactorWindow m_RefactorWindow = null;
         #region Accessors
 
         /// <summary>  Returns true if the action is confirmed. </summary>
-        public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+        public bool ActionConfirmed { get { return m_ActionConfirmed; } set { m_ActionConfirmed = value; } }
+
+        /// <summary>  Returns true if the action is cancelled. </summary>
+        public bool ActionCancelled { get { return m_ActionCancelled; } set { m_ActionCancelled = value; }}
 
         #endregion
 
@@ -50,10 +55,12 @@ namespace artiMech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public editorMoveState(GameObject gameobject) : base(gameobject)
+        public editorRefactorState(GameObject gameobject) : base(gameobject)
         {
+            m_RefactorWindow = new stateRefactorWindow(999997);
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editor_Move_To_Display("Display Windows"));
+            m_ConditionalList.Add(new editor_Refactor_To_Display("Display Windows"));
+
         }
 
         /// <summary>
@@ -77,30 +84,32 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            if (m_WindowsSelectedNode == null)
+                return;
+
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
+            //Debug.Log("ev.type = " + ev.type.ToString());
             if (ev.button == 0)
             {
-                if (ev.type != EventType.mouseUp)
+                //Debug.Log("ev = " + ev.button.ToString());
+                if (ev.type == EventType.MouseDrag)
                 {
-                    float x = m_WindowsSelectedNode.WinRect.x;
-                    float y = m_WindowsSelectedNode.WinRect.y;
-                    float width = m_WindowsSelectedNode.WinRect.width;
-                    float height = m_WindowsSelectedNode.WinRect.height;
+                    float x = m_RefactorWindow.WinRect.x;
+                    float y = m_RefactorWindow.WinRect.y;
+                    float width = m_RefactorWindow.WinRect.width;
+                    float height = m_RefactorWindow.WinRect.height;
 
                     if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
                     {
                         if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
                         {
-                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
+                            m_RefactorWindow.SetPos(ev.mousePosition.x - (width * 0.5f), ev.mousePosition.y - (height * 0.5f));
                             stateEditorUtils.Repaint();
                         }
                     }
                 }
-                else
-                    m_ActionConfirmed = true;
-
             }
 
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
@@ -108,7 +117,9 @@ namespace artiMech
                 stateEditorUtils.StateList[i].Update(this);
             }
 
-            stateEditorUtils.Repaint();
+            m_RefactorWindow.Update(this);
+
+            //stateEditorUtils.Repaint();
         }
 
         /// <summary>
@@ -117,16 +128,12 @@ namespace artiMech
         public override void Enter()
         {
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
+            const float windowSizeX = 350;
+            const float windowSizeY = 150;
+            m_RefactorWindow.Set("Refactor Class", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
+            m_RefactorWindow.ChangeName = m_WindowsSelectedNode.ClassName;
             m_ActionConfirmed = false;
-
-            float diff = stateEditorUtils.MousePos.x - stateEditorUtils.SelectedNode.WinRect.x;
-            m_MoveOffsetPercent.x = diff / stateEditorUtils.SelectedNode.WinRect.width;
-
-            diff = stateEditorUtils.MousePos.y - stateEditorUtils.SelectedNode.WinRect.y;
-            m_MoveOffsetPercent.y = diff / stateEditorUtils.SelectedNode.WinRect.height;
-            //Debug.Log("m_MoveOffsetPercent.x = " + m_MoveOffsetPercent.x);
-
-
+            m_ActionCancelled = false;
             stateEditorUtils.Repaint();
         }
 

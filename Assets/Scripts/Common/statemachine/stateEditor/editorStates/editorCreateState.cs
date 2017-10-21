@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -35,12 +35,12 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        IList<stateConditionalBase> m_ConditionalList;
+        //IList<stateConditionalBase> m_ConditionalList;
 
         public editorCreateState(GameObject gameobject)
         {
             m_GameObject = gameobject;
-            m_ConditionalList = new List<stateConditionalBase>();
+            //m_ConditionalList = new List<stateConditionalBase>();
 
             //<ArtiMechConditions>
             //m_ConditionalList.Add(new editorCreateToDisplayConditional("Display Windows"));

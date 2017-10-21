@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -35,7 +35,7 @@ namespace artiMech
         //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
         //public GameObject m_GameObject = null;
         //GameObject m_WasGameObject = null;
-        bool m_AddStateMachine = false;
+        //bool m_AddStateMachine = false;
         //string m_StateMachineName = "";
         //Vector2 m_MousePos;
 

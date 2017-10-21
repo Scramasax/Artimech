@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -84,6 +84,7 @@ namespace artiMech
             AddState(new editorResizeState(null), "Resize");
             AddState(new editorRenameState(null), "Rename");
             AddState(new editorMoveState(null), "Move");
+            AddState(new editorRefactorState(null), "Refactor");
         }
 
         // Update is called once per frame

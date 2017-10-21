@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace artiMech
 {
-    public class stateRenameWindow
+    public class stateRefactorWindow
     {
         #region Variables
 
@@ -80,7 +80,7 @@ namespace artiMech
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
-        public stateRenameWindow(int id)
+        public stateRefactorWindow(int id)
         {
             m_WinRect = new Rect();
             m_WindowStateAlias = "not filled in yet...";
@@ -158,26 +158,65 @@ namespace artiMech
         /// <param name="id"></param>
         void DrawNodeWindow(int id)
         {
+            const float kTopMagin = 5;
+            const float kSpaceBetweenLabelAndText = -15;
+            const float kSpaceBetweenTextAndButton = 10;
+            const float kButtonSideMagins = 30;
+            const float kButtonCenterSpace = 80;
+            const float kMinusSpaceLabelHack = -20;
+
+            var TextStyle = new GUIStyle();
+            TextStyle.normal.textColor = Color.blue;
+            TextStyle.fontSize = 12;
+           
+
             Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(1,17,WinRect.width-2, WinRect.height-19);
             EditorGUI.DrawRect(rect, backroundColor);
-            GUILayout.Space(12);
-            m_ChangeName = EditorGUILayout.TextField("Alias Name: ", m_ChangeName);
-            GUILayout.Space(15);
+            GUILayout.Space(kTopMagin);
+
             GUILayout.BeginHorizontal("");
-            if(GUILayout.Button("Rename"))
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.Label("This will rename this state's class and refactor",TextStyle);
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(kMinusSpaceLabelHack);
+
+            GUILayout.BeginHorizontal("");
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.Label("all linked C# statemachines, states, and ", TextStyle);
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(kMinusSpaceLabelHack);
+
+            GUILayout.BeginHorizontal("");
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.Label("state conditions.", TextStyle);
+            GUILayout.Space(kButtonSideMagins);
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(kSpaceBetweenLabelAndText);
+            m_ChangeName = EditorGUILayout.TextField("Refactor Name: ", m_ChangeName);
+            GUILayout.Space(kSpaceBetweenTextAndButton);
+            GUILayout.BeginHorizontal("");
+            GUILayout.Space(kButtonSideMagins);
+            if (GUILayout.Button("Refactor"))
             {
-                editorRenameState renameState = (editorRenameState)m_CurrentState;
-                stateEditorUtils.SelectedNode.WindowStateAlias = m_ChangeName;
-                stateEditorUtils.SelectedNode.SaveMetaData();
-                renameState.ActionConfirmed = true;
+                editorRefactorState refactorState = (editorRefactorState)m_CurrentState;
+                utlDataAndFile.RefactorAllAssets(Application.dataPath, stateEditorUtils.SelectedNode.ClassName,m_ChangeName,true);
+                stateEditorUtils.SelectedNode.ClassName = m_ChangeName;
+                //stateEditorUtils.SelectedNode.SaveMetaData();
+                refactorState.ActionConfirmed = true;
             }
-            GUILayout.Space(40);
+            GUILayout.Space(kButtonCenterSpace);
             if(GUILayout.Button("Cancel"))
             {
-                editorRenameState renameState = (editorRenameState)m_CurrentState;
-                renameState.ActionCancelled = true;
+                editorRefactorState refactorState = (editorRefactorState)m_CurrentState;
+                refactorState.ActionCancelled = true;
             }
+            GUILayout.Space(kButtonSideMagins);
             GUILayout.EndHorizontal();
 
             //GUI.DragWindow();

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -37,7 +37,7 @@ namespace artiMech
         /// <param name="gameobject"></param>
         /// 
         IList<stateConditionalBase> m_ConditionalList;
-        static Texture2D m_BackGroundImage = null;
+        //static Texture2D m_BackGroundImage = null;
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_RightClickBool = false;
         bool m_LeftClickBool = false;

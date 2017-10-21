@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -87,14 +87,9 @@ namespace artiMech
         public override void Enter()
         {
             m_StateTime = 0.0f;
+
             for(int i=0;i<m_ConditionalList.Count;i++)
-            {
-                if(m_ConditionalList[i] is iSubscriptionConditional)
-                {
-                    iSubscriptionConditional subscriptionCon = (iSubscriptionConditional) m_ConditionalList[i];
-                    subscriptionCon.Subscribe();
-                }
-            }
+                m_ConditionalList[i].Enter(this);
         }
 
         /// <summary>
@@ -103,13 +98,7 @@ namespace artiMech
         public override void Exit()
         {
             for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                if (m_ConditionalList[i] is iSubscriptionConditional)
-                {
-                    iSubscriptionConditional subscriptionCon = (iSubscriptionConditional)m_ConditionalList[i];
-                    subscriptionCon.Unsubscribe();
-                }
-            }
+                m_ConditionalList[i].Exit(this);
         }
     }
 }

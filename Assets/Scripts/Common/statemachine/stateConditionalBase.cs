@@ -1,4 +1,4 @@
-﻿/// Artimech
+/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -28,6 +28,8 @@ namespace artiMech
         }
 
         abstract public string UpdateConditionalTest(baseState state);
+        abstract public void Enter(baseState state);
+        abstract public void Exit(baseState state);
     }
 }
 

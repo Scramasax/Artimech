@@ -35,6 +35,16 @@ namespace artiMech
             
         }
 
+        public override void Enter(baseState state)
+        {
+            
+        }
+
+        public override void Exit(baseState state)
+        {
+            
+        }
+
         /// <summary>
         /// Test conditionals are placed here.
         /// </summary>
@@ -49,6 +59,7 @@ namespace artiMech
             aMechCube script = gamebase.StateGameObject.GetComponent<aMechCube>();
             if (gamebase.StateTime > script.m_InitTime)
                 strOut = m_ChangeStateName;
+
 
             return strOut;
         }
