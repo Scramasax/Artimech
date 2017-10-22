@@ -52,6 +52,8 @@ namespace artiMech
         bool m_bRenameWindowNode = false;
         bool m_bResizeWindowNode = false;
         bool m_bRefactor = false;
+
+        string m_ConditionEditName = "";
         #endregion
 
         #region Accessors
@@ -182,12 +184,27 @@ namespace artiMech
                 }
             }
 
-            //Right click and not on a state.
+  
+
+                //Right click and not on a state.
             if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
                 {
                     GenericMenu menu = new GenericMenu();
+
+                    for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                    {
+                        string conditionEditName = stateEditorUtils.StateList[i].GetConditionalByPosition(ev.mousePosition, 10);
+                        if (conditionEditName != null)
+                        {
+                            menu.AddItem(new GUIContent("Edit Conditional"),
+                            false,
+                            CreateEditConditionalCallback,
+                            conditionEditName);
+                        }
+                        //if (stateEditorUtils.StateList[i].GetConditionalByPosition(ev.mousePosition, 10);
+                    }
 
                     //TODO: add this from the xml.
                     menu.AddItem(new GUIContent("Add State/Empty State"), 
@@ -204,7 +221,7 @@ namespace artiMech
                                                 false,
                                                 CreateAddStateCallback,
                                                 new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEventPublishExample.cs", "stateEventPublishExample"));
-                    
+
 
 
                     menu.ShowAsContext();
@@ -267,6 +284,13 @@ namespace artiMech
         void CreateAddStateCallback(object obj)
         {
             stateEditorUtils.CreateStateContextCallback(obj);
+        }
+
+        void CreateEditConditionalCallback(object obj)
+        {
+            string className = (string)obj;
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
         }
 
         public void AddConditionalCallback(object obj)

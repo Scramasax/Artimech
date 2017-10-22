@@ -46,6 +46,8 @@ namespace artiMech
         bool m_ResizeBodyHover = false;
         bool m_TitleHover = false;
 
+        Vector3 m_LinePos;
+
         #endregion
         #region Accessors
 
@@ -211,6 +213,88 @@ namespace artiMech
             return false;
         }
 
+        public Vector3 GetClosetPointOnConditional(Vector3 pos)
+        {
+            Vector3 vectOut = new Vector3();
+            Vector3 startPos = GetPos();
+            startPos.x += WinRect.width * 0.5f;
+            startPos.y += WinRect.height * 0.5f;
+
+            for (int i = 0; i < ConditionLineList.Count; i++)
+            {
+                Vector3 endPos = ConditionLineList[i].GetPos();
+                endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
+                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+
+                vectOut = utlMath.NearestPointOnLine(pos, startPos, endPos);
+                //vectOut = utlMath.GetClosestPointOnLineSegment(pos, startPos, endPos);
+
+
+                //Debug.Log("nearestPointOnLine = " + vectOut);
+                //Debug.Log("startPos = " + startPos);
+                //Debug.Log("endPos = " + endPos);
+                //Debug.Log("distance = " + distance);
+
+                return vectOut;
+            }
+            return vectOut;
+        }
+
+        public Vector3 GetStartPosOnCondition()
+        {
+            Vector3 startPos = GetPos();
+            startPos.x += WinRect.width * 0.5f;
+            startPos.y += WinRect.height * 0.5f;
+            return startPos;
+        }
+
+        public Vector3 GetEndPosOnCondition()
+        {
+            Vector3 vectOut = new Vector3();
+            for (int i = 0; i < ConditionLineList.Count; i++)
+            {
+                Vector3 endPos = ConditionLineList[i].GetPos();
+                endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
+                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+                return endPos;
+            }
+            return vectOut;
+        }
+
+        /// <summary>
+        /// Returns null if there isn't a conditional line segement within
+        /// the distance threshold otherwise it returns the closest class name to the
+        /// line segment.
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <param name="distThreshold"></param>
+        /// <returns>Name of the condition class.</returns>
+        public string GetConditionalByPosition(Vector3 pos,float distThreshold)
+        {
+            Vector3 startPos = GetPos();
+            startPos.x += WinRect.width * 0.5f;
+            startPos.y += WinRect.height * 0.5f;
+
+            for (int i = 0; i < ConditionLineList.Count; i++)
+            {
+                Vector3 endPos = ConditionLineList[i].GetPos();
+                endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
+                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+
+                Vector3 nearestPointOnLine = utlMath.NearestPointOnLine(pos, startPos, endPos);
+                m_LinePos = nearestPointOnLine;
+                float distance = Vector3.Distance(pos, nearestPointOnLine);
+                //Debug.Log("nearestPointOnLine = " + nearestPointOnLine);
+                //Debug.Log("startPos = " + startPos);
+                //Debug.Log("endPos = " + endPos);
+                //Debug.Log("distance = " + distance);
+                if (distance < distThreshold)
+                    return ClassName + "_To_" + ConditionLineList[i].ClassName;
+            }
+
+            return null;
+        }
+
         public void Update(baseState state)
         {
             m_State = state;
@@ -309,8 +393,8 @@ namespace artiMech
             else
                 stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width-xOffset,yOffset,0), boxSize, 1, Color.black, 1, shadowCol, new Color(0.9f, 0.9f, 0.9f));
 
-            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 1.5f), yOffset * 0.5f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
-            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset*1.5f), yOffset*0.5f, 0), boxSize-1 , boxSize-1 , 1, Color.black);
+            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 0.95f), yOffset * 0.95f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
+            stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 1.0f), yOffset * 1.0f, 0), boxSize - 1, boxSize - 1, 1, Color.black);
 
             //draw the resizer
             const float initSizerSize = 15;
@@ -343,6 +427,8 @@ namespace artiMech
             EditorGUIUtility.AddCursorRect(m_CloseButtonRect, MouseCursor.ArrowMinus);
 
             UpdateMouseHover(Event.current.mousePosition);
+
+            //stateEditorDrawUtils.DrawX(m_LinePos, 10, 10, 1, Color.black);
 
             GUI.DragWindow();
         }

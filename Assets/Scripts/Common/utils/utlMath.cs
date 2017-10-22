@@ -22,6 +22,13 @@ using UnityEngine;
 public static class utlMath
 {
 
+    /// <summary>
+    /// Lerp for a float.
+    /// </summary>
+    /// <param name="f1"></param>
+    /// <param name="f2"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     public static float Lerp(float f1, float f2, float t)
     {
         float num;
@@ -29,7 +36,13 @@ public static class utlMath
         return (num);
     }
 
-    //want the lerp function not to cap at t = 1
+    /// <summary>
+    /// Lerp function that isn't capped.  This is "old"  Todo: Remove
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
     public static Vector3 Lerp(Vector3 a, Vector3 b, float t)
     {
         Vector3 outVector = new Vector3();
@@ -39,6 +52,49 @@ public static class utlMath
         return outVector;
     }
 
+    /// <summary>
+    /// Gets the nearest point on a line segment.
+    /// </summary>
+    /// <param name="vPoint"></param>
+    /// <param name="vLineStart"></param>
+    /// <param name="vLineEnd"></param>
+    /// <returns></returns>
+    public static Vector3 NearestPointOnLine(Vector3 vPoint, Vector3 vLineStart, Vector3 vLineEnd)
+    {
+        Vector3 vectOut = new Vector3();
+        Vector3 vectPointMinusLineStart, vectEndMinusStart;
+        float dotProduct;
+
+        vectPointMinusLineStart = vPoint - vLineStart;
+        vectEndMinusStart = vLineEnd - vLineStart;
+        if(Vector3.Dot(vectPointMinusLineStart,vectEndMinusStart)<=0.0f)
+        {
+            return vLineStart;
+        }
+
+        vectPointMinusLineStart = vPoint - vLineEnd;
+        vectEndMinusStart *= -1;
+
+        dotProduct = Vector3.Dot(vectPointMinusLineStart, vectEndMinusStart);
+        if (dotProduct<=0.0f)
+        {
+            return vLineEnd;
+        }
+
+        float distance = dotProduct / vectEndMinusStart.sqrMagnitude;
+
+        vectOut = Vector3.Lerp(vLineEnd, vLineStart, distance);
+
+        return vectOut;
+    }
+
+    /// <summary>
+    /// Extends a line x amount of distance.
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <param name="size"></param>
+    /// <returns></returns>
     public static Vector3 ExtendLine(Vector3 start, Vector3 end, float size)
     {
         float dist = Vector3.Distance(start, end);
@@ -49,12 +105,24 @@ public static class utlMath
 
     }
 
+    /// <summary>
+    /// Find the distance between two floats.
+    /// </summary>
+    /// <param name="x1"></param>
+    /// <param name="x2"></param>
+    /// <returns></returns>
     public static float FloatDistance(float x1, float x2)
     {
         float dx = Mathf.Abs(x1 - x2);
         return dx;
     }
 
+    /// <summary>
+    /// Distance check that doesn't use the Y component.
+    /// </summary>
+    /// <param name="vectA"></param>
+    /// <param name="vectB"></param>
+    /// <returns></returns>
     public static float FlatDistance(Vector3 vectA,Vector3 vectB)
     {
         Vector3 tempA = new Vector3(vectA.x,0.0f,vectA.z);
@@ -62,12 +130,24 @@ public static class utlMath
         return Vector3.Distance(tempA, tempB);
     }
 
+    /// <summary>
+    /// Camera visibility check.
+    /// </summary>
+    /// <param name="renderer"></param>
+    /// <param name="camera"></param>
+    /// <returns></returns>
     public static bool IsVisibleFrom(Renderer renderer, Camera camera)
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
         return GeometryUtility.TestPlanesAABB(planes, renderer.bounds);
     }
 
+    /// <summary>
+    /// Random vect in a cubic volume.
+    /// </summary>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
     public static Vector3 RandomVector(Vector3 min, Vector3 max)
     {
         Vector3 outVect = new Vector3();
@@ -77,6 +157,13 @@ public static class utlMath
         return outVect;
     }
 
+    /// <summary>
+    /// Clamp a Vector3.  This is old as well.  Todo: Remove.
+    /// </summary>
+    /// <param name="vectIn"></param>
+    /// <param name="vectMin"></param>
+    /// <param name="vectMax"></param>
+    /// <returns></returns>
     public static Vector3 ClampVector(Vector3 vectIn, Vector3 vectMin, Vector3 vectMax)
     {
         Vector3 outVect = new Vector3();
@@ -86,6 +173,12 @@ public static class utlMath
         return outVect;
     }
 
+    /// <summary>
+    /// Angle between two vectors.
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
     public static float Angle(Vector3 a, Vector3 b)
     {
 

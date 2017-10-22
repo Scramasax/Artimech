@@ -48,17 +48,15 @@ namespace artiMech
         public static void DrawX(Vector3 startPos,float sizeX,float sizeY,int lineWidth,Color lineColor)
         {
             Vector3 lineStart = new Vector3();
-            lineStart = startPos;
-
             Vector3 lineEnd = new Vector3();
-            lineEnd = startPos;
-            lineEnd.y += sizeY;
-            lineEnd.x += sizeX;
+
+            lineStart = startPos + new Vector3(-sizeX * 0.5f,-sizeY * 0.5f, 0);
+            lineEnd = startPos + new Vector3(+sizeX * 0.5f, +sizeY * 0.5f, 0);
 
             DrawLine(lineStart, lineEnd, lineWidth, lineColor);
 
-            lineStart.y += sizeY;
-            lineEnd.y -= sizeY;
+            lineStart = startPos + new Vector3(+sizeX * 0.5f, -sizeY * 0.5f, 0);
+            lineEnd = startPos + new Vector3(-sizeX * 0.5f, +sizeY * 0.5f, 0);
 
             DrawLine(lineStart, lineEnd, lineWidth, lineColor);
 
