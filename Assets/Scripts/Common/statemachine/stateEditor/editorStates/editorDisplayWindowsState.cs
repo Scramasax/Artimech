@@ -49,11 +49,11 @@ namespace artiMech
         bool m_bAddCondtion = false;
         bool m_bDeleteWindowNode = false;
         bool m_bMoveWindowNode = false;
+        bool m_bMoveBackground = false;
         bool m_bRenameWindowNode = false;
         bool m_bResizeWindowNode = false;
         bool m_bRefactor = false;
 
-        string m_ConditionEditName = "";
         #endregion
 
         #region Accessors
@@ -66,6 +66,9 @@ namespace artiMech
 
         /// <summary>  State wants to move a state window around and has set this bool. </summary>
         public bool MoveWindowNode { get { return m_bMoveWindowNode; } }
+
+        /// <summary>  State wants to move a state window around and has set this bool. </summary>
+        public bool MoveBackground { get { return m_bMoveBackground; } }
 
         /// <summary>  State wants to rename a statewindow and has set this bool. </summary>
         public bool RenameWindowNode { get { return m_bRenameWindowNode; } }
@@ -96,6 +99,7 @@ namespace artiMech
             m_ConditionalList.Add(new editorDisplayToAddConditional("Add Conditional"));
             m_ConditionalList.Add(new editor_Display_To_Delete("Delete"));
             m_ConditionalList.Add(new editor_Display_To_Move("Move"));
+            m_ConditionalList.Add(new editor_Display_To_MoveBackground("MoveBackground"));
             m_ConditionalList.Add(new editor_Display_To_Rename("Rename"));
             m_ConditionalList.Add(new editor_Display_To_Resize("Resize"));
             m_ConditionalList.Add(new editor_Display_To_Refactor("Refactor"));
@@ -229,10 +233,27 @@ namespace artiMech
                 }
             }
 
+            // Middle hold click and not on a state.
+            if (ev.button == 2)
+            {
+                Debug.Log("<color=blue>" + "<b>" + ev.type + "</b></color>");
+                if (ev.type == EventType.MouseDown)
+                {
+                    Debug.Log("<color=red>" + "<b>" + "middle mouse down" + "</b></color>");
+                    m_bMoveBackground = true;
+                }
+                ev.Use();
+            }
+
+            //EditorGUILayout.BeginHorizontal();
+            //stateEditorUtils.TranslationMtx.D =
+            //    EditorGUILayout.BeginScrollView(stateEditorUtils.TranslationMtx.D, GUILayout.Width(100), GUILayout.Height(100));
+
             // render populated state windows
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
+                //EditorGUILayout.EndHorizontal();
 
                 // highlight the current state
                 if (Application.isPlaying)
@@ -275,6 +296,9 @@ namespace artiMech
                     }
                 }
             }
+
+            //GUILayout.EndScrollView();
+            //EditorGUILayout.EndHorizontal();
 
 
 
@@ -343,6 +367,7 @@ namespace artiMech
             m_bAddCondtion = false;
             m_bDeleteWindowNode = false;
             m_bMoveWindowNode = false;
+            m_bMoveBackground = false;
             m_bRenameWindowNode = false;
             m_bResizeWindowNode = false;
             m_bRefactor = false;

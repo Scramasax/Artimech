@@ -36,138 +36,42 @@ namespace artiMech
         static string m_AddConditionPath = "";
         static string m_AddConditionReplace = "";
 
-
+        static utlMatrix34 m_TranslationMtx = new utlMatrix34();
 
         #region Accessors 
-        public static IList<stateWindowsNode> StateList
-        {
-            get
-            {
-                return m_StateList;
-            }
 
-            set
-            {
-                m_StateList = value;
-            }
-        }
+        /// <summary>  Not sure. </summary>
+        public static IList<stateWindowsNode> StateList { get { return m_StateList; } set { m_StateList = value; } }
 
-        public static GameObject EditorCurrentGameObject
-        {
-            get
-            {
-                return m_EditorCurrentGameObject;
-            }
+        /// <summary>  Not sure. </summary>
+        public static GameObject EditorCurrentGameObject { get { return m_EditorCurrentGameObject; } set { m_EditorCurrentGameObject = value; } }
 
-            set
-            {
-                m_EditorCurrentGameObject = value;
-            }
-        }
+        /// <summary>  Not sure. </summary>
+        public static GameObject GameObject { get { return m_GameObject; } set { m_GameObject = value; } }
 
-        public static GameObject GameObject
-        {
-            get
-            {
-                return m_GameObject;
-            }
+        /// <summary>  Not sure. </summary>
+        public static string StateMachineName { get { return m_StateMachineName; } set { m_StateMachineName = value; } }
 
-            set
-            {
-                m_GameObject = value;
-            }
-        }
+        /// <summary>  Not sure. </summary>
+        public static GameObject WasGameObject { get { return m_WasGameObject; } set { m_WasGameObject = value; } }
 
-        public static string StateMachineName
-        {
-            get
-            {
-                return m_StateMachineName;
-            }
+        /// <summary>  Not sure. </summary>
+        public static Vector3 MousePos { get { return m_MousePos; } set { m_MousePos = value; } }
 
-            set
-            {
-                m_StateMachineName = value;
-            }
-        }
+        /// <summary>  Not sure. </summary>
+        public static stateWindowsNode SelectedNode { get { return m_SelectedWindowsNode; } set { m_SelectedWindowsNode = value; } }
 
-        public static GameObject WasGameObject
-        {
-            get
-            {
-                return m_WasGameObject;
-            }
+        /// <summary>  Not sure. </summary>
+        public static stateEditor StateEditor { get { return m_StateEditor; } set { m_StateEditor = value; } }
 
-            set
-            {
-                m_WasGameObject = value;
-            }
-        }
+        /// <summary>  Not sure. </summary>
+        public static string AddConditionPath { get { return m_AddConditionPath; } set { m_AddConditionPath = value; } }
 
-        public static Vector3 MousePos
-        {
-            get
-            {
-                return m_MousePos;
-            }
+        /// <summary>  Not sure. </summary>
+        public static string AddConditionReplace { get { return m_AddConditionReplace; } set { m_AddConditionReplace = value; } }
 
-            set
-            {
-                m_MousePos = value;
-            }
-        }
-
-        public static stateWindowsNode SelectedNode
-        {
-            get
-            {
-                return m_SelectedWindowsNode;
-            }
-
-            set
-            {
-                m_SelectedWindowsNode = value;
-            }
-        }
-
-        public static stateEditor StateEditor
-        {
-            get
-            {
-                return m_StateEditor;
-            }
-
-            set
-            {
-                m_StateEditor = value;
-            }
-        }
-
-        public static string AddConditionPath
-        {
-            get
-            {
-                return m_AddConditionPath;
-            }
-
-            set
-            {
-                m_AddConditionPath = value;
-            }
-        }
-
-        public static string AddConditionReplace
-        {
-            get
-            {
-                return m_AddConditionReplace;
-            }
-
-            set
-            {
-                m_AddConditionReplace = value;
-            }
-        }
+        /// <summary>  Returns the translation matrix for the visual state window so panning can happen. </summary>
+        public static utlMatrix34 TranslationMtx { get { return m_TranslationMtx; } set { m_TranslationMtx = value; } }
 
         #endregion
 

@@ -84,6 +84,7 @@ namespace artiMech
             AddState(new editorResizeState(null), "Resize");
             AddState(new editorRenameState(null), "Rename");
             AddState(new editorMoveState(null), "Move");
+            AddState(new editorMoveBackground(null), "MoveBackground");
             AddState(new editorRefactorState(null), "Refactor");
         }
 

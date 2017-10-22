@@ -44,6 +44,8 @@ namespace artiMech
         public stateEditor() : base()
         {
             stateEditorUtils.StateEditor = this;
+            stateEditor window = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "My Empty Window");
+            window.Show();
         }
 
 

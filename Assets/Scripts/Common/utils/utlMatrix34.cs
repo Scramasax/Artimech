@@ -34,6 +34,17 @@ public class utlMatrix34
     #endregion
 
     #region Accessors
+    /// <summary> Get and set the x of the matrix. </summary>
+    public Vector3 A { get { return m_A; } set { m_A = value; } }
+
+    /// <summary> Get and set the y of the matrix. </summary>
+    public Vector3 B { get { return m_B; } set { m_B = value; } }
+
+    /// <summary> Get and set the z of the matrix. </summary>
+    public Vector3 C { get { return m_C; } set { m_C = value; } }
+
+    /// <summary> Get and set the position of the matrix. </summary>
+    public Vector3 D { get { return m_D; } set { m_D = value; } }
 
     #endregion
 
@@ -64,6 +75,14 @@ public class utlMatrix34
         m_C.Set(0, 0, 1);
     }
 
+    public void Set(utlMatrix34 mtx)
+    {
+        m_A = mtx.A;
+        m_B = mtx.B;
+        m_C = mtx.C;
+        m_D = mtx.D;
+    }
+
     /// <summary>
     /// Look at a position in space.
     /// </summary>
@@ -88,6 +107,11 @@ public class utlMatrix34
         }
     }
 
+    public void Translate(Vector3 pos)
+    {
+        m_D += pos;
+    }
+
     /// <summary>
     /// Local to world.
     /// </summary>
@@ -101,5 +125,23 @@ public class utlMatrix34
         worldPos.z = localPos.x * m_A.z + localPos.y * m_B.z + localPos.z * m_C.z + m_D.z;
         return worldPos;
     }
+
+    /// <summary>
+    /// World to local pos.
+    /// </summary>
+    /// <param name="worldPos"></param>
+    /// <returns></returns>
+    public Vector3 UnTransform(Vector3 worldPos)
+    {
+        Vector3 localPos = new Vector3();
+        
+        localPos = worldPos - m_D;
+        localPos.x = Vector3.Dot(m_A,localPos);
+        localPos.y = Vector3.Dot(m_B, localPos);
+        localPos.z = Vector3.Dot(m_C, localPos);
+
+        return localPos;
+    }
+
 #endregion
 }

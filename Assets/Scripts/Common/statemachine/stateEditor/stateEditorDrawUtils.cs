@@ -90,6 +90,16 @@ namespace artiMech
             Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
         }
 
+        public static void DrawArrowTranformed(utlMatrix34 mtx,Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
+        {
+            Vector3 startPosTrans = new Vector3();
+            startPosTrans = mtx.Transform(startPos);
+
+            Vector3 endPosTrans = new Vector3();
+            endPosTrans = mtx.Transform(endPos);
+
+        }
+
         public static void DrawArrow(Vector3 startPos, Vector3 endPos,Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor,Color bodyColor)
         {
 
