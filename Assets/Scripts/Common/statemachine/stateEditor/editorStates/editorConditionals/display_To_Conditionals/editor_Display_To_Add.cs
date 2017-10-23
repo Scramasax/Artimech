@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorDisplayToAddConditional : stateConditionalBase
+    public class editor_Display_To_Add : stateConditionalBase
     {
-        public editorDisplayToAddConditional(string changeStateName) : base(changeStateName)
+        public editor_Display_To_Add(string changeStateName) : base(changeStateName)
         {
 
         }

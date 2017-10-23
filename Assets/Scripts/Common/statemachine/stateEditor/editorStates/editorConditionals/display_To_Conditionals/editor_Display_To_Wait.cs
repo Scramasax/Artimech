@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorDisplayToMoveConditional : stateConditionalBase
+    public class editor_Display_To_Wait : stateConditionalBase
     {
-        public editorDisplayToMoveConditional(string changeStateName) : base(changeStateName)
+        public editor_Display_To_Wait(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -60,8 +60,8 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-//            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.GameObject == null)
-//                strOut = m_ChangeStateName;
+            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.GameObject == null)
+                strOut = m_ChangeStateName;
 
 
             return strOut;

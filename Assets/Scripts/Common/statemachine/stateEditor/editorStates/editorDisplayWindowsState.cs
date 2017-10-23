@@ -94,9 +94,9 @@ namespace artiMech
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorDisplayToWaitConditional("Wait"));
-            m_ConditionalList.Add(new editorDisplayToLoadConditional("Load"));
-            m_ConditionalList.Add(new editorDisplayToAddConditional("Add Conditional"));
+            m_ConditionalList.Add(new editor_Display_To_Wait("Wait"));
+            m_ConditionalList.Add(new editor_Display_To_Load("Load"));
+            m_ConditionalList.Add(new editor_Display_To_Add("Add Conditional"));
             m_ConditionalList.Add(new editor_Display_To_Delete("Delete"));
             m_ConditionalList.Add(new editor_Display_To_Move("Move"));
             m_ConditionalList.Add(new editor_Display_To_MoveBackground("MoveBackground"));

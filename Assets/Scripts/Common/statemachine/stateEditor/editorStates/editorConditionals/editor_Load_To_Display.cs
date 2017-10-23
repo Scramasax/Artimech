@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorDisplayToLoadConditional : stateConditionalBase
+    public class editor_Load_To_Display : stateConditionalBase
     {
-        public editorDisplayToLoadConditional(string changeStateName) : base(changeStateName)
+        public editor_Load_To_Display(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -48,7 +48,7 @@ namespace artiMech
         /// <summary>
         /// Test conditionals are placed here.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state"></param>6666666666  `  
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
@@ -60,9 +60,7 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            //if my state list is empty and a game object is populated then go to a load state
-            //and see if the gameobject has a statemachine attached to it.
-            if (stateEditorUtils.GameObject != stateEditorUtils.WasGameObject && stateEditorUtils.GameObject!=null)
+            if(stateEditorUtils.StateList.Count>0)
                 strOut = m_ChangeStateName;
 
 

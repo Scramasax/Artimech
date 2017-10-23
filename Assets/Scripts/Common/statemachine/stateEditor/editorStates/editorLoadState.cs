@@ -45,8 +45,8 @@ namespace artiMech
 
             //InitImage();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editorLoadToDisplayConditional("Display Windows"));
-            m_ConditionalList.Add(new editorLoadToWaitConditional("Wait"));
+            m_ConditionalList.Add(new editor_Load_To_Display("Display Windows"));
+            m_ConditionalList.Add(new editor_Load_To_Wait("Wait"));
         }
 
         void InitImage()
@@ -101,6 +101,7 @@ namespace artiMech
         {
             stateMachineBase machine = null;
             machine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
+            stateEditorUtils.StateList.Clear();
 
             //load states and their metadata
             if (machine != null)

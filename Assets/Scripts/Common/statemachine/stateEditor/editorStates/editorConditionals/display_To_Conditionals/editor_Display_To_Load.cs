@@ -28,9 +28,9 @@ using UnityEngine;
 /// </summary>
 namespace artiMech
 {
-    public class editorLoadToWaitConditional : stateConditionalBase
+    public class editor_Display_To_Load : stateConditionalBase
     {
-        public editorLoadToWaitConditional(string changeStateName) : base(changeStateName)
+        public editor_Display_To_Load(string changeStateName) : base(changeStateName)
         {
 
         }
@@ -60,9 +60,10 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.GameObject == null)
+            //if my state list is empty and a game object is populated then go to a load state
+            //and see if the gameobject has a statemachine attached to it.
+            if (stateEditorUtils.GameObject != stateEditorUtils.WasGameObject && stateEditorUtils.GameObject!=null)
                 strOut = m_ChangeStateName;
-
 
             return strOut;
         }
