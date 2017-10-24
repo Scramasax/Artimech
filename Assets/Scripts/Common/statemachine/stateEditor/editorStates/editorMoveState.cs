@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorMoveState : stateGameBase
+    public class editorMoveState : editorBaseState
     {
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_ActionConfirmed = false;
@@ -77,6 +77,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            base.UpdateEditorGUI();
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
@@ -89,9 +90,12 @@ namespace artiMech
                     float width = m_WindowsSelectedNode.WinRect.width;
                     float height = m_WindowsSelectedNode.WinRect.height;
 
-                    if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                    Vector2 mousePos = new Vector2();
+                    mousePos = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
+
+                    if (mousePos.x >= x && mousePos.x <= x + width)
                     {
-                        if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                        if (mousePos.y >= y && mousePos.y <= y + height)
                         {
                             m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
                             stateEditorUtils.Repaint();
@@ -103,10 +107,13 @@ namespace artiMech
 
             }
 
+            /*
+            stateEditorDrawUtils.DrawGridBackground();
+
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
-            }
+            }*/
 
             stateEditorUtils.Repaint();
         }

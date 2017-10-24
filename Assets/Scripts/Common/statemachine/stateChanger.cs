@@ -37,6 +37,7 @@ namespace artiMech
                 {
                     if (forceStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
+                       
                         if (displayStates)
                         {
                             Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>" );
@@ -67,7 +68,9 @@ namespace artiMech
                 {
                     if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
+
                         //some debug love
+                        displayStates = false;
                         if (displayStates)
                         {
                             Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>");
@@ -98,6 +101,7 @@ namespace artiMech
                 {
                     if (currentState.m_ChangeStateName.GetHashCode() == state.m_StateName.GetHashCode())
                     {
+                        displayStates = false;
                         //some debug love
                         if (displayStates)
                         {
@@ -109,7 +113,7 @@ namespace artiMech
                             Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");
                             Debug.Log("<color=teal>" + "<b>" + "change state = " + "</b></color>" + "<color=#b3002d>" + state.m_StateName + "</color>" + " .");
                         }
-
+                        
                         currentState.Exit();
                         currentState.m_ChangeBool = false;
                         state.Enter();

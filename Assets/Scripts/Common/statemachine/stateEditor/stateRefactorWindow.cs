@@ -136,9 +136,11 @@ namespace artiMech
         /// <returns></returns>
         public bool IsWithin(Vector2 vect)
         {
-            if (vect.x >= m_WinRect.x && vect.x < m_WinRect.x + m_WinRect.width)
+            Vector3 transVect = new Vector3();
+            transVect = stateEditorUtils.TranslationMtx.Transform(vect);
+            if (transVect.x >= m_WinRect.x && transVect.x < m_WinRect.x + m_WinRect.width)
             {
-                if (vect.y >= m_WinRect.y && vect.y < m_WinRect.y + m_WinRect.height)
+                if (transVect.y >= m_WinRect.y && transVect.y < m_WinRect.y + m_WinRect.height)
                 {
                     return true;
                 }

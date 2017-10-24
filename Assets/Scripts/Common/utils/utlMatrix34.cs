@@ -127,6 +127,20 @@ public class utlMatrix34
     }
 
     /// <summary>
+    /// Local to world for a rect.  Size and position.
+    /// </summary>
+    /// <param name="localRect"></param>
+    /// <returns></returns>
+    public Rect Transform(Rect localRect)
+    {
+        Rect worldRect = new Rect(localRect);
+        worldRect.position = Transform(worldRect.position);
+        worldRect.width *= m_A.sqrMagnitude;
+        worldRect.height *= m_B.sqrMagnitude;
+        return worldRect;
+    }
+
+    /// <summary>
     /// World to local pos.
     /// </summary>
     /// <param name="worldPos"></param>

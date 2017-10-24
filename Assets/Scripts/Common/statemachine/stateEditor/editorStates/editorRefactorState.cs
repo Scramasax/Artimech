@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorRefactorState : stateGameBase
+    public class editorRefactorState : editorBaseState
     {
         stateWindowsNode m_WindowsSelectedNode = null;
 
@@ -84,6 +84,8 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            base.UpdateEditorGUI();
+
             if (m_WindowsSelectedNode == null)
                 return;
 
@@ -112,11 +114,6 @@ namespace artiMech
                 }
             }
 
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                stateEditorUtils.StateList[i].Update(this);
-            }
-
             m_RefactorWindow.Update(this);
 
             //stateEditorUtils.Repaint();
@@ -130,7 +127,7 @@ namespace artiMech
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             const float windowSizeX = 350;
             const float windowSizeY = 150;
-            m_RefactorWindow.Set("Refactor Class", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX,windowSizeY);
+            m_RefactorWindow.Set("Refactor Class", m_WindowsSelectedNode.GetTransformedPos().x, m_WindowsSelectedNode.GetTransformedPos().y, windowSizeX,windowSizeY);
             m_RefactorWindow.ChangeName = m_WindowsSelectedNode.ClassName;
             m_ActionConfirmed = false;
             m_ActionCancelled = false;

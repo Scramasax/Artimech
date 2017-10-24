@@ -18,13 +18,7 @@
 /// 
 
 using UnityEngine;
-using System.Collections;
 using UnityEditor;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System;
 
 #if UNITY_EDITOR
 
@@ -32,15 +26,6 @@ namespace artiMech
 {
     public class stateEditor : stateEditorBase
     {
-        //static IList<stateWindowsNode> m_StateList = new List<stateWindowsNode>();
-        //public GameObject m_GameObject = null;
-        //GameObject m_WasGameObject = null;
-        //bool m_AddStateMachine = false;
-        //string m_StateMachineName = "";
-        //Vector2 m_MousePos;
-
-        //stateWindowsNode m_AddStateWindow = null;
-
         public stateEditor() : base()
         {
             stateEditorUtils.StateEditor = this;
@@ -90,11 +75,14 @@ namespace artiMech
 
             GUILayout.FlexibleSpace();
 
+#pragma warning disable CS0618 // Type or member is obsolete
             stateEditorUtils.GameObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", stateEditorUtils.GameObject, typeof(GameObject));
+#pragma warning restore CS0618 // Type or member is obsolete
 
             if (GUILayout.Button("File", EditorStyles.toolbarDropDown))
             {
                 GenericMenu toolsMenu = new GenericMenu();
+
                 //In the wait state and an object is selected.
                 if (m_CurrentState.m_StateName == "Wait" && stateEditorUtils.GameObject != null)
                     toolsMenu.AddItem(new GUIContent("Create"), false, OnCreateStateMachine);
@@ -105,6 +93,13 @@ namespace artiMech
                     toolsMenu.AddItem(new GUIContent("Save"), false, OnSaveMetaData);
                 else
                     toolsMenu.AddDisabledItem(new GUIContent("Save"));
+
+                toolsMenu.AddSeparator("");
+
+                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+                    toolsMenu.AddItem(new GUIContent("Recenter"), false, OnRecenter);
+                else
+                    toolsMenu.AddDisabledItem(new GUIContent("Recenter"));
 
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
@@ -122,10 +117,21 @@ namespace artiMech
         /// </summary>
         void OnSaveMetaData()
         {
+            if(CurrentState is editorDisplayWindowsState)
+            {
+                editorDisplayWindowsState theState = (editorDisplayWindowsState)CurrentState;
+                theState.Save = true;
+            }
+
             for(int i=0;i<stateEditorUtils.StateList.Count;i++)
             {
                 stateEditorUtils.StateList[i].SaveMetaData();
             }
+        }
+
+        void OnRecenter()
+        {
+            stateEditorUtils.TranslationMtx.Identity();
         }
 
         void OnCreateStateMachine()
@@ -134,7 +140,6 @@ namespace artiMech
             {
                 editorWaitState waitState = m_CurrentState as editorWaitState;
                 waitState.CreateBool = true;
-                //stateEditorUtils.CreateStateMachineScriptAndLink();
             }
         }
 
@@ -154,7 +159,7 @@ namespace artiMech
 
         void OnWiki()
         {
-            Help.BrowseURL("http://example.com/product/help");
+            Help.BrowseURL("https://github.com/Scramasax/Artimech/wiki");
         }
 
         public void EditorRepaint()

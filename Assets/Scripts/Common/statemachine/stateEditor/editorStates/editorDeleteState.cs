@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorDeleteState : stateGameBase
+    public class editorDeleteState : editorBaseState
     {
         stateWindowsNode m_WindowsSelectedNode = null;
         stateDeleteWindow m_DeleteWindowMessageBox = null;
@@ -74,7 +74,7 @@ namespace artiMech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -82,6 +82,8 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            base.UpdateEditorGUI();
+
             if (m_WindowsSelectedNode == null)
                 return;
 
@@ -109,12 +111,7 @@ namespace artiMech
                     }
                 }
             }
-
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                stateEditorUtils.StateList[i].Update(this);
-            }
-
+        
             m_DeleteWindowMessageBox.Update(this);
         }
 
@@ -126,7 +123,7 @@ namespace artiMech
             m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
             const float windowSizeX = 300;
             const float windowSizeY = 120;
-            m_DeleteWindowMessageBox.Set("Delete State", m_WindowsSelectedNode.GetPos().x, m_WindowsSelectedNode.GetPos().y, windowSizeX, windowSizeY);
+            m_DeleteWindowMessageBox.Set("Delete State", m_WindowsSelectedNode.GetTransformedPos().x, m_WindowsSelectedNode.GetTransformedPos().y, windowSizeX, windowSizeY);
             m_DeleteWindowMessageBox.StateToDeleteName = m_WindowsSelectedNode.WindowStateAlias;
             m_DeleteWindowMessageBox.InitImage();
             m_ActionConfirmed = false;

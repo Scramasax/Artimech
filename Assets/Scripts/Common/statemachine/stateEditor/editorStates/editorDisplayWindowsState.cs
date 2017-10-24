@@ -28,7 +28,7 @@ using UnityEditor;
 #endregion
 namespace artiMech
 {
-    public class editorDisplayWindowsState : baseState
+    public class editorDisplayWindowsState : editorBaseState
     {
 
         public class menuData
@@ -44,7 +44,6 @@ namespace artiMech
         }
 
         #region Variables
-        IList<stateConditionalBase> m_ConditionalList;
 
         bool m_bAddCondtion = false;
         bool m_bDeleteWindowNode = false;
@@ -53,6 +52,7 @@ namespace artiMech
         bool m_bRenameWindowNode = false;
         bool m_bResizeWindowNode = false;
         bool m_bRefactor = false;
+        bool m_bSave = false;
 
         #endregion
 
@@ -79,6 +79,9 @@ namespace artiMech
         /// <summary>  State wants to refactor a class and has set this bool. </summary>
         public bool RefactorClass { get { return m_bRefactor; } }
 
+        /// <summary>  State wants to refactor a class and has set this bool. </summary>
+        public bool Save { get { return m_bSave; } set { m_bSave = value; } }
+
         #endregion
 
         #region Member Functions
@@ -88,7 +91,7 @@ namespace artiMech
         /// </summary>
         /// <param name="gameobject"></param>
         /// 
-        public editorDisplayWindowsState(GameObject gameobject)
+        public editorDisplayWindowsState(GameObject gameobject) : base(gameobject)
         {
             m_bAddCondtion = false;
             m_GameObject = gameobject;
@@ -103,6 +106,7 @@ namespace artiMech
             m_ConditionalList.Add(new editor_Display_To_Rename("Rename"));
             m_ConditionalList.Add(new editor_Display_To_Resize("Resize"));
             m_ConditionalList.Add(new editor_Display_To_Refactor("Refactor"));
+            m_ConditionalList.Add(new editor_Display_To_Save("Save"));
         }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            base.UpdateEditorGUI();
             // input
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
@@ -149,17 +154,29 @@ namespace artiMech
                     //loop through and find what state has been clicked.
                     for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                     {
+
+                        Vector2 winPos = new Vector3(stateEditorUtils.StateList[i].WinRect.x, stateEditorUtils.StateList[i].WinRect.y);
+                        Vector3 winSize = new Vector3(stateEditorUtils.StateList[i].WinRect.width, stateEditorUtils.StateList[i].WinRect.height);
+
+                        /*
                         //For shortening up the test position conditionals when it comes to code layout.
                         float x = stateEditorUtils.StateList[i].WinRect.x;
                         float y = stateEditorUtils.StateList[i].WinRect.y;
                         float width = stateEditorUtils.StateList[i].WinRect.width;
                         float height = stateEditorUtils.StateList[i].WinRect.height;
+                        */
+
+                        Vector2 winTransPos = stateEditorUtils.TranslationMtx.Transform(winPos);
+
+                        Vector3 mouseTransPos = new Vector3();
+                        //transPos = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
+                        mouseTransPos = ev.mousePosition;
 
                         //Test to see if the mouse position is within the global limit of the window in the x.
-                        if (ev.mousePosition.x >= x && ev.mousePosition.x <= x + width)
+                        if (mouseTransPos.x >= winTransPos.x && mouseTransPos.x <= winTransPos.x + winSize.x)
                         {
                             //Test to see if the mouse position is within the global limit of the window in the y.
-                            if (ev.mousePosition.y >= y && ev.mousePosition.y <= y + height)
+                            if (mouseTransPos.y >= winTransPos.y && mouseTransPos.y <= winTransPos.y + winSize.y)
                             {
                                 // If the mouse button is clicked then check to see what to do depending and where
                                 // in the visual state window your are pointing at.
@@ -181,11 +198,15 @@ namespace artiMech
             //Saves meta data for the visual window system via the keyboard
             if (ev.control &&  ev.keyCode == KeyCode.S)
             {
+                /*
                 Debug.Log("<color=blue>" + "<b>" + "Saving...." + "</b></color>");
                 for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                 {
                     stateEditorUtils.StateList[i].SaveMetaData();
                 }
+                Debug.Log("<color=blue>" + "<b>" + "Control s Saving...." + "</b></color>");*/
+                m_bSave = true;
+                return;
             }
 
   
@@ -199,7 +220,7 @@ namespace artiMech
 
                     for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
                     {
-                        string conditionEditName = stateEditorUtils.StateList[i].GetConditionalByPosition(ev.mousePosition, 10);
+                        string conditionEditName = stateEditorUtils.StateList[i].GetConditionalByPosition(stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition), 10);
                         if (conditionEditName != null)
                         {
                             menu.AddItem(new GUIContent("Edit Conditional"),
@@ -236,13 +257,13 @@ namespace artiMech
             // Middle hold click and not on a state.
             if (ev.button == 2)
             {
-                Debug.Log("<color=blue>" + "<b>" + ev.type + "</b></color>");
+                //Debug.Log("<color=blue>" + "<b>" + ev.type + "</b></color>");
                 if (ev.type == EventType.MouseDown)
                 {
-                    Debug.Log("<color=red>" + "<b>" + "middle mouse down" + "</b></color>");
+                    //Debug.Log("<color=red>" + "<b>" + "middle mouse down" + "</b></color>");
                     m_bMoveBackground = true;
                 }
-                ev.Use();
+                //ev.Use();
             }
 
             //EditorGUILayout.BeginHorizontal();
@@ -252,7 +273,7 @@ namespace artiMech
             // render populated state windows
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
-                stateEditorUtils.StateList[i].Update(this);
+                //stateEditorUtils.StateList[i].Update(this);
                 //EditorGUILayout.EndHorizontal();
 
                 // highlight the current state
@@ -274,8 +295,11 @@ namespace artiMech
                             Vector4 colorVector = Vector4.Lerp(startColor, endColor, edgleCoef);
                             Color backroundColor = new Color(colorVector.x,colorVector.y,colorVector.z,colorVector.w);
 
-                            Rect rect = new Rect(stateEditorUtils.StateList[i].WinRect.x - margin * edgleCoef,
-                                                    stateEditorUtils.StateList[i].WinRect.y - margin * edgleCoef,
+                            Vector2 transVect = new Vector2();
+                            transVect = stateEditorUtils.TranslationMtx.Transform(stateEditorUtils.StateList[i].WinRect.position);
+
+                            Rect rect = new Rect(transVect.x - margin * edgleCoef,
+                                                    transVect.y - margin * edgleCoef,
                                                     stateEditorUtils.StateList[i].WinRect.width + (margin * 2 * edgleCoef),
                                                     stateEditorUtils.StateList[i].WinRect.height + (margin * 2 * edgleCoef));
 
@@ -371,6 +395,7 @@ namespace artiMech
             m_bRenameWindowNode = false;
             m_bResizeWindowNode = false;
             m_bRefactor = false;
+            m_bSave = false;
         }
         #endregion
     }

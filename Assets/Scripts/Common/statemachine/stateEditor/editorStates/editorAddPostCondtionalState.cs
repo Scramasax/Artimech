@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorAddPostCondtionalState : stateGameBase
+    public class editorAddPostCondtionalState : editorBaseState
     {
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_ExitAddPostState = false;
@@ -69,11 +69,15 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+
+            base.UpdateEditorGUI();
+
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
             if (ev.button == 0)
             {
+
                 stateWindowsNode stateNode = stateEditorUtils.GetWindowsNodeAtThisLocation(ev.mousePosition);
                 if (ev.type == EventType.mouseUp && m_ExitAddPostState == false)
                 {
@@ -87,13 +91,6 @@ namespace artiMech
             {
                 m_ExitAddPostState = true;
             }
-
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                stateEditorUtils.StateList[i].Update(this);
-            }
-
-            DrawConditionalTemp();
 
             stateEditorUtils.Repaint();
         }

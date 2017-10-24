@@ -33,7 +33,7 @@ using System.IO;
 /// </summary>
 namespace artiMech
 {
-    public class editorMoveBackground : stateGameBase
+    public class editorMoveBackground : editorBaseState
     {
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_ActionConfirmed = false;
@@ -44,6 +44,32 @@ namespace artiMech
 
         /// <summary>  Returns true if the action is confirmed. </summary>
         public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+
+        public stateWindowsNode WindowsSelectedNode
+        {
+            get
+            {
+                return WindowsSelectedNode1;
+            }
+
+            set
+            {
+                WindowsSelectedNode1 = value;
+            }
+        }
+
+        public stateWindowsNode WindowsSelectedNode1
+        {
+            get
+            {
+                return m_WindowsSelectedNode;
+            }
+
+            set
+            {
+                m_WindowsSelectedNode = value;
+            }
+        }
 
         #endregion
 
@@ -79,29 +105,38 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            base.UpdateEditorGUI();
+
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
+
+            Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            EditorGUIUtility.AddCursorRect(screenRect, MouseCursor.Pan);
+
 
             if (ev.button == 2)
             {
                 if (ev.type != EventType.mouseUp)
                 {
                     Vector3 mouseChange = new Vector3();
-                    mouseChange = (Vector3)m_MousePosStart - (Vector3)ev.mousePosition;
-                    Debug.Log("<color=green>" + "<b>" + "mouseChange" + mouseChange +  "</b></color>");
+                    mouseChange =  (Vector3)ev.mousePosition - (Vector3)m_MousePosStart;
+                    //Debug.Log("<color=green>" + "<b>" + "mouseChange" + mouseChange +  "</b></color>");
                     stateEditorUtils.TranslationMtx.D = m_StartMtx.D +  mouseChange;
-                    Debug.Log("m_StartMtx.D = " + m_StartMtx.D);
-                    Debug.Log("stateEditorUtils.TranslationMtx.D = " + stateEditorUtils.TranslationMtx.D);
+                    //Debug.Log("m_StartMtx.D = " + m_StartMtx.D);
+                    //Debug.Log("stateEditorUtils.TranslationMtx.D = " + stateEditorUtils.TranslationMtx.D);
                 }
                 else
                     m_ActionConfirmed = true;
 
             }
 
+            /*
+            stateEditorDrawUtils.DrawGridBackground();
+
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
-            }
+            }*/
 
             stateEditorUtils.Repaint();
         }

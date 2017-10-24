@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aCubeRest.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aCubeRest_To_aCubeStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aCubeRest_To_aCubeUp.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aCubeStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aCubeStart_To_aCubeUp.cs" />
@@ -90,6 +91,9 @@
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Save.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorSaveState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
@@ -101,21 +105,22 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddPostCondtionalState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Delete.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_MoveBackground.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Refactor.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Rename.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Resize.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Wait.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Display.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddConditionalToDisplay.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddCondToPosAddConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddPostCondtionalToDisplay.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Display.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
@@ -145,6 +150,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorDrawUtils.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateMessageWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRefactorWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRenameWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />

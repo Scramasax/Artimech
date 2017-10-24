@@ -133,6 +133,19 @@ namespace artiMech
             }
         }
 
+        public Vector3 LinePos
+        {
+            get
+            {
+                return m_LinePos;
+            }
+
+            set
+            {
+                m_LinePos = value;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -197,7 +210,35 @@ namespace artiMech
         }
 
         /// <summary>
-        /// Check to see if a position is inside the main window.
+        /// returns the position of the window with the scroll/pan mtx transform.
+        /// </summary>
+        /// <returns></returns>
+        public Vector3 GetTransformedPos()
+        {
+            return stateEditorUtils.TranslationMtx.Transform(GetPos());
+        }
+
+        /// <summary>
+        /// Is within the window using the scroll transform.
+        /// </summary>
+        /// <param name="tranVect"></param>
+        /// <returns></returns>
+        public bool IsWithinUsingPanZoomTransform(Vector2 vect)
+        {
+            Vector3 transVect = new Vector3();
+            transVect = stateEditorUtils.TranslationMtx.Transform(vect);
+            if (transVect.x >= m_WinRect.x && transVect.x < m_WinRect.x + m_WinRect.width)
+            {
+                if (transVect.y >= m_WinRect.y && transVect.y < m_WinRect.y + m_WinRect.height)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Is within rect of the state window.
         /// </summary>
         /// <param name="vect"></param>
         /// <returns></returns>
@@ -220,7 +261,9 @@ namespace artiMech
             startPos.x += WinRect.width * 0.5f;
             startPos.y += WinRect.height * 0.5f;
 
+#pragma warning disable CS0162 // Unreachable code detected
             for (int i = 0; i < ConditionLineList.Count; i++)
+#pragma warning restore CS0162 // Unreachable code detected
             {
                 Vector3 endPos = ConditionLineList[i].GetPos();
                 endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
@@ -251,7 +294,9 @@ namespace artiMech
         public Vector3 GetEndPosOnCondition()
         {
             Vector3 vectOut = new Vector3();
+#pragma warning disable CS0162 // Unreachable code detected
             for (int i = 0; i < ConditionLineList.Count; i++)
+#pragma warning restore CS0162 // Unreachable code detected
             {
                 Vector3 endPos = ConditionLineList[i].GetPos();
                 endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
@@ -302,10 +347,11 @@ namespace artiMech
             if( state is editorAddPostCondtionalState || 
                 state is editorMoveState ||
                 state is editorDeleteState ||
-                state is editorRenameState)
-                GUI.Window(m_Id, WinRect, DrawNodeWindowNoDrag, m_WindowStateAlias);
+                state is editorRenameState ||
+                state is editorMoveBackground)
+                GUI.Window(m_Id, stateEditorUtils.TranslationMtx.Transform(WinRect), DrawNodeWindowNoDrag, m_WindowStateAlias);
             else
-                GUI.Window(m_Id, WinRect, DrawNodeWindow, m_WindowStateAlias);
+                GUI.Window(m_Id, stateEditorUtils.TranslationMtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
 
             //draw conditions
             Vector3 startPos = GetPos();
@@ -319,7 +365,7 @@ namespace artiMech
                 endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
 
                 Color shadowCol = new Color(0, 0, 1, 0.06f);
-                stateEditorDrawUtils.DrawArrow( startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol,Color.white);
+                stateEditorDrawUtils.DrawArrowTranformed( stateEditorUtils.TranslationMtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol,Color.white);
             }
 
         }

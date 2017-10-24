@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 #region XML_DATA
 
@@ -26,34 +24,37 @@ using System.IO;
 #endif
 
 #endregion
-
-/// <summary>
-/// This looks for the up click and then a condition is added and
-/// the state is returned to 'Display Windows'
-/// </summary>
 namespace artiMech
 {
-    public class editorResizeState : editorBaseState
+    public class editorSaveState : editorBaseState
     {
-        stateWindowsNode m_WindowsSelectedNode = null;
 
-        bool m_ActionConfirmed = false;
-        
-        #region Accessors
+        stateMessageWindow m_MessageWindow = null;
 
-        /// <summary>  Returns true if the action is confirmed. </summary>
-        public bool ActionConfirmed { get { return m_ActionConfirmed; } }
+        bool m_bSaved = false;
+        public bool Saved
+        {
+            get
+            {
+                return m_bSaved;
+            }
 
-        #endregion
+            set
+            {
+                m_bSaved = value;
+            }
+        }
 
         /// <summary>
-        /// State constructor.
+        /// to show a save window
         /// </summary>
         /// <param name="gameobject"></param>
-        public editorResizeState(GameObject gameobject) : base(gameobject)
+        public editorSaveState(GameObject gameobject) : base(gameobject)
         {
+            m_MessageWindow = new stateMessageWindow(9999995);
+            
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editor_Resize_To_Display("Display Windows"));
+            m_ConditionalList.Add(new editor_Save_To_Display("Display Windows"));
         }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace artiMech
         /// </summary>
         public override void Update()
         {
+            //updates conditions
             base.Update();
         }
 
@@ -69,7 +71,7 @@ namespace artiMech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -79,26 +81,22 @@ namespace artiMech
         {
             base.UpdateEditorGUI();
 
-            Event ev = Event.current;
-            stateEditorUtils.MousePos = ev.mousePosition;
+            Vector2 windowSize = new Vector2(300, 100);
+            float halfScreenX = (float)Screen.width * 0.5f;
+            float halfScreenY = (float)Screen.height * 0.5f;
+            m_MessageWindow.Set("Message Window",
+                halfScreenX - (windowSize.x * 0.5f),
+                halfScreenY - (windowSize.y * 0.5f),
+                windowSize.x,
+                windowSize.y);
 
-
-            Rect rect = m_WindowsSelectedNode.WinRect;
-
-            Vector2 mousePosTrans = new Vector2();
-            mousePosTrans = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
-
-            rect.width = mousePosTrans.x - m_WindowsSelectedNode.WinRect.x;
-            rect.height = mousePosTrans.y - m_WindowsSelectedNode.WinRect.y;
-
-            rect.width = Mathf.Clamp(rect.width, 32, 1024);
-            rect.height = Mathf.Clamp(rect.height, 32, 1024);
-
-            m_WindowsSelectedNode.WinRect = rect;
-
-            if (ev.type == EventType.mouseUp)
-                m_ActionConfirmed = true;
-
+            m_MessageWindow.Update(this);
+            if (m_StateTime > 1.5f)
+            {
+                Saved = true;
+                for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+                    stateEditorUtils.StateList[i].SaveMetaData();
+            }
             stateEditorUtils.Repaint();
         }
 
@@ -107,9 +105,12 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-            m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
-            m_ActionConfirmed = false;
-            stateEditorUtils.Repaint();
+            base.Enter();
+
+            Debug.Log("<color=blue>" + "<b>" + "Saving...." + "</b></color>");
+
+            //Saved = true;
+
         }
 
         /// <summary>
@@ -117,7 +118,8 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            base.Exit();
+            Saved = false;
         }
     }
 }

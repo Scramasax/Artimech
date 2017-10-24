@@ -27,17 +27,13 @@ using UnityEditor;
 #endregion
 namespace artiMech
 {
-    public class editorRestoreState : baseState
+    public class editorRestoreState : editorBaseState
     {
-
         /// <summary>
-        /// State constructor.
+        /// This state restores the previous gamestate and seleted object
         /// </summary>
         /// <param name="gameobject"></param>
-        /// 
-        IList<stateConditionalBase> m_ConditionalList;
-
-        public editorRestoreState(GameObject gameobject)
+        public editorRestoreState(GameObject gameobject) : base(gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
@@ -76,7 +72,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
+            base.UpdateEditorGUI();
         }
 
         /// <summary>

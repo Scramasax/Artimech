@@ -38,6 +38,8 @@ namespace artiMech
 
         static utlMatrix34 m_TranslationMtx = new utlMatrix34();
 
+        static bool m_bVerbose = false;
+
         #region Accessors 
 
         /// <summary>  Not sure. </summary>
@@ -72,6 +74,9 @@ namespace artiMech
 
         /// <summary>  Returns the translation matrix for the visual state window so panning can happen. </summary>
         public static utlMatrix34 TranslationMtx { get { return m_TranslationMtx; } set { m_TranslationMtx = value; } }
+
+        /// <summary> Verbose. </summary>
+        public static bool Verbose { get { return m_bVerbose; } set { m_bVerbose = value; } }
 
         #endregion
 
@@ -473,19 +478,21 @@ namespace artiMech
 
             //replace the startStartStateTemplate
             utlDataAndFile.ReplaceTextInFile(pathAndFileName, "stateEmptyExample", stateStartName);
-
-            Debug.Log(
-                        "<b><color=navy>Artimech Report Log Section A\n</color></b>"
-                        + "<i><color=grey>Click to view details</color></i>"
-                        + "\n"
-                        + "<color=blue>Finished creating a state machine named </color><b>"
-                        + stateMachName
-                        + "</b>:\n"
-                        + "<color=blue>Created and added a start state named </color>"
-                        + stateStartName
-                        + "<color=blue> to </color>"
-                        + stateMachName
-                        + "\n\n");
+            if (Verbose)
+            {
+                Debug.Log(
+                            "<b><color=navy>Artimech Report Log Section A\n</color></b>"
+                            + "<i><color=grey>Click to view details</color></i>"
+                            + "\n"
+                            + "<color=blue>Finished creating a state machine named </color><b>"
+                            + stateMachName
+                            + "</b>:\n"
+                            + "<color=blue>Created and added a start state named </color>"
+                            + stateStartName
+                            + "<color=blue> to </color>"
+                            + stateMachName
+                            + "\n\n");
+            }
 
             SaveStateInfo(stateMachName, stateEditorUtils.GameObject.name);
 
@@ -555,7 +562,11 @@ namespace artiMech
                     fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
 
                     stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
-                    windowNode.Set(fileAndPath,stateName,stateName, MousePos.x, MousePos.y, 150, 80);
+
+                    Vector3 transMousePos = new Vector3();
+                    transMousePos = stateEditorUtils.TranslationMtx.UnTransform(MousePos);
+
+                    windowNode.Set(fileAndPath,stateName,stateName, transMousePos.x, transMousePos.y, 150, 80);
                     StateList.Add(windowNode);
 
                     SaveStateWindowsNodeData(fileAndPath, stateName, (int)MousePos.x, (int)MousePos.y, 150, 80);

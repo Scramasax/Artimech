@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace artiMech
 {
-    public class stateRenameWindow
+    public class stateMessageWindow
     {
         #region Variables
 
@@ -30,7 +30,7 @@ namespace artiMech
         //string m_ClassName = "";
         string m_WindowStateAlias = "";
         int m_Id = -1;
-        string m_ChangeName = "";
+        //string m_ChangeName = "";
         baseState m_CurrentState;
 
         /// <summary>  The entire window rectangle. </summary>
@@ -61,16 +61,16 @@ namespace artiMech
             }
         }
 
-        public string ChangeName
+        public baseState CurrentState
         {
             get
             {
-                return m_ChangeName;
+                return m_CurrentState;
             }
 
             set
             {
-                m_ChangeName = value;
+                m_CurrentState = value;
             }
         }
 
@@ -80,7 +80,7 @@ namespace artiMech
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
-        public stateRenameWindow(int id)
+        public stateMessageWindow(int id)
         {
             m_WinRect = new Rect();
             m_WindowStateAlias = "not filled in yet...";
@@ -150,7 +150,7 @@ namespace artiMech
 
         public void Update(baseState state)
         {
-            m_CurrentState = state;
+            CurrentState = state;
             GUI.Window(m_Id, WinRect, DrawNodeWindow, m_WindowStateAlias);
         }
 
@@ -163,24 +163,15 @@ namespace artiMech
             Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(1,17,WinRect.width-2, WinRect.height-19);
             EditorGUI.DrawRect(rect, backroundColor);
-            GUILayout.Space(12);
-            m_ChangeName = EditorGUILayout.TextField("Alias Name: ", m_ChangeName);
+            GUILayout.Space(25);
+            var TextStyle = new GUIStyle();
+            TextStyle.normal.textColor = Color.blue;
+            TextStyle.fontSize = 16;
+            GUILayout.BeginHorizontal();
             GUILayout.Space(15);
-            GUILayout.BeginHorizontal("");
-            if(GUILayout.Button("Rename"))
-            {
-                editorRenameState renameState = (editorRenameState)m_CurrentState;
-                stateEditorUtils.SelectedNode.WindowStateAlias = m_ChangeName;
-                stateEditorUtils.SelectedNode.SaveMetaData();
-                renameState.ActionConfirmed = true;
-            }
-            GUILayout.Space(40);
-            if(GUILayout.Button("Cancel"))
-            {
-                editorRenameState renameState = (editorRenameState)m_CurrentState;
-                renameState.ActionCancelled = true;
-            }
+            GUILayout.Label("Saving Visual Data....",TextStyle);
             GUILayout.EndHorizontal();
+
 
             //GUI.DragWindow();
         }

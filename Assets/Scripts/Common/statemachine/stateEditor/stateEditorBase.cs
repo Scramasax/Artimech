@@ -30,7 +30,7 @@ namespace artiMech
     {
 #region Variables 
 
-        protected bool m_DisplayStates = true;
+        protected bool m_DisplayStates = false;
         protected string m_CurrentStateName = "";
 
         protected IList<baseState> m_StateList;
@@ -86,6 +86,7 @@ namespace artiMech
             AddState(new editorMoveState(null), "Move");
             AddState(new editorMoveBackground(null), "MoveBackground");
             AddState(new editorRefactorState(null), "Refactor");
+            AddState(new editorSaveState(null), "Save");
         }
 
         // Update is called once per frame

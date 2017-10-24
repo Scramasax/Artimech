@@ -1,8 +1,6 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 #region XML_DATA
 
@@ -26,34 +24,17 @@ using System.IO;
 #endif
 
 #endregion
-
-/// <summary>
-/// This looks for the up click and then a condition is added and
-/// the state is returned to 'Display Windows'
-/// </summary>
 namespace artiMech
 {
-    public class editorResizeState : editorBaseState
+    public class editorBaseState : stateGameBase
     {
-        stateWindowsNode m_WindowsSelectedNode = null;
-
-        bool m_ActionConfirmed = false;
-        
-        #region Accessors
-
-        /// <summary>  Returns true if the action is confirmed. </summary>
-        public bool ActionConfirmed { get { return m_ActionConfirmed; } }
-
-        #endregion
-
         /// <summary>
-        /// State constructor.
+        /// to render and do some of the common state editor functions.
         /// </summary>
         /// <param name="gameobject"></param>
-        public editorResizeState(GameObject gameobject) : base(gameobject)
+        public editorBaseState(GameObject gameobject) : base(gameobject)
         {
-            //<ArtiMechConditions>
-            m_ConditionalList.Add(new editor_Resize_To_Display("Display Windows"));
+
         }
 
         /// <summary>
@@ -69,7 +50,7 @@ namespace artiMech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -79,27 +60,12 @@ namespace artiMech
         {
             base.UpdateEditorGUI();
 
-            Event ev = Event.current;
-            stateEditorUtils.MousePos = ev.mousePosition;
+            stateEditorDrawUtils.DrawGridBackground();
 
-
-            Rect rect = m_WindowsSelectedNode.WinRect;
-
-            Vector2 mousePosTrans = new Vector2();
-            mousePosTrans = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
-
-            rect.width = mousePosTrans.x - m_WindowsSelectedNode.WinRect.x;
-            rect.height = mousePosTrans.y - m_WindowsSelectedNode.WinRect.y;
-
-            rect.width = Mathf.Clamp(rect.width, 32, 1024);
-            rect.height = Mathf.Clamp(rect.height, 32, 1024);
-
-            m_WindowsSelectedNode.WinRect = rect;
-
-            if (ev.type == EventType.mouseUp)
-                m_ActionConfirmed = true;
-
-            stateEditorUtils.Repaint();
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
+            {
+                stateEditorUtils.StateList[i].Update(this);
+            }
         }
 
         /// <summary>
@@ -107,9 +73,7 @@ namespace artiMech
         /// </summary>
         public override void Enter()
         {
-            m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
-            m_ActionConfirmed = false;
-            stateEditorUtils.Repaint();
+            base.Enter();
         }
 
         /// <summary>
@@ -117,7 +81,7 @@ namespace artiMech
         /// </summary>
         public override void Exit()
         {
-
+            base.Exit();
         }
     }
 }

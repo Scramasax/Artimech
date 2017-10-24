@@ -28,16 +28,9 @@ using UnityEditor;
 #endregion
 namespace artiMech
 {
-    public class editorAddConditionalState : baseState
-    {
-
-        /// <summary>
-        /// State constructor.
-        /// </summary>
-        /// <param name="gameobject"></param>
-        /// 
-        IList<stateConditionalBase> m_ConditionalList;
-        //static Texture2D m_BackGroundImage = null;
+    public class editorAddConditionalState : editorBaseState
+    {        
+     
         stateWindowsNode m_WindowsSelectedNode = null;
         bool m_RightClickBool = false;
         bool m_LeftClickBool = false;
@@ -45,7 +38,11 @@ namespace artiMech
         public bool RightClickBool { get { return m_RightClickBool; } }
         public bool LeftClickBool { get { return m_LeftClickBool; } }
 
-        public editorAddConditionalState(GameObject gameobject)
+        /// <summary>
+        /// This starts the add a condition input sequence.
+        /// </summary>
+        /// <param name="gameobject"></param>
+        public editorAddConditionalState(GameObject gameobject) : base(gameobject)
         {
             m_GameObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
@@ -85,7 +82,7 @@ namespace artiMech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
+            base.UpdateEditorGUI();
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
 
@@ -94,7 +91,7 @@ namespace artiMech
 
             if (ev.button == 0)
             {
-                //Debug.Log("-------------> " + ev.type);
+                Debug.Log("-------------> " + ev.type);
                 if (ev.type == EventType.Used && stateNode != null && m_LeftClickBool == false)
                 {
                     m_LeftClickBool = true;
@@ -115,11 +112,6 @@ namespace artiMech
                 }
             }
 
-            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
-            {
-                stateEditorUtils.StateList[i].Update(this);
-            }
-
             DrawConditionalTemp();
 
             stateEditorUtils.Repaint();
@@ -127,13 +119,20 @@ namespace artiMech
 
         void DrawConditionalTemp()
         {
-            Vector3 startPos = m_WindowsSelectedNode.GetPos();
+            Vector3 startPos = stateEditorUtils.TranslationMtx.Transform(m_WindowsSelectedNode.GetPos());
             startPos.x += m_WindowsSelectedNode.WinRect.width * 0.5f;
             startPos.y += m_WindowsSelectedNode.WinRect.height * 0.5f;
             Color shadowCol = new Color(1, 1, 1, 0.2f);
             Color arrowCol = new Color(204 / 255, 255 / 255, 102 / 255, 1.0f);
             
-            stateEditorDrawUtils.DrawArrow(startPos, stateEditorUtils.MousePos, m_WindowsSelectedNode.WinRect, new Rect(0,0,0,0), 2, Color.black, 2, shadowCol,arrowCol);
+            stateEditorDrawUtils.DrawArrow(startPos, 
+                                    stateEditorUtils.MousePos, 
+                                    stateEditorUtils.TranslationMtx.Transform(m_WindowsSelectedNode.WinRect), 
+                                    new Rect(0,0,0,0), 
+                                    2, 
+                                    Color.black, 
+                                    2, 
+                                    shadowCol,arrowCol);
         }
 
         void ContextCallback(object obj)
