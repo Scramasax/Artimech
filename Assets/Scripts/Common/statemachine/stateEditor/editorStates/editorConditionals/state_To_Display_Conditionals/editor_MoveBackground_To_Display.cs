@@ -17,6 +17,8 @@
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
 
+#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editor_MoveBackground_To_Display : stateConditionalBase
     {
@@ -68,3 +70,4 @@ namespace artiMech
         }
     }
 }
+#endif

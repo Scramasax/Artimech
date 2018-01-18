@@ -31,9 +31,9 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Up</alias>
+    <alias>Start</alias>
     <comment></comment>
-    <posX>326</posX>
+    <posX>20</posX>
     <posY>40</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
@@ -43,19 +43,19 @@ using System.Collections.Generic;
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
-    public class aCubeUp : stateGameBase
+    public class cubeStart : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aCubeUp(GameObject gameobject) : base (gameobject)
+        public cubeStart(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new aCubeUp_To_aCubeRest("aCubeRest"));
+            m_ConditionalList.Add(new cubeStart_To_cubeUpThrust("cubeUpThrust"));
         }
 
         /// <summary>
@@ -72,10 +72,6 @@ namespace artiMech
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            Rigidbody rigidbody = m_GameObject.GetComponent<Rigidbody>();
-            aMechCube script = m_GameObject.GetComponent<aMechCube>();
-
-            rigidbody.AddForce(Vector3.up * script.m_UpForce);
         }
 
         /// <summary>

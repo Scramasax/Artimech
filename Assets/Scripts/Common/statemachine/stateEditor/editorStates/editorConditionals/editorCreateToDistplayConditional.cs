@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 /// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
@@ -26,7 +27,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editorCreateToDisplayConditional : stateConditionalBase
     {
@@ -61,10 +62,11 @@ namespace artiMech
                 strOut = m_ChangeStateName;
 #endif
 
-            if (System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
+            if (System.Type.GetType(stateEditorUtils.kArtimechNamespace + stateEditorUtils.StateMachineName) != null)
                 strOut = m_ChangeStateName;
 
             return strOut;
         }
     }
 }
+#endif

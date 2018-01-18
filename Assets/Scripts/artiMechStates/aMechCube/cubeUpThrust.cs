@@ -31,31 +31,31 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Rest</alias>
+    <alias>Up Thrust</alias>
     <comment></comment>
-    <posX>350</posX>
-    <posY>292</posY>
-    <sizeX>119</sizeX>
-    <sizeY>105</sizeY>
+    <posX>321</posX>
+    <posY>42</posY>
+    <sizeX>150</sizeX>
+    <sizeY>80</sizeY>
   </State>
 </stateMetaData>
 
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
-    public class aCubeRest : stateGameBase
+    public class cubeUpThrust : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aCubeRest(GameObject gameobject) : base (gameobject)
+        public cubeUpThrust(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new aCubeRest_To_aCubeUp("aCubeUp"));
+            m_ConditionalList.Add(new cubeUpThrust_To_cubeNoThrust("cubeNoThrust"));
         }
 
         /// <summary>
@@ -72,6 +72,10 @@ namespace artiMech
         public override void FixedUpdate()
         {
             base.FixedUpdate();
+            Rigidbody rigidbody = m_GameObject.GetComponent<Rigidbody>();
+            aMechCube script = m_GameObject.GetComponent<aMechCube>();
+
+            rigidbody.AddForce(Vector3.up * script.m_UpForce);
         }
 
         /// <summary>

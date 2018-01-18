@@ -26,7 +26,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editor_Display_To_Delete : stateConditionalBase
     {
@@ -60,9 +60,12 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
+
+#if UNITY_EDITOR
             editorDisplayWindowsState theState = (editorDisplayWindowsState) state;
             if (theState.DeleteWindowNode)
                 strOut = m_ChangeStateName;
+#endif
 
             return strOut;
         }

@@ -1,6 +1,6 @@
 /// Artimech
 /// 
-/// Copyright © <2017> <George A Lancaster>
+/// Copyright © <2017-2018> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 /// and associated documentation files (the "Software"), to deal in the Software without restriction, 
 /// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
@@ -17,18 +17,23 @@
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
 
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 
-#if UNITY_EDITOR
-
-namespace artiMech
+namespace Artimech
 {
     public class stateEditor : stateEditorBase
     {
         public stateEditor() : base()
         {
             stateEditorUtils.StateEditor = this;
+
+        }
+
+        private void OnEnable()
+        {
             stateEditor window = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "My Empty Window");
             window.Show();
         }
@@ -89,10 +94,18 @@ namespace artiMech
                 else
                     toolsMenu.AddDisabledItem(new GUIContent("Create"));
 
+                toolsMenu.AddSeparator("");
+
                 if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+                {
+                    toolsMenu.AddItem(new GUIContent("Copy"), false, OnCopyStateMachine);
                     toolsMenu.AddItem(new GUIContent("Save"), false, OnSaveMetaData);
+                }
                 else
+                {
+                    toolsMenu.AddDisabledItem(new GUIContent("Copy"));
                     toolsMenu.AddDisabledItem(new GUIContent("Save"));
+                }
 
                 toolsMenu.AddSeparator("");
 
@@ -104,7 +117,7 @@ namespace artiMech
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
                 toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
-                
+
                 toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
 
                 EditorGUIUtility.ExitGUI();
@@ -117,15 +130,27 @@ namespace artiMech
         /// </summary>
         void OnSaveMetaData()
         {
-            if(CurrentState is editorDisplayWindowsState)
+            if (CurrentState is editorDisplayWindowsState)
             {
                 editorDisplayWindowsState theState = (editorDisplayWindowsState)CurrentState;
                 theState.Save = true;
             }
 
-            for(int i=0;i<stateEditorUtils.StateList.Count;i++)
+            for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].SaveMetaData();
+            }
+        }
+
+        /// <summary>
+        /// copies the a selected statemachine
+        /// </summary>
+        void OnCopyStateMachine()
+        {
+            if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+            {
+                editorDisplayWindowsState theState = (editorDisplayWindowsState)CurrentState;
+                theState.CopyStateMachine = true;
             }
         }
 
@@ -136,7 +161,7 @@ namespace artiMech
 
         void OnCreateStateMachine()
         {
-            if(m_CurrentState is editorWaitState)
+            if (m_CurrentState is editorWaitState)
             {
                 editorWaitState waitState = m_CurrentState as editorWaitState;
                 waitState.CreateBool = true;
@@ -154,7 +179,7 @@ namespace artiMech
             + "<color=teal>developed in Unity 5.x</color>"
             + " .\n\n");
 
-         
+
         }
 
         void OnWiki()

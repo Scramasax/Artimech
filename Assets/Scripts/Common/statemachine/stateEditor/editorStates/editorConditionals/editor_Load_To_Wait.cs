@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 /// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
@@ -26,7 +27,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editor_Load_To_Wait : stateConditionalBase
     {
@@ -68,3 +69,5 @@ namespace artiMech
         }
     }
 }
+
+#endif

@@ -16,14 +16,14 @@
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
-
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace artiMech
+namespace Artimech
 {
 
     /// <summary>
@@ -37,14 +37,14 @@ namespace artiMech
         {
             Color shadowCol = new Color(0, 0, 0, 0.2f);
             stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(25, 25), 1, shadowCol);
-            Color blueCol = new Color(0, 0, 1, 0.2f);
+            Color blueCol = new Color(0, 0, 1, 0.4f);
             stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 3, blueCol);
-            stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 1, blueCol);
+            //stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 1, blueCol);
         }
 
         public static void DrawGridBackground(Vector2 gridStart, Vector2 gridEnd, Vector2 gridSize, int lineWidth, Color lineColor)
         {
-            Vector2 startPos = new Vector2(gridStart.x,gridStart.y);
+            Vector2 startPos = new Vector2(gridStart.x, gridStart.y);
             Vector2 endPos = new Vector2(gridEnd.x, gridStart.y);
             float distance = utlMath.FloatDistance(gridStart.x, gridEnd.x);
             float gridCount = distance / gridSize.x;
@@ -71,26 +71,26 @@ namespace artiMech
 
         }
 
-        public static void DrawCubeFilled(Vector3 startPos, float boxSize,  int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
+        public static void DrawCubeFilled(Vector3 startPos, float boxSize, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
             Handles.color = shadowColor;
-            Handles.DrawWireCube(startPos, new Vector3(boxSize+1, boxSize+1, boxSize+1));
+            Handles.DrawWireCube(startPos, new Vector3(boxSize + 1, boxSize + 1, boxSize + 1));
 
-            Handles.color = bodyColor;
-            for (float i = 0; i < boxSize; i += 0.5f)
-                Handles.DrawWireCube(startPos, new Vector3(i, i, i));
+            /*           Handles.color = bodyColor;
+                       for (float i = 0; i < boxSize; i += 0.5f)
+                           Handles.DrawWireCube(startPos, new Vector3(i, i, i));*/
 
             Handles.color = lineColor;
             Handles.DrawWireCube(startPos, new Vector3(boxSize, boxSize, boxSize));
 
         }
 
-        public static void DrawX(Vector3 startPos,float sizeX,float sizeY,int lineWidth,Color lineColor)
+        public static void DrawX(Vector3 startPos, float sizeX, float sizeY, int lineWidth, Color lineColor)
         {
             Vector3 lineStart = new Vector3();
             Vector3 lineEnd = new Vector3();
 
-            lineStart = startPos + new Vector3(-sizeX * 0.5f,-sizeY * 0.5f, 0);
+            lineStart = startPos + new Vector3(-sizeX * 0.5f, -sizeY * 0.5f, 0);
             lineEnd = startPos + new Vector3(+sizeX * 0.5f, +sizeY * 0.5f, 0);
 
             DrawLine(lineStart, lineEnd, lineWidth, lineColor);
@@ -127,10 +127,11 @@ namespace artiMech
 
         public static void DrawLine(Vector3 startPos, Vector3 endPos, int lineWidth, Color lineColor)
         {
-            Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
+            Handles.color = lineColor;
+            Handles.DrawLine(startPos, endPos);//, lineColor, lineWidth);
         }
 
-        public static void DrawArrowTranformed(utlMatrix34 mtx,Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
+        public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
             Vector3 startPosTrans = new Vector3();
             startPosTrans = mtx.Transform(startPos);
@@ -153,7 +154,7 @@ namespace artiMech
 
         }
 
-        public static void DrawArrow(Vector3 startPos, Vector3 endPos,Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor,Color bodyColor)
+        public static void DrawArrow(Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
 
             //clip the line through the window rects
@@ -164,17 +165,24 @@ namespace artiMech
             if (LineRectIntersection(startPos, endPos, winRectEnd, ref colPos))
                 endPos = colPos;
 
+            Handles.color = shadowColor;
+
             for (int i = 0; i < 3; i++)
                 Handles.DrawBezier(startPos, endPos, endPos, startPos, shadowColor, null, (i + shadowWidth) * 4);
+            //             Handles.DrawLine(startPos, endPos);
 
+            //Handles.color = lineColor;
+            //Handles.DrawLine(startPos, endPos);
+
+            //Handles.DrawBezier(startPos, endPos, endPos, startPos, shadowColor, null, shadowWidth);
             Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
 
             Handles.color = bodyColor;
-            for (float i=0;i<10;i+=0.5f)
+            for (float i = 0; i < 10; i += 0.5f)
                 Handles.DrawWireCube(startPos, new Vector3(i, i, i));
 
             Handles.color = lineColor;
-            Handles.DrawWireCube(startPos, new Vector3(10,10,10));
+            Handles.DrawWireCube(startPos, new Vector3(10, 10, 10));
 
             const int arrowHeadSize = 3;
 
@@ -188,19 +196,19 @@ namespace artiMech
 
 
             utlMatrix34 mtx = new utlMatrix34(endPos);
-            Vector3 lookAtPos = new Vector3(startPos.x,startPos.y,startPos.z); //new Vector3(winRectEnd.x + (winRectEnd.width * 0.5f), winRectEnd.y + (winRectEnd.height * 0.5f), 0);
+            Vector3 lookAtPos = new Vector3(startPos.x, startPos.y, startPos.z); //new Vector3(winRectEnd.x + (winRectEnd.width * 0.5f), winRectEnd.y + (winRectEnd.height * 0.5f), 0);
             mtx.LookAt(lookAtPos);
 
             Vector3[] arrowHeadWorld = new Vector3[arrowHeadSize];
 
-            for(int i=0;i<arrowHeadWorld.Length;i++)
+            for (int i = 0; i < arrowHeadWorld.Length; i++)
             {
                 arrowHeadWorld[i] = new Vector3();
                 arrowHeadWorld[i] = mtx.Transform(arrowHead[i]);
             }
 
             float slice = 0.05f;
-            for (float i = slice; i < 1.0f-slice; i += slice)
+            for (float i = slice; i < 1.0f - slice; i += slice)
             {
                 Vector3 lerpVect = Vector3.Lerp(arrowHeadWorld[1], arrowHeadWorld[2], i);
                 Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], bodyColor, null, 3);
@@ -220,7 +228,7 @@ namespace artiMech
 
         }
 
-        public static void DrawBezierCurve(Vector3 startPos, Vector3 endPos,float inSize,float outSize)
+        public static void DrawBezierCurve(Vector3 startPos, Vector3 endPos, float inSize, float outSize)
         {
             Vector3 startTan = new Vector3();
             Vector3 endTan = new Vector3();
@@ -258,7 +266,7 @@ namespace artiMech
                                                                     Vector3 endPos,
                                                                     float inSize,
                                                                     float outSize,
-                                                                    Rect winRectStart, 
+                                                                    Rect winRectStart,
                                                                     Rect winRectEnd,
                                                                     int lineWidth,
                                                                     Color lineColor,
@@ -282,7 +290,7 @@ namespace artiMech
 
 
             Vector2 colPos = new Vector2();
-            if(LineRectIntersection(startPos,endPos,winRectStart,ref colPos))
+            if (LineRectIntersection(startPos, endPos, winRectStart, ref colPos))
             {
                 startPos = colPos;
 
@@ -297,9 +305,9 @@ namespace artiMech
 
             //draw shadow
             for (int i = 0; i < 3; i++)
-                Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowColor, null, (i + 1) * 4); 
+                Handles.DrawBezier(startPos, endPos, startTan, endTan, shadowColor, null, (i + 1) * 4);
 
-            
+
         }
 
         /// <summary>
@@ -384,3 +392,4 @@ namespace artiMech
         }
     }
 }
+#endif

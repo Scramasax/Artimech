@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -31,7 +32,7 @@ using System.IO;
 /// This looks for the up click and then a condition is added and
 /// the state is returned to 'Display Windows'
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editorAddPostCondtionalState : editorBaseState
     {
@@ -79,7 +80,7 @@ namespace artiMech
             {
 
                 stateWindowsNode stateNode = stateEditorUtils.GetWindowsNodeAtThisLocation(ev.mousePosition);
-                if (ev.type == EventType.mouseUp && m_ExitAddPostState == false)
+                if (ev.type == EventType.MouseUp && m_ExitAddPostState == false)
                 {
                     if(stateNode != null)
                         stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.ClassName, stateNode.ClassName);
@@ -125,3 +126,4 @@ namespace artiMech
         }
     }
 }
+#endif

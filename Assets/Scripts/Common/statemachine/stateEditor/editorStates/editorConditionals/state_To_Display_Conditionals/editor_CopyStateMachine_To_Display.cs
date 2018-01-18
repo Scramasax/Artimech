@@ -15,6 +15,9 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
+/// 
+
+#if UNITY_EDITOR
 
 using System;
 using System.Collections.Generic;
@@ -25,24 +28,23 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
-    public class aCubeRest_To_aCubeStart : stateConditionalBase
+    public class editor_CopyStateMachine_To_Display : stateConditionalBase
     {
-        
-        public aCubeRest_To_aCubeStart(string changeStateName) : base (changeStateName)
+        public editor_CopyStateMachine_To_Display(string changeStateName) : base(changeStateName)
         {
-            
+
         }
 
         public override void Enter(baseState state)
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void Exit(baseState state)
         {
-            
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -54,15 +56,13 @@ namespace artiMech
         {
             string strOut = null;
 
-#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
-            This is an example of setting a contition to true if the gameobject
-            falls below a certain height ingame.
-            if (state.m_GameObject.transform.position.y <= 1000)
+            editorCopyStateMachine theState = (editorCopyStateMachine) state;
+            if (theState.ActionCancelled || theState.ActionConfirmed)
                 strOut = m_ChangeStateName;
-#endif
-
 
             return strOut;
         }
     }
 }
+
+#endif

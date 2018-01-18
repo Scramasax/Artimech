@@ -24,7 +24,7 @@ using System.Collections.Generic;
 /// Finite Statemachine control system.
 /// </summary>
 /// 
-namespace artiMech
+namespace Artimech
 {
     public class stateMachineBase : MonoBehaviour
     {
@@ -70,7 +70,7 @@ namespace artiMech
         {
             if (m_CurrentState == null)
             {
-                Debug.LogWarning(gameObject.name + " stateMachineBase doesn't have an m_CurrentState.");
+   //             Debug.LogWarning(gameObject.name + " stateMachineBase doesn't have an m_CurrentState.");
                 return;
             }
 

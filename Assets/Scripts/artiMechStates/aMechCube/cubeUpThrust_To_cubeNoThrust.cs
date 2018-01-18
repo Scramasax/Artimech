@@ -25,12 +25,12 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
-    public class aCubeStart_To_aCubeUp : stateConditionalBase
+    public class cubeUpThrust_To_cubeNoThrust : stateConditionalBase
     {
         
-        public aCubeStart_To_aCubeUp(string changeStateName) : base (changeStateName)
+        public cubeUpThrust_To_cubeNoThrust(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -54,12 +54,10 @@ namespace artiMech
         {
             string strOut = null;
 
-            //time method of changing states
             stateGameBase gamebase = (stateGameBase)state;
             aMechCube script = gamebase.StateGameObject.GetComponent<aMechCube>();
-            if (gamebase.StateTime > script.m_InitTime)
+            if (gamebase.StateTime > script.m_UpTime)
                 strOut = m_ChangeStateName;
-
 
             return strOut;
         }

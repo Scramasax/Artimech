@@ -17,7 +17,7 @@
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
 
-namespace artiMech
+namespace Artimech
 {
     public abstract class stateConditionalBase
     {

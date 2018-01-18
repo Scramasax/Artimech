@@ -15,12 +15,12 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-namespace artiMech
+namespace Artimech
 {
     public class stateRefactorWindow
     {
@@ -207,7 +207,7 @@ namespace artiMech
             if (GUILayout.Button("Refactor"))
             {
                 editorRefactorState refactorState = (editorRefactorState)m_CurrentState;
-                utlDataAndFile.RefactorAllAssets(Application.dataPath, stateEditorUtils.SelectedNode.ClassName,m_ChangeName,true);
+                utlDataAndFile.RefactorAllAssets(stateEditorUtils.SelectedNode.ClassName,m_ChangeName,Application.dataPath, true);
                 stateEditorUtils.SelectedNode.ClassName = m_ChangeName;
                 //stateEditorUtils.SelectedNode.SaveMetaData();
                 refactorState.ActionConfirmed = true;
@@ -226,3 +226,4 @@ namespace artiMech
         }
     }
 }
+#endif

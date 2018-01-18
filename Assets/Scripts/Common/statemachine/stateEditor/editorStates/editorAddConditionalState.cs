@@ -1,8 +1,12 @@
+#if UNITY_EDITOR
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+
 using UnityEditor;
+
 
 #region XML_DATA
 
@@ -26,7 +30,7 @@ using UnityEditor;
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
     public class editorAddConditionalState : editorBaseState
     {        
@@ -91,7 +95,7 @@ namespace artiMech
 
             if (ev.button == 0)
             {
-                Debug.Log("-------------> " + ev.type);
+  //              Debug.Log("-------------> " + ev.type);
                 if (ev.type == EventType.Used && stateNode != null && m_LeftClickBool == false)
                 {
                     m_LeftClickBool = true;
@@ -160,3 +164,5 @@ namespace artiMech
         }
     }
 }
+
+#endif

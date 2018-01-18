@@ -15,6 +15,7 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
+/// 
 
 using System;
 using System.Collections.Generic;
@@ -25,24 +26,23 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
-    public class aCubeUp_To_aCubeRest : stateConditionalBase
+    public class editor_Display_To_CopyStateMachine : stateConditionalBase
     {
-        
-        public aCubeUp_To_aCubeRest(string changeStateName) : base (changeStateName)
+        public editor_Display_To_CopyStateMachine(string changeStateName) : base(changeStateName)
         {
-            
+
         }
 
         public override void Enter(baseState state)
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void Exit(baseState state)
         {
-            
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -53,12 +53,12 @@ namespace artiMech
         public override string UpdateConditionalTest(baseState state)
         {
             string strOut = null;
+#if UNITY_EDITOR
+            editorDisplayWindowsState theState = (editorDisplayWindowsState) state;
 
-            stateGameBase gamebase = (stateGameBase)state;
-            aMechCube script = gamebase.StateGameObject.GetComponent<aMechCube>();
-            if (gamebase.StateTime > script.m_UpTime)
+            if (theState.CopyStateMachine)
                 strOut = m_ChangeStateName;
-
+#endif
             return strOut;
         }
     }

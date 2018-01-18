@@ -1,3 +1,23 @@
+/// Artimech
+/// 
+/// Copyright © <2017-2018> <George A Lancaster>
+/// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+/// and associated documentation files (the "Software"), to deal in the Software without restriction, 
+/// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+/// sublicense, and/or sell copies of the Software, and to permit persons to whom the Software 
+/// is furnished to do so, subject to the following conditions:
+/// The above copyright notice and this permission notice shall be included in all copies 
+/// or substantial portions of the Software.
+/// 
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+/// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+/// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+/// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+/// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+/// OTHER DEALINGS IN THE SOFTWARE.
+/// 
+
+#if UNITY_EDITOR
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +46,7 @@ using UnityEditor;
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
     public class editorDisplayWindowsState : editorBaseState
     {
@@ -53,6 +73,7 @@ namespace artiMech
         bool m_bResizeWindowNode = false;
         bool m_bRefactor = false;
         bool m_bSave = false;
+        bool m_bCopyStateMachine = false;
 
         #endregion
 
@@ -79,9 +100,11 @@ namespace artiMech
         /// <summary>  State wants to refactor a class and has set this bool. </summary>
         public bool RefactorClass { get { return m_bRefactor; } }
 
-        /// <summary>  State wants to refactor a class and has set this bool. </summary>
+        /// <summary>  State wants to Save metadata and has set this bool. </summary>
         public bool Save { get { return m_bSave; } set { m_bSave = value; } }
 
+        /// <summary>  State wants to copy a statemachine and has set this bool. </summary>
+        public bool CopyStateMachine { get { return m_bCopyStateMachine; } set { m_bCopyStateMachine = value; } }
         #endregion
 
         #region Member Functions
@@ -107,6 +130,7 @@ namespace artiMech
             m_ConditionalList.Add(new editor_Display_To_Resize("Resize"));
             m_ConditionalList.Add(new editor_Display_To_Refactor("Refactor"));
             m_ConditionalList.Add(new editor_Display_To_Save("Save"));
+            m_ConditionalList.Add(new editor_Display_To_CopyStateMachine("Copy State Machine"));
         }
 
         /// <summary>
@@ -277,12 +301,12 @@ namespace artiMech
                 //EditorGUILayout.EndHorizontal();
 
                 // highlight the current state
-                if (Application.isPlaying)
+                if (Application.isPlaying && stateEditorUtils.GameObject!=null)
                 {
                     stateMachineBase stateMachine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
 
                     string currentClassName = stateMachine.CurrentState.GetType().ToString();
-                    currentClassName = currentClassName.Replace("artiMech.", "");
+                    currentClassName = currentClassName.Replace(stateEditorUtils.kArtimechNamespace, "");
 
                     if(stateEditorUtils.StateList[i].ClassName==currentClassName)
                     {
@@ -396,7 +420,9 @@ namespace artiMech
             m_bResizeWindowNode = false;
             m_bRefactor = false;
             m_bSave = false;
+            m_bCopyStateMachine = false;
         }
         #endregion
     }
 }
+#endif

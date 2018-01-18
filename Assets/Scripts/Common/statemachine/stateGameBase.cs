@@ -20,7 +20,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace artiMech
+namespace Artimech
 {
     public class stateGameBase : baseState
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
+#if UNITY_EDITOR
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editorWaitToLoadConditional : stateConditionalBase
     {
@@ -49,3 +49,4 @@ namespace artiMech
         }
     }
 }
+#endif

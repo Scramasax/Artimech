@@ -24,7 +24,7 @@ using System.Collections.Generic;
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
     public class editorBaseState : stateGameBase
     {
@@ -59,13 +59,14 @@ namespace artiMech
         public override void UpdateEditorGUI()
         {
             base.UpdateEditorGUI();
-
+#if UNITY_EDITOR
             stateEditorDrawUtils.DrawGridBackground();
 
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
                 stateEditorUtils.StateList[i].Update(this);
             }
+#endif
         }
 
         /// <summary>

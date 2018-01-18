@@ -25,14 +25,14 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class stateCondSubExample : stateConditionalBase, iSubscriptionConditional
     {
-        
-        public stateCondSubExample(string changeStateName) : base (changeStateName)
+        bool m_ChangeState = false;
+        public stateCondSubExample(string changeStateName) : base(changeStateName)
         {
-            
+
         }
 
         /// <summary>
@@ -44,25 +44,20 @@ namespace artiMech
         {
             string strOut = null;
 
-#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
-            This is an example of setting a contition to true if the gameobject
-            falls below a certain height ingame.
-            if (state.m_GameObject.transform.position.y <= 1000)
+            if (m_ChangeState)
                 strOut = m_ChangeStateName;
-#endif
-
 
             return strOut;
         }
 
         public void Subscribe()
         {
-            utlEventRouter.Subscribe(utlEventRouter.EventCode.Standard, OnMessageSenderEvent);
+            utlEventRouter.Subscribe(utlEventRouter.EventCode.Simulation, OnMessageSenderEvent);
         }
 
         public void Unsubscribe()
         {
-            utlEventRouter.Unsubscribe(utlEventRouter.EventCode.Standard, OnMessageSenderEvent);
+            utlEventRouter.Unsubscribe(utlEventRouter.EventCode.Simulation, OnMessageSenderEvent);
         }
 
         /// <summary>
@@ -76,7 +71,7 @@ namespace artiMech
 
                 if (evt.Data[0].ToString() == "Condition Change")
                 {
-                    //do something cool here
+                    m_ChangeState = true;
                 }
 
             }
@@ -84,6 +79,8 @@ namespace artiMech
 
         public override void Enter(baseState state)
         {
+
+            m_ChangeState = false;
             Subscribe();
         }
 

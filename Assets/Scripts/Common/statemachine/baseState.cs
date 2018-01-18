@@ -21,7 +21,7 @@ using UnityEngine;
 /// <summary>
 /// The abstract class that all states are based on.
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public abstract class baseState
     {

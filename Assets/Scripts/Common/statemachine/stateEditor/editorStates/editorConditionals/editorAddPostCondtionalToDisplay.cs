@@ -1,4 +1,5 @@
-/// Artimech
+
+#if UNITY_EDITOR/// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -26,7 +27,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editorAddPostConditionalToDisplay : stateConditionalBase
     {
@@ -68,3 +69,4 @@ namespace artiMech
         }
     }
 }
+#endif

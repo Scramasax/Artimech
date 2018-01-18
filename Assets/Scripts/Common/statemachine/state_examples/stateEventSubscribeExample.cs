@@ -43,7 +43,7 @@ using System.Collections.Generic;
 #endif
 
 #endregion
-namespace artiMech
+namespace Artimech
 {
     public class stateEventSubscribeExample : stateGameBase
     {

@@ -19,7 +19,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace artiMech
+namespace Artimech
 {
     public class stateMachineTemplate : stateMachineBase
     {

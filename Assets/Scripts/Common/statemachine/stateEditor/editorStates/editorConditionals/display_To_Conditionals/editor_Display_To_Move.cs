@@ -17,6 +17,8 @@
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
 
+#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editor_Display_To_Move : stateConditionalBase
     {
@@ -60,6 +62,8 @@ namespace artiMech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
+
+
             editorDisplayWindowsState theState = (editorDisplayWindowsState) state;
             if (theState.MoveWindowNode)
                 strOut = m_ChangeStateName;
@@ -68,3 +72,4 @@ namespace artiMech
         }
     }
 }
+#endif

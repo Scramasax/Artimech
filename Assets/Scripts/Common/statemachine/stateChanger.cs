@@ -20,7 +20,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace artiMech
+namespace Artimech
 {
     public class stateChanger
     {

@@ -16,7 +16,7 @@
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
-
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace artiMech
+namespace Artimech
 {
     public class stateEditorBase : EditorWindow
     {
@@ -87,6 +87,7 @@ namespace artiMech
             AddState(new editorMoveBackground(null), "MoveBackground");
             AddState(new editorRefactorState(null), "Refactor");
             AddState(new editorSaveState(null), "Save");
+            AddState(new editorCopyStateMachine(null), "Copy State Machine");
         }
 
         // Update is called once per frame
@@ -136,3 +137,4 @@ namespace artiMech
         #endregion
     }
 }
+#endif

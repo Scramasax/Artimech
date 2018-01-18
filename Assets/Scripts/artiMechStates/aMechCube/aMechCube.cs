@@ -19,11 +19,10 @@
 using UnityEngine;
 using System.Collections;
 
-namespace artiMech
+namespace Artimech
 {
     public class aMechCube : stateMachineBase
     {
-
         public float m_InitTime = 2.5f;
         public float m_UpTime = 5.0f;
         public float m_RestTime = 5.0f;
@@ -58,11 +57,11 @@ namespace artiMech
         void CreateStates()
         {
 
-            m_CurrentState = AddState(new aCubeStart(this.gameObject), "aCubeStart");
+            m_CurrentState = AddState(new cubeStart(this.gameObject), "cubeStart");
 
             //<ArtiMechStates>
-            AddState(new aCubeRest(this.gameObject),"aCubeRest");
-            AddState(new aCubeUp(this.gameObject),"aCubeUp");
+            AddState(new cubeNoThrust(this.gameObject),"cubeNoThrust");
+            AddState(new cubeUpThrust(this.gameObject),"cubeUpThrust");
 
         }
     }

@@ -16,6 +16,7 @@
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
 /// 
+#if UNITY_EDITOR
 
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ using UnityEngine;
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
-namespace artiMech
+namespace Artimech
 {
     public class editor_Refactor_To_Display : stateConditionalBase
     {
@@ -62,3 +63,5 @@ namespace artiMech
         }
     }
 }
+
+#endif
