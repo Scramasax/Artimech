@@ -84,6 +84,7 @@ public class utlEventRouter {
     {
         Standard,
         Simulation,
+        AI,
         GUI,
         System
     };

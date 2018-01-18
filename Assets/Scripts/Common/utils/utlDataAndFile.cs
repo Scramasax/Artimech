@@ -21,6 +21,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 /// <summary>
@@ -276,11 +279,11 @@ public static class utlDataAndFile
     /// <param name="startDir"></param>
     /// <param name="findName"></param>
     /// <returns></returns>
-    public static string ReplaceAFileNamesBySubStringRecursively(string startDir, string findName, string replaceName,bool showDebugInfo = false)
+    public static string ReplaceAFileNamesBySubStringRecursively(string startDir, string findName, string replaceName, bool showDebugInfo = false)
     {
         foreach (string file in Directory.GetFiles(startDir))
         {
-            if(file.IndexOf(findName)!=-1)
+            if (file.IndexOf(findName) != -1)
             {
                 string oldFileName = file;
                 string moveFileName = file.Replace(findName, replaceName);
@@ -328,7 +331,7 @@ public static class utlDataAndFile
 
         foreach (string dir in Directory.GetDirectories(startDir))
         {
-            string strBuff = ReplaceNamesInFilesRecursively(dir, fileFindName,findName, replaceName, showDebugInfo);
+            string strBuff = ReplaceNamesInFilesRecursively(dir, fileFindName, findName, replaceName, showDebugInfo);
             if (strBuff != null)
                 return strBuff;
         }
@@ -336,9 +339,32 @@ public static class utlDataAndFile
         return null;
     }
 
-    public static void RefactorAllAssets(string pathStr, string searchStr, string renameStr, bool showDebugInfo=false)
+    public static void RefactorAllAssets(string searchStr, string renameStr, string pathStr = null, bool showDebugInfo = false)
     {
-        ReplaceAFileNamesBySubStringRecursively(Application.dataPath, searchStr, renameStr,showDebugInfo);
-        ReplaceNamesInFilesRecursively(Application.dataPath, ".cs", searchStr, renameStr,showDebugInfo);
+        string pathLocation = Application.dataPath;
+        if (pathStr != null)
+            pathLocation = pathStr;
+
+        ReplaceAFileNamesBySubStringRecursively(pathLocation, searchStr, renameStr, showDebugInfo);
+        ReplaceNamesInFilesRecursively(pathLocation, ".cs", searchStr, renameStr, showDebugInfo);
     }
+
+    public static IList<string> GetListOfFilesInDirctory(string directory, string findName, bool showDebugInfo = false)
+    {
+        IList<string> listOfStrings = new List<string>();
+
+        foreach (string file in Directory.GetFiles(directory))
+        {
+            if (file.IndexOf(findName) != -1)
+            {
+                listOfStrings.Add(null);
+
+                    listOfStrings[listOfStrings.Count - 1] = file;
+                if (showDebugInfo)
+                    Debug.Log("dir files = " + file);
+            }
+        }
+        return listOfStrings.Distinct().ToList();
+    }
+
 }

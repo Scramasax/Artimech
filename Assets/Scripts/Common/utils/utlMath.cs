@@ -67,7 +67,7 @@ public static class utlMath
 
         vectPointMinusLineStart = vPoint - vLineStart;
         vectEndMinusStart = vLineEnd - vLineStart;
-        if(Vector3.Dot(vectPointMinusLineStart,vectEndMinusStart)<=0.0f)
+        if (Vector3.Dot(vectPointMinusLineStart, vectEndMinusStart) <= 0.0f)
         {
             return vLineStart;
         }
@@ -76,7 +76,7 @@ public static class utlMath
         vectEndMinusStart *= -1;
 
         dotProduct = Vector3.Dot(vectPointMinusLineStart, vectEndMinusStart);
-        if (dotProduct<=0.0f)
+        if (dotProduct <= 0.0f)
         {
             return vLineEnd;
         }
@@ -105,6 +105,17 @@ public static class utlMath
 
     }
 
+    public static Vector3 LerpBySize(Vector3 start, Vector3 end, float size)
+    {
+        Vector3 outVect = new Vector3();
+        float dist = Vector3.Distance(start, end);
+        if (dist == 0.0f)
+            return start;
+        outVect = Lerp(start, end, (size / dist) + 1.0f);
+
+        return outVect;
+    }
+
     /// <summary>
     /// Find the distance between two floats.
     /// </summary>
@@ -123,9 +134,9 @@ public static class utlMath
     /// <param name="vectA"></param>
     /// <param name="vectB"></param>
     /// <returns></returns>
-    public static float FlatDistance(Vector3 vectA,Vector3 vectB)
+    public static float FlatDistance(Vector3 vectA, Vector3 vectB)
     {
-        Vector3 tempA = new Vector3(vectA.x,0.0f,vectA.z);
+        Vector3 tempA = new Vector3(vectA.x, 0.0f, vectA.z);
         Vector3 tempB = new Vector3(vectB.x, 0.0f, vectB.z);
         return Vector3.Distance(tempA, tempB);
     }
