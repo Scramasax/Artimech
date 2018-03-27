@@ -94,7 +94,7 @@ namespace Artimech
                 for (int i = 0; i < goGoPack.GameObjectsOnExit.Length; i++)
                 {
                     aMechGoGoPack.goGoPackOnOffs packObj = goGoPack.GameObjectsOnExit[i];
-                    if (goGoPack.ExitCycleCount > packObj.m_EnterCount)
+                    if (goGoPack.ExitCycleCount >= packObj.m_EnterCount)
                         goGoPack.MakeActive(packObj);
                 }
             }
