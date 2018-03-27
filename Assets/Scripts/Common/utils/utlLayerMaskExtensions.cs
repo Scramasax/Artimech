@@ -104,4 +104,9 @@ public static class utlLayerMaskExtensions
     {
         return string.Join(delimiter, MaskToNames(original));
     }
+
+    public static bool Contains(this LayerMask mask, int layer)
+    {
+         return mask == (mask | (1 << layer));
+    }
 }

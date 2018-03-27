@@ -1,1 +1,1 @@
-aMechCube,Cube
+aMechGoGoPack,GoGoPack

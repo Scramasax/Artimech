@@ -1,6 +1,6 @@
 /// Artimech
 /// 
-/// Copyright � <2017-2018> <George A Lancaster>
+/// Copyright © <2017> <George A Lancaster>
 /// Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 /// and associated documentation files (the "Software"), to deal in the Software without restriction, 
 /// including without limitation the rights to use, copy, modify, merge, publish, distribute, 
@@ -15,13 +15,10 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-/// 
 
-#if UNITY_EDITOR
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 
 #region XML_DATA
 
@@ -34,9 +31,10 @@ using UnityEditor;
 
 <stateMetaData>
   <State>
-    <name>nada</name>
-    <posX>20</posX>
-    <posY>40</posY>
+    <alias>goGoPackUpdate</alias>
+    <comment></comment>
+    <posX>297</posX>
+    <posY>42</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>
@@ -47,24 +45,18 @@ using UnityEditor;
 #endregion
 namespace Artimech
 {
-    public class editorCreateState : baseState
+    public class goGoPackUpdate : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        /// 
-        //IList<stateConditionalBase> m_ConditionalList;
-
-        public editorCreateState(GameObject gameobject)
+        public goGoPackUpdate(GameObject gameobject) : base (gameobject)
         {
-            m_GameObject = gameobject;
-            //m_ConditionalList = new List<stateConditionalBase>();
-
             //<ArtiMechConditions>
-            //m_ConditionalList.Add(new editorCreateToDisplayConditional("Display Windows"));
-
+            m_ConditionalList.Add(new goGoPackUpdate_To_goGoPackExit("goGoPackExit"));
+            m_ConditionalList.Add(new goGoPackUpdate_To_goGoPackEnter("goGoPackEnter"));
         }
 
         /// <summary>
@@ -72,34 +64,7 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
-            if (System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
-            {
-                stateEditorUtils.GameObject.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + stateEditorUtils.StateMachineName));
-                Debug.Log(
-                            "<b><color=navy>Artimech Report Log Section B\n</color></b>"
-                            + "<i><color=grey>Click to view details</color></i>"
-                            + "\n"
-                            + "<color=blue>Added a statemachine </color><b>"
-                            + stateEditorUtils.StateMachineName
-                            + "</b>"
-                            + "<color=blue> to a gameobject named </color>"
-                            + stateEditorUtils.GameObject.name
-                            + " .\n\n");
-            }
-
-            /*
-            for (int i = 0; i < m_ConditionalList.Count; i++)
-            {
-                string changeNameToThisState = null;
-                changeNameToThisState = m_ConditionalList[i].UpdateConditionalTest(this);
-                if (changeNameToThisState != null)
-                {
-                    m_ChangeStateName = changeNameToThisState;
-                    m_ChangeBool = true;
-                    return;
-                }
-            }
-            */
+            base.Update();
         }
 
         /// <summary>
@@ -107,7 +72,7 @@ namespace Artimech
         /// </summary>
         public override void FixedUpdate()
         {
-
+            base.FixedUpdate();
         }
 
         /// <summary>
@@ -115,7 +80,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
+            base.UpdateEditorGUI();
         }
 
         /// <summary>
@@ -123,7 +88,10 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            stateEditorUtils.CreateStateMachineScriptAndStartState();
+            aMechGoGoPack theScript = m_GameObject.GetComponent<aMechGoGoPack>();
+            theScript.IsTriggered = false;
+            theScript.IsTriggerExit = false;
+            base.Enter();
         }
 
         /// <summary>
@@ -131,14 +99,7 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
-            if (stateEditorUtils.GameObject == null)
-            {
-                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
-                    stateEditorUtils.StateList.Clear();
-                //sets the 'was' gameobject so as to dectect a gameobject swap.
-                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
-            }
+            base.Exit();
         }
     }
 }
-#endif
