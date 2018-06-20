@@ -36,6 +36,8 @@ namespace Artimech
 
         static stateWindowsNode m_SelectedWindowsNode = null;
 
+        static stateConditionalBase m_SelectedConditional = null;
+
         static stateEditor m_StateEditor = null;
 
         static string m_AddConditionPath = "";
@@ -67,6 +69,9 @@ namespace Artimech
 
         /// <summary>  Not sure. </summary>
         public static stateWindowsNode SelectedNode { get { return m_SelectedWindowsNode; } set { m_SelectedWindowsNode = value; } }
+
+        /// <summary>  Not sure. </summary>
+        public static stateConditionalBase SelectedConditional { get { return m_SelectedConditional; } set { m_SelectedConditional = value; } }
 
         /// <summary>  Not sure. </summary>
         public static stateEditor StateEditor { get { return m_StateEditor; } set { m_StateEditor = value; } }

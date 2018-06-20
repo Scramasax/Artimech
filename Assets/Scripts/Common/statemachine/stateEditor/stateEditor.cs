@@ -34,7 +34,7 @@ namespace Artimech
 
         private void OnEnable()
         {
-            stateEditor window = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "My Empty Window");
+            stateEditor window = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "Artimech");
             window.Show();
         }
 
@@ -171,7 +171,7 @@ namespace Artimech
         void PrintAboutToConsole()
         {
             Debug.Log(
-            "<b><color=navy>Artimech (c) 2017 by George A Lancaster \n</color></b>"
+            "<b><color=navy>Artimech (c) 2017-2018 by George A Lancaster \n</color></b>"
             + "<i><color=grey>Click to view details</color></i>"
             + "\n"
             + "<color=blue>An Opensource Visual State Editor\n</color><b>"

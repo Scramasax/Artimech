@@ -353,6 +353,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCopyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCreateState.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayImageBaseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayWindowsState.cs" />

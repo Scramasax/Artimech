@@ -46,6 +46,8 @@ namespace Artimech
         bool m_ResizeBodyHover = false;
         bool m_TitleHover = false;
 
+        Vector2 m_ConditionOffset;
+
         Vector3 m_LinePos;
 
         #endregion
@@ -158,6 +160,8 @@ namespace Artimech
             m_ClassName = "not filled in...";
             m_WindowStateAlias = "not filled in yet...";
             m_Id = id;
+            m_ConditionOffset.x = 15f;
+            m_ConditionOffset.y = 15f;
         }
 
         /// <summary>
@@ -174,7 +178,7 @@ namespace Artimech
             m_PathAndFileOfClass = pathAndFileOfClass;
             m_ClassName = classname;
 
-            if(title!="nada")
+            if (title != "nada")
                 m_WindowStateAlias = title;
             else
                 m_WindowStateAlias = classname;
@@ -314,17 +318,19 @@ namespace Artimech
         /// <param name="pos"></param>
         /// <param name="distThreshold"></param>
         /// <returns>Name of the condition class.</returns>
-        public string GetConditionalByPosition(Vector3 pos,float distThreshold)
+        public string GetConditionalByPosition(Vector3 pos, float distThreshold)
         {
-            Vector3 startPos = GetPos();
-            startPos.x += WinRect.width * 0.5f;
-            startPos.y += WinRect.height * 0.5f;
-
+            //           Vector3 startPos = GetPos();
+            //           startPos.x += WinRect.width * 0.5f;
+            //           startPos.y += WinRect.height * 0.5f;
+            Vector3 startPos = GetStartPosForConditional();
             for (int i = 0; i < ConditionLineList.Count; i++)
             {
-                Vector3 endPos = ConditionLineList[i].GetPos();
+               /* Vector3 endPos = ConditionLineList[i].GetPos();
                 endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
-                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;*/
+
+                Vector3 endPos = GetEndPosForConditional(ConditionLineList[i]);
 
                 Vector3 nearestPointOnLine = utlMath.NearestPointOnLine(pos, startPos, endPos);
                 m_LinePos = nearestPointOnLine;
@@ -344,7 +350,7 @@ namespace Artimech
         {
             m_State = state;
 
-            if( state is editorAddPostCondtionalState || 
+            if (state is editorAddPostCondtionalState ||
                 state is editorMoveState ||
                 state is editorDeleteState ||
                 state is editorRenameState ||
@@ -353,22 +359,96 @@ namespace Artimech
             else
                 GUI.Window(m_Id, stateEditorUtils.TranslationMtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
 
-            //draw conditions
-            Vector3 startPos = GetPos();
-            startPos.x += WinRect.width * 0.5f;
-            startPos.y += WinRect.height * 0.5f;
+            Vector3 startPos = GetStartPosForConditional();
 
             for (int i = 0; i < this.ConditionLineList.Count; i++)
             {
-                Vector3 endPos = ConditionLineList[i].GetPos();
-                endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
-                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;
+
+                Vector3 endPos = GetEndPosForConditional(ConditionLineList[i]);
 
                 Color shadowCol = new Color(0, 0, 1, 0.06f);
-                stateEditorDrawUtils.DrawArrowTranformed( stateEditorUtils.TranslationMtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol,Color.white);
+                stateEditorDrawUtils.DrawArrowTranformed(stateEditorUtils.TranslationMtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol, Color.white);
             }
 
         }
+
+        public bool CheckWinNodeToSeeIfItIsLinked(stateWindowsNode winNode)
+        {
+            for (int i = 0; i < winNode.ConditionLineList.Count; i++)
+            {
+                if (this == winNode.ConditionLineList[i])
+                {
+                    //Debug.Log(this.ClassName + "-> " + winNode.ClassName);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        Vector3 GetStartPosForConditional()
+        {
+            Vector3 tempVect = new Vector3();
+
+            tempVect = GetPos();
+            tempVect.x += WinRect.width * 0.5f;
+            tempVect.y += WinRect.height * 0.5f;
+
+            //loop through my conditional list
+            for (int i = 0; i < this.ConditionLineList.Count; i++)
+            {
+
+                //check to see if there is another conditional linking back to this state.
+                //if (CheckWinNodeToSeeIfItIsLinked(ConditionLineList[i]))
+                if(this.ClassName== ConditionLineList[i].ClassName)
+                {
+ //                   Debug.Log("*>" + this.ClassName);
+ //                   Debug.Log("->" + ConditionLineList[i].ClassName);
+                    if (ConditionLineList[i].GetPos().x <= GetPos().x)
+                        tempVect.x -= m_ConditionOffset.x;
+                    else
+                        tempVect.x += m_ConditionOffset.x;
+
+                    if (ConditionLineList[i].GetPos().y <= GetPos().y)
+                        tempVect.y -= m_ConditionOffset.y;
+                    else
+                        tempVect.y += m_ConditionOffset.y;
+
+                    //Debug.Log(this.m_ClassName);
+
+                    return tempVect;
+                }
+            }
+
+            //Debug.Log(this.ClassName);
+
+            return tempVect;
+        }
+
+        Vector3 GetEndPosForConditional(stateWindowsNode connectedNode)
+        {
+            Vector3 tempVect = new Vector3();
+
+            tempVect = connectedNode.GetPos();
+            tempVect.x += connectedNode.WinRect.width * 0.5f;
+            tempVect.y += connectedNode.WinRect.height * 0.5f;
+
+            if (this.CheckWinNodeToSeeIfItIsLinked(connectedNode))
+            {
+                if (connectedNode.GetPos().x < GetPos().x)
+                    tempVect.x -= m_ConditionOffset.x;
+                else
+                    tempVect.x += m_ConditionOffset.x;
+
+                if (connectedNode.GetPos().y < GetPos().y)
+                    tempVect.y -= m_ConditionOffset.y;
+                else
+                    tempVect.y += m_ConditionOffset.y;
+
+            }
+
+            return tempVect;
+        }
+
         /// <summary>
         /// Saves the positioning and other data in the comments via xml formatting in the refrencing state.
         /// </summary>
@@ -405,8 +485,8 @@ namespace Artimech
                             dState.AddConditionalCallback,
                             new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs", "stateConditionalTemplate"));
 
-                        menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"), 
-                            false, 
+                        menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"),
+                            false,
                             dState.AddConditionalCallback,
                             new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateCondSubExample.cs", "stateCondSubExample"));
 
@@ -430,14 +510,14 @@ namespace Artimech
             float boxSize = 8;
 
             //create the close button rectangle
-            m_CloseButtonRect = new Rect(this.WinRect.width  - (xOffset+(boxSize*0.5f)), yOffset - (boxSize * 0.5f), boxSize, boxSize);
+            m_CloseButtonRect = new Rect(this.WinRect.width - (xOffset + (boxSize * 0.5f)), yOffset - (boxSize * 0.5f), boxSize, boxSize);
 
             //EditorGUI.DrawRect(closeBoxRect, new Color(0.9f, 0.9f, 0.9f));
 
             if (m_CloseButtonRect.Contains(Event.current.mousePosition))
                 stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width - xOffset, yOffset, 0), boxSize, 1, Color.black, 1, shadowCol, Color.red);
             else
-                stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width-xOffset,yOffset,0), boxSize, 1, Color.black, 1, shadowCol, new Color(0.9f, 0.9f, 0.9f));
+                stateEditorDrawUtils.DrawCubeFilled(new Vector3(WinRect.width - xOffset, yOffset, 0), boxSize, 1, Color.black, 1, shadowCol, new Color(0.9f, 0.9f, 0.9f));
 
             stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 0.95f), yOffset * 0.95f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
             stateEditorDrawUtils.DrawX(new Vector3(WinRect.width - (xOffset * 1.0f), yOffset * 1.0f, 0), boxSize - 1, boxSize - 1, 1, Color.black);
@@ -445,7 +525,7 @@ namespace Artimech
             //draw the resizer
             const float initSizerSize = 15;
             float sizerSize = initSizerSize;
-            stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width-2 , this.WinRect.height-2,0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 10;
             stateEditorDrawUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 5;

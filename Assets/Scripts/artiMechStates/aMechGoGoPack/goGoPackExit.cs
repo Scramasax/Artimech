@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>goGoPackExit</alias>
     <comment></comment>
-    <posX>460</posX>
-    <posY>226</posY>
+    <posX>554</posX>
+    <posY>40</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>

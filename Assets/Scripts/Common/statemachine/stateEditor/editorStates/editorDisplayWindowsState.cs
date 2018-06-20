@@ -74,6 +74,7 @@ namespace Artimech
         bool m_bRefactor = false;
         bool m_bSave = false;
         bool m_bCopyStateMachine = false;
+        bool m_bDeleteConditional = false;
 
         #endregion
 
@@ -182,14 +183,6 @@ namespace Artimech
                         Vector2 winPos = new Vector3(stateEditorUtils.StateList[i].WinRect.x, stateEditorUtils.StateList[i].WinRect.y);
                         Vector3 winSize = new Vector3(stateEditorUtils.StateList[i].WinRect.width, stateEditorUtils.StateList[i].WinRect.height);
 
-                        /*
-                        //For shortening up the test position conditionals when it comes to code layout.
-                        float x = stateEditorUtils.StateList[i].WinRect.x;
-                        float y = stateEditorUtils.StateList[i].WinRect.y;
-                        float width = stateEditorUtils.StateList[i].WinRect.width;
-                        float height = stateEditorUtils.StateList[i].WinRect.height;
-                        */
-
                         Vector2 winTransPos = stateEditorUtils.TranslationMtx.Transform(winPos);
 
                         Vector3 mouseTransPos = new Vector3();
@@ -252,6 +245,14 @@ namespace Artimech
                             CreateEditConditionalCallback,
                             conditionEditName);
                         }
+
+                        if (conditionEditName != null)
+                        {
+                            menu.AddItem(new GUIContent("Delete Conditional"),
+                            false,
+                            DeleteEditConditionalCallback,
+                            conditionEditName);
+                        }
                         //if (stateEditorUtils.StateList[i].GetConditionalByPosition(ev.mousePosition, 10);
                     }
 
@@ -290,15 +291,9 @@ namespace Artimech
                 //ev.Use();
             }
 
-            //EditorGUILayout.BeginHorizontal();
-            //stateEditorUtils.TranslationMtx.D =
-            //    EditorGUILayout.BeginScrollView(stateEditorUtils.TranslationMtx.D, GUILayout.Width(100), GUILayout.Height(100));
-
             // render populated state windows
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
-                //stateEditorUtils.StateList[i].Update(this);
-                //EditorGUILayout.EndHorizontal();
 
                 // highlight the current state
                 if (Application.isPlaying && stateEditorUtils.GameObject!=null)
@@ -345,11 +340,6 @@ namespace Artimech
                 }
             }
 
-            //GUILayout.EndScrollView();
-            //EditorGUILayout.EndHorizontal();
-
-
-
             stateEditorUtils.Repaint();
         }
 
@@ -363,6 +353,14 @@ namespace Artimech
             string className = (string)obj;
             string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
             UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
+        }
+
+        void DeleteEditConditionalCallback(object obj)
+        {
+            string className = (string)obj;
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+
+            //UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
         }
 
         public void AddConditionalCallback(object obj)
