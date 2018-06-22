@@ -146,6 +146,7 @@ namespace Artimech
             m_DeleteWindowMessageBox.Set("Delete State", m_WindowsSelectedNode.GetTransformedPos().x, m_WindowsSelectedNode.GetTransformedPos().y, windowSizeX, windowSizeY);
             m_DeleteWindowMessageBox.StateToDeleteName = m_WindowsSelectedNode.WindowStateAlias;
             m_DeleteWindowMessageBox.InitImage();
+            //m_DeleteWindowMessageBox.TexturePosAndSize.Set(300, 30, 40, 40);
             m_ActionConfirmed = false;
             m_ActionCancelled = false;
             stateEditorUtils.Repaint();

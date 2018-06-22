@@ -363,6 +363,11 @@ namespace Artimech
         {
             string className = (string)obj;
             string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            stateEditorUtils.DeleteConditionalPath = fileAndPathName;
+            stateEditorUtils.DeleteConditionalClass = className;
+            
+
+            m_bDeleteConditional = true;
 
             //UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
         }

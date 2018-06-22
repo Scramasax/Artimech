@@ -55,7 +55,7 @@ namespace Artimech
 {
     public class editorDeleteConditionState : editorBaseState
     {
-        stateWindowsNode m_WindowsSelectedNode = null;
+        //stateWindowsNode m_WindowsSelectedNode = null;
         stateDeleteWindow m_DeleteWindowMessageBox = null;
 
         bool m_ActionConfirmed = false;
@@ -104,8 +104,8 @@ namespace Artimech
         {
             base.UpdateEditorGUI();
 
-            if (m_WindowsSelectedNode == null)
-                return;
+ //           if (m_WindowsSelectedNode == null)
+ //               return;
 
             Event ev = Event.current;
             stateEditorUtils.MousePos = ev.mousePosition;
@@ -140,12 +140,14 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
-            const float windowSizeX = 300;
+            //m_WindowsSelectedNode = stateEditorUtils.SelectedNode;
+            const float windowSizeX = 400;
             const float windowSizeY = 120;
-            m_DeleteWindowMessageBox.Set("Delete Condition", m_WindowsSelectedNode.GetTransformedPos().x, m_WindowsSelectedNode.GetTransformedPos().y, windowSizeX, windowSizeY);
-            m_DeleteWindowMessageBox.StateToDeleteName = m_WindowsSelectedNode.WindowStateAlias;
+            m_DeleteWindowMessageBox.Set("Delete Condition", stateEditorUtils.MousePos.x, stateEditorUtils.MousePos.y, windowSizeX, windowSizeY);
+            //Debug.Log("mouse pos =" + stateEditorUtils.MousePos);
+            m_DeleteWindowMessageBox.StateToDeleteName = stateEditorUtils.DeleteConditionalClass;
             m_DeleteWindowMessageBox.InitImage();
+            m_DeleteWindowMessageBox.TexturePosAndSize = new Vector4(350, 30, 40, 40);
             m_ActionConfirmed = false;
             m_ActionCancelled = false;
             stateEditorUtils.Repaint();

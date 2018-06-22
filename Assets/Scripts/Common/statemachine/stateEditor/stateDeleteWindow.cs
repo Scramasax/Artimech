@@ -35,6 +35,7 @@ namespace Artimech
         string m_StateToDeleteName = "";
         baseState m_CurrentState;
         Texture m_ExclamtionTexture;
+        Vector4 m_TexturePosAndSize;
 
         /// <summary>  The entire window rectangle. </summary>
         public Rect WinRect
@@ -77,6 +78,19 @@ namespace Artimech
             }
         }
 
+        public Vector4 TexturePosAndSize
+        {
+            get
+            {
+                return m_TexturePosAndSize;
+            }
+
+            set
+            {
+                m_TexturePosAndSize = value;
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -113,6 +127,7 @@ namespace Artimech
         {
             string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "exclimation.png");
             m_ExclamtionTexture = utlDataAndFile.LoadPNG(fileAndPath);
+            m_TexturePosAndSize.Set(250, 30, 40, 40);
         }
 
         /// <summary>
@@ -169,7 +184,7 @@ namespace Artimech
         void DrawNodeWindow(int id)
         {
             Color backroundColor = new Color(1, 1, 1, 0.8f);
-            Rect rect = new Rect(1,17,WinRect.width-2, WinRect.height-19);
+            Rect rect = new Rect(1, 17, WinRect.width - 2, WinRect.height - 19);
             EditorGUI.DrawRect(rect, backroundColor);
             GUILayout.Space(8);
             GUILayout.Label("Are you sure you want to delete: ", GUI.skin.name, null);
@@ -184,25 +199,40 @@ namespace Artimech
             GUILayout.Space(10);
 
             GUILayout.BeginHorizontal("");
-            if(GUILayout.Button("Delete"))
+            if (GUILayout.Button("Delete"))
             {
-                /*
-                editorRenameState renameState = (editorRenameState)m_CurrentState;
-                stateEditorUtils.SelectedNode.WindowStateAlias = m_ChangeName;
-                stateEditorUtils.SelectedNode.SaveMetaData();*/
-                editorDeleteState deleteState = (editorDeleteState)m_CurrentState;
-                deleteState.ActionConfirmed = true;
-                stateEditorUtils.DeleteAndRemoveState(stateEditorUtils.SelectedNode, stateEditorUtils.SelectedNode.ClassName);
+
+                if (m_CurrentState is editorDeleteState)
+                {
+                    editorDeleteState deleteState = (editorDeleteState)m_CurrentState;
+                    deleteState.ActionConfirmed = true;
+                    stateEditorUtils.DeleteAndRemoveState(stateEditorUtils.SelectedNode, stateEditorUtils.SelectedNode.ClassName);
+                }
+
+                if (m_CurrentState is editorDeleteConditionState)
+                {
+                    editorDeleteConditionState deleteConditionState = (editorDeleteConditionState)m_CurrentState;
+                    deleteConditionState.ActionConfirmed = true;
+                }
             }
             GUILayout.Space(35);
-            if(GUILayout.Button("Cancel"))
+            if (GUILayout.Button("Cancel"))
             {
-                editorDeleteState deleteState = (editorDeleteState)m_CurrentState;
-                deleteState.ActionCancelled = true;
+                if (m_CurrentState is editorDeleteState)
+                {
+                    editorDeleteState deleteState = (editorDeleteState)m_CurrentState;
+                    deleteState.ActionCancelled = true;
+                }
+
+                if (m_CurrentState is editorDeleteConditionState)
+                {
+                    editorDeleteConditionState deleteConditionState = (editorDeleteConditionState)m_CurrentState;
+                    deleteConditionState.ActionCancelled = true;
+                }
             }
             GUILayout.EndHorizontal();
 
-            GUI.DrawTexture(new Rect(250, 30, 40, 40), m_ExclamtionTexture);
+            GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
 
             //GUI.DragWindow();
         }

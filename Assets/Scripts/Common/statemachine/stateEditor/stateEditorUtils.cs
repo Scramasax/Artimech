@@ -43,6 +43,9 @@ namespace Artimech
         static string m_AddConditionPath = "";
         static string m_AddConditionReplace = "";
 
+        static string m_DeleteConditionalPath = "";
+        static string m_DeleteClassName = "";
+
         static utlMatrix34 m_TranslationMtx = new utlMatrix34();
 
         static bool m_bVerbose = false;
@@ -81,6 +84,12 @@ namespace Artimech
 
         /// <summary>  Not sure. </summary>
         public static string AddConditionReplace { get { return m_AddConditionReplace; } set { m_AddConditionReplace = value; } }
+
+        /// <summary>  Not sure. </summary>
+        public static string DeleteConditionalPath { get { return m_DeleteConditionalPath; } set { m_DeleteConditionalPath = value; } }
+
+        /// <summary>  Not sure. </summary>
+        public static string DeleteConditionalClass { get { return m_DeleteClassName; } set { m_DeleteClassName = value; } }
 
         /// <summary>  Returns the translation matrix for the visual state window so panning can happen. </summary>
         public static utlMatrix34 TranslationMtx { get { return m_TranslationMtx; } set { m_TranslationMtx = value; } }
@@ -638,6 +647,16 @@ namespace Artimech
             }
 
             return null;
+        }
+
+        public static void DeleteAndRemoveConditonal(string className)
+        {
+            SaveAllVisualStateMetaData();
+
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            File.Delete(pathAndFileForClassName);
+
+
         }
 
         public static void DeleteAndRemoveState(stateWindowsNode node, string className)

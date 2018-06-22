@@ -80,6 +80,32 @@ public static class utlDataAndFile
     }
 
     /// <summary>
+    /// Removes the line in a file using a sub string.
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <param name="findText"></param>
+    public static void RemoveLineInFile(string fileName, string findText)
+    {
+        int lineIndex = 0;
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string line = "";
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                lineIndex += 1;
+                if (line.IndexOf(findText) >= 0)
+                    break;
+            }
+        }
+
+        var file = new List<string>(System.IO.File.ReadAllLines(fileName));
+        file.RemoveAt(lineIndex - 1);
+        File.WriteAllLines(fileName, file.ToArray());
+        AssetDatabase.Refresh();
+    }
+
+    /// <summary>
     /// Finds the file of a same named class.  Complex imbedded classes won't be
     /// found since the name of the class and file have to match.
     /// </summary>
