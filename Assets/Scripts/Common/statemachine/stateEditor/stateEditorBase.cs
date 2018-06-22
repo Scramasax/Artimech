@@ -88,6 +88,7 @@ namespace Artimech
             AddState(new editorRefactorState(null), "Refactor");
             AddState(new editorSaveState(null), "Save");
             AddState(new editorCopyStateMachine(null), "Copy State Machine");
+            AddState(new editorDeleteConditionState(null), "Delete Condition");
         }
 
         // Update is called once per frame

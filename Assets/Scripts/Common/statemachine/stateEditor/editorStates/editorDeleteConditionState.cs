@@ -76,9 +76,9 @@ namespace Artimech
         /// <param name="gameobject"></param>
         public editorDeleteConditionState(GameObject gameobject) : base(gameobject)
         {
-            m_DeleteWindowMessageBox = new stateDeleteWindow(999998);
+            m_DeleteWindowMessageBox = new stateDeleteWindow(999997);
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new editor_Delete_To_Display("Display Windows"));
+            m_ConditionalList.Add(new editor_DeleteCondition_To_Display("Display Windows"));
         }
 
         /// <summary>

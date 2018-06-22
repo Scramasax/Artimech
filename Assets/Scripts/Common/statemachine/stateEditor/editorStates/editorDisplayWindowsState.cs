@@ -106,6 +106,9 @@ namespace Artimech
 
         /// <summary>  State wants to copy a statemachine and has set this bool. </summary>
         public bool CopyStateMachine { get { return m_bCopyStateMachine; } set { m_bCopyStateMachine = value; } }
+
+        /// <summary>  State wants to delete a conditional and has set this bool. </summary>
+        public bool DeleteConditional { get { return m_bDeleteConditional; } }
         #endregion
 
         #region Member Functions
@@ -132,6 +135,7 @@ namespace Artimech
             m_ConditionalList.Add(new editor_Display_To_Refactor("Refactor"));
             m_ConditionalList.Add(new editor_Display_To_Save("Save"));
             m_ConditionalList.Add(new editor_Display_To_CopyStateMachine("Copy State Machine"));
+            m_ConditionalList.Add(new editor_Display_To_DeleteCondition("Delete Conditional"));
         }
 
         /// <summary>
@@ -419,6 +423,7 @@ namespace Artimech
             m_bRefactor = false;
             m_bSave = false;
             m_bCopyStateMachine = false;
+            m_bDeleteConditional = false;
         }
         #endregion
     }
