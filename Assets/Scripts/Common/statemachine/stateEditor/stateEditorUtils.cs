@@ -661,6 +661,8 @@ namespace Artimech
             File.Delete(pathAndFileForClassName);
 
             utlDataAndFile.RemoveLinesBySubStringInFiles(className);
+
+            AssetDatabase.Refresh();
         }
 
         public static void DeleteAndRemoveState(stateWindowsNode node, string className)

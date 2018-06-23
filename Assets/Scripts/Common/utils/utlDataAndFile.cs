@@ -375,7 +375,7 @@ public static class utlDataAndFile
         ReplaceNamesInFilesRecursively(pathLocation, ".cs", searchStr, renameStr, showDebugInfo);
     }
 
-    public static string RemoveLinesInFileRecursively(string startDir, string fileFindName, string findName, string replaceName, bool showDebugInfo = false)
+    public static string RemoveLinesInFileRecursively(string startDir, string fileFindName, string findName, bool showDebugInfo = false)
     {
         foreach (string file in Directory.GetFiles(startDir))
         {
@@ -388,7 +388,7 @@ public static class utlDataAndFile
 
         foreach (string dir in Directory.GetDirectories(startDir))
         {
-            string strBuff = RemoveLinesInFileRecursively(dir, fileFindName, findName, replaceName, showDebugInfo);
+            string strBuff = RemoveLinesInFileRecursively(dir, fileFindName, findName, showDebugInfo);
             if (strBuff != null)
                 return strBuff;
         }
@@ -396,13 +396,13 @@ public static class utlDataAndFile
         return null;
     }
 
-    public static void RemoveLinesBySubStringInFiles(string subStr,string pathStr=null,bool showDebugInfo = false)
+    public static void RemoveLinesBySubStringInFiles(string subStr, string pathStr = null, bool showDebugInfo = false)
     {
         string pathLocation = Application.dataPath;
         if (pathStr != null)
             pathLocation = pathStr;
 
-
+        RemoveLinesInFileRecursively(pathLocation, ".cs", subStr, showDebugInfo);
     }
 
     public static IList<string> GetListOfFilesInDirctory(string directory, string findName, bool showDebugInfo = false)
@@ -415,7 +415,7 @@ public static class utlDataAndFile
             {
                 listOfStrings.Add(null);
 
-                    listOfStrings[listOfStrings.Count - 1] = file;
+                listOfStrings[listOfStrings.Count - 1] = file;
                 if (showDebugInfo)
                     Debug.Log("dir files = " + file);
             }
