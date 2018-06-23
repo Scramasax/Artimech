@@ -87,6 +87,7 @@ public static class utlDataAndFile
     public static void RemoveLineInFile(string fileName, string findText)
     {
         int lineIndex = 0;
+        bool foundText = false;
         using (StreamReader reader = new StreamReader(fileName))
         {
             string line = "";
@@ -95,14 +96,19 @@ public static class utlDataAndFile
             {
                 lineIndex += 1;
                 if (line.IndexOf(findText) >= 0)
+                {
+                    foundText = true;
                     break;
+                }
             }
         }
+
+        if (!foundText)
+            return;
 
         var file = new List<string>(System.IO.File.ReadAllLines(fileName));
         file.RemoveAt(lineIndex - 1);
         File.WriteAllLines(fileName, file.ToArray());
-        AssetDatabase.Refresh();
     }
 
     /// <summary>
@@ -403,6 +409,8 @@ public static class utlDataAndFile
             pathLocation = pathStr;
 
         RemoveLinesInFileRecursively(pathLocation, ".cs", subStr, showDebugInfo);
+
+        AssetDatabase.Refresh();
     }
 
     public static IList<string> GetListOfFilesInDirctory(string directory, string findName, bool showDebugInfo = false)

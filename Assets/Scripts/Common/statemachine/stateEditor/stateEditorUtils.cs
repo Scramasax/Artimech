@@ -660,7 +660,7 @@ namespace Artimech
             string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
             File.Delete(pathAndFileForClassName);
 
-            utlDataAndFile.RemoveLinesBySubStringInFiles(className);
+            utlDataAndFile.RemoveLinesBySubStringInFiles(className, "E:/Work/Artimech/Assets/Scripts/artiMechStates/aMechGoGoPack");
 
             AssetDatabase.Refresh();
         }

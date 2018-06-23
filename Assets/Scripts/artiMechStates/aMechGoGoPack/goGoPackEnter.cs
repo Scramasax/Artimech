@@ -55,7 +55,6 @@ namespace Artimech
         public goGoPackEnter(GameObject gameobject) : base(gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new goGoPackEnter_To_goGoPackUpdate("goGoPackUpdate"));
         }
 
         /// <summary>

@@ -297,7 +297,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\aMechGoGoPack.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackEnter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackEnter_To_goGoPackUpdate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackExit.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackExit_To_goGoPackUpdate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackStart.cs" />
