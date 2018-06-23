@@ -375,6 +375,36 @@ public static class utlDataAndFile
         ReplaceNamesInFilesRecursively(pathLocation, ".cs", searchStr, renameStr, showDebugInfo);
     }
 
+    public static string RemoveLinesInFileRecursively(string startDir, string fileFindName, string findName, string replaceName, bool showDebugInfo = false)
+    {
+        foreach (string file in Directory.GetFiles(startDir))
+        {
+            if (file.IndexOf(fileFindName) != -1)
+            {
+                //ReplaceTextInFile(file, findName, replaceName);
+                RemoveLineInFile(file, findName);
+            }
+        }
+
+        foreach (string dir in Directory.GetDirectories(startDir))
+        {
+            string strBuff = RemoveLinesInFileRecursively(dir, fileFindName, findName, replaceName, showDebugInfo);
+            if (strBuff != null)
+                return strBuff;
+        }
+
+        return null;
+    }
+
+    public static void RemoveLinesBySubStringInFiles(string subStr,string pathStr=null,bool showDebugInfo = false)
+    {
+        string pathLocation = Application.dataPath;
+        if (pathStr != null)
+            pathLocation = pathStr;
+
+
+    }
+
     public static IList<string> GetListOfFilesInDirctory(string directory, string findName, bool showDebugInfo = false)
     {
         IList<string> listOfStrings = new List<string>();

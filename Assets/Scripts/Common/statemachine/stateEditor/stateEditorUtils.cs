@@ -649,6 +649,10 @@ namespace Artimech
             return null;
         }
 
+        /// <summary>
+        /// Removes the conditional and refrences to it in other classes.
+        /// </summary>
+        /// <param name="className"></param>
         public static void DeleteAndRemoveConditonal(string className)
         {
             SaveAllVisualStateMetaData();
@@ -656,7 +660,7 @@ namespace Artimech
             string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
             File.Delete(pathAndFileForClassName);
 
-
+            utlDataAndFile.RemoveLinesBySubStringInFiles(className);
         }
 
         public static void DeleteAndRemoveState(stateWindowsNode node, string className)

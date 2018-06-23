@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -310,7 +308,6 @@
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
@@ -326,6 +323,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_CopyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Delete.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_MoveBackground.cs" />

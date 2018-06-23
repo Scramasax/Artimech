@@ -212,6 +212,7 @@ namespace Artimech
                 if (m_CurrentState is editorDeleteConditionState)
                 {
                     editorDeleteConditionState deleteConditionState = (editorDeleteConditionState)m_CurrentState;
+                    stateEditorUtils.DeleteAndRemoveConditonal(stateEditorUtils.DeleteConditionalClass);
                     deleteConditionState.ActionConfirmed = true;
                 }
             }
