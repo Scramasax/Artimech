@@ -295,15 +295,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart_To_cubeUpThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\aMechGoGoPack.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackEnter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackExit.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackExit_To_goGoPackUpdate.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackStart.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackStart_To_goGoPackUpdate.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackUpdate.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackUpdate_To_goGoPackEnter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechGoGoPack\goGoPackUpdate_To_goGoPackExit.cs" />
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
