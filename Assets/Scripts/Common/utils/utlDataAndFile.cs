@@ -409,8 +409,9 @@ public static class utlDataAndFile
             pathLocation = pathStr;
 
         RemoveLinesInFileRecursively(pathLocation, ".cs", subStr, showDebugInfo);
-
+#if UNITY_EDITOR
         AssetDatabase.Refresh();
+#endif
     }
 
     public static IList<string> GetListOfFilesInDirctory(string directory, string findName, bool showDebugInfo = false)
