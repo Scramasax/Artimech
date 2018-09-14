@@ -107,6 +107,14 @@ namespace Artimech
         }
 
         /// <summary>
+        /// Fixed Update for physics and such from the game object.
+        /// </summary>
+        public override void LateUpdate()
+        {
+
+        }
+
+        /// <summary>
         /// For updateing the unity gui.
         /// </summary>
         public override void UpdateEditorGUI()

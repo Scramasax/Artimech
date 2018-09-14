@@ -74,6 +74,14 @@ namespace Artimech
         }
 
         /// <summary>
+        /// Late Update for those things that need to be updated last.
+        /// </summary>
+        public override void LateUpdate()
+        {
+            
+        }
+
+        /// <summary>
         /// For updateing the unity gui.
         /// </summary>
         public override void UpdateEditorGUI()

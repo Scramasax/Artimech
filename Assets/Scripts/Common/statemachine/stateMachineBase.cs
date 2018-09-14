@@ -70,7 +70,7 @@ namespace Artimech
         {
             if (m_CurrentState == null)
             {
-   //             Debug.LogWarning(gameObject.name + " stateMachineBase doesn't have an m_CurrentState.");
+                //             Debug.LogWarning(gameObject.name + " stateMachineBase doesn't have an m_CurrentState.");
                 return;
             }
 
@@ -88,6 +88,13 @@ namespace Artimech
                 return;
 
             m_CurrentState.FixedUpdate();
+        }
+
+        protected void LateUpdate()
+        {
+            if (m_CurrentState == null)
+                return;
+            m_CurrentState.LateUpdate();
         }
 
         public baseState AddState(baseState state, string statename)

@@ -201,4 +201,27 @@ public static class utlMath
         return Mathf.Acos((a.x * b.x + a.y * b.y + a.z * b.z) / mag);
     }
 
+    /// <summary>
+    /// Gets the mean "average" of a Vector3.
+    /// </summary>
+    /// <param name="positions"></param>
+    /// <returns>Vector3 average.</returns>
+    public static Vector3 GetMeanVector(Vector3[] positions)
+    {
+        if (positions.Length == 0)
+            return Vector3.zero;
+
+        float x = 0f;
+        float y = 0f;
+        float z = 0f;
+        foreach (Vector3 pos in positions)
+        {
+            x += pos.x;
+            y += pos.y;
+            z += pos.z;
+        }
+
+        return new Vector3(x / positions.Length, y / positions.Length, z / positions.Length);
+    }
+
 }
