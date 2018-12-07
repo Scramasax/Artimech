@@ -21,7 +21,7 @@ using System.Collections;
 
 namespace Artimech
 {
-    public class aMechCube : stateMachineBase
+    public class aMechCube : stateMachineGame
     {
         public float m_InitTime = 2.5f;
         public float m_UpTime = 5.0f;

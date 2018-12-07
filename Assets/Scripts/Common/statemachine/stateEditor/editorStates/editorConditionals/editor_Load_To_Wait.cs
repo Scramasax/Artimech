@@ -61,7 +61,7 @@ namespace Artimech
             if (state.m_GameObject.transform.position.y <= 1000)
                 strOut = m_ChangeStateName;
 #endif
-            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.GameObject == null)
+            if (stateEditorUtils.StateList.Count == 0 || stateEditorUtils.SelectedObject == null)
                 strOut = m_ChangeStateName;
 
 

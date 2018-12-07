@@ -103,7 +103,7 @@ namespace Artimech
         /// </summary>
         public override void FixedUpdate()
         {
-            
+
         }
 
         /// <summary>
@@ -127,8 +127,14 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            stateMachineBase machine = null;
-            machine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
+            iMachineBase machine = null;
+            GameObject gameObj = null;
+            if (stateEditorUtils.SelectedObject is GameObject)
+            {
+                gameObj = (GameObject)stateEditorUtils.SelectedObject;
+            }
+
+            machine = gameObj.GetComponent<iMachineBase>();
             stateEditorUtils.StateList.Clear();
 
             //load states and their metadata

@@ -53,7 +53,7 @@ namespace Artimech
 
         public class menuData
         {
-            public menuData(string fileAndPath,string replaceName)
+            public menuData(string fileAndPath, string replaceName)
             {
                 m_FileAndPath = fileAndPath;
                 m_ReplaceName = replaceName;
@@ -217,7 +217,7 @@ namespace Artimech
 
 
             //Saves meta data for the visual window system via the keyboard
-            if (ev.control &&  ev.keyCode == KeyCode.S)
+            if (ev.control && ev.keyCode == KeyCode.S)
             {
                 /*
                 Debug.Log("<color=blue>" + "<b>" + "Saving...." + "</b></color>");
@@ -230,9 +230,9 @@ namespace Artimech
                 return;
             }
 
-  
 
-                //Right click and not on a state.
+
+            //Right click and not on a state.
             if (ev.button == 1)
             {
                 if (ev.type == EventType.MouseDown)
@@ -261,9 +261,9 @@ namespace Artimech
                     }
 
                     //TODO: add this from the xml.
-                    menu.AddItem(new GUIContent("Add State/Empty State"), 
-                                                false, 
-                                                CreateAddStateCallback, 
+                    menu.AddItem(new GUIContent("Add State/Empty State"),
+                                                false,
+                                                CreateAddStateCallback,
                                                 new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs", "stateEmptyExample"));
 
                     menu.AddItem(new GUIContent("Add State/Subscribe State"),
@@ -300,23 +300,29 @@ namespace Artimech
             {
 
                 // highlight the current state
-                if (Application.isPlaying && stateEditorUtils.GameObject!=null)
+                if (Application.isPlaying && stateEditorUtils.SelectedObject != null)
                 {
-                    stateMachineBase stateMachine = stateEditorUtils.GameObject.GetComponent<stateMachineBase>();
+                    GameObject gameObj = null;
+                    if (stateEditorUtils.SelectedObject is GameObject)
+                    {
+                        gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                    }
 
-                    string currentClassName = stateMachine.CurrentState.GetType().ToString();
+                    iMachineBase stateMachine = gameObj.GetComponent<iMachineBase>();
+
+                    string currentClassName = stateMachine.GetCurrentState().GetType().ToString();
                     currentClassName = currentClassName.Replace(stateEditorUtils.kArtimechNamespace, "");
 
-                    if(stateEditorUtils.StateList[i].ClassName==currentClassName)
+                    if (stateEditorUtils.StateList[i].ClassName == currentClassName)
                     {
                         float margin = 8.0f;
                         Rect lastRect = new Rect();
                         Vector4 startColor = new Vector4(0, 1, 1, 1);
                         Vector4 endColor = new Vector4(0.5f, 1, 1, 0.1f);
-                        for (float edgleCoef = 0; edgleCoef<=1.0f; edgleCoef += 0.15f)
+                        for (float edgleCoef = 0; edgleCoef <= 1.0f; edgleCoef += 0.15f)
                         {
                             Vector4 colorVector = Vector4.Lerp(startColor, endColor, edgleCoef);
-                            Color backroundColor = new Color(colorVector.x,colorVector.y,colorVector.z,colorVector.w);
+                            Color backroundColor = new Color(colorVector.x, colorVector.y, colorVector.z, colorVector.w);
 
                             Vector2 transVect = new Vector2();
                             transVect = stateEditorUtils.TranslationMtx.Transform(stateEditorUtils.StateList[i].WinRect.position);
@@ -337,8 +343,8 @@ namespace Artimech
                         windowSize.x = (lastRect.width);
                         windowSize.y = (lastRect.height);
 
-                        Handles.color = new Color(0.5f,1,1,0.8f);
-                       
+                        Handles.color = new Color(0.5f, 1, 1, 0.8f);
+
                         Handles.DrawWireCube(centerPos, windowSize);
                     }
                 }
@@ -365,7 +371,7 @@ namespace Artimech
             string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
             stateEditorUtils.DeleteConditionalPath = fileAndPathName;
             stateEditorUtils.DeleteConditionalClass = className;
-            
+
 
             m_bDeleteConditional = true;
 
@@ -402,8 +408,8 @@ namespace Artimech
         {
 
             ResetBools();
-           
-            stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.GameObject.name);
+
+            stateEditorUtils.SaveStateInfo(stateEditorUtils.StateMachineName, stateEditorUtils.SelectedObject.name);
             stateEditorUtils.Repaint();
         }
 

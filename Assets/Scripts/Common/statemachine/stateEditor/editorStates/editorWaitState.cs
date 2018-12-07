@@ -117,12 +117,12 @@ namespace Artimech
         public override void Exit()
         {
             m_CreateBool = false;
-            if (stateEditorUtils.GameObject == null)
+            if (stateEditorUtils.SelectedObject == null)
             {
-                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
+                if (stateEditorUtils.WasSelectedObject != stateEditorUtils.SelectedObject)
                     stateEditorUtils.StateList.Clear();
                 //sets the 'was' gameobject so as to dectect a gameobject swap.
-                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+                stateEditorUtils.WasSelectedObject = stateEditorUtils.SelectedObject;
             }
         }
     }

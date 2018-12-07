@@ -105,7 +105,7 @@ namespace Artimech
             const string fileAndPath = "Assets/StateMachine.txt";
             string strBuff = "";
             strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
-            if(strBuff==null)
+            if (strBuff == null)
             {
                 Debug.LogError("<color=maroon>" + "<b>" + "Restore file not found = " + "</b></color>" + "<color=red>" + "Assets/StateMachine.txt" + "</color>" + " .");
                 return;
@@ -116,19 +116,25 @@ namespace Artimech
             string[] words = strBuff.Split(new char[] { ',' });
 
             GameObject gameObject = utlDataAndFile.FindGameObjectByName(words[1]);
-            if(gameObject==null)
+            if (gameObject == null)
             {
                 Debug.LogError("<color=maroon>" + "<b>" + "Restore gameObject not found = " + "</b></color>" + "<color=red>" + words[1] + "</color>" + " .");
                 return;
             }
 
-            stateEditorUtils.GameObject = gameObject;
+            stateEditorUtils.SelectedObject = gameObject;
             stateEditorUtils.EditorCurrentGameObject = gameObject;
             stateEditorUtils.StateMachineName = words[0];
 
+            GameObject gameObj = null;
+            if (stateEditorUtils.SelectedObject is GameObject)
+            {
+                gameObj = (GameObject)stateEditorUtils.SelectedObject;
+            }
+
             //this will allow only one statemachine per game object which isn't optimal.
-            if(stateEditorUtils.GameObject.GetComponent<stateMachineBase>()==null)
-                stateEditorUtils.GameObject.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + words[0]));
+            if (gameObj != null && gameObj.GetComponent<iMachineBase>() == null)
+                gameObj.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + words[0]));
 
         }
 

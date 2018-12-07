@@ -26,12 +26,12 @@ namespace Artimech
         // generated statemachine and populating them with their class names.
         static IList<string> m_StateNameList = new List<string>();
 
-        static GameObject m_EditorCurrentGameObject = null;
+        static UnityEngine.Object m_EditorCurrentGameObject = null;
 
         static Vector3 m_MousePos;
 
-        static GameObject m_GameObject = null;
-        static GameObject m_WasGameObject = null;
+        static UnityEngine.Object m_SelectedObject = null;
+        static UnityEngine.Object m_WasSelectedObject = null;
         static string m_StateMachineName = "";
 
         static stateWindowsNode m_SelectedWindowsNode = null;
@@ -56,16 +56,16 @@ namespace Artimech
         public static IList<stateWindowsNode> StateList { get { return m_StateList; } set { m_StateList = value; } }
 
         /// <summary>  Not sure. </summary>
-        public static GameObject EditorCurrentGameObject { get { return m_EditorCurrentGameObject; } set { m_EditorCurrentGameObject = value; } }
+        public static UnityEngine.Object EditorCurrentGameObject { get { return m_EditorCurrentGameObject; } set { m_EditorCurrentGameObject = value; } }
 
         /// <summary>  Not sure. </summary>
-        public static GameObject GameObject { get { return m_GameObject; } set { m_GameObject = value; } }
+        public static UnityEngine.Object SelectedObject { get { return m_SelectedObject; } set { m_SelectedObject = value; } }
 
         /// <summary>  Not sure. </summary>
         public static string StateMachineName { get { return m_StateMachineName; } set { m_StateMachineName = value; } }
 
         /// <summary>  Not sure. </summary>
-        public static GameObject WasGameObject { get { return m_WasGameObject; } set { m_WasGameObject = value; } }
+        public static UnityEngine.Object WasSelectedObject { get { return m_WasSelectedObject; } set { m_WasSelectedObject = value; } }
 
         /// <summary>  Not sure. </summary>
         public static Vector3 MousePos { get { return m_MousePos; } set { m_MousePos = value; } }
@@ -486,18 +486,18 @@ namespace Artimech
 
             string pathAndFileName = k_PathName
                                                         + "aMech"
-                                                        + stateEditorUtils.GameObject.name
+                                                        + stateEditorUtils.SelectedObject.name
                                                         + "/"
                                                         + "aMech"
-                                                        + stateEditorUtils.GameObject.name
+                                                        + stateEditorUtils.SelectedObject.name
                                                         + ".cs";
 
             string pathAndFileNameStartState = k_PathName
                                             + "aMech"
-                                            + stateEditorUtils.GameObject.name
+                                            + stateEditorUtils.SelectedObject.name
                                             + "/"
                                             + "aMech"
-                                            + stateEditorUtils.GameObject.name
+                                            + stateEditorUtils.SelectedObject.name
                                             + "StartState"
                                             + ".cs";
 
@@ -509,14 +509,14 @@ namespace Artimech
 
             //create the aMech directory 
             string replaceName = "aMech";
-            string directoryName = k_PathName + replaceName + stateEditorUtils.GameObject.name;
+            string directoryName = k_PathName + replaceName + stateEditorUtils.SelectedObject.name;
             Directory.CreateDirectory(directoryName);
 
             //creates a start state from a template and populate aMech directory
             string stateStartName = "";
             stateStartName = stateEditorUtils.ReadReplaceAndWrite(
                                                         k_StateTemplateFileAndPath,
-                                                        stateEditorUtils.GameObject.name + "StartState",
+                                                        stateEditorUtils.SelectedObject.name + "StartState",
                                                         k_PathName,
                                                         pathAndFileNameStartState,
                                                         "stateEmptyExample",
@@ -526,7 +526,7 @@ namespace Artimech
             string stateMachName = "";
             stateMachName = stateEditorUtils.ReadReplaceAndWrite(
                                                         k_StateMachineTemplateFileAndPath,
-                                                        stateEditorUtils.GameObject.name,
+                                                        stateEditorUtils.SelectedObject.name,
                                                         k_PathName,
                                                         pathAndFileName,
                                                         "stateMachineTemplate",
@@ -550,7 +550,7 @@ namespace Artimech
                             + "\n\n");
             }
 
-            SaveStateInfo(stateMachName, stateEditorUtils.GameObject.name);
+            SaveStateInfo(stateMachName, stateEditorUtils.SelectedObject.name);
 
             AssetDatabase.Refresh();
 
@@ -591,7 +591,7 @@ namespace Artimech
             editorDisplayWindowsState.menuData menuData = (editorDisplayWindowsState.menuData)obj;
 
 
-            if (/*clb.Equals("addState") && */ GameObject != null)
+            if (/*clb.Equals("addState") && */ SelectedObject != null)
             {
                 SaveAllVisualStateMetaData();
 
@@ -603,11 +603,18 @@ namespace Artimech
                 //string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(StateList.Count);
 
                 int codeIndex = StateList.Count;
-                string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
-                while (!CreateAndAddStateCodeToProject(GameObject, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName, false))
+                string stateName = "aMech" + SelectedObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
+
+                GameObject gameObj = null;
+                if (stateEditorUtils.SelectedObject is GameObject)
+                {
+                    gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                }
+
+                while (!CreateAndAddStateCodeToProject(gameObj, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName, false))
                 {
                     codeIndex += 1;
-                    stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
+                    stateName = "aMech" + SelectedObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
                     //sanity check
                     if (codeIndex > 10000)
                         return;
@@ -629,7 +636,7 @@ namespace Artimech
 
                 fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
 
-                SaveStateInfo(StateMachineName, GameObject.name);
+                SaveStateInfo(StateMachineName, SelectedObject.name);
 
                 AddStateCodeToStateMachineCode(fileAndPath, stateName);
 

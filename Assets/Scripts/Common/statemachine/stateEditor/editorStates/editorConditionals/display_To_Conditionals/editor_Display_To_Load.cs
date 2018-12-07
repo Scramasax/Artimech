@@ -64,7 +64,7 @@ namespace Artimech
 #endif
             //if my state list is empty and a game object is populated then go to a load state
             //and see if the gameobject has a statemachine attached to it.
-            if (stateEditorUtils.GameObject != stateEditorUtils.WasGameObject && stateEditorUtils.GameObject!=null)
+            if (stateEditorUtils.SelectedObject != stateEditorUtils.WasSelectedObject && stateEditorUtils.SelectedObject!=null)
                 strOut = m_ChangeStateName;
 
             return strOut;

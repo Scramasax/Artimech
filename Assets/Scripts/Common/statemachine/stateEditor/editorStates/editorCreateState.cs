@@ -74,7 +74,12 @@ namespace Artimech
         {
             if (System.Type.GetType("artiMech." + stateEditorUtils.StateMachineName) != null)
             {
-                stateEditorUtils.GameObject.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + stateEditorUtils.StateMachineName));
+                if (stateEditorUtils.SelectedObject is GameObject)
+                {
+                    GameObject gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                    gameObj.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + stateEditorUtils.StateMachineName));
+                }
+               // stateEditorUtils.SelectedObject.AddComponent(System.Type.GetType(stateEditorUtils.kArtimechNamespace + stateEditorUtils.StateMachineName));
                 Debug.Log(
                             "<b><color=navy>Artimech Report Log Section B\n</color></b>"
                             + "<i><color=grey>Click to view details</color></i>"
@@ -83,7 +88,7 @@ namespace Artimech
                             + stateEditorUtils.StateMachineName
                             + "</b>"
                             + "<color=blue> to a gameobject named </color>"
-                            + stateEditorUtils.GameObject.name
+                            + stateEditorUtils.SelectedObject.name
                             + " .\n\n");
             }
 
@@ -139,12 +144,12 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
-            if (stateEditorUtils.GameObject == null)
+            if (stateEditorUtils.SelectedObject == null)
             {
-                if (stateEditorUtils.WasGameObject != stateEditorUtils.GameObject)
+                if (stateEditorUtils.WasSelectedObject != stateEditorUtils.SelectedObject)
                     stateEditorUtils.StateList.Clear();
                 //sets the 'was' gameobject so as to dectect a gameobject swap.
-                stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+                stateEditorUtils.WasSelectedObject = stateEditorUtils.SelectedObject;
             }
         }
     }

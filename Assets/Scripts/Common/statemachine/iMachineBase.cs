@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 /// Artimech
 /// 
 /// Copyright © <2017> <George A Lancaster>
@@ -16,51 +15,24 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-/// 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 /// <summary>
-/// State Conditionals are created to contain the state transition tests. 
+/// The abstract class that all states are based on.
 /// </summary>
 namespace Artimech
 {
-    public class editorStartToRestoreConditional : stateConditionalBase
+    public interface iMachineBase 
     {
-        public editorStartToRestoreConditional(string changeStateName) : base(changeStateName)
-        {
-
-        }
-
-        public override void Enter(baseState state)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Exit(baseState state)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Test conditionals are placed here.
-        /// </summary>
-        /// <param name="state"></param>
-        /// <returns>true or false depending if transition conditions are met.</returns>
-        public override string UpdateConditionalTest(baseState state)
-        {
-            string strOut = null;
-
-            if (utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "StateMachine.txt") != null)
-                strOut = m_ChangeStateName;
-
-            return strOut;
-        }
+        // All these properties must be inherited as public when implemented.
+        void Awake();
+        void Start();
+        void Update();
+        void FixedUpdate();
+        void LateUpdate();
+        baseState GetCurrentState();
+        baseState AddState(baseState state, string statename);
+        void ForceChangeState(string stateName);
     }
 }
-
-#endif

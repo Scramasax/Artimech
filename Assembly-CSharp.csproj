@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Common\gameMgr.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
@@ -144,7 +145,8 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRenameWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateGameBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineBase.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineEditor.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineGame.cs" />
     <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlBoundingBox.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

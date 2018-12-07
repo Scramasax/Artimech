@@ -26,8 +26,9 @@ using System.Collections.Generic;
 /// 
 namespace Artimech
 {
-    public class stateMachineBase : MonoBehaviour
+    public class stateMachineGame : MonoBehaviour, iMachineBase
     {
+
         [Header("State Machine Debug:")]
         [SerializeField]
         [Tooltip("Show the state machine states.  For debug.")]
@@ -40,31 +41,28 @@ namespace Artimech
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
 
-        public baseState CurrentState
+        public baseState GetCurrentState()
         {
-            get
-            {
-                return m_CurrentState;
-            }
+            return m_CurrentState;
         }
 
         /// <summary>
         /// starts before the start function.
         /// </summary>
-        protected void Awake()
+        public void Awake()
         {
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
         }
 
         // Use this for initialization
-        protected void Start()
+        public void Start()
         {
             m_CurrentState.Enter();
         }
 
         // Update is called once per frame
-        protected void Update()
+        public void Update()
         {
             if (m_CurrentState == null)
             {
@@ -80,7 +78,7 @@ namespace Artimech
             m_CurrentStateName = m_CurrentState.m_StateName;
         }
 
-        protected void FixedUpdate()
+        public void FixedUpdate()
         {
             if (m_CurrentState == null)
                 return;
@@ -88,7 +86,7 @@ namespace Artimech
             m_CurrentState.FixedUpdate();
         }
 
-        protected void LateUpdate()
+        public void LateUpdate()
         {
             if (m_CurrentState == null)
                 return;

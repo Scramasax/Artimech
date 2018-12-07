@@ -29,7 +29,7 @@ namespace Artimech
 
         }
 
-        public baseState ForceChangeState(IList<baseState> stateList, baseState currentState, string forceStateName, GameObject gameObject, bool displayStates)
+        public baseState ForceChangeState(IList<baseState> stateList, baseState currentState, string forceStateName, Object obj, bool displayStates)
         {
             if (currentState != null)
             {
@@ -41,8 +41,8 @@ namespace Artimech
                         if (displayStates)
                         {
                             Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>" );
-                            if (gameObject != null)
-                                Debug.Log("<color=blue>" + "<b>" + "ForceChangeState : " + "</b></color>" + "<color=#660066>" + gameObject.name + "</color>" + " .");
+                            if (obj != null)
+                                Debug.Log("<color=blue>" + "<b>" + "ForceChangeState : " + "</b></color>" + "<color=#660066>" + obj.name + "</color>" + " .");
                             else
                                 Debug.Log("<color=blue>" + "<b>" + "ForceChangeState : " + "</b></color>" + "<color=#660066>" + "State Editor" + "</color>" + " .");
                             Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");
@@ -60,7 +60,7 @@ namespace Artimech
             return null;
         }
 
-        public baseState UpdateChangeStates(IList<baseState> stateList, baseState currentState, GameObject gameObject, bool displayStates)
+        public baseState UpdateChangeStates(IList<baseState> stateList, baseState currentState, Object obj, bool displayStates)
         {
             if (currentState != null && currentState.m_ChangeBool)
             {
@@ -74,8 +74,8 @@ namespace Artimech
                         if (displayStates)
                         {
                             Debug.Log("<color=navy>" + "<b>" + "----------------------------------------------" + "</b></color>");
-                            if (gameObject!=null)
-                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + gameObject.name + "</color>" + " .");
+                            if (obj!=null)
+                                Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + obj.name + "</color>" + " .");
                             else
                                 Debug.Log("<color=blue>" + "<b>" + "UpdateChangeState : " + "</b></color>" + "<color=#660066>" + "State Editor" + "</color>" + " .");
                             Debug.Log("<color=teal>" + "<b>" + "current state = " + "</b></color>" + "<color=#b3002d>" + currentState.m_StateName + "</color>" + " .");

@@ -21,7 +21,7 @@ using System.Collections;
 
 namespace Artimech
 {
-    public class stateMachineTemplate : stateMachineBase
+    public class stateMachineTemplate : stateMachineGame
     {
 
         new void Awake()

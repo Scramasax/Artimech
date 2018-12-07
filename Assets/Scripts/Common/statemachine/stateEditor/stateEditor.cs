@@ -49,12 +49,12 @@ namespace Artimech
         /// </summary>
         new void Update()
         {
-            stateEditorUtils.EditorCurrentGameObject = stateEditorUtils.GameObject;
+            stateEditorUtils.EditorCurrentGameObject = stateEditorUtils.SelectedObject;
 
             base.Update();
 
             //sets the 'was' gameobject so as to dectect a gameobject swap.
-            stateEditorUtils.WasGameObject = stateEditorUtils.GameObject;
+            stateEditorUtils.WasSelectedObject = stateEditorUtils.SelectedObject;
 
         }
 
@@ -86,22 +86,30 @@ namespace Artimech
             GUILayout.FlexibleSpace();
 
 #pragma warning disable CS0618 // Type or member is obsolete
-            stateEditorUtils.GameObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", stateEditorUtils.GameObject, typeof(GameObject));
+            stateEditorUtils.SelectedObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", stateEditorUtils.SelectedObject, typeof(Object));
 #pragma warning restore CS0618 // Type or member is obsolete
+
+
+            if (GUILayout.Button("Editor Scripts", EditorStyles.toolbarDropDown))
+            {
+                GenericMenu toolsMenu = new GenericMenu();
+            }
 
             if (GUILayout.Button("File", EditorStyles.toolbarDropDown))
             {
                 GenericMenu toolsMenu = new GenericMenu();
 
                 //In the wait state and an object is selected.
-                if (m_CurrentState.m_StateName == "Wait" && stateEditorUtils.GameObject != null)
-                    toolsMenu.AddItem(new GUIContent("Create"), false, OnCreateStateMachine);
+                if (m_CurrentState.m_StateName == "Wait" && stateEditorUtils.SelectedObject != null)
+                    toolsMenu.AddItem(new GUIContent("Create GameObject Script"), false, OnCreateStateMachine);
                 else
-                    toolsMenu.AddDisabledItem(new GUIContent("Create"));
+                    toolsMenu.AddDisabledItem(new GUIContent("Create GameObject Script"));
+
+                toolsMenu.AddItem(new GUIContent("Create Editor Script"), false, OnCreateEditorStateMachine);
 
                 toolsMenu.AddSeparator("");
 
-                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.SelectedObject != null)
                 {
                     toolsMenu.AddItem(new GUIContent("Copy"), false, OnCopyStateMachine);
                     toolsMenu.AddItem(new GUIContent("Save"), false, OnSaveMetaData);
@@ -114,7 +122,7 @@ namespace Artimech
 
                 toolsMenu.AddSeparator("");
 
-                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.SelectedObject != null)
                     toolsMenu.AddItem(new GUIContent("Recenter"), false, OnRecenter);
                 else
                     toolsMenu.AddDisabledItem(new GUIContent("Recenter"));
@@ -152,7 +160,7 @@ namespace Artimech
         /// </summary>
         void OnCopyStateMachine()
         {
-            if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
+            if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.SelectedObject != null)
             {
                 editorDisplayWindowsState theState = (editorDisplayWindowsState)CurrentState;
                 theState.CopyStateMachine = true;
@@ -171,6 +179,11 @@ namespace Artimech
                 editorWaitState waitState = m_CurrentState as editorWaitState;
                 waitState.CreateBool = true;
             }
+        }
+
+        void OnCreateEditorStateMachine()
+        {
+
         }
 
         void PrintAboutToConsole()
