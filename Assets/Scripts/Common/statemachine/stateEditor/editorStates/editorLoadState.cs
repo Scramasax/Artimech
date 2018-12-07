@@ -60,7 +60,7 @@ namespace Artimech
 
         public editorLoadState(GameObject gameobject)
         {
-            m_GameObject = gameobject;
+            m_UnityObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
 
             //InitImage();

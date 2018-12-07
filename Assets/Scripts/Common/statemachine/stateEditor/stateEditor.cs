@@ -26,6 +26,7 @@ namespace Artimech
 {
     public class stateEditor : stateEditorBase
     {
+        stateEditor m_StateEditorWindow;
         public stateEditor() : base()
         {
             stateEditorUtils.StateEditor = this;
@@ -34,8 +35,12 @@ namespace Artimech
 
         private void OnEnable()
         {
-            stateEditor window = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "Artimech");
-            window.Show();
+            if (!m_StateEditorWindow)
+            {
+                m_StateEditorWindow = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "Artimech");
+                m_StateEditorWindow.Show();
+            }
+
         }
 
 
@@ -114,11 +119,6 @@ namespace Artimech
                 else
                     toolsMenu.AddDisabledItem(new GUIContent("Recenter"));
 
-                if (m_CurrentState.m_StateName == "Display Windows" && stateEditorUtils.GameObject != null)
-                    toolsMenu.AddItem(new GUIContent("Asset Refresh"), false, OnAssetRefresh);
-                else
-                    toolsMenu.AddDisabledItem(new GUIContent("Asset Refresh"));
-
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
                 toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
@@ -162,11 +162,6 @@ namespace Artimech
         void OnRecenter()
         {
             stateEditorUtils.TranslationMtx.Identity();
-        }
-
-        void OnAssetRefresh()
-        {
-            AssetDatabase.Refresh();
         }
 
         void OnCreateStateMachine()

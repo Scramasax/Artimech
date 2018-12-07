@@ -121,7 +121,7 @@ namespace Artimech
         public editorDisplayWindowsState(GameObject gameobject) : base(gameobject)
         {
             m_bAddCondtion = false;
-            m_GameObject = gameobject;
+            m_UnityObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editor_Display_To_Wait("Wait"));

@@ -28,7 +28,7 @@ namespace Artimech
         public string m_StateName { get; set; }
         public string m_ChangeStateName { get; set; }
         public bool m_ChangeBool { get; set; }
-        public GameObject m_GameObject { get; set; }
+        public Object m_UnityObject { get; set; }
 
         abstract public void Update();
         abstract public void FixedUpdate();

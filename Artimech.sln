@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artimech", "Artimech.csproj", "{79F4758F-C552-5C19-6F8E-B15565DB8574}"
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{7EF79065-7791-4CC0-402C-798298850F22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{79F4758F-C552-5C19-6F8E-B15565DB8574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79F4758F-C552-5C19-6F8E-B15565DB8574}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79F4758F-C552-5C19-6F8E-B15565DB8574}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79F4758F-C552-5C19-6F8E-B15565DB8574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EF79065-7791-4CC0-402C-798298850F22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EF79065-7791-4CC0-402C-798298850F22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EF79065-7791-4CC0-402C-798298850F22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EF79065-7791-4CC0-402C-798298850F22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

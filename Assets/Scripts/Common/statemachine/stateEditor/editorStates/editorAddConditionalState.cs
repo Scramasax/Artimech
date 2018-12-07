@@ -48,7 +48,7 @@ namespace Artimech
         /// <param name="gameobject"></param>
         public editorAddConditionalState(GameObject gameobject) : base(gameobject)
         {
-            m_GameObject = gameobject;
+            m_UnityObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
             m_ConditionalList.Add(new editorAddConditionalToDisplay("Display Windows"));

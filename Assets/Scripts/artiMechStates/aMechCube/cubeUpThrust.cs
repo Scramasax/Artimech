@@ -72,8 +72,8 @@ namespace Artimech
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            Rigidbody rigidbody = m_GameObject.GetComponent<Rigidbody>();
-            aMechCube script = m_GameObject.GetComponent<aMechCube>();
+            Rigidbody rigidbody = StateGameObject.GetComponent<Rigidbody>();
+            aMechCube script = StateGameObject.GetComponent<aMechCube>();
 
             rigidbody.AddForce(Vector3.up * script.m_UpForce);
         }

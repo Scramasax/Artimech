@@ -90,7 +90,7 @@ namespace Artimech
         {
             base.Enter();
             //an example of publishing a message.
-            utlEventRouter.Publish(utlEventRouter.EventCode.Standard, this.m_GameObject.GetComponent<MonoBehaviour>(), "Publish Test");
+            utlEventRouter.Publish(utlEventRouter.EventCode.Standard, StateGameObject.GetComponent<MonoBehaviour>(), "Publish Test");
         }
 
         /// <summary>

@@ -34,14 +34,14 @@ namespace Artimech
         protected float m_StateTime = 0.0f;
 
         /// <summary>  Returns the time in seconds since state has been entered. </summary>
-        public float StateTime { get { return m_StateTime; }}
+        public float StateTime { get { return m_StateTime; } }
 
         /// <summary>Returns current gameobject that owns this state. </summary>
-        public GameObject StateGameObject { get { return m_GameObject; } }
+        public GameObject StateGameObject { get { return (GameObject)m_UnityObject; } }
 
         public stateGameBase(GameObject gameobject)
         {
-            m_GameObject = gameobject;
+            m_UnityObject = gameobject;
             m_ConditionalList = new List<stateConditionalBase>();
             //<ArtiMechConditions>
         }
@@ -78,7 +78,7 @@ namespace Artimech
         /// </summary>
         public override void LateUpdate()
         {
-            
+
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Artimech
         {
             m_StateTime = 0.0f;
 
-            for(int i=0;i<m_ConditionalList.Count;i++)
+            for (int i = 0; i < m_ConditionalList.Count; i++)
                 m_ConditionalList[i].Enter(this);
         }
 

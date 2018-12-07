@@ -55,8 +55,6 @@ namespace Artimech
         {
             m_StateChanger = new stateChanger();
             m_StateList = new List<baseState>();
-
-            m_CurrentState = AddState(new stateEmptyExample(gameObject), "Start");
         }
 
         // Use this for initialization
