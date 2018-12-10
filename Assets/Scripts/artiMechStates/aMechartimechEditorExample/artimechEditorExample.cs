@@ -55,6 +55,7 @@ namespace Artimech
             m_CurrentState = AddState(new testEditorStart(this), "testEditorStart");
 
             //<ArtiMechStates>
+            AddState(new aMechStateA(this),"aMechStateA");
 
         }
     }

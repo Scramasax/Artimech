@@ -313,15 +313,20 @@ namespace Artimech
             {
 
                 // highlight the current state
-                if (Application.isPlaying && stateEditorUtils.SelectedObject != null)
+                if ((stateEditorUtils.SelectedObject is GameObject && Application.isPlaying && stateEditorUtils.SelectedObject != null) ||
+                    stateEditorUtils.SelectedObject != null && stateEditorUtils.SelectedObject is ScriptableObject)
                 {
                     GameObject gameObj = null;
+                    iMachineBase stateMachine;
                     if (stateEditorUtils.SelectedObject is GameObject)
                     {
                         gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                        stateMachine = gameObj.GetComponent<iMachineBase>();
                     }
-
-                    iMachineBase stateMachine = gameObj.GetComponent<iMachineBase>();
+                    else
+                    {
+                        stateMachine = (iMachineBase)stateEditorUtils.SelectedObject;
+                    }
 
                     string currentClassName = stateMachine.GetCurrentState().GetType().ToString();
                     currentClassName = currentClassName.Replace(stateEditorUtils.kArtimechNamespace, "");

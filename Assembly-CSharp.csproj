@@ -61,8 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\aMechStateA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\artimechEditorExample.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart_To_aMechStateA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
