@@ -73,8 +73,10 @@
     <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\artimechEditorExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventPublishExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventSubscribeExample.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\artimechEditorBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddPostCondtionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
@@ -160,7 +163,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

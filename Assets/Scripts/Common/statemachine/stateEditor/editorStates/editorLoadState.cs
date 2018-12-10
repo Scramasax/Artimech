@@ -128,13 +128,26 @@ namespace Artimech
         public override void Enter()
         {
             iMachineBase machine = null;
-            GameObject gameObj = null;
+            GameObject selectedGameObject = null;
+            ScriptableObject editorObject = null;
             if (stateEditorUtils.SelectedObject is GameObject)
             {
-                gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                selectedGameObject = (GameObject)stateEditorUtils.SelectedObject;
+            }
+            if (stateEditorUtils.SelectedObject is ScriptableObject)
+            {
+                editorObject = (ScriptableObject)stateEditorUtils.SelectedObject;
             }
 
-            machine = gameObj.GetComponent<iMachineBase>();
+            //selectedObject = stateEditorUtils.SelectedObject;
+
+            if (selectedGameObject != null)
+                machine = selectedGameObject.GetComponent<iMachineBase>();
+
+            if (editorObject != null)
+                machine = (iMachineBase)editorObject;
+            //machine = (iMachineBase)GetType();
+
             stateEditorUtils.StateList.Clear();
 
             //load states and their metadata

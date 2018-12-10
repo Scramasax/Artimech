@@ -31,10 +31,10 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Drop</alias>
+    <alias>nada</alias>
     <comment></comment>
-    <posX>319</posX>
-    <posY>269</posY>
+    <posX>20</posX>
+    <posY>40</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>
@@ -45,17 +45,16 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class cubeNoThrust : stateGameBase
+    public class stateEditorExample : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public cubeNoThrust(GameObject gameobject) : base (gameobject)
+        public stateEditorExample(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new cubeNoThrust_To_cubeUpThrust("cubeUpThrust"));
         }
 
         /// <summary>

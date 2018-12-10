@@ -21,16 +21,39 @@
 
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 namespace Artimech
 {
     public class stateEditor : stateEditorBase
     {
+        private static stateEditor m_Instance = null;
         stateEditor m_StateEditorWindow;
+        List<artimechEditorBase> m_EditorScripts;
+
+        /// <summary>Returns an instance of the stateEditor </summary>
+        public static stateEditor Inst { get { return m_Instance; } }
+
+        public List<artimechEditorBase> EditorScripts
+        {
+            get
+            {
+                return m_EditorScripts;
+            }
+
+            set
+            {
+                m_EditorScripts = value;
+            }
+        }
+
         public stateEditor() : base()
         {
-            stateEditorUtils.StateEditor = this;
+            if (m_Instance == null)
+                m_Instance = this;
 
+            stateEditorUtils.StateEditor = this;
+            m_EditorScripts = new List<artimechEditorBase>();
         }
 
         private void OnEnable()
@@ -40,9 +63,7 @@ namespace Artimech
                 m_StateEditorWindow = (stateEditor)EditorWindow.GetWindow(typeof(stateEditor), true, "Artimech");
                 m_StateEditorWindow.Show();
             }
-
         }
-
 
         /// <summary>
         /// Editor Update.
@@ -55,7 +76,11 @@ namespace Artimech
 
             //sets the 'was' gameobject so as to dectect a gameobject swap.
             stateEditorUtils.WasSelectedObject = stateEditorUtils.SelectedObject;
-
+            /*           for (int i = 0; i < m_EditorScripts.Count; i++)
+                       {
+                           if (m_EditorScripts[i] == null)
+                               m_EditorScripts.RemoveAt(i);
+                       }*/
         }
 
         new void OnGUI()
@@ -85,15 +110,13 @@ namespace Artimech
 
             GUILayout.FlexibleSpace();
 
+
+
 #pragma warning disable CS0618 // Type or member is obsolete
-            stateEditorUtils.SelectedObject = (GameObject)EditorGUI.ObjectField(new Rect(3, 1, position.width - 50, 16), "Game Object", stateEditorUtils.SelectedObject, typeof(Object));
+            stateEditorUtils.SelectedObject = (Object)EditorGUI.ObjectField(new Rect(3, 1, position.width - 150, 16), "Selected Object", stateEditorUtils.SelectedObject, typeof(Object));
 #pragma warning restore CS0618 // Type or member is obsolete
 
 
-            if (GUILayout.Button("Editor Scripts", EditorStyles.toolbarDropDown))
-            {
-                GenericMenu toolsMenu = new GenericMenu();
-            }
 
             if (GUILayout.Button("File", EditorStyles.toolbarDropDown))
             {
@@ -136,6 +159,15 @@ namespace Artimech
                 EditorGUIUtility.ExitGUI();
             }
 
+            if (GUILayout.Button("Editor Scripts", EditorStyles.toolbarDropDown))
+            {
+                GenericMenu toolsMenu2 = new GenericMenu();
+                for (int i = 0; i < m_EditorScripts.Count; i++)
+                    if (m_EditorScripts[i] != null)
+                        toolsMenu2.AddItem(new GUIContent(m_EditorScripts[i].GetType().Name), false, OnEditorScriptSelect,i);
+
+                toolsMenu2.DropDown(new Rect(Screen.width - 100, 0, 0, 16));
+            }
         }
 
         /// <summary>
@@ -203,6 +235,13 @@ namespace Artimech
         void OnWiki()
         {
             Help.BrowseURL("https://github.com/Scramasax/Artimech/wiki");
+        }
+
+        public void OnEditorScriptSelect(object obj)
+        {
+            int index = (int)obj;
+            stateEditorUtils.SelectedObject = m_EditorScripts[index];
+            //Debug.Log("Selected: " + index);
         }
 
         public void EditorRepaint()
