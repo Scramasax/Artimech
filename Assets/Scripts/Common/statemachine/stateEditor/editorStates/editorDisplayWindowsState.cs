@@ -260,11 +260,24 @@ namespace Artimech
                         //if (stateEditorUtils.StateList[i].GetConditionalByPosition(ev.mousePosition, 10);
                     }
 
+                    string fileAndPath = " ";
+                    string replaceStr = " ";
+                    if (stateEditorUtils.SelectedObject is GameObject)
+                    {
+                        fileAndPath = "Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs";
+                        replaceStr = "stateEmptyExample";
+                    }
+                    else
+                    {
+                        fileAndPath = "Assets/Scripts/Common/statemachine/state_examples/stateEditorExample.cs";
+                        replaceStr = "stateEditorExample";
+                    }
+
                     //TODO: add this from the xml.
                     menu.AddItem(new GUIContent("Add State/Empty State"),
                                                 false,
                                                 CreateAddStateCallback,
-                                                new menuData("Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs", "stateEmptyExample"));
+                                                new menuData(fileAndPath, replaceStr));
 
                     menu.AddItem(new GUIContent("Add State/Subscribe State"),
                                                 false,

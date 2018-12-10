@@ -45,14 +45,14 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class stateEditorExample : editorStateBase
+    public class testEditorStart : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public stateEditorExample(Object unityObj) : base (unityObj)
+        public testEditorStart(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
         }

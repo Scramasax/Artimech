@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\artimechEditorExample.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
@@ -73,7 +75,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\artimechEditorExample.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\editorStateMachineExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

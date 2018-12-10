@@ -299,7 +299,7 @@ namespace Artimech
             }
         }
 
-        public static bool CreateAndAddStateCodeToProject(GameObject gameobject, string stateName, string exampleToCopy, string replaceName, bool showLog = true)
+        public static bool CreateAndAddStateCodeToProject(UnityEngine.Object unityObj, string stateName, string exampleToCopy, string replaceName, bool showLog = true)
         {
 
             string pathName = "Assets/Scripts/artiMechStates/";
@@ -307,7 +307,7 @@ namespace Artimech
 
             string pathAndFileNameStartState = pathName
                                 + "aMech"
-                                + gameobject.name
+                                + unityObj.GetType().Name
                                 + "/"
                                 + stateName
                                 + ".cs";
@@ -372,9 +372,15 @@ namespace Artimech
 
             string modStr = "";
 
+            string objTypeStr = "";
+            if (stateEditorUtils.SelectedObject is GameObject)
+                objTypeStr = "(this.gameObject),";
+            else
+                objTypeStr = "(this),";
+
             string insertString = "\n            AddState(new "
                                 + stateName
-                                + "(this.gameObject),"
+                                + objTypeStr
                                 + "\""
                                 + stateName
                                 + "\""
@@ -605,13 +611,19 @@ namespace Artimech
                 int codeIndex = StateList.Count;
                 string stateName = "aMech" + SelectedObject.name + "State" + utlDataAndFile.GetCode(codeIndex);
 
-                GameObject gameObj = null;
-                if (stateEditorUtils.SelectedObject is GameObject)
+                /*                GameObject gameObj = null;
+                                if (stateEditorUtils.SelectedObject is GameObject)
+                                {
+                                    gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                                }*/
+
+                UnityEngine.Object unityObj = null;
+                if (stateEditorUtils.SelectedObject is UnityEngine.Object)
                 {
-                    gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                    unityObj = (UnityEngine.Object)stateEditorUtils.SelectedObject;
                 }
 
-                while (!CreateAndAddStateCodeToProject(gameObj, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName, false))
+                while (!CreateAndAddStateCodeToProject(unityObj, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName, false))
                 {
                     codeIndex += 1;
                     stateName = "aMech" + SelectedObject.name + "State" + utlDataAndFile.GetCode(codeIndex);

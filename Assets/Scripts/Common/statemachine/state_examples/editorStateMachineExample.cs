@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace Artimech
 {
-    public class artimechEditorExample : artimechEditorBase
+    public class editorStateMachineExample : artimechEditorBase
     {
-        public artimechEditorExample() : base()
+        public editorStateMachineExample() : base()
         {
 
         }
