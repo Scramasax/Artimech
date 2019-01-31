@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\aMechStateA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\artimechEditorExample.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart.cs" />
