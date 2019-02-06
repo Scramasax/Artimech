@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>aMechStateA</alias>
+    <alias>No Object</alias>
     <comment></comment>
-    <posX>261</posX>
-    <posY>39</posY>
-    <sizeX>150</sizeX>
-    <sizeY>80</sizeY>
+    <posX>221</posX>
+    <posY>40</posY>
+    <sizeX>119</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,16 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class aMechStateA : editorStateBase
+    public class artNoObject : editorStateBase
     {
-
+        artWindowBase m_TestWin;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aMechStateA(Object unityObj) : base (unityObj)
+        public artNoObject(Object unityObj) : base (unityObj)
         {
+            m_TestWin = new artWindowBase("test",new Rect(100,100,100,100),new Color(1,1,1,0.8f),1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artNoObject_To_artLoad("artLoad"));
         }
 
         /// <summary>
@@ -62,6 +64,7 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
+            //m_TestWin.Update();
             base.Update();
         }
 
@@ -78,6 +81,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            //         m_TestWin.Draw(1);
+            m_TestWin.Update();
             base.UpdateEditorGUI();
         }
 
@@ -86,7 +91,6 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            Debug.Log("here");
             base.Enter();
         }
 

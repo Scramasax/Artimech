@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class testEditorStart_To_aMechStateA : stateConditionalBase
+    public class artAskToCreate_To_artCreate : stateConditionalBase
     {
         
-        public testEditorStart_To_aMechStateA(string changeStateName) : base (changeStateName)
+        public artAskToCreate_To_artCreate(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -61,7 +61,7 @@ namespace Artimech
                 strOut = m_ChangeStateName;
 #endif
 
-            strOut = m_ChangeStateName;
+
             return strOut;
         }
     }

@@ -284,8 +284,12 @@ namespace Artimech
                         string baseThreeStr = "";
 
                         baseOneStr = type.BaseType.Name;
-                        baseTwoStr = type.BaseType.BaseType.Name;
-                        baseThreeStr = type.BaseType.BaseType.BaseType.Name;
+                        if (type.BaseType.BaseType != null)
+                        {
+                            baseTwoStr = type.BaseType.BaseType.Name;
+                            if (type.BaseType.BaseType.BaseType != null)
+                                baseThreeStr = type.BaseType.BaseType.BaseType.Name;
+                        }
 
                         //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
                         if (baseOneStr == "baseState" || baseTwoStr == "baseState" || baseThreeStr == "baseState")
@@ -435,7 +439,7 @@ namespace Artimech
 
             string text = utlDataAndFile.LoadTextFromFile(AddConditionPath);
 
-           // int a = 12;
+            // int a = 12;
 
             string modText = text.Replace(AddConditionReplace, replaceName);
 

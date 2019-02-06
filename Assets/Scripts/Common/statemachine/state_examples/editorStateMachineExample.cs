@@ -15,7 +15,8 @@ namespace Artimech
         [MenuItem("Window/Artimech/ExampleEditor")]
         static void ShowEditor()
         {
-            EditorWindow.GetWindow<artimechEditorExample>();
+            //geolan: hack
+            //EditorWindow.GetWindow<artimechEditorExample>();
         }
 
         new void OnEnable()

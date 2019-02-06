@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Start</alias>
+    <alias>Ask To Create</alias>
     <comment></comment>
-    <posX>32</posX>
-    <posY>43</posY>
-    <sizeX>105</sizeX>
-    <sizeY>39</sizeY>
+    <posX>215</posX>
+    <posY>118</posY>
+    <sizeX>122</sizeX>
+    <sizeY>47</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,18 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artStart : editorStateBase
+    public class artAskToCreate : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artStart(Object unityObj) : base (unityObj)
+        public artAskToCreate(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artStart_To_artNoObject("artNoObject"));
-           
+            m_ConditionalList.Add(new artAskToCreate_To_artCreate("artCreate"));
         }
 
         /// <summary>

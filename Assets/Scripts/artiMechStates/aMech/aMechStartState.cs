@@ -31,7 +31,7 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>stateEditorExample</alias>
+    <alias>nada</alias>
     <comment></comment>
     <posX>20</posX>
     <posY>40</posY>
@@ -45,17 +45,16 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class testEditorStart : editorStateBase
+    public class aMechStartState : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public testEditorStart(Object unityObj) : base (unityObj)
+        public aMechStartState(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new testEditorStart_To_aMechStateA("aMechStateA"));
         }
 
         /// <summary>

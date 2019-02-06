@@ -61,12 +61,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\artiMechStates\aMech\aMech.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMech\aMechStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artCreate.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreate.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreate_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoad.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoad_To_artAskToCreate.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoad_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoad_To_artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artLoad.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\aMechStateA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\artimechEditorExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechartimechEditorExample\testEditorStart_To_aMechStateA.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
