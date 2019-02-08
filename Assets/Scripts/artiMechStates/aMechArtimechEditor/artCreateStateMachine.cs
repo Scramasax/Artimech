@@ -47,7 +47,7 @@ namespace Artimech
 {
     public class artCreateStateMachine : editorStateBase
     {
-
+        artMessageWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -79,6 +79,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -87,6 +88,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artMessageWindow("Artimech System Status", "Creating State Machine.....", 16, new Color(0.0f, 0.7f, 0.3f, 1), new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

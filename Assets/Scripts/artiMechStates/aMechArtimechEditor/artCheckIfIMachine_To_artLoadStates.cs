@@ -57,11 +57,15 @@ namespace Artimech
             if (ArtimechEditor.Inst.SelectedObj == null)
                 return null;
 
+            bool abool = ArtimechEditor.Inst.SelectedObj is GameObject;
+            if (!abool)
+                return null;
+
             GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;
 
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
 
-            if (machines.Length==1)
+            if (machines.Length == 1)
                 strOut = m_ChangeStateName;
 
             return strOut;

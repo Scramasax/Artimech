@@ -54,12 +54,9 @@ namespace Artimech
         {
             string strOut = null;
 
-#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
-            This is an example of setting a contition to true if the gameobject
-            falls below a certain height ingame.
-            if (state.m_GameObject.transform.position.y <= 1000)
+            artBaseOkCancel chooseState = (artBaseOkCancel)state;
+            if (chooseState.OkBool)
                 strOut = m_ChangeStateName;
-#endif
 
 
             return strOut;

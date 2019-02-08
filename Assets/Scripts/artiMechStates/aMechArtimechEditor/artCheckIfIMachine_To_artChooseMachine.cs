@@ -29,20 +29,20 @@ namespace Artimech
 {
     public class artCheckIfIMachine_To_artChooseMachine : stateConditionalBase
     {
-        
-        public artCheckIfIMachine_To_artChooseMachine(string changeStateName) : base (changeStateName)
+
+        public artCheckIfIMachine_To_artChooseMachine(string changeStateName) : base(changeStateName)
         {
-            
+
         }
 
         public override void Enter(baseState state)
         {
-            
+
         }
 
         public override void Exit(baseState state)
         {
-            
+
         }
 
         /// <summary>
@@ -54,7 +54,11 @@ namespace Artimech
         {
             string strOut = null;
 
-            if (ArtimechEditor.Inst.SelectedObj==null)
+            if (ArtimechEditor.Inst.SelectedObj == null)
+                return null;
+
+            bool abool = ArtimechEditor.Inst.SelectedObj is GameObject;
+            if (!abool)
                 return null;
 
             GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;

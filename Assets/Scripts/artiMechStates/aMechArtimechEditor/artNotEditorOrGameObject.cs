@@ -45,9 +45,9 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artNotEditorOrGameObject : editorStateBase
+    public class artNotEditorOrGameObject : artBaseOkCancel
     {
-
+        artMessageWindowPromt m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -79,6 +79,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -87,6 +88,9 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artMessageWindowPromt(this,"Error", "Selected object isn't of the correct type!", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow.InitImage("exclimation.png");
+            ArtimechEditor.Inst.Repaint();
             base.Enter();
         }
 
@@ -95,6 +99,7 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
+            ArtimechEditor.Inst.SelectedObj = null;
             base.Exit();
         }
     }

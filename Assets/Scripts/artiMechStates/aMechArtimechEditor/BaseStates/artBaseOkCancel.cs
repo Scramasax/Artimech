@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Load States</alias>
+    <alias>Clear Object</alias>
     <comment></comment>
-    <posX>170</posX>
-    <posY>413</posY>
-    <sizeX>139</sizeX>
-    <sizeY>47</sizeY>
+    <posX>10</posX>
+    <posY>311</posY>
+    <sizeX>131</sizeX>
+    <sizeY>57</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,44 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artLoadStates : editorStateBase
+    public class artBaseOkCancel : editorStateBase
     {
-        artMessageWindow m_MessageWindow;
+        bool m_CancelBool;
+        bool m_OkBool;
+
+        public bool CancelBool
+        {
+            get
+            {
+                return m_CancelBool;
+            }
+
+            set
+            {
+                m_CancelBool = value;
+            }
+        }
+
+        public bool OkBool
+        {
+            get
+            {
+                return m_OkBool;
+            }
+
+            set
+            {
+                m_OkBool = value;
+            }
+        }
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artLoadStates(Object unityObj) : base (unityObj)
+        public artBaseOkCancel(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artLoadStates_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -79,7 +106,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -88,8 +114,8 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindow("Artimech System Status","Loading.....",25,Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            ArtimechEditor.Inst.Repaint();
+            CancelBool = false;
+            OkBool = false;
             base.Enter();
         }
 
