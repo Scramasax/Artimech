@@ -89,7 +89,10 @@ namespace Artimech
         public override void Enter()
         {
             m_MessageWindow = new artMessageWindowPromt(this,"Error", "Selected object isn't of the correct type!", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow.Width = 0.6f;
+            m_MessageWindow.ButtonSideSpacing = 120.0f;
             m_MessageWindow.InitImage("exclimation.png");
+            ArtimechEditor.Inst.DrawToolBarBool = false;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

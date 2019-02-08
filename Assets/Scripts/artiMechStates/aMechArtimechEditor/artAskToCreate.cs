@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Create</alias>
     <comment></comment>
-    <posX>338</posX>
-    <posY>413</posY>
-    <sizeX>122</sizeX>
-    <sizeY>47</sizeY>
+    <posX>334</posX>
+    <posY>346</posY>
+    <sizeX>114</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -55,6 +55,7 @@ namespace Artimech
         public artAskToCreate(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artAskToCreate_To_artClearObject("artClearObject"));
             m_ConditionalList.Add(new artAskToCreate_To_artChooseStateMachineName("artChooseStateMachineName"));
         }
 
@@ -89,8 +90,11 @@ namespace Artimech
         public override void Enter()
         {
             m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Create a state machine?", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            m_MessageWindow.Width = 0.45f;
+            m_MessageWindow.Width = 0.55f;
+            m_MessageWindow.ButtonSideSpacing = 40.0f;
+            m_MessageWindow.CancelPrompt = true;
             m_MessageWindow.InitImage("questionMark.png");
+            ArtimechEditor.Inst.DrawToolBarBool = false;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

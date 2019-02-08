@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMech\aMechStartState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artChooseStateMachineName.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artChooseMachine.cs" />
@@ -77,7 +78,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCheckIfIMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowError.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
@@ -202,7 +203,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

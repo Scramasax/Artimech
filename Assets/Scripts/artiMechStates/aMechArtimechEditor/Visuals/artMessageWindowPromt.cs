@@ -21,8 +21,14 @@ namespace Artimech
         Color m_FontColor;
         artBaseOkCancel m_State;
 
-        float m_Width = 110;
-        float m_Height= 0.5f;
+        float m_Width = 0.5f;
+        float m_Height= 110;
+
+        float m_ButtonSideSpacing = 80.0f;
+        float m_ButtonMiddleSpacing = 20.0f;
+
+        bool m_OkPrompt = true;
+        bool m_CancelPrompt = false;
 
         Texture m_ExclamtionTexture;
         Vector4 m_TexturePosAndSize;
@@ -52,6 +58,58 @@ namespace Artimech
             set
             {
                 m_Height = value;
+            }
+        }
+
+        public bool OkPrompt
+        {
+            get
+            {
+                return m_OkPrompt;
+            }
+
+            set
+            {
+                m_OkPrompt = value;
+            }
+        }
+
+        public bool CancelPrompt
+        {
+            get
+            {
+                return m_CancelPrompt;
+            }
+
+            set
+            {
+                m_CancelPrompt = value;
+            }
+        }
+
+        public float ButtonSideSpacing
+        {
+            get
+            {
+                return m_ButtonSideSpacing;
+            }
+
+            set
+            {
+                m_ButtonSideSpacing = value;
+            }
+        }
+
+        public float ButtonMiddleSpacing
+        {
+            get
+            {
+                return m_ButtonMiddleSpacing;
+            }
+
+            set
+            {
+                m_ButtonMiddleSpacing = value;
             }
         }
 
@@ -89,7 +147,7 @@ namespace Artimech
             m_WinRect.x = Screen.width * 0.5f;
             m_WinRect.width = Screen.width * m_Width;
             //m_WinRect.height = Screen.height * 0.25f;
-            m_WinRect.height = 110;
+            m_WinRect.height = m_Height;
             m_WinRect.x = (Screen.width * 0.5f) - (m_WinRect.width * 0.5f);
             m_WinRect.y = (Screen.height * 0.5f) - (m_WinRect.height * 0.5f);
             m_TexturePosAndSize.Set(m_WinRect.width - 40, 32, 32, 32);
@@ -137,13 +195,25 @@ namespace Artimech
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal("");
-            GUILayout.Space(80);
-            if (GUILayout.Button("Ok"))
+            GUILayout.Space(m_ButtonSideSpacing);
+            if (m_CancelPrompt)
             {
-                m_State.OkBool = true;
+                if (GUILayout.Button("Cancel"))
+                {
+                    m_State.CancelBool = true;
+                }
+                GUILayout.Space(m_ButtonMiddleSpacing);
             }
 
-            GUILayout.Space(80);
+            if (m_OkPrompt)
+            {
+                if (GUILayout.Button("Ok"))
+                {
+                    m_State.OkBool = true;
+                }
+            }
+
+            GUILayout.Space(m_ButtonSideSpacing);
             GUILayout.EndHorizontal();
 
             GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);

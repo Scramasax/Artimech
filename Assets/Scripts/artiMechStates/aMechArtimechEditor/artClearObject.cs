@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Clear Object</alias>
     <comment></comment>
-    <posX>10</posX>
-    <posY>311</posY>
-    <sizeX>131</sizeX>
-    <sizeY>57</sizeY>
+    <posX>26</posX>
+    <posY>303</posY>
+    <sizeX>103</sizeX>
+    <sizeY>40</sizeY>
   </State>
 </stateMetaData>
 

@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artChooseStateMachineName_To_artCheckIfIMachine : stateConditionalBase
+    public class artAskToCreate_To_artClearObject : stateConditionalBase
     {
         
-        public artChooseStateMachineName_To_artCheckIfIMachine(string changeStateName) : base (changeStateName)
+        public artAskToCreate_To_artClearObject(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -54,7 +54,7 @@ namespace Artimech
         {
             string strOut = null;
 
-            artChooseStateMachineName chooseState = (artChooseStateMachineName)state;
+            artBaseOkCancel chooseState = (artBaseOkCancel)state;
             if (chooseState.CancelBool)
                 strOut = m_ChangeStateName;
 

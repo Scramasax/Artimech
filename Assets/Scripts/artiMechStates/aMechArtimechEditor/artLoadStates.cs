@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>170</posX>
-    <posY>413</posY>
-    <sizeX>139</sizeX>
-    <sizeY>47</sizeY>
+    <posX>251</posX>
+    <posY>507</posY>
+    <sizeX>92</sizeX>
+    <sizeY>38</sizeY>
   </State>
 </stateMetaData>
 
@@ -52,7 +52,7 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artLoadStates(Object unityObj) : base (unityObj)
+        public artLoadStates(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artLoadStates_To_artDisplayStates("artDisplayStates"));
@@ -88,7 +88,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindow("Artimech System Status","Loading.....",25,Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow = new artMessageWindow("Artimech System Status", "Loading State Machine Scripts...", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

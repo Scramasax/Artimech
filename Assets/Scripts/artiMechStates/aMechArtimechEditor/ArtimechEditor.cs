@@ -33,6 +33,7 @@ namespace Artimech
         UnityEngine.Object m_WasSelectedObj;
         utlMatrix34 m_TransMtx;
         iMachineBase m_MachineScript;
+        bool m_DrawToolBarBool = true;
 
 
         #endregion
@@ -52,6 +53,9 @@ namespace Artimech
         /// <summary>Active Machine Script</summary>
         public iMachineBase MachineScript { get { return m_MachineScript; } set { m_MachineScript = value; } }
 
+        /// <summary>Turns on and off the toolbar.</summary>
+        public bool DrawToolBarBool { get { return m_DrawToolBarBool; } set { m_DrawToolBarBool = value; } }
+
         #endregion
         #region Member Functions
         public ArtimechEditor() : base()
@@ -59,7 +63,7 @@ namespace Artimech
             if (m_Instance == null)
                 m_Instance = this;
 
-           
+
         }
 
         [MenuItem("Window/Artimech/ArtimechEditor")]
@@ -100,7 +104,7 @@ namespace Artimech
 
         void DrawToolBar()
         {
-
+            EditorGUI.BeginDisabledGroup(!DrawToolBarBool);
             GUILayout.FlexibleSpace();
 
 
@@ -120,18 +124,16 @@ namespace Artimech
 
                 EditorGUIUtility.ExitGUI();
             }
+
+            EditorGUI.EndDisabledGroup();
         }
 
         new void OnGUI()
         {
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
-            DrawToolBar();
+            //if (DrawToolBarBool)
+                DrawToolBar();
             GUILayout.EndHorizontal();
-
-    //        if (m_MainWindow != null)
-      //          m_MainWindow.Update();
-
-            //stateEditorDrawUtils.DrawGridBackground();
 
             // render populated state windows
             BeginWindows();
@@ -150,11 +152,11 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
-            AddState(new artCreateStateMachine(this),"artCreateStateMachine");
-            AddState(new artClearObject(this),"artClearObject");
-            AddState(new artChooseMachine(this),"artChooseMachine");
-            AddState(new artLoadStates(this),"artLoadStates");
-            AddState(new artNotEditorOrGameObject(this),"artNotEditorOrGameObject");
+            AddState(new artCreateStateMachine(this), "artCreateStateMachine");
+            AddState(new artClearObject(this), "artClearObject");
+            AddState(new artChooseMachine(this), "artChooseMachine");
+            AddState(new artLoadStates(this), "artLoadStates");
+            AddState(new artNotEditorOrGameObject(this), "artNotEditorOrGameObject");
             AddState(new artDisplayStates(this), "artDisplayStates");
             AddState(new artChooseStateMachineName(this), "artChooseStateMachineName");
             AddState(new artAskToCreate(this), "artAskToCreate");
@@ -182,10 +184,10 @@ namespace Artimech
             Help.BrowseURL("https://github.com/Scramasax/Artimech/wiki");
         }
 
-/*        new public void Repaint()
-        {
-            Repaint();
-        }*/
+        /*        new public void Repaint()
+                {
+                    Repaint();
+                }*/
     }
     #endregion
 }

@@ -106,6 +106,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor.Inst.DrawToolBarBool = true;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

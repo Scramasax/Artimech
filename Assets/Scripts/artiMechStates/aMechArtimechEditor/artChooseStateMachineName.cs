@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Choose Name</alias>
     <comment></comment>
-    <posX>526</posX>
-    <posY>494</posY>
+    <posX>447</posX>
+    <posY>471</posY>
     <sizeX>123</sizeX>
     <sizeY>44</sizeY>
   </State>
@@ -107,7 +107,7 @@ namespace Artimech
         public artChooseStateMachineName(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artChooseStateMachineName_To_artCheckIfIMachine("artCheckIfIMachine"));
+            m_ConditionalList.Add(new artChooseStateMachineName_To_artClearObject("artClearObject"));
             m_ConditionalList.Add(new artChooseStateMachineName_To_artCreateStateMachine("artCreateStateMachine"));
         }
 
@@ -149,6 +149,7 @@ namespace Artimech
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
             m_CreateWindow = new artChooseStateMachineNameMachineWindow(this, "Choose A State Machine To Create", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
 
+            ArtimechEditor.Inst.DrawToolBarBool = false;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }

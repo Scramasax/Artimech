@@ -121,10 +121,12 @@ namespace Artimech
             GUILayout.Space(-10);
             GUILayout.BeginHorizontal("");
 
+            EditorGUI.BeginDisabledGroup(IsAMachineSelected());
             if (GUILayout.Button("Create New State Machine"))
             {
                 m_State.CreateBool = true;
             }
+            EditorGUI.EndDisabledGroup();
             GUILayout.EndHorizontal();
             //GUILayout.EndHorizontal();
 

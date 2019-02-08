@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Choose A Machine</alias>
     <comment></comment>
-    <posX>15</posX>
-    <posY>500</posY>
-    <sizeX>148</sizeX>
-    <sizeY>47</sizeY>
+    <posX>6</posX>
+    <posY>459</posY>
+    <sizeX>147</sizeX>
+    <sizeY>38</sizeY>
   </State>
 </stateMetaData>
 
@@ -136,11 +136,12 @@ namespace Artimech
         {
             GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
-            m_ChooseWindow = new artMachineChooseWindow(this, machines, "Choose A State Machine", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+            m_ChooseWindow = new artMachineChooseWindow(this, machines, "Choose Or Create A State Machine", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
 
             m_CancelBool = false;
             m_OkBool = false;
             m_CreateBool = false;
+            ArtimechEditor.Inst.DrawToolBarBool = false;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
         }
