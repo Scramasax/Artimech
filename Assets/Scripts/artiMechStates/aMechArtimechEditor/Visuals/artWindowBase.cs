@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +16,10 @@ namespace Artimech
     public class artWindowBase
     {
         #region Variables
-        Rect m_WinRect;
-        string m_Title = "";
-        int m_Id = -1;
-        Color m_WindowColor;
+        protected Rect m_WinRect;
+        protected string m_Title = "";
+        protected int m_Id = -1;
+        protected Color m_WindowColor;
         #endregion
         #region Gets Sets
         public Rect WinRect

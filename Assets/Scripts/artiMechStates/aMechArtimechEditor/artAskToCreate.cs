@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Create</alias>
     <comment></comment>
-    <posX>215</posX>
-    <posY>118</posY>
+    <posX>338</posX>
+    <posY>413</posY>
     <sizeX>122</sizeX>
     <sizeY>47</sizeY>
   </State>
@@ -55,7 +55,7 @@ namespace Artimech
         public artAskToCreate(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artAskToCreate_To_artCreate("artCreate"));
+            m_ConditionalList.Add(new artAskToCreate_To_artChooseStateMachineName("artChooseStateMachineName"));
         }
 
         /// <summary>

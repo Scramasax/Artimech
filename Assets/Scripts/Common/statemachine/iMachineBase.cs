@@ -33,6 +33,7 @@ namespace Artimech
         void LateUpdate();
         baseState GetCurrentState();
         baseState AddState(baseState state, string statename);
+        string GetName();
         void ForceChangeState(string stateName);
     }
 }

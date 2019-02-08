@@ -19,6 +19,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 #region XML_DATA
 
@@ -33,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>No Object</alias>
     <comment></comment>
-    <posX>221</posX>
-    <posY>40</posY>
+    <posX>13</posX>
+    <posY>208</posY>
     <sizeX>119</sizeX>
     <sizeY>39</sizeY>
   </State>
@@ -47,16 +48,29 @@ namespace Artimech
 {
     public class artNoObject : editorStateBase
     {
-        artWindowBase m_TestWin;
+        static Texture2D m_LoadingImage = null;
+        //artWindowBase m_TestWin;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
         public artNoObject(Object unityObj) : base (unityObj)
         {
-            m_TestWin = new artWindowBase("test",new Rect(100,100,100,100),new Color(1,1,1,0.8f),1);
+            //m_TestWin = new artWindowBase("test",new Rect(100,100,100,100),new Color(1,1,1,0.8f),1);
+            InitImage();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artNoObject_To_artLoad("artLoad"));
+            m_ConditionalList.Add(new artNoObject_To_artCheckIfIMachine("artCheckIfIMachine"));
+        }
+
+        void InitImage()
+        {
+            string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "StartBackground.png");
+            byte[] fileData;
+            fileData = File.ReadAllBytes(fileAndPath);
+
+            m_LoadingImage = null;
+            m_LoadingImage = new Texture2D(512, 512);
+            m_LoadingImage.LoadImage(fileData);
         }
 
         /// <summary>
@@ -82,7 +96,8 @@ namespace Artimech
         public override void UpdateEditorGUI()
         {
             //         m_TestWin.Draw(1);
-            m_TestWin.Update();
+            GUILayout.Label(m_LoadingImage);
+ //           m_TestWin.Update();
             base.UpdateEditorGUI();
         }
 
@@ -91,6 +106,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor.Inst.Repaint();
             base.Enter();
         }
 

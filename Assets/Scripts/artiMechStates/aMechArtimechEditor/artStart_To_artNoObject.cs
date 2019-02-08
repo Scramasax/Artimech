@@ -32,7 +32,7 @@ namespace Artimech
         
         public artStart_To_artNoObject(string changeStateName) : base (changeStateName)
         {
-            
+           
         }
 
         public override void Enter(baseState state)

@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>30</posX>
-    <posY>215</posY>
-    <sizeX>121</sizeX>
-    <sizeY>49</sizeY>
+    <posX>420</posX>
+    <posY>170</posY>
+    <sizeX>146</sizeX>
+    <sizeY>46</sizeY>
   </State>
 </stateMetaData>
 
@@ -47,13 +47,14 @@ namespace Artimech
 {
     public class artDisplayStates : editorStateBase
     {
-
+        artMainWindow m_MainWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
         public artDisplayStates(Object unityObj) : base (unityObj)
         {
+            m_MainWindow = new artMainWindow("Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
         }
 
@@ -78,6 +79,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_MainWindow.Update();
             base.UpdateEditorGUI();
         }
 

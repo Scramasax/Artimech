@@ -32,14 +32,10 @@ namespace Artimech
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
 
-        /*
-        public baseState CurrentState
+        public string GetName()
         {
-            get
-            {
-                return m_CurrentState;
-            }
-        }*/
+            return this.name;
+        }
 
         public baseState GetCurrentState()
         {

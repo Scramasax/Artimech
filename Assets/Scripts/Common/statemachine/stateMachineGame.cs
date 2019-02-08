@@ -46,6 +46,11 @@ namespace Artimech
             return m_CurrentState;
         }
 
+        public string GetName()
+        {
+            return this.name;
+        }
+
         /// <summary>
         /// starts before the start function.
         /// </summary>
