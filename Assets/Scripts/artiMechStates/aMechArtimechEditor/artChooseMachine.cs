@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Choose A Machine</alias>
     <comment></comment>
-    <posX>6</posX>
-    <posY>459</posY>
+    <posX>328</posX>
+    <posY>346</posY>
     <sizeX>147</sizeX>
     <sizeY>38</sizeY>
   </State>

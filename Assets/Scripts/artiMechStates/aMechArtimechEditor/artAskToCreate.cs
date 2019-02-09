@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Create</alias>
     <comment></comment>
-    <posX>334</posX>
-    <posY>346</posY>
+    <posX>108</posX>
+    <posY>513</posY>
     <sizeX>114</sizeX>
     <sizeY>39</sizeY>
   </State>

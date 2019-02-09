@@ -43,7 +43,7 @@ namespace Artimech
         public void Update()
         {
             m_WinRect.x = Screen.width * 0.5f;
-            m_WinRect.width = Screen.width * 0.5f;
+            m_WinRect.width = Screen.width * 0.65f;
             //m_WinRect.height = Screen.height * 0.25f;
             m_WinRect.height = 125;
             m_WinRect.x = (Screen.width * 0.5f) - (m_WinRect.width * 0.5f);

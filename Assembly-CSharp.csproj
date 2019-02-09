@@ -95,6 +95,9 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseOkCancel.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artWindowsNode.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artEditorUtils.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artGUIUtils.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
@@ -203,6 +206,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

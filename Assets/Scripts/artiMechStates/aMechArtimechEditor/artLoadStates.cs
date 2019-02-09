@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>251</posX>
-    <posY>507</posY>
+    <posX>445</posX>
+    <posY>210</posY>
     <sizeX>92</sizeX>
     <sizeY>38</sizeY>
   </State>
