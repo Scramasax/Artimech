@@ -309,12 +309,25 @@ namespace Artimech
             string pathName = "Assets/Scripts/artiMechStates/";
             //string FileName = "Assets/Scripts/Common/statemachine/state_examples/stateTemplate.cs";
 
-            string pathAndFileNameStartState = pathName
+            string pathAndFileNameStartState = null;
+            if (unityObj is EditorWindow)
+            {
+                pathAndFileNameStartState = pathName
                                 + "aMech"
                                 + unityObj.GetType().Name
                                 + "/"
                                 + stateName
                                 + ".cs";
+            }
+            else
+            {
+                pathAndFileNameStartState = pathName
+                + "aMech"
+                + unityObj.name
+                + "/"
+                + stateName
+                + ".cs";
+            }
 
             if (File.Exists(pathAndFileNameStartState))
             {
