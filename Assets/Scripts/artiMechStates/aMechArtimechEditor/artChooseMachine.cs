@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Choose A Machine</alias>
     <comment></comment>
-    <posX>328</posX>
-    <posY>346</posY>
+    <posX>230</posX>
+    <posY>311</posY>
     <sizeX>147</sizeX>
     <sizeY>38</sizeY>
   </State>
@@ -101,7 +101,6 @@ namespace Artimech
             m_ConditionalList.Add(new artChooseMachine_To_artChooseStateMachineName("artChooseStateMachineName"));
             m_ConditionalList.Add(new artChooseMachine_To_artClearObject("artClearObject"));
             m_ConditionalList.Add(new artChooseMachine_To_artLoadStates("artLoadStates"));
-            m_ConditionalList.Add(new artChooseMachine_To_artChooseMachine("artChooseMachine"));
         }
 
         /// <summary>

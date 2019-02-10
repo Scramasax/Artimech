@@ -676,7 +676,7 @@ namespace Artimech
         {
             for (int i = 0; i < stateEditorUtils.StateList.Count; i++)
             {
-                if (stateEditorUtils.StateList[i].IsWithin(vect))
+                if (stateEditorUtils.StateList[i].IsWithinUsingPanZoomTransform(vect))
                 {
                     return stateEditorUtils.StateList[i];
                 }

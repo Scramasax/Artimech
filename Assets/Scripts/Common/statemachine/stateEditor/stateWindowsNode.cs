@@ -230,7 +230,7 @@ namespace Artimech
         public bool IsWithinUsingPanZoomTransform(Vector2 vect)
         {
             Vector3 transVect = new Vector3();
-            transVect = stateEditorUtils.TranslationMtx.Transform(vect);
+            transVect = stateEditorUtils.TranslationMtx.UnTransform(vect);
             if (transVect.x >= m_WinRect.x && transVect.x < m_WinRect.x + m_WinRect.width)
             {
                 if (transVect.y >= m_WinRect.y && transVect.y < m_WinRect.y + m_WinRect.height)

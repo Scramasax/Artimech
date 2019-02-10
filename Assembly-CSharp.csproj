@@ -73,7 +73,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNotEditorOrGameObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artChooseMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artChooseStateMachineName.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
@@ -206,7 +205,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
