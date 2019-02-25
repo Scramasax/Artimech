@@ -146,6 +146,23 @@ namespace Artimech
 
         }
 
+        public static void DrawArrowTranformed(utlMatrix34 mtx,Vector2 startPos,Vector2 endPos,Rect winRectStart, Rect winRectEnd,float lineWidth,Color lineColor,Color bodyColor)
+        {
+            Vector3 startPosTrans = new Vector3();
+            startPosTrans = mtx.Transform(startPos);
+
+            Vector3 endPosTrans = new Vector3();
+            endPosTrans = mtx.Transform(endPos);
+
+            Rect transStartRect = new Rect(winRectStart);
+            Rect transEndRect = new Rect(winRectEnd);
+
+            transStartRect.position = mtx.Transform(transStartRect.position);
+            transEndRect.position = mtx.Transform(transEndRect.position);
+
+            DrawArrow(startPosTrans, endPosTrans, transStartRect, transEndRect, lineWidth, lineColor, bodyColor);
+        }
+
         public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
             Vector3 startPosTrans = new Vector3();
@@ -166,6 +183,59 @@ namespace Artimech
                 transEndRect,
                 lineWidth,
                 lineColor, shadowWidth, shadowColor, bodyColor);
+
+        }
+
+        public static void DrawArrow(Vector2 startPos,Vector2 endPos,Rect winRectStart,Rect winRectEnd,float lineWidth,Color lineColor,Color bodyColor)
+        {
+            Vector2 colPos = new Vector2();
+            if (LineRectIntersection(startPos, endPos, winRectStart, ref colPos))
+                startPos = colPos;
+
+            if (LineRectIntersection(startPos, endPos, winRectEnd, ref colPos))
+                endPos = colPos;
+
+            Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
+
+            artGUIUtils.DrawRect(new Rect(startPos.x-5, startPos.y-5, 10, 10), lineWidth, lineColor, bodyColor);
+
+
+            //arrow head draw
+            const int arrowHeadSize = 3;
+
+            Vector3[] arrowHead = new Vector3[arrowHeadSize];
+
+            float arrowSize = 15;
+            arrowHead[0] = new Vector3(0, 0, 0);
+            arrowHead[1] = new Vector3(0, arrowSize * 0.5f, arrowSize);
+
+            arrowHead[2] = new Vector3(0, -arrowSize * 0.5f, arrowSize);
+
+
+            utlMatrix34 mtx = new utlMatrix34(endPos);
+            Vector3 lookAtPos = new Vector3(startPos.x, startPos.y, 0); //new Vector3(winRectEnd.x + (winRectEnd.width * 0.5f), winRectEnd.y + (winRectEnd.height * 0.5f), 0);
+            mtx.LookAt(lookAtPos);
+
+            Vector3[] arrowHeadWorld = new Vector3[arrowHeadSize];
+
+            for (int i = 0; i < arrowHeadWorld.Length; i++)
+            {
+                arrowHeadWorld[i] = new Vector3();
+                arrowHeadWorld[i] = mtx.Transform(arrowHead[i]);
+            }
+
+            float slice = 0.05f;
+            for (float i = slice; i < 1.0f - slice; i += slice)
+            {
+                Vector3 lerpVect = Vector3.Lerp(arrowHeadWorld[1], arrowHeadWorld[2], i);
+                Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], bodyColor, null, 3);
+            }
+
+            Handles.color = lineColor;
+
+            artGUIUtils.DrawLine(arrowHeadWorld[0], arrowHeadWorld[1], lineWidth, lineColor);
+            artGUIUtils.DrawLine(arrowHeadWorld[0], arrowHeadWorld[2], lineWidth, lineColor);
+            artGUIUtils.DrawLine(arrowHeadWorld[1], arrowHeadWorld[2], lineWidth, lineColor);
 
         }
 

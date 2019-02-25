@@ -360,7 +360,7 @@ namespace Artimech
 
 
             //GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
-            DrawNodeWindow(this.m_Id);
+
 
             Vector3 startPos = GetStartPosForConditional();
 
@@ -370,9 +370,10 @@ namespace Artimech
                 Vector3 endPos = GetEndPosForConditional(ConditionLineList[i]);
 
                 Color shadowCol = new Color(0, 0, 1, 0.06f);
-                artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol, Color.white);
+                //artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol, Color.white);
+                artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 3, Color.black, Color.green);
             }
-
+            DrawNodeWindow(this.m_Id);
         }
 
         public bool CheckWinNodeToSeeIfItIsLinked(artVisualStateNode winNode)
@@ -537,28 +538,28 @@ namespace Artimech
             //draw the resizer
             const float initSizerSize = 15;
             float sizerSize = initSizerSize;
-            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.x + WinRect.width - 2, WinRect.y + this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 10;
-            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.x + WinRect.width - 2, WinRect.y + this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
             sizerSize = 5;
-            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.width - 2, this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
+            artGUIUtils.DrawWindowSizer(new Vector3(WinRect.x + WinRect.width - 2, WinRect.y + this.WinRect.height - 2, 0), sizerSize - 1, sizerSize - 3, 2, Color.grey);
 
             const float titleHeight = 15;
             //create the main body rectangle.
-            m_MainBodyRectA = new Rect(0, titleHeight, WinRect.width, WinRect.height - initSizerSize - titleHeight);
-            m_MainBodyRectB = new Rect(0, titleHeight, WinRect.width - initSizerSize, WinRect.height);
+            m_MainBodyRectA = new Rect(WinRect.x, WinRect.y + titleHeight, WinRect.width, WinRect.height - initSizerSize - titleHeight);
+            //m_MainBodyRectB = new Rect(WinRect.x, WinRect.y + titleHeight, WinRect.width - initSizerSize, WinRect.y - WinRect.height);
 
             //main body of the window
             EditorGUIUtility.AddCursorRect(m_MainBodyRectA, MouseCursor.MoveArrow);
-            EditorGUIUtility.AddCursorRect(m_MainBodyRectB, MouseCursor.MoveArrow);
+            // EditorGUIUtility.AddCursorRect(m_MainBodyRectB, MouseCursor.MoveArrow);
 
             //resize
-            m_ResizeBodyRect = new Rect(new Rect(WinRect.width - initSizerSize, WinRect.height - initSizerSize, initSizerSize, initSizerSize));
+            m_ResizeBodyRect = new Rect(new Rect(WinRect.x + WinRect.width - initSizerSize, WinRect.y + WinRect.height - initSizerSize, initSizerSize, initSizerSize));
             EditorGUIUtility.AddCursorRect(m_ResizeBodyRect, MouseCursor.ResizeUpLeft);
 
             //title
             const float rightMarginSize = 15;
-            m_TitleRect = new Rect(0, 0, WinRect.width - rightMarginSize, titleHeight);
+            m_TitleRect = new Rect(WinRect.x, WinRect.y, WinRect.width - rightMarginSize, titleHeight);
             EditorGUIUtility.AddCursorRect(m_TitleRect, MouseCursor.Text);
 
             //close box
@@ -583,15 +584,17 @@ namespace Artimech
 
             GUI.color = Color.white;
 
+            GUILayout.Space(2);
             GUILayout.BeginHorizontal();
+
             GUILayout.FlexibleSpace();
             GUILayout.Label(this.WindowStateAlias);
             GUILayout.FlexibleSpace();
+
             GUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();
-
-
+            
             GUILayout.EndArea();
 
             Handles.EndGUI();
