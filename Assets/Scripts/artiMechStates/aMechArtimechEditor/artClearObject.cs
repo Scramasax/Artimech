@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Clear Object</alias>
     <comment></comment>
-    <posX>26</posX>
-    <posY>303</posY>
+    <posX>19</posX>
+    <posY>316</posY>
     <sizeX>103</sizeX>
     <sizeY>40</sizeY>
   </State>

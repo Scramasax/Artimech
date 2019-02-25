@@ -34,10 +34,10 @@ using System.IO;
   <State>
     <alias>No Object</alias>
     <comment></comment>
-    <posX>13</posX>
-    <posY>208</posY>
-    <sizeX>119</sizeX>
-    <sizeY>39</sizeY>
+    <posX>12</posX>
+    <posY>189</posY>
+    <sizeX>104</sizeX>
+    <sizeY>55</sizeY>
   </State>
 </stateMetaData>
 

@@ -22,7 +22,7 @@ using System.Collections.Generic;
 
 namespace Artimech
 {
-    public class artWindowsNode
+    public class artVisualStateNode
     {
         #region Variables
 
@@ -33,7 +33,7 @@ namespace Artimech
         string m_PathAndFileOfClass = "";
         baseState m_State = null;
 
-        IList<artWindowsNode> m_ConditionLineList = new List<artWindowsNode>();
+        IList<artVisualStateNode> m_ConditionLineList = new List<artVisualStateNode>();
 
         Rect m_CloseButtonRect;
         Rect m_MainBodyRectA;
@@ -108,7 +108,7 @@ namespace Artimech
         }
 
         /// <summary> Returns a list of conditions. </summary>
-        public IList<artWindowsNode> ConditionLineList
+        public IList<artVisualStateNode> ConditionLineList
         {
             get
             {
@@ -154,7 +154,7 @@ namespace Artimech
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
-        public artWindowsNode(int id)
+        public artVisualStateNode(int id)
         {
             m_WinRect = new Rect();
             m_ClassName = "not filled in...";
@@ -227,7 +227,7 @@ namespace Artimech
         /// </summary>
         /// <param name="tranVect"></param>
         /// <returns></returns>
-        public bool IsWithinUsingPanZoomTransform(Vector2 vect,utlMatrix34 mtx)
+        public bool IsWithinUsingPanZoomTransform(Vector2 vect, utlMatrix34 mtx)
         {
             Vector3 transVect = new Vector3();
             transVect = mtx.Transform(vect);
@@ -326,9 +326,9 @@ namespace Artimech
             Vector3 startPos = GetStartPosForConditional();
             for (int i = 0; i < ConditionLineList.Count; i++)
             {
-               /* Vector3 endPos = ConditionLineList[i].GetPos();
-                endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
-                endPos.y += ConditionLineList[i].WinRect.height * 0.5f;*/
+                /* Vector3 endPos = ConditionLineList[i].GetPos();
+                 endPos.x += ConditionLineList[i].WinRect.width * 0.5f;
+                 endPos.y += ConditionLineList[i].WinRect.height * 0.5f;*/
 
                 Vector3 endPos = GetEndPosForConditional(ConditionLineList[i]);
 
@@ -346,18 +346,21 @@ namespace Artimech
             return null;
         }
 
-        public void Update(baseState state,utlMatrix34 mtx)
+        public void Update(baseState state, utlMatrix34 mtx)
         {
             m_State = state;
 
-            if (state is editorAddPostCondtionalState ||
-                state is editorMoveState ||
-                state is editorDeleteState ||
-                state is editorRenameState ||
-                state is editorMoveBackground)
-                GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindowNoDrag, m_WindowStateAlias);
-            else
-                GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
+            /*         if (state is editorAddPostCondtionalState ||
+                         state is editorMoveState ||
+                         state is editorDeleteState ||
+                         state is editorRenameState ||
+                         state is editorMoveBackground)
+                         GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindowNoDrag, m_WindowStateAlias);
+                     else*/
+
+
+            //GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
+            DrawNodeWindow(this.m_Id);
 
             Vector3 startPos = GetStartPosForConditional();
 
@@ -372,7 +375,7 @@ namespace Artimech
 
         }
 
-        public bool CheckWinNodeToSeeIfItIsLinked(artWindowsNode winNode)
+        public bool CheckWinNodeToSeeIfItIsLinked(artVisualStateNode winNode)
         {
             for (int i = 0; i < winNode.ConditionLineList.Count; i++)
             {
@@ -399,10 +402,10 @@ namespace Artimech
 
                 //check to see if there is another conditional linking back to this state.
                 //if (CheckWinNodeToSeeIfItIsLinked(ConditionLineList[i]))
-                if(this.ClassName== ConditionLineList[i].ClassName)
+                if (this.ClassName == ConditionLineList[i].ClassName)
                 {
- //                   Debug.Log("*>" + this.ClassName);
- //                   Debug.Log("->" + ConditionLineList[i].ClassName);
+                    //                   Debug.Log("*>" + this.ClassName);
+                    //                   Debug.Log("->" + ConditionLineList[i].ClassName);
                     if (ConditionLineList[i].GetPos().x <= GetPos().x)
                         tempVect.x -= m_ConditionOffset.x;
                     else
@@ -424,7 +427,7 @@ namespace Artimech
             return tempVect;
         }
 
-        Vector3 GetEndPosForConditional(artWindowsNode connectedNode)
+        Vector3 GetEndPosForConditional(artVisualStateNode connectedNode)
         {
             Vector3 tempVect = new Vector3();
 
@@ -474,9 +477,9 @@ namespace Artimech
         {
             if (Event.current.button == 1 && Event.current.isMouse)
             {
-                if (m_State != null && m_State is editorDisplayWindowsState)
+                //if (m_State != null && m_State is editorDisplayWindowsState)
                 {
-                    editorDisplayWindowsState dState = (editorDisplayWindowsState)m_State;
+                    artDisplayStates dState = (artDisplayStates)m_State;
                     if (dState != null && Event.current.type == EventType.MouseDown)
                     {
                         GenericMenu menu = new GenericMenu();
@@ -503,6 +506,18 @@ namespace Artimech
                 }
             }
 
+            //draws background and outline.
+            int lineWidth = 2;
+            Color lineColor = new Color(0, 0.3f, 0, 1);
+            Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);
+
+            Rect rect = new Rect(m_WinRect.x, m_WinRect.y, WinRect.width, WinRect.height);
+            artGUIUtils.DrawRect(rect, lineWidth, lineColor, backGroundColor);
+
+
+            DrawStateContent();
+
+
             //draw the exit button in the title bar
             Color shadowCol = new Color(0, 0, 0, 0.2f);
             float xOffset = 8.0f;
@@ -510,17 +525,14 @@ namespace Artimech
             float boxSize = 8;
 
             //create the close button rectangle
-            m_CloseButtonRect = new Rect(this.WinRect.width - (xOffset + (boxSize * 0.5f)), yOffset - (boxSize * 0.5f), boxSize, boxSize);
-
-            //EditorGUI.DrawRect(closeBoxRect, new Color(0.9f, 0.9f, 0.9f));
-
+            m_CloseButtonRect = new Rect(WinRect.x + WinRect.width - (xOffset + (boxSize * 0.5f)), WinRect.y + yOffset - (boxSize * 0.5f), boxSize, boxSize);
             if (m_CloseButtonRect.Contains(Event.current.mousePosition))
-                artGUIUtils.DrawCubeFilled(new Vector3(WinRect.width - xOffset, yOffset, 0), boxSize, 1, Color.black, 1, shadowCol, Color.red);
+                artGUIUtils.DrawRect(m_CloseButtonRect, 2, Color.black, Color.red);
             else
-                artGUIUtils.DrawCubeFilled(new Vector3(WinRect.width - xOffset, yOffset, 0), boxSize, 1, Color.black, 1, shadowCol, new Color(0.9f, 0.9f, 0.9f));
+                artGUIUtils.DrawRect(m_CloseButtonRect, 2, Color.black, Color.clear);
 
-            artGUIUtils.DrawX(new Vector3(WinRect.width - (xOffset * 0.95f), yOffset * 0.95f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
-            artGUIUtils.DrawX(new Vector3(WinRect.width - (xOffset * 1.0f), yOffset * 1.0f, 0), boxSize - 1, boxSize - 1, 1, Color.black);
+            artGUIUtils.DrawX(new Vector3(WinRect.x + WinRect.width - (xOffset * 0.95f), WinRect.y + yOffset * 0.95f, 0), boxSize - 1, boxSize - 1, 2, shadowCol);
+            artGUIUtils.DrawX(new Vector3(WinRect.x + WinRect.width - (xOffset * 1.0f), WinRect.y + yOffset * 1.0f, 0), boxSize - 1, boxSize - 1, 1, Color.black);
 
             //draw the resizer
             const float initSizerSize = 15;
@@ -552,11 +564,37 @@ namespace Artimech
             //close box
             EditorGUIUtility.AddCursorRect(m_CloseButtonRect, MouseCursor.ArrowMinus);
 
+            //DrawStateContent();
+
             UpdateMouseHover(Event.current.mousePosition);
 
             //artGUIUtils.DrawX(m_LinePos, 10, 10, 1, Color.black);
 
-            GUI.DragWindow();
+            //GUI.DragWindow();
+        }
+
+        void DrawStateContent()
+        {
+            GUILayout.BeginArea(WinRect);
+
+            var rect = EditorGUILayout.BeginVertical();
+            GUI.color = Color.yellow;
+            GUI.Box(rect, GUIContent.none);
+
+            GUI.color = Color.white;
+
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            GUILayout.Label(this.WindowStateAlias);
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+
+            EditorGUILayout.EndVertical();
+
+
+            GUILayout.EndArea();
+
+            Handles.EndGUI();
         }
 
         /// <summary>

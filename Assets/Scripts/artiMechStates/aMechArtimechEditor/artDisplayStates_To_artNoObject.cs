@@ -27,22 +27,22 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artCheckIfIMachine_To_artNotEditorOrGameObject : stateConditionalBase
+    public class artDisplayStates_To_artNoObject : stateConditionalBase
     {
-
-        public artCheckIfIMachine_To_artNotEditorOrGameObject(string changeStateName) : base(changeStateName)
+        
+        public artDisplayStates_To_artNoObject(string changeStateName) : base (changeStateName)
         {
-
+            
         }
 
         public override void Enter(baseState state)
         {
-
+            
         }
 
         public override void Exit(baseState state)
         {
-
+            
         }
 
         /// <summary>
@@ -54,12 +54,8 @@ namespace Artimech
         {
             string strOut = null;
 
-            if (ArtimechEditor.Inst.SelectedObj != null)
-            {
-                bool abool = ArtimechEditor.Inst.SelectedObj is GameObject;
-                if (!abool)
-                    strOut = m_ChangeStateName;
-            }
+            if(ArtimechEditor.Inst.SelectedObj==null)
+                strOut = m_ChangeStateName;
 
             return strOut;
         }

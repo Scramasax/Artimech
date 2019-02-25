@@ -19,6 +19,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 #region XML_DATA
 
@@ -33,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>437</posX>
-    <posY>254</posY>
+    <posX>425</posX>
+    <posY>55</posY>
     <sizeX>92</sizeX>
     <sizeY>38</sizeY>
   </State>
@@ -48,13 +49,45 @@ namespace Artimech
     public class artLoadStates : editorStateBase
     {
         artMessageWindow m_MessageWindow;
+        IList<string> m_ListOfStateStringsInMachine;
+        bool m_Error = false;
+        bool m_GoodLoad = false;
+
+        public bool Error
+        {
+            get
+            {
+                return m_Error;
+            }
+
+            set
+            {
+                m_Error = value;
+            }
+        }
+
+        public bool GoodLoad
+        {
+            get
+            {
+                return m_GoodLoad;
+            }
+
+            set
+            {
+                m_GoodLoad = value;
+            }
+        }
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artLoadStates(Object unityObj) : base(unityObj)
+        public artLoadStates(UnityEngine.Object unityObj) : base(unityObj)
         {
+            m_ListOfStateStringsInMachine = new List<string>();
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artLoadStates_To_artNotEditorOrGameObject("artNotEditorOrGameObject"));
             m_ConditionalList.Add(new artLoadStates_To_artDisplayStates("artDisplayStates"));
         }
 
@@ -88,9 +121,216 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            Error = false;
+            GoodLoad = false;
+            m_ListOfStateStringsInMachine.Clear();
             m_MessageWindow = new artMessageWindow("Artimech System Status", "Loading State Machine Scripts...", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             ArtimechEditor.Inst.Repaint();
+
+            ArtimechEditor.Inst.VisualStateNodes.Clear();
+
+            /// <summary>Loads visualstates via meta data and code.</summary>
+            if (ArtimechEditor.Inst.MachineScript != null)
+            {
+                string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassName(ArtimechEditor.Inst.MachineScript.GetType().Name, false);
+                //Debug.Log("<color=navy>" + machineSourceCodeText + "</color>");
+                CreateVisualStateNodes(machineSourceCodeText);
+                if (!Error)
+                    GoodLoad = true;
+            }
+            else
+            {
+                Error = true;
+            }
+
             base.Enter();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        void CreateVisualStateNodes(string fileName)
+        {
+            string strBuff = utlDataAndFile.LoadTextFromFile(fileName);
+            this.PopulateStateStrings(strBuff);
+
+            for (int i = 0; i < m_ListOfStateStringsInMachine.Count; i++)
+            {
+                artVisualStateNode node = CreateVisualStateNode(m_ListOfStateStringsInMachine[i]);
+                ArtimechEditor.Inst.VisualStateNodes.Add(node);
+            }
+
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(ArtimechEditor.Inst.VisualStateNodes[i].ClassName, false);
+                string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
+                PopulateLinkedConditionStates(ArtimechEditor.Inst.VisualStateNodes[i], buffer);
+            }
+        }
+
+        artVisualStateNode CreateVisualStateNode(string typeName)
+        {
+            artVisualStateNode visualNode = new artVisualStateNode(ArtimechEditor.Inst.VisualStateNodes.Count+10000);
+            visualNode.ClassName = typeName;
+
+            float posX = 0;
+            float posY = 0;
+            float width = 0;
+            float height = 0;
+            string winName = typeName;
+            string strBuff = "";
+            string fileName = "";
+
+            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName, false);
+            strBuff = utlDataAndFile.LoadTextFromFile(fileName);
+
+            string[] words = strBuff.Split(new char[] { '<', '>' });
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == "alias")
+                    winName = words[i + 1];
+                if (words[i] == "posX")
+                    posX = Convert.ToSingle(words[i + 1]);
+                if (words[i] == "posY")
+                    posY = Convert.ToSingle(words[i + 1]);
+                if (words[i] == "sizeX")
+                    width = Convert.ToSingle(words[i + 1]);
+                if (words[i] == "sizeY")
+                    height = Convert.ToSingle(words[i + 1]);
+            }
+
+            visualNode.Set(fileName, typeName, winName, posX, posY, width, height);
+
+            return visualNode;
+        }
+
+        /// <summary>
+        /// Parse the conditions from the state c sharp file.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="strBuff"></param>
+        void PopulateLinkedConditionStates(artVisualStateNode node, string strBuff)
+        {
+            string[] words = strBuff.Split(new char[] { ' ', '/', '\n', '\r', '_', '(' });
+            bool lookForConditionals = false;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == "<ArtiMechConditions>")
+                {
+                    lookForConditionals = true;
+                }
+
+                if (lookForConditionals && words[i] == "new")
+                {
+                    //check to see if stateConditionalBase
+                    Type type = Type.GetType(stateEditorUtils.kArtimechNamespace + words[i + 3]);
+                    if (type != null)
+                    {
+                        string base1Str = "";
+                        string base2Str = "";
+                        string base3Str = "";
+                        string base4Str = "";
+                        string base5Str = "";
+                        string base6Str = "";
+
+
+                        if (type.BaseType != null)
+                        {
+                            base1Str = type.BaseType.Name;
+                            if (type.BaseType.BaseType != null)
+                            {
+                                base2Str = type.BaseType.BaseType.Name;
+                                if (type.BaseType.BaseType.BaseType != null)
+                                {
+                                    base3Str = type.BaseType.BaseType.BaseType.Name;
+                                    if (type.BaseType.BaseType.BaseType.BaseType != null)
+                                    {
+                                        base4Str = type.BaseType.BaseType.BaseType.BaseType.Name;
+                                        if (type.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                        {
+                                            base5Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                            if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                                base6Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
+                        if (base1Str == "baseState" || base2Str == "baseState" || base3Str == "baseState" || base4Str == "baseState" || base5Str == "baseState" || base6Str == "baseState")
+                        {
+                            int a = 12;
+                            artVisualStateNode compNode = FindStateWindowsNodeByName(words[i + 3]);
+                            if (compNode != null)
+                            {
+                                node.ConditionLineList.Add(compNode);
+                                //Debug.Log("compNode = " + compNode.ClassName);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        artVisualStateNode FindStateWindowsNodeByName(string name)
+        {
+            artVisualStateNode node = null;
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                if (ArtimechEditor.Inst.VisualStateNodes[i].ClassName == name)
+                    return ArtimechEditor.Inst.VisualStateNodes[i];
+            }
+            return node;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strBuff"></param>
+        public void PopulateStateStrings(string strBuff)
+        {
+            //m_StateNameList.Clear();
+
+            string[] words = strBuff.Split(new char[] { ' ', '(' });
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i] == "new")
+                {
+                    Type type = Type.GetType(stateEditorUtils.kArtimechNamespace + words[i + 1]);
+
+                    if (type != null)
+                    {
+                        string baseOneStr = "";
+                        string baseTwoStr = "";
+                        string baseThreeStr = "";
+
+                        baseOneStr = type.BaseType.Name;
+                        if (type.BaseType.BaseType != null)
+                        {
+                            baseTwoStr = type.BaseType.BaseType.Name;
+                            if (type.BaseType.BaseType.BaseType != null)
+                                baseThreeStr = type.BaseType.BaseType.BaseType.Name;
+                        }
+
+                        //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
+                        if (baseOneStr == "baseState" || baseTwoStr == "baseState" || baseThreeStr == "baseState")
+                        {
+                            m_ListOfStateStringsInMachine.Add(words[i + 1]);
+                            // Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
+                        }
+
+                    }
+                }
+            }
         }
 
         /// <summary>

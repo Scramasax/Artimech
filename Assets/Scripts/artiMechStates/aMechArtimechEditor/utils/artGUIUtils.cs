@@ -121,10 +121,29 @@ namespace Artimech
 
         }
 
-        public static void DrawLine(Vector3 startPos, Vector3 endPos, int lineWidth, Color lineColor)
+        public static void DrawLine(Vector3 startPos, Vector3 endPos, float lineWidth, Color lineColor)
         {
             Handles.color = lineColor;
-            Handles.DrawLine(startPos, endPos);//, lineColor, lineWidth);
+            Vector3[] positionArray = new Vector3[2];
+            positionArray[0] = startPos;
+            positionArray[1] = endPos;
+            Handles.DrawAAPolyLine(lineWidth, positionArray);
+            // Handles.DrawLine(startPos, endPos);//, lineColor, lineWidth);
+        }
+
+        public static void DrawRect(Rect inRect, float lineWidth, Color lineColor, Color backGroundColor)
+        {
+            Rect rect = new Rect(inRect.x, inRect.y, inRect.width, inRect.height);
+            Vector2 position = new Vector2(inRect.x, inRect.y);
+
+            EditorGUI.DrawRect(rect, backGroundColor);
+
+            artGUIUtils.DrawLine(position, position + new Vector2(rect.width, 0), lineWidth, lineColor);
+            artGUIUtils.DrawLine(position, position + new Vector2(0, rect.height), lineWidth, lineColor);
+
+            artGUIUtils.DrawLine(position + new Vector2(0, rect.height), position + new Vector2(rect.width, rect.height), lineWidth, lineColor);
+            artGUIUtils.DrawLine(position + new Vector2(rect.width, 0), position + new Vector2(rect.width, rect.height), lineWidth, lineColor);
+
         }
 
         public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)

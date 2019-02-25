@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>558</posX>
-    <posY>163</posY>
+    <posX>477</posX>
+    <posY>244</posY>
     <sizeX>146</sizeX>
     <sizeY>46</sizeY>
   </State>
@@ -52,10 +52,12 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artDisplayStates(Object unityObj) : base (unityObj)
+        public artDisplayStates(Object unityObj) : base(unityObj)
         {
-            m_MainWindow = new artMainWindow("Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+            m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artCheckIfIMachine("artCheckIfIMachine"));
+            m_ConditionalList.Add(new artDisplayStates_To_artNoObject("artNoObject"));
         }
 
         /// <summary>
@@ -79,15 +81,23 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            //artGUIUtils.DrawGridBackground(ArtimechEditor.Inst.TransMtx);
             m_MainWindow.Update();
+            //m_MainWindow.Update();
+
+
             base.UpdateEditorGUI();
+            ArtimechEditor.Inst.Repaint();
         }
+
 
         /// <summary>
         /// When the state becomes active Enter() is called once.
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor.Inst.DrawToolBarBool = true;
+            ArtimechEditor.Inst.Repaint();
             base.Enter();
         }
 
@@ -97,6 +107,18 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
+        }
+
+        public void AddConditionalCallback(object obj)
+        {
+        }
+
+        public void EditScriptCallback(object obj)
+        {
+        }
+
+        public void RefactorClassCallback(object obj)
+        {
         }
     }
 }

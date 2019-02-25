@@ -16,7 +16,7 @@ namespace Artimech
     public class artMainWindow : artWindowBase
     {
         #region Variables
-
+        baseState m_State;
         #endregion
         #region Gets Sets
         #endregion
@@ -30,9 +30,9 @@ namespace Artimech
         /// <param name="rect"></param>
         /// <param name="color"></param>
         /// <param name="id"></param>
-        public artMainWindow(string title, Rect rect, Color color, int id) : base(title,rect,color,id)
+        public artMainWindow(baseState state, string title, Rect rect, Color color, int id) : base(title, rect, color, id)
         {
-
+            m_State = state;
         }
 
         /// <summary>
@@ -64,17 +64,23 @@ namespace Artimech
 
         public void Draw(int id)
         {
-           // Color backroundColor = new Color(1, 1, 1, 0.8f);
+            // Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
             stateEditorDrawUtils.DrawGridBackground();
 
-            GUILayout.BeginHorizontal("");
-     
-            GUILayout.EndHorizontal();
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                ArtimechEditor.Inst.VisualStateNodes[i].Update(m_State, ArtimechEditor.Inst.TransMtx);
+            }
 
-   //         GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
+
+            //         GUILayout.BeginHorizontal("");
+
+            //         GUILayout.EndHorizontal();
+
+            //         GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
 
             //GUI.DragWindow();
         }

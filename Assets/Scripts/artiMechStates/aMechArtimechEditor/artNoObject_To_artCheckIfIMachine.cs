@@ -56,7 +56,7 @@ namespace Artimech
 
             //check to see if the selected object has changed.
             ArtimechEditor editor = (ArtimechEditor)state.m_UnityObject;
-            if (editor.SelectedObj != editor.WasSelectedObj)
+            if (editor.SelectedObj != null)
                 strOut = m_ChangeStateName;
 
             return strOut;

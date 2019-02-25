@@ -34,10 +34,14 @@ namespace Artimech
         utlMatrix34 m_TransMtx;
         iMachineBase m_MachineScript;
         bool m_DrawToolBarBool = true;
+        IList<artVisualStateNode> m_VisualStateNodes;
 
 
         #endregion
         #region Accessors
+        /// <summary>Used class matching via parsing for namespace.</summary>
+        public static string kArtimechNamespace = "Artimech.";
+
         /// <summary> SelectedObj returns and sets the object selected in the main menu bar. </summary>
         public Object SelectedObj { get { return m_SelectedObj; } set { m_SelectedObj = value; } }
 
@@ -55,6 +59,10 @@ namespace Artimech
 
         /// <summary>Turns on and off the toolbar.</summary>
         public bool DrawToolBarBool { get { return m_DrawToolBarBool; } set { m_DrawToolBarBool = value; } }
+
+        /// <summary>A list of visual state nodes.</summary>
+        public IList<artVisualStateNode> VisualStateNodes { get { return m_VisualStateNodes; } set { m_VisualStateNodes = value; } }
+
 
         #endregion
         #region Member Functions
@@ -81,6 +89,8 @@ namespace Artimech
             }
             base.OnEnable();
             //m_MainWindow = new artMainWindow("test", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+            VisualStateNodes = new List<artVisualStateNode>();
+            TransMtx = new utlMatrix34();
             CreateStates();
         }
 
@@ -93,8 +103,8 @@ namespace Artimech
         // Update is called once per frame
         new void Update()
         {
-
             base.Update();
+            ArtimechEditor.Inst.WasSelectedObj = ArtimechEditor.Inst.SelectedObj;
         }
 
         new void FixedUpdate()
@@ -132,7 +142,7 @@ namespace Artimech
         {
             GUILayout.BeginHorizontal(EditorStyles.toolbar);
             //if (DrawToolBarBool)
-                DrawToolBar();
+            DrawToolBar();
             GUILayout.EndHorizontal();
 
             // render populated state windows

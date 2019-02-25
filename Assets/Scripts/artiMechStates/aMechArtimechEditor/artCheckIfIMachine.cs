@@ -34,8 +34,8 @@ using System.IO;
   <State>
     <alias>Check If State Machine</alias>
     <comment></comment>
-    <posX>208</posX>
-    <posY>206</posY>
+    <posX>216</posX>
+    <posY>161</posY>
     <sizeX>162</sizeX>
     <sizeY>47</sizeY>
   </State>
