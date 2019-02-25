@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Move Mouse Up</alias>
+    <alias>Create State</alias>
     <comment></comment>
-    <posX>507</posX>
-    <posY>473</posY>
-    <sizeX>143</sizeX>
-    <sizeY>42</sizeY>
+    <posX>752</posX>
+    <posY>179</posY>
+    <sizeX>125</sizeX>
+    <sizeY>38</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artMoveMouseUp : editorStateBase
+    public class artCreateState : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artMoveMouseUp(Object unityObj) : base (unityObj)
+        public artCreateState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artMoveMouseUp_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artCreateState_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>

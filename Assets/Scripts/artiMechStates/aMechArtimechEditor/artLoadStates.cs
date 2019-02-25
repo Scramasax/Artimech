@@ -34,10 +34,10 @@ using System;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>398</posX>
-    <posY>96</posY>
-    <sizeX>92</sizeX>
-    <sizeY>38</sizeY>
+    <posX>414</posX>
+    <posY>86</posY>
+    <sizeX>104</sizeX>
+    <sizeY>48</sizeY>
   </State>
 </stateMetaData>
 

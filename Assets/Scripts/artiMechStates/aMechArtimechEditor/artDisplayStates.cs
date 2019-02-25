@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>477</posX>
-    <posY>244</posY>
-    <sizeX>146</sizeX>
-    <sizeY>46</sizeY>
+    <posX>449</posX>
+    <posY>262</posY>
+    <sizeX>143</sizeX>
+    <sizeY>67</sizeY>
   </State>
 </stateMetaData>
 
@@ -56,6 +56,8 @@ namespace Artimech
         {
             m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artCreateStateDataEnter("artCreateStateDataEnter"));
+            m_ConditionalList.Add(new artDisplayStates_To_artDeleteAsk("artDeleteAsk"));
             m_ConditionalList.Add(new artDisplayStates_To_artResizeMouseDown("artResizeMouseDown"));
             m_ConditionalList.Add(new artDisplayStates_To_artMoveMouseDown("artMoveMouseDown"));
             m_ConditionalList.Add(new artDisplayStates_To_artCheckIfIMachine("artCheckIfIMachine"));

@@ -162,6 +162,10 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artCreateState(this),"artCreateState");
+            AddState(new artCreateStateDataEnter(this),"artCreateStateDataEnter");
+            AddState(new artDeleteState(this),"artDeleteState");
+            AddState(new artDeleteAsk(this),"artDeleteAsk");
             AddState(new artResizeMouseUp(this),"artResizeMouseUp");
             AddState(new artResizeMouseDown(this),"artResizeMouseDown");
             AddState(new artMoveMouseUp(this),"artMoveMouseUp");
