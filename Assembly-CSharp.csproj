@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artNotEditorOrGameObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseUp.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artCheckIfIMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -162,6 +162,8 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artMoveMouseUp(this),"artMoveMouseUp");
+            AddState(new artMoveMouseDown(this),"artMoveMouseDown");
             AddState(new artCreateStateMachine(this), "artCreateStateMachine");
             AddState(new artClearObject(this), "artClearObject");
             AddState(new artChooseMachine(this), "artChooseMachine");
