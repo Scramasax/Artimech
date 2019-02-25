@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Move Mouse Up</alias>
+    <alias>Resize Mouse Down</alias>
     <comment></comment>
-    <posX>571</posX>
-    <posY>373</posY>
-    <sizeX>143</sizeX>
-    <sizeY>42</sizeY>
+    <posX>473</posX>
+    <posY>34</posY>
+    <sizeX>150</sizeX>
+    <sizeY>37</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artMoveMouseUp : editorStateBase
+    public class artResizeMouseDown : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artMoveMouseUp(Object unityObj) : base (unityObj)
+        public artResizeMouseDown(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artMoveMouseUp_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artResizeMouseDown_To_artResizeMouseUp("artResizeMouseUp"));
         }
 
         /// <summary>
