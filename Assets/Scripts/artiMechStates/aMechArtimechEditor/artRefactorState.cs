@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Refactor The State</alias>
     <comment></comment>
-    <posX>713</posX>
-    <posY>736</posY>
+    <posX>313</posX>
+    <posY>499</posY>
     <sizeX>162</sizeX>
     <sizeY>43</sizeY>
   </State>

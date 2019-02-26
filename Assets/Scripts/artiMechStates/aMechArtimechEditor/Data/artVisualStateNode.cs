@@ -49,6 +49,7 @@ namespace Artimech
         bool m_MoveBool = false;
         bool m_LeftMouseButton = false;
         bool m_Selected = false;
+        bool m_Resize = false;
 
         Vector2 m_ConditionOffset;
 
@@ -188,6 +189,19 @@ namespace Artimech
             set
             {
                 m_Selected = value;
+            }
+        }
+
+        public bool Resize
+        {
+            get
+            {
+                return m_Resize;
+            }
+
+            set
+            {
+                m_Resize = value;
             }
         }
 
@@ -408,12 +422,18 @@ namespace Artimech
                     MoveBool = true;
                     Selected = true;
                 }
+
+                if(m_ResizeBodyHover)
+                {
+                    this.Resize = true;
+                }
             }
 
             if (ev.type == EventType.MouseUp)
             {
                 LeftMouseButton = false;
                 Selected = false;
+                Resize = false;
             }
 
             //GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);

@@ -125,9 +125,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAliasDataEntry_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAliasDataEntry_To_artRenameAlias.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artResizeMouseUp.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseUp.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseUp_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveData.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveData_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
@@ -244,7 +242,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

@@ -65,17 +65,7 @@ namespace Artimech
         /// Updates from the game object.
         /// </summary>
         public override void Update()
-        {
-            /*       for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
-                   {
-                       if (ArtimechEditor.Inst.VisualStateNodes[i].MoveBool)
-                       {
-
-                           ArtimechEditor.Inst.VisualStateNodes[i].MoveVisualNodeByMousePosition(m_MousePosition, m_MousePositionEnter);
-                           break;
-                       }
-                   }*/
-
+        { 
             base.Update();
         }
 
@@ -111,19 +101,7 @@ namespace Artimech
 
             }
 
-            // m_MousePosition = Event.current.mousePosition;
-
             base.UpdateEditorGUI();
-
-            /*           for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
-                       {
-                           if (ArtimechEditor.Inst.VisualStateNodes[i].Selected)
-                           {
-
-                               ArtimechEditor.Inst.VisualStateNodes[i].MoveVisualNodeByMousePosition(m_MousePosition, ArtimechEditor.Inst.MouseClickDownPosStart);
-                               break;
-                           }*/
-
 
             m_MainWindow.Update();
 

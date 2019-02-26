@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Resize Mouse Down</alias>
     <comment></comment>
-    <posX>863</posX>
-    <posY>67</posY>
-    <sizeX>150</sizeX>
-    <sizeY>37</sizeY>
+    <posX>746</posX>
+    <posY>34</posY>
+    <sizeX>145</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,7 +45,7 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artResizeMouseDown : editorStateBase
+    public class artResizeMouseDown : artDisplayWindowsBaseState
     {
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Artimech
         public artResizeMouseDown(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artResizeMouseDown_To_artResizeMouseUp("artResizeMouseUp"));
+            m_ConditionalList.Add(new artResizeMouseDown_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -79,7 +79,27 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            Event ev = Event.current;
+
+            artVisualStateNode visualNode = ArtimechEditor.Inst.GetResizeNode();
+            if(visualNode!=null)
+            {
+                Rect rect = visualNode.WinRect;
+
+                Vector2 mousePosTrans = new Vector2();
+                mousePosTrans = ArtimechEditor.Inst.TransMtx.UnTransform(ev.mousePosition);
+
+                rect.width = mousePosTrans.x - visualNode.WinRect.x+7;
+                rect.height = mousePosTrans.y - visualNode.WinRect.y-14;
+
+                rect.width = Mathf.Clamp(rect.width, 32, 1024);
+                rect.height = Mathf.Clamp(rect.height, 32, 1024);
+
+                visualNode.WinRect = rect;
+            }
+
             base.UpdateEditorGUI();
+            ArtimechEditor.Inst.Repaint();
         }
 
         /// <summary>
