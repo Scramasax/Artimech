@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Not A Unity3d Object</alias>
     <comment></comment>
-    <posX>189</posX>
-    <posY>52</posY>
+    <posX>148</posX>
+    <posY>21</posY>
     <sizeX>192</sizeX>
     <sizeY>38</sizeY>
   </State>

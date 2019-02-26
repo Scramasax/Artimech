@@ -47,7 +47,22 @@ namespace Artimech
 {
     public class artDisplayStates : artDisplayWindowsBaseState
     {
-       // artMainWindow m_MainWindow;
+        bool m_SaveDataBool = false;
+
+        public bool SaveDataBool
+        {
+            get
+            {
+                return m_SaveDataBool;
+            }
+
+            set
+            {
+                m_SaveDataBool = value;
+            }
+        }
+
+        // artMainWindow m_MainWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -88,9 +103,12 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            //artGUIUtils.DrawGridBackground(ArtimechEditor.Inst.TransMtx);
-            //m_MainWindow.Update();
-            //m_MainWindow.Update();
+            Event ev = Event.current;
+            //Saves meta data for the visual window system via the keyboard
+            if (ev.control && ev.keyCode == KeyCode.S)
+            {
+                SaveDataBool = true;
+            }
 
             if (Event.current.type == EventType.MouseDown)
                 ArtimechEditor.Inst.MouseClickDownPosStart = Event.current.mousePosition;
@@ -105,6 +123,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            SaveDataBool = false;
             ArtimechEditor.Inst.DrawToolBarBool = true;
             ArtimechEditor.Inst.Repaint();
             base.Enter();

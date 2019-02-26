@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Save Data</alias>
     <comment></comment>
-    <posX>475</posX>
-    <posY>34</posY>
+    <posX>525</posX>
+    <posY>93</posY>
     <sizeX>105</sizeX>
     <sizeY>42</sizeY>
   </State>
@@ -87,6 +87,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor.Inst.SaveMetaDataInStates();
             base.Enter();
         }
 

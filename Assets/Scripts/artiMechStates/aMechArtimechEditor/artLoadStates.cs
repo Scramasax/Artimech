@@ -34,8 +34,8 @@ using System;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>413</posX>
-    <posY>100</posY>
+    <posX>358</posX>
+    <posY>87</posY>
     <sizeX>104</sizeX>
     <sizeY>48</sizeY>
   </State>
@@ -124,7 +124,7 @@ namespace Artimech
             Error = false;
             GoodLoad = false;
             m_ListOfStateStringsInMachine.Clear();
-            m_MessageWindow = new artMessageWindow("Artimech System Status", "Loading State Machine Scripts...", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow = new artMessageWindow("Artimech System Status", "Loading State Machine Scripts....", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             ArtimechEditor.Inst.Repaint();
 
             ArtimechEditor.Inst.VisualStateNodes.Clear();

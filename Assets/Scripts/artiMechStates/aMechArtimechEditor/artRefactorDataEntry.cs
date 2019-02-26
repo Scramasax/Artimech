@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Refactor Data Entry</alias>
     <comment></comment>
-    <posX>543</posX>
-    <posY>525</posY>
+    <posX>423</posX>
+    <posY>521</posY>
     <sizeX>150</sizeX>
     <sizeY>47</sizeY>
   </State>
