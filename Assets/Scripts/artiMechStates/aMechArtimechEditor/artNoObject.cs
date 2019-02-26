@@ -34,8 +34,8 @@ using System.IO;
   <State>
     <alias>No Object</alias>
     <comment></comment>
-    <posX>12</posX>
-    <posY>189</posY>
+    <posX>-94</posX>
+    <posY>171</posY>
     <sizeX>104</sizeX>
     <sizeY>55</sizeY>
   </State>

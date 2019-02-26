@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Resize Mouse Down</alias>
     <comment></comment>
-    <posX>580</posX>
-    <posY>50</posY>
+    <posX>863</posX>
+    <posY>67</posY>
     <sizeX>150</sizeX>
     <sizeY>37</sizeY>
   </State>

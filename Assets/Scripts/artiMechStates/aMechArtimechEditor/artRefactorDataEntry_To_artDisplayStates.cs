@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artMoveMouseDown : stateConditionalBase
+    public class artRefactorDataEntry_To_artDisplayStates : stateConditionalBase
     {
         
-        public artDisplayStates_To_artMoveMouseDown(string changeStateName) : base (changeStateName)
+        public artRefactorDataEntry_To_artDisplayStates(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -54,14 +54,13 @@ namespace Artimech
         {
             string strOut = null;
 
-            for(int i=0;i<ArtimechEditor.Inst.VisualStateNodes.Count;i++)
-            {
-                if(ArtimechEditor.Inst.VisualStateNodes[i].MoveBool)
-                {
-                    strOut = m_ChangeStateName;
-                    return strOut;
-                }
-            }
+#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
+            This is an example of setting a contition to true if the gameobject
+            falls below a certain height ingame.
+            if (state.m_GameObject.transform.position.y <= 1000)
+                strOut = m_ChangeStateName;
+#endif
+
 
             return strOut;
         }

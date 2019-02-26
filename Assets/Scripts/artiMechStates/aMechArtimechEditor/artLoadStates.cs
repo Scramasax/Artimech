@@ -34,8 +34,8 @@ using System;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>414</posX>
-    <posY>86</posY>
+    <posX>413</posX>
+    <posY>100</posY>
     <sizeX>104</sizeX>
     <sizeY>48</sizeY>
   </State>

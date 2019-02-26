@@ -35,6 +35,7 @@ namespace Artimech
         iMachineBase m_MachineScript;
         bool m_DrawToolBarBool = true;
         IList<artVisualStateNode> m_VisualStateNodes;
+        Vector2 m_MouseClickDownPosStart;
 
 
         #endregion
@@ -62,6 +63,19 @@ namespace Artimech
 
         /// <summary>A list of visual state nodes.</summary>
         public IList<artVisualStateNode> VisualStateNodes { get { return m_VisualStateNodes; } set { m_VisualStateNodes = value; } }
+
+        public Vector2 MouseClickDownPosStart
+        {
+            get
+            {
+                return m_MouseClickDownPosStart;
+            }
+
+            set
+            {
+                m_MouseClickDownPosStart = value;
+            }
+        }
 
 
         #endregion
@@ -162,13 +176,17 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artSaveData(this),"artSaveData");
+            AddState(new artRenameAlias(this),"artRenameAlias");
+            AddState(new artRenameAliasDataEntry(this),"artRenameAliasDataEntry");
+            AddState(new artRefactorState(this),"artRefactorState");
+            AddState(new artRefactorDataEntry(this),"artRefactorDataEntry");
             AddState(new artCreateState(this),"artCreateState");
             AddState(new artCreateStateDataEnter(this),"artCreateStateDataEnter");
             AddState(new artDeleteState(this),"artDeleteState");
             AddState(new artDeleteAsk(this),"artDeleteAsk");
             AddState(new artResizeMouseUp(this),"artResizeMouseUp");
             AddState(new artResizeMouseDown(this),"artResizeMouseDown");
-            AddState(new artMoveMouseUp(this),"artMoveMouseUp");
             AddState(new artMoveMouseDown(this),"artMoveMouseDown");
             AddState(new artCreateStateMachine(this), "artCreateStateMachine");
             AddState(new artClearObject(this), "artClearObject");

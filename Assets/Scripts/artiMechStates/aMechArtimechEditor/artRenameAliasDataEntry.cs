@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Ask To Create</alias>
+    <alias>Rename Data Entry</alias>
     <comment></comment>
-    <posX>-103</posX>
-    <posY>465</posY>
-    <sizeX>114</sizeX>
-    <sizeY>39</sizeY>
+    <posX>846</posX>
+    <posY>304</posY>
+    <sizeX>162</sizeX>
+    <sizeY>40</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,18 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artAskToCreate : artBaseOkCancel
+    public class artRenameAliasDataEntry : editorStateBase
     {
-        artMessageWindowPromt m_MessageWindow;
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artAskToCreate(Object unityObj) : base (unityObj)
+        public artRenameAliasDataEntry(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artAskToCreate_To_artClearObject("artClearObject"));
-            m_ConditionalList.Add(new artAskToCreate_To_artChooseStateMachineName("artChooseStateMachineName"));
+            m_ConditionalList.Add(new artRenameAliasDataEntry_To_artRenameAlias("artRenameAlias"));
+            m_ConditionalList.Add(new artRenameAliasDataEntry_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -80,7 +80,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -89,13 +88,6 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Create a state machine?", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            m_MessageWindow.Width = 0.55f;
-            m_MessageWindow.ButtonSideSpacing = 40.0f;
-            m_MessageWindow.CancelPrompt = true;
-            m_MessageWindow.InitImage("questionMark.png");
-            ArtimechEditor.Inst.DrawToolBarBool = false;
-            ArtimechEditor.Inst.Repaint();
             base.Enter();
         }
 

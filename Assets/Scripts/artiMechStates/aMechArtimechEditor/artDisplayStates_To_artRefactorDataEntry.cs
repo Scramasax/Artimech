@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artMoveMouseUp_To_artDisplayStates : stateConditionalBase
+    public class artDisplayStates_To_artRefactorDataEntry : stateConditionalBase
     {
         
-        public artMoveMouseUp_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artDisplayStates_To_artRefactorDataEntry(string changeStateName) : base (changeStateName)
         {
             
         }

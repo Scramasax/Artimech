@@ -46,6 +46,10 @@ namespace Artimech
         bool m_ResizeBodyHover = false;
         bool m_TitleHover = false;
 
+        bool m_MoveBool = false;
+        bool m_LeftMouseButton = false;
+        bool m_Selected = false;
+
         Vector2 m_ConditionOffset;
 
         Vector3 m_LinePos;
@@ -145,6 +149,45 @@ namespace Artimech
             set
             {
                 m_LinePos = value;
+            }
+        }
+
+        public bool MoveBool
+        {
+            get
+            {
+                return m_MoveBool;
+            }
+
+            set
+            {
+                m_MoveBool = value;
+            }
+        }
+
+        public bool LeftMouseButton
+        {
+            get
+            {
+                return m_LeftMouseButton;
+            }
+
+            set
+            {
+                m_LeftMouseButton = value;
+            }
+        }
+
+        public bool Selected
+        {
+            get
+            {
+                return m_Selected;
+            }
+
+            set
+            {
+                m_Selected = value;
             }
         }
 
@@ -350,14 +393,28 @@ namespace Artimech
         {
             m_State = state;
 
-            /*         if (state is editorAddPostCondtionalState ||
-                         state is editorMoveState ||
-                         state is editorDeleteState ||
-                         state is editorRenameState ||
-                         state is editorMoveBackground)
-                         GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindowNoDrag, m_WindowStateAlias);
-                     else*/
+            MoveBool = false;
 
+            // input
+            Event ev = Event.current;
+            //stateEditorUtils.MousePos = ev.mousePosition;
+
+            //if the mouse button is down.
+            if (ev.type == EventType.MouseDown)
+            {
+                LeftMouseButton = true;
+                if (m_MainBodyHover)
+                {
+                    MoveBool = true;
+                    Selected = true;
+                }
+            }
+
+            if (ev.type == EventType.MouseUp)
+            {
+                LeftMouseButton = false;
+                Selected = false;
+            }
 
             //GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
 
@@ -594,7 +651,7 @@ namespace Artimech
             GUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();
-            
+
             GUILayout.EndArea();
 
             Handles.EndGUI();
@@ -617,6 +674,14 @@ namespace Artimech
                 return;
 
             m_MainBodyHover = m_MainBodyRectB.Contains(mousePos);
+        }
+
+        public void MoveVisualNodeByMousePosition(Vector2 mousePos, Vector2 startOffset)
+        {
+            // this.SetPos(mousePos.x - startOffset.x, mousePos.y - startOffset.y);
+            //this.SetPos(mousePos.x - (this.WinRect.width * 0.5f), mousePos.y - (this.WinRect.height * 0.5f));
+            //Vector2 offset = startOffset
+            this.SetPos(mousePos.x, mousePos.y);
         }
     }
 }

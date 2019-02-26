@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artMoveMouseDown : stateConditionalBase
+    public class artMoveMouseDown_To_artDisplayStates : stateConditionalBase
     {
         
-        public artDisplayStates_To_artMoveMouseDown(string changeStateName) : base (changeStateName)
+        public artMoveMouseDown_To_artDisplayStates(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -54,9 +54,9 @@ namespace Artimech
         {
             string strOut = null;
 
-            for(int i=0;i<ArtimechEditor.Inst.VisualStateNodes.Count;i++)
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
             {
-                if(ArtimechEditor.Inst.VisualStateNodes[i].MoveBool)
+                if (!ArtimechEditor.Inst.VisualStateNodes[i].LeftMouseButton)
                 {
                     strOut = m_ChangeStateName;
                     return strOut;

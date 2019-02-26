@@ -17,8 +17,22 @@ namespace Artimech
     {
         #region Variables
         baseState m_State;
+        Vector2 m_MousePos;
+
         #endregion
         #region Gets Sets
+        public Vector2 MousePos
+        {
+            get
+            {
+                return m_MousePos;
+            }
+
+            set
+            {
+                m_MousePos = value;
+            }
+        }
         #endregion
         #region Member Functions
 
@@ -64,6 +78,8 @@ namespace Artimech
 
         public void Draw(int id)
         {
+
+            m_MousePos = Event.current.mousePosition;
             // Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);

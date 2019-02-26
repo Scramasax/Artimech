@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Move Mouse Down</alias>
     <comment></comment>
-    <posX>372</posX>
-    <posY>560</posY>
-    <sizeX>150</sizeX>
-    <sizeY>39</sizeY>
+    <posX>594</posX>
+    <posY>35</posY>
+    <sizeX>138</sizeX>
+    <sizeY>37</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,20 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artMoveMouseDown : editorStateBase
+    public class artMoveMouseDown : artDisplayWindowsBaseState
     {
-
+        //Vector2 m_MousePositionEnter;
+        Vector2 m_MousePosition;
+        Vector2 m_StartOffset;
+        Vector2 m_MoveOffsetPercent;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artMoveMouseDown(Object unityObj) : base (unityObj)
+        public artMoveMouseDown(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artMoveMouseDown_To_artMoveMouseUp("artMoveMouseUp"));
+            m_ConditionalList.Add(new artMoveMouseDown_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -63,6 +66,16 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
+            /*       for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+                   {
+                       if (ArtimechEditor.Inst.VisualStateNodes[i].MoveBool)
+                       {
+
+                           ArtimechEditor.Inst.VisualStateNodes[i].MoveVisualNodeByMousePosition(m_MousePosition, m_MousePositionEnter);
+                           break;
+                       }
+                   }*/
+
             base.Update();
         }
 
@@ -71,6 +84,7 @@ namespace Artimech
         /// </summary>
         public override void FixedUpdate()
         {
+
             base.FixedUpdate();
         }
 
@@ -79,7 +93,67 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            Event ev = Event.current;
+            artVisualStateNode m_WindowsSelectedNode = this.GetSelectedNode();
+          
+            if (m_WindowsSelectedNode!=null && ev.button == 0)
+            {
+                if (ev.type != EventType.MouseUp)
+                {
+                    float x = m_WindowsSelectedNode.WinRect.x;
+                    float y = m_WindowsSelectedNode.WinRect.y;
+                    float width = m_WindowsSelectedNode.WinRect.width;
+                    float height = m_WindowsSelectedNode.WinRect.height;
+
+                    Vector2 mousePos = new Vector2();
+                    mousePos = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
+
+                    if (mousePos.x >= x && mousePos.x <= x + width)
+                    {
+                        if (mousePos.y >= y && mousePos.y <= y + height)
+                        {
+                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
+                            stateEditorUtils.Repaint();
+                        }
+                    }
+                }
+
+            }
+
+            // m_MousePosition = Event.current.mousePosition;
+
             base.UpdateEditorGUI();
+
+            /*           for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+                       {
+                           if (ArtimechEditor.Inst.VisualStateNodes[i].Selected)
+                           {
+
+                               ArtimechEditor.Inst.VisualStateNodes[i].MoveVisualNodeByMousePosition(m_MousePosition, ArtimechEditor.Inst.MouseClickDownPosStart);
+                               break;
+                           }*/
+
+
+            m_MainWindow.Update();
+
+            ArtimechEditor.Inst.Repaint();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        artVisualStateNode GetSelectedNode()
+        {
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                if (ArtimechEditor.Inst.VisualStateNodes[i].Selected)
+                {
+
+                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -87,6 +161,14 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            artVisualStateNode visualStateNode = GetSelectedNode();
+
+            float diff = ArtimechEditor.Inst.MouseClickDownPosStart.x - visualStateNode.WinRect.x;
+            m_MoveOffsetPercent.x = diff / visualStateNode.WinRect.width;
+
+            diff = ArtimechEditor.Inst.MouseClickDownPosStart.y - visualStateNode.WinRect.y;
+            m_MoveOffsetPercent.y = diff / visualStateNode.WinRect.height;
+
             base.Enter();
         }
 

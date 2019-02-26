@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>449</posX>
-    <posY>262</posY>
-    <sizeX>143</sizeX>
-    <sizeY>67</sizeY>
+    <posX>512</posX>
+    <posY>239</posY>
+    <sizeX>215</sizeX>
+    <sizeY>129</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,20 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artDisplayStates : editorStateBase
+    public class artDisplayStates : artDisplayWindowsBaseState
     {
-        artMainWindow m_MainWindow;
+       // artMainWindow m_MainWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
         public artDisplayStates(Object unityObj) : base(unityObj)
         {
-            m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+            //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artSaveData("artSaveData"));
+            m_ConditionalList.Add(new artDisplayStates_To_artRenameAliasDataEntry("artRenameAliasDataEntry"));
+            m_ConditionalList.Add(new artDisplayStates_To_artRefactorDataEntry("artRefactorDataEntry"));
             m_ConditionalList.Add(new artDisplayStates_To_artCreateStateDataEnter("artCreateStateDataEnter"));
             m_ConditionalList.Add(new artDisplayStates_To_artDeleteAsk("artDeleteAsk"));
             m_ConditionalList.Add(new artDisplayStates_To_artResizeMouseDown("artResizeMouseDown"));
@@ -86,9 +89,11 @@ namespace Artimech
         public override void UpdateEditorGUI()
         {
             //artGUIUtils.DrawGridBackground(ArtimechEditor.Inst.TransMtx);
-            m_MainWindow.Update();
+            //m_MainWindow.Update();
             //m_MainWindow.Update();
 
+            if (Event.current.type == EventType.MouseDown)
+                ArtimechEditor.Inst.MouseClickDownPosStart = Event.current.mousePosition;
 
             base.UpdateEditorGUI();
             //ArtimechEditor.Inst.Repaint();

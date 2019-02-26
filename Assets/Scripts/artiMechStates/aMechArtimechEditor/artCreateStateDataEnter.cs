@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create State Data Entry</alias>
     <comment></comment>
-    <posX>728</posX>
-    <posY>265</posY>
+    <posX>838</posX>
+    <posY>381</posY>
     <sizeX>170</sizeX>
     <sizeY>46</sizeY>
   </State>
