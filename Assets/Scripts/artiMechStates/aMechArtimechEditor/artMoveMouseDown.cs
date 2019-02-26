@@ -95,8 +95,8 @@ namespace Artimech
         {
             Event ev = Event.current;
             artVisualStateNode m_WindowsSelectedNode = this.GetSelectedNode();
-          
-            if (m_WindowsSelectedNode!=null && ev.button == 0)
+
+            if (m_WindowsSelectedNode != null && ev.button == 0)
             {
                 if (ev.type != EventType.MouseUp)
                 {
@@ -105,17 +105,8 @@ namespace Artimech
                     float width = m_WindowsSelectedNode.WinRect.width;
                     float height = m_WindowsSelectedNode.WinRect.height;
 
-                    Vector2 mousePos = new Vector2();
-                    mousePos = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
-
-                    if (mousePos.x >= x && mousePos.x <= x + width)
-                    {
-                        if (mousePos.y >= y && mousePos.y <= y + height)
-                        {
-                            m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
-                            stateEditorUtils.Repaint();
-                        }
-                    }
+                    m_WindowsSelectedNode.SetPos(ev.mousePosition.x - (width * m_MoveOffsetPercent.x), ev.mousePosition.y - (height * m_MoveOffsetPercent.y));
+                    stateEditorUtils.Repaint();
                 }
 
             }
@@ -162,12 +153,14 @@ namespace Artimech
         public override void Enter()
         {
             artVisualStateNode visualStateNode = GetSelectedNode();
+            if (visualStateNode != null)
+            {
+                float diff = ArtimechEditor.Inst.MouseClickDownPosStart.x - visualStateNode.WinRect.x;
+                m_MoveOffsetPercent.x = diff / visualStateNode.WinRect.width;
 
-            float diff = ArtimechEditor.Inst.MouseClickDownPosStart.x - visualStateNode.WinRect.x;
-            m_MoveOffsetPercent.x = diff / visualStateNode.WinRect.width;
-
-            diff = ArtimechEditor.Inst.MouseClickDownPosStart.y - visualStateNode.WinRect.y;
-            m_MoveOffsetPercent.y = diff / visualStateNode.WinRect.height;
+                diff = ArtimechEditor.Inst.MouseClickDownPosStart.y - visualStateNode.WinRect.y;
+                m_MoveOffsetPercent.y = diff / visualStateNode.WinRect.height;
+            }
 
             base.Enter();
         }
