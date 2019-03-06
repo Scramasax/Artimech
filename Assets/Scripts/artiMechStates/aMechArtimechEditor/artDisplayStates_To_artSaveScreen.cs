@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artSaveData : stateConditionalBase
+    public class artDisplayStates_To_artSaveScreen : stateConditionalBase
     {
         
-        public artDisplayStates_To_artSaveData(string changeStateName) : base (changeStateName)
+        public artDisplayStates_To_artSaveScreen(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -53,8 +53,8 @@ namespace Artimech
         public override string UpdateConditionalTest(baseState state)
         {
 
-            artDisplayStates script = (artDisplayStates)state;
-            if(script.SaveDataBool)
+            artDisplayStates dState = (artDisplayStates)state;
+            if (dState.SaveDataBool)
                 return m_ChangeStateName;
 
             return null;

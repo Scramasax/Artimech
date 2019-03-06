@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Drop</alias>
+    <alias>Save Screen</alias>
     <comment></comment>
-    <posX>253</posX>
-    <posY>244</posY>
-    <sizeX>150</sizeX>
-    <sizeY>80</sizeY>
+    <posX>758</posX>
+    <posY>31</posY>
+    <sizeX>129</sizeX>
+    <sizeY>49</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class cubeNoThrust : stateGameBase
+    public class artSaveScreen : artDisplayWindowsBaseState
     {
-
+        artMessageWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public cubeNoThrust(GameObject gameobject) : base (gameobject)
+        public artSaveScreen(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new cubeNoThrust_To_cubeUpThrust("cubeUpThrust"));
+            m_ConditionalList.Add(new artSaveScreen_To_artSaveMetaData("artSaveMetaData"));
         }
 
         /// <summary>
@@ -79,6 +79,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -87,6 +88,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artMessageWindow("Artimech System Status", "Saving Meta Data....", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
         }
 

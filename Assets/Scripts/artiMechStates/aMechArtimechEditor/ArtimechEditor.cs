@@ -216,7 +216,9 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
-            AddState(new artSaveData(this), "artSaveData");
+            AddState(new artSaveScreen(this),"artSaveScreen");
+            AddState(new artSaveMetaData(this),"artSaveMetaData");
+   //         AddState(new artSaveData(this), "artSaveData");
             AddState(new artRenameAlias(this), "artRenameAlias");
             AddState(new artRenameAliasDataEntry(this), "artRenameAliasDataEntry");
             AddState(new artRefactorState(this), "artRefactorState");

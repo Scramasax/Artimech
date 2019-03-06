@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artSaveData_To_artDisplayStates : stateConditionalBase
+    public class artSaveScreen_To_artSaveMetaData : stateConditionalBase
     {
         
-        public artSaveData_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artSaveScreen_To_artSaveMetaData(string changeStateName) : base (changeStateName)
         {
             
         }

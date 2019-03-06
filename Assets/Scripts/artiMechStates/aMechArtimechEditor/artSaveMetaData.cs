@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Save Data</alias>
     <comment></comment>
-    <posX>525</posX>
-    <posY>93</posY>
-    <sizeX>105</sizeX>
-    <sizeY>42</sizeY>
+    <posX>829</posX>
+    <posY>109</posY>
+    <sizeX>140</sizeX>
+    <sizeY>52</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artSaveData : editorStateBase
+    public class artSaveMetaData : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artSaveData(Object unityObj) : base (unityObj)
+        public artSaveMetaData(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artSaveData_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artSaveMetaData_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -87,7 +87,8 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor.Inst.SaveMetaDataInStates();
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+                ArtimechEditor.Inst.VisualStateNodes[i].SaveMetaData();
             base.Enter();
         }
 

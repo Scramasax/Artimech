@@ -414,7 +414,7 @@ namespace Artimech
             //stateEditorUtils.MousePos = ev.mousePosition;
 
             //if the mouse button is down.
-            if (ev.type == EventType.MouseDown)
+            if (ev.type == EventType.MouseDown && ev.button == 0)
             {
                 LeftMouseButton = true;
                 if (m_MainBodyHover)
@@ -423,7 +423,7 @@ namespace Artimech
                     Selected = true;
                 }
 
-                if(m_ResizeBodyHover)
+                if (m_ResizeBodyHover)
                 {
                     this.Resize = true;
                 }
