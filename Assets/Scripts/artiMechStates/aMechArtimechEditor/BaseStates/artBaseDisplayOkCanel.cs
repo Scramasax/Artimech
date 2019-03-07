@@ -130,7 +130,6 @@ namespace Artimech
         {
             CancelBool = false;
             OkBool = false;
-            m_EntryString = "";
             base.Enter();
         }
 

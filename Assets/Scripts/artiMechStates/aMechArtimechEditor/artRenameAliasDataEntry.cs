@@ -55,7 +55,6 @@ namespace Artimech
         public artRenameAliasDataEntry(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artRenameAliasDataEntry_To_artRenameAlias("artRenameAlias"));
             m_ConditionalList.Add(new artRenameAliasDataEntry_To_artDisplayStates("artDisplayStates"));
         }
 
@@ -89,8 +88,23 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            artVisualStateNode node = GetSelectedNode();
+            EntryString = node.WindowStateAlias;
             m_RenameWindow = new artRenameWindow(this, "Rename Alias", "Enter an alias name for the selected state:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
+        }
+
+        artVisualStateNode GetSelectedNode()
+        {
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                if (ArtimechEditor.Inst.VisualStateNodes[i].RenameBool)
+                {
+
+                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -98,6 +112,10 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
+            artVisualStateNode node = GetSelectedNode();
+            if (OkBool)
+                node.WindowStateAlias = EntryString; 
+            node.RenameBool = false;
             base.Exit();
         }
     }

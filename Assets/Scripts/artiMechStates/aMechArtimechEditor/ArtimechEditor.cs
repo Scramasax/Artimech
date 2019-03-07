@@ -219,7 +219,6 @@ namespace Artimech
             AddState(new artSaveScreen(this),"artSaveScreen");
             AddState(new artSaveMetaData(this),"artSaveMetaData");
    //         AddState(new artSaveData(this), "artSaveData");
-            AddState(new artRenameAlias(this), "artRenameAlias");
             AddState(new artRenameAliasDataEntry(this), "artRenameAliasDataEntry");
             AddState(new artRefactorState(this), "artRefactorState");
             AddState(new artRefactorDataEntry(this), "artRefactorDataEntry");

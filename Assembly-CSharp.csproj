@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artMoveMouseDown.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorDataEntry.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAlias.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAliasDataEntry.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artResizeMouseDown.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artSaveScreen.cs" />
@@ -118,11 +119,9 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artRefactorState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorState_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAlias.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAlias_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAliasDataEntry.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAliasDataEntry_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRenameAliasDataEntry_To_artRenameAlias.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData.cs" />
@@ -246,6 +245,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
