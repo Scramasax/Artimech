@@ -234,6 +234,7 @@ namespace Artimech
                         string base4Str = "";
                         string base5Str = "";
                         string base6Str = "";
+                        string base7Str = "";
 
 
                         if (type.BaseType != null)
@@ -252,7 +253,11 @@ namespace Artimech
                                         {
                                             base5Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
                                             if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                            {
                                                 base6Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                                if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                                    base7Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                            }
                                         }
                                     }
                                 }
@@ -260,9 +265,8 @@ namespace Artimech
                         }
 
                         //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
-                        if (base1Str == "baseState" || base2Str == "baseState" || base3Str == "baseState" || base4Str == "baseState" || base5Str == "baseState" || base6Str == "baseState")
+                        if (base1Str == "baseState" || base2Str == "baseState" || base3Str == "baseState" || base4Str == "baseState" || base5Str == "baseState" || base6Str == "baseState" || base7Str == "baseState")
                         {
-                            int a = 12;
                             artVisualStateNode compNode = FindStateWindowsNodeByName(words[i + 3]);
                             if (compNode != null)
                             {

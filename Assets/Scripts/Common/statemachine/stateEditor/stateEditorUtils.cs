@@ -208,12 +208,27 @@ namespace Artimech
                     Type type = Type.GetType(stateEditorUtils.kArtimechNamespace + words[i + 3]);
                     if (type != null)
                     {
+
+                        if (IsBaseClassViaString(type, "baseState"))
+                        {
+                            stateWindowsNode compNode = FindStateWindowsNodeByName(words[i + 3]);
+                            if (compNode != null)
+                            {
+                                node.ConditionLineList.Add(compNode);
+                                //Debug.Log("compNode = " + compNode.ClassName);
+                            }
+                        }
+                        /*
+
+                        Type[] nestType = type.GetNestedTypes();
                         string base1Str = "";
                         string base2Str = "";
                         string base3Str = "";
                         string base4Str = "";
                         string base5Str = "";
                         string base6Str = "";
+                        string base7Str = "";
+                        string base8Str = "";
 
 
                         if (type.BaseType != null)
@@ -232,7 +247,17 @@ namespace Artimech
                                         {
                                             base5Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
                                             if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                            {
                                                 base6Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                                if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                                {
+                                                    base7Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                                    if (type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType != null)
+                                                    {
+                                                        base8Str = type.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.BaseType.Name;
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -240,7 +265,7 @@ namespace Artimech
                         }
 
                         //if (baseOneStr == "baseState" )//|| buffer == "stateGameBase")
-                        if (base1Str == "baseState" || base2Str == "baseState" || base3Str == "baseState" || base4Str == "baseState" || base5Str == "baseState" || base6Str == "baseState")
+                        if (base1Str == "baseState" || base2Str == "baseState" || base3Str == "baseState" || base4Str == "baseState" || base5Str == "baseState" || base6Str == "baseState" || base7Str == "baseState" || base8Str == "baseState")
                         {
                             stateWindowsNode compNode = FindStateWindowsNodeByName(words[i + 3]);
                             if (compNode != null)
@@ -248,7 +273,7 @@ namespace Artimech
                                 node.ConditionLineList.Add(compNode);
                                 //Debug.Log("compNode = " + compNode.ClassName);
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -279,6 +304,11 @@ namespace Artimech
 
                     if (type != null)
                     {
+                        if (IsBaseClassViaString(type, "baseState"))
+                        {
+                            m_StateNameList.Add(words[i + 1]);
+                        }
+                        /*
                         string baseOneStr = "";
                         string baseTwoStr = "";
                         string baseThreeStr = "";
@@ -297,10 +327,22 @@ namespace Artimech
                             m_StateNameList.Add(words[i + 1]);
                             // Debug.Log("<color=cyan>" + "<b>" + "words[i + 1] = " + "</b></color>" + "<color=grey>" + words[i + 1] + "</color>" + " .");
                         }
+                        */
 
                     }
                 }
             }
+        }
+
+        static bool IsBaseClassViaString(Type type, string classNameStr)
+        {
+            if (type.Name == classNameStr)
+                return true;
+            if (type.BaseType != null)
+            {
+                return IsBaseClassViaString(type.BaseType, classNameStr);
+            }
+            return false;
         }
 
         public static bool CreateAndAddStateCodeToProject(UnityEngine.Object unityObj, string stateName, string exampleToCopy, string replaceName, bool showLog = true)

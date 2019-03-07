@@ -45,9 +45,9 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artRenameAliasDataEntry : editorStateBase
+    public class artRenameAliasDataEntry : artBaseDisplayOkCanel
     {
-
+        artRenameWindow m_RenameWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -80,6 +80,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_RenameWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -88,6 +89,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_RenameWindow = new artRenameWindow(this, "Rename Alias", "Enter an alias name for the selected state:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
         }
 

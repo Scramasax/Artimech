@@ -103,7 +103,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAliasDataEntry.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artResizeMouseDown.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artSaveScreen.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayWindowsBaseState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artDisplayStates.cs" />
@@ -132,7 +131,9 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen_To_artSaveMetaData.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseDisplayOkCanel.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseOkCancel.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artDisplayWindowsBaseState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artVisualStateNode.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artEditorUtils.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artGUIUtils.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />

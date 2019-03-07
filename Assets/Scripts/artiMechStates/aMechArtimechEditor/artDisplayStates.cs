@@ -48,6 +48,8 @@ namespace Artimech
     public class artDisplayStates : artDisplayWindowsBaseState
     {
         bool m_SaveDataBool = false;
+        bool m_RenameBool = false;
+
 
         public bool SaveDataBool
         {
@@ -59,6 +61,19 @@ namespace Artimech
             set
             {
                 m_SaveDataBool = value;
+            }
+        }
+
+        public bool RenameBool
+        {
+            get
+            {
+                return m_RenameBool;
+            }
+
+            set
+            {
+                m_RenameBool = value;
             }
         }
 

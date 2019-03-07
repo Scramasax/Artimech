@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Save Data</alias>
+    <alias>Clear Object</alias>
     <comment></comment>
-    <posX>829</posX>
-    <posY>109</posY>
-    <sizeX>140</sizeX>
-    <sizeY>52</sizeY>
+    <posX>10</posX>
+    <posY>311</posY>
+    <sizeX>131</sizeX>
+    <sizeY>57</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,58 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artSaveMetaData : artDisplayWindowsBaseState
+    public class artBaseDisplayOkCanel : artDisplayWindowsBaseState
     {
+        bool m_CancelBool;
+        bool m_OkBool;
+        string m_EntryString;
+
+        public bool CancelBool
+        {
+            get
+            {
+                return m_CancelBool;
+            }
+
+            set
+            {
+                m_CancelBool = value;
+            }
+        }
+
+        public bool OkBool
+        {
+            get
+            {
+                return m_OkBool;
+            }
+
+            set
+            {
+                m_OkBool = value;
+            }
+        }
+
+        public string EntryString
+        {
+            get
+            {
+                return m_EntryString;
+            }
+
+            set
+            {
+                m_EntryString = value;
+            }
+        }
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artSaveMetaData(Object unityObj) : base (unityObj)
+        public artBaseDisplayOkCanel(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artSaveMetaData_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -87,8 +128,9 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
-                ArtimechEditor.Inst.VisualStateNodes[i].SaveMetaData();
+            CancelBool = false;
+            OkBool = false;
+            m_EntryString = "";
             base.Enter();
         }
 

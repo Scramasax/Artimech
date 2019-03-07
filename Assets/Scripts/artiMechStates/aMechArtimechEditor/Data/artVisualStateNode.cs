@@ -50,6 +50,8 @@ namespace Artimech
         bool m_LeftMouseButton = false;
         bool m_Selected = false;
         bool m_Resize = false;
+        bool m_RenameBool = false;
+      
 
         Vector2 m_ConditionOffset;
 
@@ -202,6 +204,19 @@ namespace Artimech
             set
             {
                 m_Resize = value;
+            }
+        }
+
+        public bool RenameBool
+        {
+            get
+            {
+                return m_RenameBool;
+            }
+
+            set
+            {
+                m_RenameBool = value;
             }
         }
 
@@ -427,6 +442,10 @@ namespace Artimech
                 {
                     this.Resize = true;
                 }
+                if(this.m_TitleHover)
+                {
+                    RenameBool = true;
+                }
             }
 
             if (ev.type == EventType.MouseUp)
@@ -434,6 +453,7 @@ namespace Artimech
                 LeftMouseButton = false;
                 Selected = false;
                 Resize = false;
+                //RenameBool = false;
             }
 
             //GUI.Window(m_Id, mtx.Transform(WinRect), DrawNodeWindow, m_WindowStateAlias);
@@ -553,9 +573,15 @@ namespace Artimech
         /// <param name="id"></param>
         void DrawNodeWindow(int id)
         {
+            if (Event.current.button == 0 && Event.current.isMouse && ResizeBodyHover)
+            {
+
+            }
+
             if (Event.current.button == 1 && Event.current.isMouse)
             {
                 //if (m_State != null && m_State is editorDisplayWindowsState)
+                if (IsWithinUsingPanZoomTransform(Event.current.mousePosition, ArtimechEditor.Inst.TransMtx))
                 {
                     artDisplayStates dState = (artDisplayStates)m_State;
                     if (dState != null && Event.current.type == EventType.MouseDown)
