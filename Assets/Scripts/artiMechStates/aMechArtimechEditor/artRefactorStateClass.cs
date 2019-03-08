@@ -19,6 +19,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -52,7 +53,7 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artRefactorStateClass(Object unityObj) : base (unityObj)
+        public artRefactorStateClass(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artRefactorStateClass_To_artDisplayStates("artDisplayStates"));
@@ -88,7 +89,8 @@ namespace Artimech
         public override void Enter()
         {
             artVisualStateNode node = GetSelectedNode();
-           utlDataAndFile.RefactorAllAssets(node.ClassName, ArtimechEditor.Inst.RefactorName, Application.dataPath, true);
+            utlDataAndFile.RefactorAllAssets(node.ClassName, ArtimechEditor.Inst.RefactorName, Application.dataPath, true);
+            AssetDatabase.Refresh();
             base.Enter();
         }
 

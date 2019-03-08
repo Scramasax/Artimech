@@ -250,6 +250,16 @@ namespace Artimech
             m_ConditionOffset.y = 15f;
         }
 
+        public void Reset()
+        {
+             m_MoveBool = false;
+             m_LeftMouseButton = false;
+             m_Selected = false;
+             m_Resize = false;
+             m_RenameBool = false;
+             m_RefactorBool = false;
+        }
+
         /// <summary>
         /// Sets the various configuration varibles. 
         /// </summary>

@@ -89,7 +89,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindow("Refactoring State Class", "Unity3d is recompiling code...", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow = new artMessageWindow("Refactoring State Class", "Processing and compiling.  Please Wait...", 12, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
         }
 

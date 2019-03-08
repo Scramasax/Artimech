@@ -143,6 +143,10 @@ namespace Artimech
             SaveDataBool = false;
             ArtimechEditor.Inst.DrawToolBarBool = true;
             ArtimechEditor.Inst.Repaint();
+            for(int i=0;i<ArtimechEditor.Inst.VisualStateNodes.Count;i++)
+            {
+                ArtimechEditor.Inst.VisualStateNodes[i].Reset();
+            }
             base.Enter();
         }
 
