@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Delete State</alias>
     <comment></comment>
-    <posX>528</posX>
-    <posY>619</posY>
+    <posX>608</posX>
+    <posY>598</posY>
     <sizeX>154</sizeX>
     <sizeY>47</sizeY>
   </State>

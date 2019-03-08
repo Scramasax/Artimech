@@ -36,6 +36,7 @@ namespace Artimech
         bool m_DrawToolBarBool = true;
         IList<artVisualStateNode> m_VisualStateNodes;
         Vector2 m_MouseClickDownPosStart;
+        string m_RefactorName = "";
 
 
         #endregion
@@ -74,6 +75,19 @@ namespace Artimech
             set
             {
                 m_MouseClickDownPosStart = value;
+            }
+        }
+
+        public string RefactorName
+        {
+            get
+            {
+                return m_RefactorName;
+            }
+
+            set
+            {
+                m_RefactorName = value;
             }
         }
 
@@ -216,12 +230,13 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artRefactorStateClass(this),"artRefactorStateClass");
+            AddState(new artRefactorEnterData(this),"artRefactorEnterData");
+            AddState(new artRefactScreen(this),"artRefactScreen");
             AddState(new artSaveScreen(this),"artSaveScreen");
             AddState(new artSaveMetaData(this),"artSaveMetaData");
    //         AddState(new artSaveData(this), "artSaveData");
-            AddState(new artRenameAliasDataEntry(this), "artRenameAliasDataEntry");
-            AddState(new artRefactorState(this), "artRefactorState");
-            AddState(new artRefactorDataEntry(this), "artRefactorDataEntry");
+            AddState(new artRename(this), "artRename");
             AddState(new artCreateState(this), "artCreateState");
             AddState(new artCreateStateDataEnter(this), "artCreateStateDataEnter");
             AddState(new artDeleteState(this), "artDeleteState");

@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artRefactorDataEntry : stateConditionalBase
+    public class artRefactorStateClass_To_artDisplayStates : stateConditionalBase
     {
         
-        public artDisplayStates_To_artRefactorDataEntry(string changeStateName) : base (changeStateName)
+        public artRefactorStateClass_To_artDisplayStates(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,18 +52,7 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            string strOut = null;
-
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
-            {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].RefactorBool)
-                {
-                    strOut = m_ChangeStateName;
-                    return strOut;
-                }
-            }
-
-            return strOut;
+            return m_ChangeStateName;
         }
     }
 }

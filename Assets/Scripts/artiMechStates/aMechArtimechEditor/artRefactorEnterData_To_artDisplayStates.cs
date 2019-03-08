@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artRenameAliasDataEntry_To_artDisplayStates : stateConditionalBase
+    public class artRefactorEnterData_To_artDisplayStates : stateConditionalBase
     {
         
-        public artRenameAliasDataEntry_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artRefactorEnterData_To_artDisplayStates(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -53,7 +53,7 @@ namespace Artimech
         public override string UpdateConditionalTest(baseState state)
         {
             artBaseDisplayOkCanel dState = (artBaseDisplayOkCanel)state;
-            if (dState.CancelBool || dState.OkBool)
+            if (dState.CancelBool)
                 return m_ChangeStateName;
 
             return null;

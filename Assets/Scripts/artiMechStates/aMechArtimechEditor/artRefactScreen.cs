@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Refactor Data Entry</alias>
+    <alias>Refactor Message Screen</alias>
     <comment></comment>
-    <posX>423</posX>
-    <posY>521</posY>
-    <sizeX>150</sizeX>
-    <sizeY>47</sizeY>
+    <posX>279</posX>
+    <posY>519</posY>
+    <sizeX>185</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,18 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artRefactorDataEntry : editorStateBase
-    {
 
+    public class artRefactScreen : artBaseDisplayOkCanel
+    {
+        artMessageWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artRefactorDataEntry(Object unityObj) : base (unityObj)
+        public artRefactScreen(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artRefactorDataEntry_To_artDisplayStates("artDisplayStates"));
-            m_ConditionalList.Add(new artRefactorDataEntry_To_artRefactorState("artRefactorState"));
+            m_ConditionalList.Add(new artRefactScreen_To_artRefactorStateClass("artRefactorStateClass"));
         }
 
         /// <summary>
@@ -80,6 +80,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -88,6 +89,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artMessageWindow("Refactoring State Class", "Unity3d is recompiling code...", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
         }
 

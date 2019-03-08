@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artRefactorDataEntry : stateConditionalBase
+    public class artDisplayStates_To_artRename : stateConditionalBase
     {
         
-        public artDisplayStates_To_artRefactorDataEntry(string changeStateName) : base (changeStateName)
+        public artDisplayStates_To_artRename(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -56,7 +56,7 @@ namespace Artimech
 
             for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].RefactorBool)
+                if (ArtimechEditor.Inst.VisualStateNodes[i].RenameBool)
                 {
                     strOut = m_ChangeStateName;
                     return strOut;

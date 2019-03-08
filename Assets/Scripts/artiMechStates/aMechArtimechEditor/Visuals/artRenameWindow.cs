@@ -33,6 +33,8 @@ namespace Artimech
         Texture m_ExclamtionTexture;
         Vector4 m_TexturePosAndSize;
 
+        string m_EntryLabel;
+
         #endregion
         #region Gets Sets
         public float Width
@@ -110,6 +112,19 @@ namespace Artimech
             set
             {
                 m_ButtonMiddleSpacing = value;
+            }
+        }
+
+        public string EntryLabel
+        {
+            get
+            {
+                return m_EntryLabel;
+            }
+
+            set
+            {
+                m_EntryLabel = value;
             }
         }
 
@@ -193,7 +208,8 @@ namespace Artimech
             GUILayout.EndHorizontal();
 
             GUILayout.Space(10);
-            m_State.EntryString = EditorGUILayout.TextField("Alias Name", m_State.EntryString);
+            m_State.EntryString = EditorGUILayout.TextField(EntryLabel, m_State.EntryString);
+            ArtimechEditor.Inst.RefactorName = m_State.EntryString;
             GUILayout.Space(10);
 
             GUILayout.BeginHorizontal("");

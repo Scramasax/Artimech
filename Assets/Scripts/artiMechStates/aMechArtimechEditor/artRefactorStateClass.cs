@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Display States</alias>
+    <alias>Refactor State Class</alias>
     <comment></comment>
-    <posX>512</posX>
-    <posY>239</posY>
-    <sizeX>215</sizeX>
-    <sizeY>129</sizeY>
+    <posX>391</posX>
+    <posY>598</posY>
+    <sizeX>171</sizeX>
+    <sizeY>48</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,58 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artDisplayStates : artDisplayWindowsBaseState
+    public class artRefactorStateClass : editorStateBase
     {
-        bool m_SaveDataBool = false;
-        bool m_RenameBool = false;
 
-
-        public bool SaveDataBool
-        {
-            get
-            {
-                return m_SaveDataBool;
-            }
-
-            set
-            {
-                m_SaveDataBool = value;
-            }
-        }
-
-        public bool RenameBool
-        {
-            get
-            {
-                return m_RenameBool;
-            }
-
-            set
-            {
-                m_RenameBool = value;
-            }
-        }
-
-        // artMainWindow m_MainWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artDisplayStates(Object unityObj) : base(unityObj)
+        public artRefactorStateClass(Object unityObj) : base (unityObj)
         {
-            //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artDisplayStates_To_artRefactorEnterData("artRefactorEnterData"));
-            m_ConditionalList.Add(new artDisplayStates_To_artRefactorDataEntry("artRefactorDataEntry"));
-            m_ConditionalList.Add(new artDisplayStates_To_artRename("artRename"));
-            m_ConditionalList.Add(new artDisplayStates_To_artRenameAlias("artRenameAlias"));
-            m_ConditionalList.Add(new artDisplayStates_To_artSaveScreen("artSaveScreen"));
-            m_ConditionalList.Add(new artDisplayStates_To_artCreateStateDataEnter("artCreateStateDataEnter"));
-            m_ConditionalList.Add(new artDisplayStates_To_artDeleteAsk("artDeleteAsk"));
-            m_ConditionalList.Add(new artDisplayStates_To_artResizeMouseDown("artResizeMouseDown"));
-            m_ConditionalList.Add(new artDisplayStates_To_artMoveMouseDown("artMoveMouseDown"));
-            m_ConditionalList.Add(new artDisplayStates_To_artCheckIfIMachine("artCheckIfIMachine"));
-            m_ConditionalList.Add(new artDisplayStates_To_artNoObject("artNoObject"));
+            m_ConditionalList.Add(new artRefactorStateClass_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -120,29 +79,16 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            Event ev = Event.current;
-            //Saves meta data for the visual window system via the keyboard
-            if (ev.control && ev.keyCode == KeyCode.S)
-            {
-                SaveDataBool = true;
-            }
-
-            if (Event.current.type == EventType.MouseDown)
-                ArtimechEditor.Inst.MouseClickDownPosStart = Event.current.mousePosition;
-
             base.UpdateEditorGUI();
-            //ArtimechEditor.Inst.Repaint();
         }
-
 
         /// <summary>
         /// When the state becomes active Enter() is called once.
         /// </summary>
         public override void Enter()
         {
-            SaveDataBool = false;
-            ArtimechEditor.Inst.DrawToolBarBool = true;
-            ArtimechEditor.Inst.Repaint();
+            artVisualStateNode node = GetSelectedNode();
+           utlDataAndFile.RefactorAllAssets(node.ClassName, ArtimechEditor.Inst.RefactorName, Application.dataPath, true);
             base.Enter();
         }
 
@@ -154,16 +100,17 @@ namespace Artimech
             base.Exit();
         }
 
-        public void AddConditionalCallback(object obj)
+        artVisualStateNode GetSelectedNode()
         {
-        }
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                if (ArtimechEditor.Inst.VisualStateNodes[i].RefactorBool)
+                {
 
-        public void EditScriptCallback(object obj)
-        {
-        }
-
-        public void RefactorClassCallback(object obj)
-        {
+                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                }
+            }
+            return null;
         }
     }
 }

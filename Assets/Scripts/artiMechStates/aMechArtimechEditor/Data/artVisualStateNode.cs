@@ -51,6 +51,7 @@ namespace Artimech
         bool m_Selected = false;
         bool m_Resize = false;
         bool m_RenameBool = false;
+        bool m_RefactorBool = false;
       
 
         Vector2 m_ConditionOffset;
@@ -217,6 +218,19 @@ namespace Artimech
             set
             {
                 m_RenameBool = value;
+            }
+        }
+
+        public bool RefactorBool
+        {
+            get
+            {
+                return m_RefactorBool;
+            }
+
+            set
+            {
+                m_RefactorBool = value;
             }
         }
 
@@ -600,7 +614,7 @@ namespace Artimech
                         menu.AddSeparator("");
                         menu.AddItem(new GUIContent("Edit Script"), false, dState.EditScriptCallback, this);
                         menu.AddSeparator("");
-                        menu.AddItem(new GUIContent("Refactor State Class"), false, dState.RefactorClassCallback, this);
+                        menu.AddItem(new GUIContent("Refactor State Class"), false, this.RefactorClassCallback, this);
                         //stateEditorUtils.SelectedNode = this;
                         menu.ShowAsContext();
                         Event.current.Use();
@@ -728,6 +742,11 @@ namespace Artimech
             //this.SetPos(mousePos.x - (this.WinRect.width * 0.5f), mousePos.y - (this.WinRect.height * 0.5f));
             //Vector2 offset = startOffset
             this.SetPos(mousePos.x, mousePos.y);
+        }
+
+        public void RefactorClassCallback(object obj)
+        {
+            RefactorBool = true;
         }
     }
 }

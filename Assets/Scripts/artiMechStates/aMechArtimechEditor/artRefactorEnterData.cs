@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Rename Data Entry</alias>
+    <alias>Refactor Enter Data</alias>
     <comment></comment>
-    <posX>846</posX>
-    <posY>304</posY>
-    <sizeX>162</sizeX>
-    <sizeY>40</sizeY>
+    <posX>304</posX>
+    <posY>437</posY>
+    <sizeX>156</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artRenameAliasDataEntry : artBaseDisplayOkCanel
+    public class artRefactorEnterData : artBaseDisplayOkCanel
     {
         artRenameWindow m_RenameWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artRenameAliasDataEntry(Object unityObj) : base (unityObj)
+        public artRefactorEnterData(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artRenameAliasDataEntry_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artRefactorEnterData_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artRefactorEnterData_To_artRefactScreen("artRefactScreen"));
         }
 
         /// <summary>
@@ -89,22 +90,10 @@ namespace Artimech
         public override void Enter()
         {
             artVisualStateNode node = GetSelectedNode();
-            EntryString = node.WindowStateAlias;
-            m_RenameWindow = new artRenameWindow(this, "Rename Alias", "Enter an alias name for the selected state:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            EntryString = node.ClassName;
+            m_RenameWindow = new artRenameWindow(this, "Refactor Class", "Search and replace all code refs to this class:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_RenameWindow.EntryLabel = "Refactor Name";
             base.Enter();
-        }
-
-        artVisualStateNode GetSelectedNode()
-        {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
-            {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].RenameBool)
-                {
-
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
-                }
-            }
-            return null;
         }
 
         /// <summary>
@@ -112,11 +101,20 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
-            artVisualStateNode node = GetSelectedNode();
-            if (OkBool)
-                node.WindowStateAlias = EntryString; 
-            node.RenameBool = false;
             base.Exit();
+        }
+
+        artVisualStateNode GetSelectedNode()
+        {
+            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            {
+                if (ArtimechEditor.Inst.VisualStateNodes[i].RefactorBool)
+                {
+
+                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                }
+            }
+            return null;
         }
     }
 }

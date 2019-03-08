@@ -27,22 +27,22 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artRenameAlias_To_artDisplayStates : stateConditionalBase
+    public class artRefactScreen_To_artRefactorStateClass : stateConditionalBase
     {
-
-        public artRenameAlias_To_artDisplayStates(string changeStateName) : base(changeStateName)
+        
+        public artRefactScreen_To_artRefactorStateClass(string changeStateName) : base (changeStateName)
         {
-
+            
         }
 
         public override void Enter(baseState state)
         {
-
+            
         }
 
         public override void Exit(baseState state)
         {
-
+            
         }
 
         /// <summary>
@@ -52,10 +52,7 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            artBaseDisplayOkCanel dState = (artBaseDisplayOkCanel)state;
-            if (dState.CancelBool || dState.OkBool)
-                return m_ChangeStateName;
-            return null;
+            return m_ChangeStateName;
         }
     }
 }
