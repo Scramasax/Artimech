@@ -13,12 +13,23 @@ namespace Artimech
     /// <summary>
     /// Base window for the Artimech state editor system
     /// </summary>
+    /// 
     public class artMainWindowConfigure : artWindowBase
     {
         #region Variables
         artBaseOkCancel m_State;
         Vector2 m_MousePos;
         Vector2 m_ScrollPos;
+        string m_StateMachinePathAndFile;
+        Color m_MatColorA;
+        Color m_MatColorB;
+        Color m_MatColorC;
+        Color m_MatColorD;
+        Color m_MatColorE;
+        Color m_MatColorF;
+        Color m_MatColorG;
+        Color m_MatColorH;
+        Color m_MatColorI;
 
         #endregion
         #region Gets Sets
@@ -83,12 +94,16 @@ namespace Artimech
             m_MainWindowStart = 1;
 
             var TextStyle = new GUIStyle();
-            TextStyle.normal.textColor = Color.blue;
+            TextStyle.normal.textColor = Color.black;
             TextStyle.fontSize = 12;
 
             var TitleStyle = new GUIStyle();
             TitleStyle.normal.textColor = Color.blue;
             TitleStyle.fontSize = 15;
+
+            var SmallTitleStyle = new GUIStyle();
+            SmallTitleStyle.normal.textColor = new Color(0.2f, 0.6f, 0.2f, 1);
+            SmallTitleStyle.fontSize = 9;
 
 
 
@@ -99,7 +114,7 @@ namespace Artimech
 
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(0);
-            GUILayout.Label("Configure Window", TitleStyle);
+            GUILayout.Label("Configure Artimech", TitleStyle);
             GUILayout.Space(100);
             EditorGUILayout.EndHorizontal();
 
@@ -108,12 +123,26 @@ namespace Artimech
 
             int startMargin = 5;
             int endMargin = 25;
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(0);
+            GUILayout.Label("State Creation", SmallTitleStyle);
+            GUILayout.Space(100);
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
+
+
+
             GUILayout.Space(startMargin);
-            ArtimechEditor.Inst.RefactorName = EditorGUILayout.TextField("Path/File Statemachine", ArtimechEditor.Inst.RefactorName);
+
+            m_StateMachinePathAndFile = EditorGUILayout.TextField("Path/File Statemachine", m_StateMachinePathAndFile);
             GUI.Label(new Rect(1, 1, WinRect.width, 20), new GUIContent("", "This is the path and file name for the statemachine to be copied."));
-            GUILayout.Space(endMargin);
+            GUILayout.Space(10);
+            if (GUI.Button(new Rect(WinRect.width - (endMargin * 1.5f), 13, 25, 15), "..."))
+            {
+                m_StateMachinePathAndFile = EditorUtility.OpenFilePanel("File", "", "cs");
+            }
+            GUILayout.Space(endMargin - 10);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
@@ -130,22 +159,78 @@ namespace Artimech
             GUILayout.Space(endMargin);
             EditorGUILayout.EndHorizontal();
 
-            // GUI.Button(new Rect(10, 10, 100, 20), new GUIContent("Click me", "This is the tooltip"));
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(0);
+            GUILayout.Label("Main Display Configuration", SmallTitleStyle);
+            GUILayout.Space(100);
+            EditorGUILayout.EndHorizontal();
 
-            // Display the tooltip from the element that has mouseover or keyboard focus
-            //GUI.Label(new Rect(1, 1, 1, 1), GUI.tooltip);
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorA = EditorGUILayout.ColorField("Main Display Color", m_MatColorA);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorB = EditorGUILayout.ColorField("Graph Paper Line Color", m_MatColorB);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
 
-            //GUILayout.Space(-10);
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(0);
+            GUILayout.Label("State Display Configuration", SmallTitleStyle);
+            GUILayout.Space(100);
+            EditorGUILayout.EndHorizontal();
 
-            /*       for (int i = 0; i < 100; i++)
-                   {
-                       EditorGUILayout.BeginHorizontal();
-                       GUILayout.Space(5);
-                       ArtimechEditor.Inst.RefactorName = EditorGUILayout.TextField("Refactor Name", ArtimechEditor.Inst.RefactorName);
-                       GUILayout.Space(25);
-                       EditorGUILayout.EndHorizontal();
-                   }*/
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorC = EditorGUILayout.ColorField("State Outline Color", m_MatColorC);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorD = EditorGUILayout.ColorField("State Header Color", m_MatColorD);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorE = EditorGUILayout.ColorField("State Body Color", m_MatColorE);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorF = EditorGUILayout.ColorField("State Close Color", m_MatColorF);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(0);
+            GUILayout.Label("Conditionial Display Configuration", SmallTitleStyle);
+            GUILayout.Space(100);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorG = EditorGUILayout.ColorField("Arrow Line Color", m_MatColorG);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorH = EditorGUILayout.ColorField("Arrow Body Color", m_MatColorH);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(startMargin);
+            m_MatColorI = EditorGUILayout.ColorField("Some other Color", m_MatColorI);
+            GUILayout.Space(endMargin);
+            EditorGUILayout.EndHorizontal();
+
 
 
             EditorGUILayout.EndScrollView();
