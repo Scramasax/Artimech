@@ -81,6 +81,11 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artConfigureSave.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artNoObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigureSave.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigureSave_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
@@ -95,6 +100,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteAsk.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artMoveMouseDown.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artCheckIfIMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artDisplayStates.cs" />
@@ -142,6 +149,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindowConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
@@ -248,6 +256,7 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <None Include="Assets\SaveData.xml" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

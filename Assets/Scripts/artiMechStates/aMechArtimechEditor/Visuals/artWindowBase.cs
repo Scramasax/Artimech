@@ -20,6 +20,9 @@ namespace Artimech
         protected string m_Title = "";
         protected int m_Id = -1;
         protected Color m_WindowColor;
+        protected int m_TitleSize = 17;
+        protected int m_MainWindowStart = 19;
+
         #endregion
         #region Gets Sets
         public Rect WinRect
@@ -81,14 +84,14 @@ namespace Artimech
         public void Draw(int id)
         {
             Color backroundColor = new Color(1, 1, 1, 0.8f);
-            Rect rect = new Rect(1, 17, WinRect.width - 2, WinRect.height - 19);
+            Rect rect = new Rect(1, m_TitleSize, WinRect.width - 2, WinRect.height - m_MainWindowStart);
             EditorGUI.DrawRect(rect, backroundColor);
 
             GUILayout.BeginHorizontal("");
-     
+
             GUILayout.EndHorizontal();
 
-   //         GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
+            //         GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
 
             //GUI.DragWindow();
         }

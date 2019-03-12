@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Not A Unity3d Object</alias>
+    <alias>artConfigure</alias>
     <comment></comment>
-    <posX>104</posX>
-    <posY>-61</posY>
-    <sizeX>192</sizeX>
-    <sizeY>38</sizeY>
+    <posX>-214</posX>
+    <posY>-52</posY>
+    <sizeX>148</sizeX>
+    <sizeY>49</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artNotEditorOrGameObject : artBaseOkCancel
+    public class artConfigure : artBaseOkCancel
     {
-        artMessageWindowPromt m_MessageWindow;
+        protected artMainWindowConfigure m_MainWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artNotEditorOrGameObject(Object unityObj) : base (unityObj)
+        public artConfigure(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artNotEditorOrGameObject_To_artNoObject("artNoObject"));
+            m_ConditionalList.Add(new artConfigure_To_artNoObject("artNoObject"));
+            m_ConditionalList.Add(new artConfigure_To_artConfigureSave("artConfigureSave"));
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
+            m_MainWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -88,12 +89,12 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindowPromt(this,"Error", "Selected object isn't of the correct type!", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            m_MessageWindow.Width = 0.6f;
-            m_MessageWindow.ButtonSideSpacing = 120.0f;
-            m_MessageWindow.InitImage("exclimation.png");
+            m_MainWindow = new artMainWindowConfigure(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+            ArtimechEditor.Inst.SelectedObj = null;
+            ArtimechEditor.Inst.SaveConfigureBool = false;
             ArtimechEditor.Inst.DrawToolBarBool = false;
             ArtimechEditor.Inst.Repaint();
+
             base.Enter();
         }
 
@@ -102,7 +103,6 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
-            ArtimechEditor.Inst.SelectedObj = null;
             base.Exit();
         }
     }

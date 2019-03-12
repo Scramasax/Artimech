@@ -37,6 +37,7 @@ namespace Artimech
         IList<artVisualStateNode> m_VisualStateNodes;
         Vector2 m_MouseClickDownPosStart;
         string m_RefactorName = "";
+        bool m_SaveConfigureBool = true;
 
 
         #endregion
@@ -88,6 +89,19 @@ namespace Artimech
             set
             {
                 m_RefactorName = value;
+            }
+        }
+
+        public bool SaveConfigureBool
+        {
+            get
+            {
+                return m_SaveConfigureBool;
+            }
+
+            set
+            {
+                m_SaveConfigureBool = value;
             }
         }
 
@@ -155,7 +169,9 @@ namespace Artimech
             {
                 GenericMenu toolsMenu = new GenericMenu();
                 toolsMenu.AddSeparator("");
-                toolsMenu.AddItem(new GUIContent("About"), false, PrintAboutToConsole);
+                toolsMenu.AddItem(new GUIContent("Configure"), false, OnConfigure);
+                toolsMenu.AddSeparator("");
+                toolsMenu.AddItem(new GUIContent("About"), false, OnPrintAboutToConsole);
                 toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
 
                 toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
@@ -230,12 +246,13 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
-            AddState(new artRefactorStateClass(this),"artRefactorStateClass");
-            AddState(new artRefactorEnterData(this),"artRefactorEnterData");
-            AddState(new artRefactScreen(this),"artRefactScreen");
-            AddState(new artSaveScreen(this),"artSaveScreen");
-            AddState(new artSaveMetaData(this),"artSaveMetaData");
-   //         AddState(new artSaveData(this), "artSaveData");
+            AddState(new artConfigureSave(this), "artConfigureSave");
+            AddState(new artConfigure(this), "artConfigure");
+            AddState(new artRefactorStateClass(this), "artRefactorStateClass");
+            AddState(new artRefactorEnterData(this), "artRefactorEnterData");
+            AddState(new artRefactScreen(this), "artRefactScreen");
+            AddState(new artSaveScreen(this), "artSaveScreen");
+            AddState(new artSaveMetaData(this), "artSaveMetaData");
             AddState(new artRename(this), "artRename");
             AddState(new artCreateState(this), "artCreateState");
             AddState(new artCreateStateDataEnter(this), "artCreateStateDataEnter");
@@ -256,7 +273,12 @@ namespace Artimech
 
         }
 
-        void PrintAboutToConsole()
+        void OnConfigure()
+        {
+            SaveConfigureBool = true;
+        }
+
+        void OnPrintAboutToConsole()
         {
             Debug.Log(
             "<b><color=navy>Artimech (c) 2017-2019 by George A Lancaster \n</color></b>"

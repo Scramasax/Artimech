@@ -86,6 +86,7 @@ namespace Artimech
         {
             //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artConfigure("artConfigure"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorEnterData("artRefactorEnterData"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorDataEntry("artRefactorDataEntry"));
             m_ConditionalList.Add(new artDisplayStates_To_artRename("artRename"));

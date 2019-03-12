@@ -34,8 +34,8 @@ using System.IO;
   <State>
     <alias>No Object</alias>
     <comment></comment>
-    <posX>-94</posX>
-    <posY>171</posY>
+    <posX>-187</posX>
+    <posY>184</posY>
     <sizeX>104</sizeX>
     <sizeY>55</sizeY>
   </State>
@@ -59,6 +59,7 @@ namespace Artimech
             //m_TestWin = new artWindowBase("test",new Rect(100,100,100,100),new Color(1,1,1,0.8f),1);
             InitImage();
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artNoObject_To_artConfigure("artConfigure"));
             m_ConditionalList.Add(new artNoObject_To_artCheckIfIMachine("artCheckIfIMachine"));
         }
 
@@ -106,6 +107,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor.Inst.SaveConfigureBool = false;
             ArtimechEditor.Inst.DrawToolBarBool = true;
             ArtimechEditor.Inst.Repaint();
             base.Enter();
