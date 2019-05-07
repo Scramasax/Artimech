@@ -107,6 +107,11 @@ public class utlMatrix34
         }
     }
 
+    public void LookAtFlat(Vector3 to)
+    {
+        LookAt(new Vector3(to.x, m_D.y, to.z));
+    }
+
     public void Translate(Vector3 pos)
     {
         m_D += pos;
@@ -148,14 +153,146 @@ public class utlMatrix34
     public Vector3 UnTransform(Vector3 worldPos)
     {
         Vector3 localPos = new Vector3();
-        
+
         localPos = worldPos - m_D;
-        localPos.x = Vector3.Dot(m_A,localPos);
+        localPos.x = Vector3.Dot(m_A, localPos);
         localPos.y = Vector3.Dot(m_B, localPos);
         localPos.z = Vector3.Dot(m_C, localPos);
 
         return localPos;
     }
 
-#endregion
+    public void RotateLocalX(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+        Vector3 rB = new Vector3(m_B.x, m_B.y, m_B.z);
+        Vector3.Scale(rB, new Vector3(cr, cr, cr));
+        utlMath.AddScaled(rB, m_C, sr);
+        m_C.Scale(new Vector3(cr, cr, cr));
+        utlMath.SubScaled(m_C, m_B, sr);
+        m_B.Set(rB.x, rB.y, rB.z);
+    }
+
+    public void RotateLocalY(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+        Vector3 rA = new Vector3(m_B.x, m_B.y, m_B.z);
+        Vector3.Scale(rA, new Vector3(cr, cr, cr));
+        utlMath.SubScaled(rA, m_C, sr);
+        m_C.Scale(new Vector3(cr, cr, cr));
+        utlMath.AddScaled(m_C, m_A, sr);
+        m_B.Set(rA.x, rA.y, rA.z);
+    }
+
+    public void RotateLocalZ(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+        Vector3 rA = new Vector3(m_B.x, m_B.y, m_B.z);
+        Vector3.Scale(rA, new Vector3(cr, cr, cr));
+        utlMath.AddScaled(rA, m_B, sr);
+        m_B.Scale(new Vector3(cr, cr, cr));
+        utlMath.SubScaled(m_B, m_A, sr);
+        m_B.Set(rA.x, rA.y, rA.z);
+
+        /*        float cr = cosf(r);
+                float sr = sinf(r);
+                Vector3 rA(a);
+                rA.Scale(cr);
+                rA.AddScaled(b, sr);
+                b.Scale(cr);
+                b.SubScaled(a, sr);
+                a.Set(rA);*/
+    }
+
+    public void RotateX(float r)
+    {
+        utlMatrix34 m = new utlMatrix34();
+        m.RotateXXform(r);
+        this.Dot(m);
+    }
+
+    public void RotateY(float r)
+    {
+        utlMatrix34 m = new utlMatrix34();
+        m.RotateYXform(r);
+        this.Dot(m);
+    }
+
+    public void RotateZ(float r)
+    {
+        utlMatrix34 m = new utlMatrix34();
+        m.RotateZXform(r);
+        this.Dot(m);
+    }
+
+    void RotateXXform(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+
+        A.Set(1.0f, 0.0f, 0.0f);
+        B.Set(0.0f, cr, sr);
+        C.Set(0.0f, -sr, cr);
+        D.Set(0, 0, 0);
+    }
+
+    void RotateYXform(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+
+        A.Set(cr, 0.0f, -sr);
+        B.Set(0.0f, 1.0f, 0.0f);
+        C.Set(sr, 0.0f, cr);
+        D.Set(0, 0, 0);
+    }
+
+    void RotateZXform(float r)
+    {
+        float cr = Mathf.Cos(r);
+        float sr = Mathf.Sin(r);
+
+        A.Set(cr, sr, 0.0f);
+        B.Set(-sr, cr, 0.0f);
+        C.Set(0.0f, 0.0f, 1.0f);
+        D.Set(0, 0, 0);
+    }
+
+    void Dot(utlMatrix34 m)
+    {
+        float x, y, z;
+
+        x = A.x * m.A.x + A.y * m.B.x + A.z * m.C.x;
+        y = A.x * m.A.y + A.y * m.B.y + A.z * m.C.y;
+        z = A.x * m.A.z + A.y * m.B.z + A.z * m.C.z;
+        A.Set(x, y, z);
+
+        x = B.x * m.A.x + B.y * m.B.x + B.z * m.C.x;
+        y = B.x * m.A.y + B.y * m.B.y + B.z * m.C.y;
+        z = B.x * m.A.z + B.y * m.B.z + B.z * m.C.z;
+        B.Set(x, y, z);
+
+        x = C.x * m.A.x + C.y * m.B.x + C.z * m.C.x;
+        y = C.x * m.A.y + C.y * m.B.y + C.z * m.C.y;
+        z = C.x * m.A.z + C.y * m.B.z + C.z * m.C.z;
+        C.Set(x, y, z);
+
+        x = D.x * m.A.x + D.y * m.B.x + D.z * m.C.x + m.D.x;
+        y = D.x * m.A.y + D.y * m.B.y + D.z * m.C.y + m.D.y;
+        z = D.x * m.A.z + D.y * m.B.z + D.z * m.C.z + m.D.z;
+        D.Set(x, y, z);
+    }
+
+    public void Print()
+    {
+        string buffer = "Click to see utlMatrix34 info:\nA = " + A + "\nB = " + B + "\nC = " + C + "\nD = " + D + "\n";
+        utlDebugPrint.Inst.print(buffer);
+        //Debug.Log(buffer);
+    }
 }
+
+#endregion
+

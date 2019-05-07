@@ -224,4 +224,26 @@ public static class utlMath
         return new Vector3(x / positions.Length, y / positions.Length, z / positions.Length);
     }
 
+    public static Vector3 AddScaled(Vector3 vectA, Vector3 vectB, float scale)
+    {
+        Vector3 outVect = new Vector3();
+        outVect.x = vectA.x + scale * vectB.x;
+        outVect.y = vectA.y + scale * vectB.y;
+        outVect.z = vectA.z + scale * vectB.z;
+        
+        return outVect;
+    }
+
+    public static Vector3 SubScaled(Vector3 vectA, Vector3 vectB, float scale)
+    {
+        Vector3 outVect = new Vector3();
+        outVect.x = vectA.x - scale * vectB.x;
+        outVect.y = vectA.y - scale * vectB.y;
+        outVect.z = vectA.z - scale * vectB.z;
+
+        return outVect;
+    }
+
+    //{x=a.x-f*b.x; 	y=a.y-f*b.y; 	z=a.z-f*b.z;}
+
 }

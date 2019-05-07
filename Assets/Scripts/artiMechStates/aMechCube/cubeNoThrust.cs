@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Drop</alias>
     <comment></comment>
-    <posX>312</posX>
-    <posY>267</posY>
+    <posX>331</posX>
+    <posY>262</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>
