@@ -253,16 +253,23 @@ public static class utlAnimCurve
             curveOut.SmoothTangents(i, 0.0f);
         }
     }
-
-    public static float EvaluateNoTimeLimit(AnimationCurve curveIn, float time)
+    /// <summary>
+    /// This function Evaluates a  curve and uses the biggest key
+    /// if the "curveInXVal" value is getter than that of the curve's biggest 
+    /// key value.
+    /// </summary>
+    /// <param name="curveIn"></param>
+    /// <param name="curveInXVal"></param>
+    /// <returns></returns>
+    public static float EvaluateValuePastLimitIsBiggestKey(AnimationCurve curveIn, float curveInXVal)
     {
         float valueOut;
         float biggestTime = FindBiggestKeyTime(curveIn);
         float biggestValue = FindBiggestKeyValue(curveIn);
-        if (time > biggestTime)
+        if (curveInXVal > biggestTime)
             valueOut = biggestValue;
         else
-            valueOut = curveIn.Evaluate(time);
+            valueOut = curveIn.Evaluate(curveInXVal);
         return valueOut;
     }
 }

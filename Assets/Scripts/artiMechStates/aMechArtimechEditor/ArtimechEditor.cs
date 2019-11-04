@@ -192,7 +192,8 @@ namespace Artimech
 
             // render populated state windows
             BeginWindows();
-            m_CurrentState.UpdateEditorGUI();
+            if (m_CurrentState != null)
+                m_CurrentState.UpdateEditorGUI();
             EndWindows();
 
             base.OnGUI();

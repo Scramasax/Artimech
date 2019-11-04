@@ -76,7 +76,36 @@ public class utlDebugDraw : MonoBehaviour
 		}
 	}
 
-	public void DrawFlatZBox(Vector3 min,Vector3 max,Color color)
+    public void DrawSphere(Vector3 pos, float size, Color color, int sides = 12)
+    {
+        transform.position = new Vector3(pos.x, pos.y, pos.z);
+        transform.rotation = Quaternion.identity;
+
+        Vector3 start;
+        Vector3 end;
+        Vector3 vsize = new Vector3(0, 0, size);
+
+        float angle = 360.0f / sides;
+
+        for (int i = 0; i < sides; i++)
+        {
+            start = transform.TransformPoint(vsize);
+            transform.Rotate(new Vector3(0, angle, 0));
+            end = transform.TransformPoint(vsize);
+            Debug.DrawLine(start, end, color);
+        }
+
+        for (int i = 0; i < sides; i++)
+        {
+            start = transform.TransformPoint(vsize);
+            transform.Rotate(new Vector3(angle, 0, 0));
+            end = transform.TransformPoint(vsize);
+            Debug.DrawLine(start, end, color);
+        }
+
+    }
+
+    public void DrawFlatZBox(Vector3 min,Vector3 max,Color color)
 	{
 		Vector3 start						= new Vector3();
 		Vector3 end							= new Vector3();

@@ -230,7 +230,7 @@ public static class utlMath
         outVect.x = vectA.x + scale * vectB.x;
         outVect.y = vectA.y + scale * vectB.y;
         outVect.z = vectA.z + scale * vectB.z;
-        
+
         return outVect;
     }
 
@@ -244,6 +244,38 @@ public static class utlMath
         return outVect;
     }
 
-    //{x=a.x-f*b.x; 	y=a.y-f*b.y; 	z=a.z-f*b.z;}
+    /// <summary>
+    /// Uses an animation curve and uses distance as the X value.  This is returned
+    /// as velocity.  useLastKeyValue allow a truncated curve at the X keyValue to return
+    /// the max key value.
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <param name="animCurve"></param>
+    /// <param name="useLastKeyValue"></param>
+    /// <returns></returns>
+    public static Vector3 ApproachAtVelocity(Vector3 from, Vector3 to, AnimationCurve animCurve, bool useLastKeyValue = true)
+    {
+        Vector3 outVect = new Vector3();
+        float distance = Vector3.Distance(from, to);
+        float velocity = 0;
+        if (useLastKeyValue)
+            velocity = utlAnimCurve.EvaluateValuePastLimitIsBiggestKey(animCurve, distance);
+        else
+            velocity = animCurve.Evaluate(distance);
+
+        float coef = (velocity * Time.deltaTime) / distance;
+        outVect = Vector3.Lerp(from, to, coef);
+        return outVect;
+    }
+
+    public static Vector3 ApproachAtVelocity(Vector3 from, Vector3 to, float velocity)
+    {
+        Vector3 outVect = new Vector3();
+        float distance = Vector3.Distance(from, to);
+        float coef = (velocity * Time.deltaTime) / distance;
+        outVect = Vector3.Lerp(from, to, coef);
+        return outVect;
+    }
 
 }

@@ -70,6 +70,11 @@ public static class utlLayerMaskExtensions
         return original | NamesToMask(layerNames);
     }
 
+    public static LayerMask AddToMask(this LayerMask original, int layer)
+    {
+        return original | layer;
+    }
+
     public static LayerMask RemoveFromMask(this LayerMask original, params string[] layerNames)
     {
         LayerMask invertedOriginal = ~original;
