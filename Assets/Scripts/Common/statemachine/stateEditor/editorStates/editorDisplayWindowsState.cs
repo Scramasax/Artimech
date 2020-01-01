@@ -410,7 +410,7 @@ namespace Artimech
         public void EditScriptCallback(object obj)
         {
             string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.SelectedNode.ClassName);
-            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
+            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1, 1);
         }
 
         public void RefactorClassCallback(object obj)
