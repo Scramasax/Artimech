@@ -118,6 +118,7 @@ namespace Artimech
             GUILayout.Space(100);
             EditorGUILayout.EndHorizontal();
 
+            /*
             EditorGUILayout.BeginHorizontal();
             m_ScrollPos = EditorGUILayout.BeginScrollView(m_ScrollPos, GUILayout.Width(Screen.width - 10), GUILayout.Height(Screen.height - 110));
 
@@ -237,7 +238,9 @@ namespace Artimech
             EditorGUILayout.EndHorizontal();
             GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
-            GUILayout.Space(15);
+            GUILayout.Space(15); */
+
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Save"))
             {
                 m_State.OkBool = true;

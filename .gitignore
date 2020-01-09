@@ -6,3 +6,7 @@
 /Artimech.csproj
 /Artimech.sln
 /Assembly-CSharp.csproj
+/ProjectSettings/
+/obj/
+/Logs/
+/UnityPackageManager/

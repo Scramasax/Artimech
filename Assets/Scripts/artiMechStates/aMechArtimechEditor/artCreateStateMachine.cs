@@ -35,8 +35,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create</alias>
     <comment></comment>
-    <posX>297</posX>
-    <posY>351</posY>
+    <posX>287</posX>
+    <posY>352</posY>
     <sizeX>109</sizeX>
     <sizeY>57</sizeY>
   </State>
