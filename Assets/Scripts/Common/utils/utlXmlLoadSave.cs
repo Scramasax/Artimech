@@ -9,8 +9,8 @@ using System.Xml.Serialization;
 
 public class utlXmlLoadSave<T>
 {
-    string m_FileName;
-    string m_FileLocation;
+    string m_FileName = "";
+    string m_FileLocation ="";
 
     T m_Value;
     string m_Data;

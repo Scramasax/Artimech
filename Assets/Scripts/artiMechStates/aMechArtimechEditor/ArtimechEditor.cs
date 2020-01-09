@@ -248,8 +248,6 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
-            AddState(new artConfigureSave(this), "artConfigureSave");
-            AddState(new artConfigure(this), "artConfigure");
             AddState(new artRefactorStateClass(this), "artRefactorStateClass");
             AddState(new artRefactorEnterData(this), "artRefactorEnterData");
             AddState(new artRefactScreen(this), "artRefactScreen");

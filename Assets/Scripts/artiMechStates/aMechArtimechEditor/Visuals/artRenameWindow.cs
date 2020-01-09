@@ -6,7 +6,6 @@ using System.Text;
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
 
 namespace Artimech
 {
@@ -157,7 +156,7 @@ namespace Artimech
         /// <summary>
         /// Update
         /// </summary>
-        public void Update()
+        new public void Update()
         {
             m_WinRect.x = Screen.width * 0.5f;
             m_WinRect.width = Screen.width * m_Width;
@@ -174,7 +173,7 @@ namespace Artimech
         /// </summary>
         /// <param name="vect"></param>
         /// <returns></returns>
-        public bool IsWithin(Vector2 vect)
+        new public bool IsWithin(Vector2 vect)
         {
             if (vect.x >= WinRect.x && vect.x < WinRect.x + WinRect.width)
             {
@@ -186,7 +185,7 @@ namespace Artimech
             return false;
         }
 
-        public void Draw(int id)
+        new public void Draw(int id)
         {
             var TextStyle = new GUIStyle();
             TextStyle.normal.textColor = m_FontColor;

@@ -83,10 +83,8 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artConfigureSave.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigureSave.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigureSave_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
