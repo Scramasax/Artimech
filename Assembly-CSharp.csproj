@@ -71,9 +71,9 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artChooseMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNotEditorOrGameObject.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artChooseStateMachineName.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
@@ -83,9 +83,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artConfigureSave.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigure_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artConfigureSave_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
@@ -100,7 +97,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteAsk.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artMoveMouseDown.cs" />
@@ -119,7 +115,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artCheckIfIMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artDisplayStates.cs" />
@@ -138,6 +133,8 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen_To_artSaveMetaData.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseDisplayOkCanel.cs" />
@@ -150,7 +147,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindowConfigure.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
@@ -315,6 +311,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/Work/Artimech/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

@@ -34,8 +34,8 @@ using System;
   <State>
     <alias>Load States</alias>
     <comment></comment>
-    <posX>356</posX>
-    <posY>68</posY>
+    <posX>470</posX>
+    <posY>55</posY>
     <sizeX>104</sizeX>
     <sizeY>48</sizeY>
   </State>
@@ -121,18 +121,25 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+
             Error = false;
             GoodLoad = false;
             m_ListOfStateStringsInMachine.Clear();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+
             m_MessageWindow = new artMessageWindow("Artimech System Status", "Loading State Machine Scripts....", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            ArtimechEditor.Inst.Repaint();
+            theMachineScript.Repaint();
 
-            ArtimechEditor.Inst.VisualStateNodes.Clear();
+            theMachineScript.VisualStateNodes.Clear();
 
+            GameObject gmObj = (GameObject) theMachineScript.SelectedObj;
+            stateMachineGame stateMachineScript = null;
+            if(gmObj)
+                stateMachineScript = gmObj.GetComponent<stateMachineGame>();
             /// <summary>Loads visualstates via meta data and code.</summary>
-            if (ArtimechEditor.Inst.MachineScript != null)
+            if (stateMachineScript != null)
             {
-                string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassName(ArtimechEditor.Inst.MachineScript.GetType().Name, false);
+                string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassName(theMachineScript.MachineScript.GetType().Name, false);
                 //Debug.Log("<color=navy>" + machineSourceCodeText + "</color>");
                 CreateVisualStateNodes(machineSourceCodeText);
                 if (!Error)
@@ -154,24 +161,27 @@ namespace Artimech
         {
             string strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             this.PopulateStateStrings(strBuff);
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
 
             for (int i = 0; i < m_ListOfStateStringsInMachine.Count; i++)
             {
                 artVisualStateNode node = CreateVisualStateNode(m_ListOfStateStringsInMachine[i]);
-                ArtimechEditor.Inst.VisualStateNodes.Add(node);
+                theMachineScript.VisualStateNodes.Add(node);
             }
 
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
             {
-                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(ArtimechEditor.Inst.VisualStateNodes[i].ClassName, false);
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(theMachineScript.VisualStateNodes[i].ClassName, false);
                 string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
-                PopulateLinkedConditionStates(ArtimechEditor.Inst.VisualStateNodes[i], buffer);
+                PopulateLinkedConditionStates(theMachineScript.VisualStateNodes[i], buffer);
             }
         }
 
         artVisualStateNode CreateVisualStateNode(string typeName)
         {
-            artVisualStateNode visualNode = new artVisualStateNode(ArtimechEditor.Inst.VisualStateNodes.Count+10000);
+
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            artVisualStateNode visualNode = new artVisualStateNode(theMachineScript.VisualStateNodes.Count+10000);
             visualNode.ClassName = typeName;
 
             float posX = 0;
@@ -286,11 +296,12 @@ namespace Artimech
         /// <returns></returns>
         artVisualStateNode FindStateWindowsNodeByName(string name)
         {
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
             artVisualStateNode node = null;
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].ClassName == name)
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                if (theMachineScript.VisualStateNodes[i].ClassName == name)
+                    return theMachineScript.VisualStateNodes[i];
             }
             return node;
         }

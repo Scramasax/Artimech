@@ -91,7 +91,8 @@ namespace Artimech
         public override void Enter()
         {
             m_MessageWindow = new artMessageWindow("Artimech System Status", "Creating State Machine.....", 16, new Color(0.0f, 0.7f, 0.3f, 1), new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
-            ArtimechEditor.Inst.Repaint();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.Repaint();
             base.Enter();
         }
 

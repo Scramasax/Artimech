@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artConfigure_To_artNoObject : stateConditionalBase
+    public class artSetSingleMachine_To_artLoadStates : stateConditionalBase
     {
         
-        public artConfigure_To_artNoObject(string changeStateName) : base (changeStateName)
+        public artSetSingleMachine_To_artLoadStates(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,10 +52,7 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            artBaseOkCancel okCancelState = (artBaseOkCancel)state;
-            if (okCancelState.CancelBool)
-                return m_ChangeStateName;
-            return null;
+            return m_ChangeStateName;
         }
     }
 }

@@ -605,7 +605,8 @@ namespace Artimech
             if (Event.current.button == 1 && Event.current.isMouse)
             {
                 //if (m_State != null && m_State is editorDisplayWindowsState)
-                if (IsWithinUsingPanZoomTransform(Event.current.mousePosition, ArtimechEditor.Inst.TransMtx))
+                ArtimechEditor theMachineScript = (ArtimechEditor)m_State.m_UnityObject;
+                if (IsWithinUsingPanZoomTransform(Event.current.mousePosition, theMachineScript.TransMtx))
                 {
                     artDisplayStates dState = (artDisplayStates)m_State;
                     if (dState != null && Event.current.type == EventType.MouseDown)

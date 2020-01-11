@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artConfigure_To_artConfigureSave : stateConditionalBase
+    public class artCheckIfIMachine_To_artSetSingleMachine : stateConditionalBase
     {
         
-        public artConfigure_To_artConfigureSave(string changeStateName) : base (changeStateName)
+        public artCheckIfIMachine_To_artSetSingleMachine(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,10 +52,24 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            artBaseOkCancel okCancelState = (artBaseOkCancel)state;
-            if (okCancelState.OkBool)
-                return m_ChangeStateName;
-            return null;
+            string strOut = null;
+            ArtimechEditor theMachineScript = (ArtimechEditor)state.m_UnityObject;
+
+            if (theMachineScript.SelectedObj == null)
+                return null;
+
+            bool abool = theMachineScript.SelectedObj is GameObject;
+            if (!abool)
+                return null;
+
+            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
+
+            iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
+
+            if (machines.Length == 1)
+                strOut = m_ChangeStateName;
+
+            return strOut;
         }
     }
 }

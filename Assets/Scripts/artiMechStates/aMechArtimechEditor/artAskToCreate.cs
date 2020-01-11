@@ -35,8 +35,8 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Create</alias>
     <comment></comment>
-    <posX>-114</posX>
-    <posY>469</posY>
+    <posX>-113</posX>
+    <posY>462</posY>
     <sizeX>114</sizeX>
     <sizeY>39</sizeY>
   </State>
@@ -96,8 +96,11 @@ namespace Artimech
             m_MessageWindow.ButtonSideSpacing = 40.0f;
             m_MessageWindow.CancelPrompt = true;
             m_MessageWindow.InitImage("questionMark.png");
-            ArtimechEditor.Inst.DrawToolBarBool = false;
-            ArtimechEditor.Inst.Repaint();
+
+            ArtimechEditor editorScript = (ArtimechEditor) GetScriptableObject;
+            editorScript.DrawToolBarBool = false;
+            editorScript.Repaint();
+
             base.Enter();
         }
 

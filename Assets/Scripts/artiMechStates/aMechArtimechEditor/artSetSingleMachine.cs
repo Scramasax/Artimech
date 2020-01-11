@@ -16,11 +16,9 @@
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
 
-#if UNITY_EDITOR
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 
 #region XML_DATA
 
@@ -33,12 +31,12 @@ using System.IO;
 
 <stateMetaData>
   <State>
-    <alias>Check If State Machine</alias>
+    <alias>Set Single Machine</alias>
     <comment></comment>
-    <posX>65</posX>
-    <posY>53</posY>
-    <sizeX>162</sizeX>
-    <sizeY>47</sizeY>
+    <posX>266</posX>
+    <posY>-19</posY>
+    <sizeX>148</sizeX>
+    <sizeY>40</sizeY>
   </State>
 </stateMetaData>
 
@@ -47,33 +45,17 @@ using System.IO;
 #endregion
 namespace Artimech
 {
-    public class artCheckIfIMachine : editorStateBase
+    public class artSetSingleMachine : editorStateBase
     {
-        static Texture2D m_LoadingImage = null;
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artCheckIfIMachine(Object unityObj) : base (unityObj)
+        public artSetSingleMachine(Object unityObj) : base (unityObj)
         {
-            InitImage();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artCheckIfIMachine_To_artSetSingleMachine("artSetSingleMachine"));
-            m_ConditionalList.Add(new artCheckIfIMachine_To_artChooseMachine("artChooseMachine"));
-            m_ConditionalList.Add(new artCheckIfIMachine_To_artNotEditorOrGameObject("artNotEditorOrGameObject"));
-            m_ConditionalList.Add(new artCheckIfIMachine_To_artNoObject("artNoObject"));
-            m_ConditionalList.Add(new artCheckIfIMachine_To_artAskToCreate("artAskToCreate"));
-        }
-
-        void InitImage()
-        {
-            string fileAndPath = utlDataAndFile.FindAFileInADirectoryRecursively(Application.dataPath, "StartBackground.png");
-            byte[] fileData;
-            fileData = File.ReadAllBytes(fileAndPath);
-
-            m_LoadingImage = null;
-            m_LoadingImage = new Texture2D(512, 512);
-            m_LoadingImage.LoadImage(fileData);
+            m_ConditionalList.Add(new artSetSingleMachine_To_artLoadStates("artLoadStates"));
         }
 
         /// <summary>
@@ -97,7 +79,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            GUILayout.Label(m_LoadingImage);
             base.UpdateEditorGUI();
         }
 
@@ -106,6 +87,10 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
+            iMachineBase machine = gmObject.GetComponent<iMachineBase>();
+            theMachineScript.MachineScript = machine;
 
             base.Enter();
         }
@@ -119,4 +104,3 @@ namespace Artimech
         }
     }
 }
-#endif

@@ -32,7 +32,8 @@ namespace Artimech
         public float StateTime { get { return m_StateTime; } }
 
         /// <summary>Returns current gameobject that owns this state. </summary>
-        public GameObject StateGameObject { get { return (GameObject)m_UnityObject; } }
+        //public GameObject StateGameObject { get { return (GameObject)m_UnityObject; } }
+        public ScriptableObject GetScriptableObject { get { return (ScriptableObject)m_UnityObject; } }
 
         public editorStateBase(Object obj)
         {

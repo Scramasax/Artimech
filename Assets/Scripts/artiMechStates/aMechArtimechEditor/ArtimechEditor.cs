@@ -29,7 +29,7 @@ namespace Artimech
     public class ArtimechEditor : artimechEditorBase
     {
         #region Vars
-        static ArtimechEditor m_Instance = null;
+        //static ArtimechEditor m_Instance = null;
         UnityEngine.Object m_SelectedObj;
         UnityEngine.Object m_WasSelectedObj;
         utlMatrix34 m_TransMtx;
@@ -38,8 +38,7 @@ namespace Artimech
         IList<artVisualStateNode> m_VisualStateNodes;
         Vector2 m_MouseClickDownPosStart;
         string m_RefactorName = "";
-        bool m_SaveConfigureBool = true;
-
+        artConfigurationData m_ConfigData;
 
         #endregion
         #region Accessors
@@ -53,7 +52,7 @@ namespace Artimech
         public Object WasSelectedObj { get { return m_WasSelectedObj; } set { m_WasSelectedObj = value; } }
 
         /// <summary>Returns an instance of the ArtimechEditor </summary>
-        public static ArtimechEditor Inst { get { return m_Instance; } }
+        //public static ArtimechEditor Inst { get { return m_Instance; } }
 
         /// <summary> Translation matrix</summary>
         public utlMatrix34 TransMtx { get { return m_TransMtx; } set { m_TransMtx = value; } }
@@ -67,52 +66,17 @@ namespace Artimech
         /// <summary>A list of visual state nodes.</summary>
         public IList<artVisualStateNode> VisualStateNodes { get { return m_VisualStateNodes; } set { m_VisualStateNodes = value; } }
 
-        public Vector2 MouseClickDownPosStart
-        {
-            get
-            {
-                return m_MouseClickDownPosStart;
-            }
-
-            set
-            {
-                m_MouseClickDownPosStart = value;
-            }
-        }
-
-        public string RefactorName
-        {
-            get
-            {
-                return m_RefactorName;
-            }
-
-            set
-            {
-                m_RefactorName = value;
-            }
-        }
-
-        public bool SaveConfigureBool
-        {
-            get
-            {
-                return m_SaveConfigureBool;
-            }
-
-            set
-            {
-                m_SaveConfigureBool = value;
-            }
-        }
-
+        
+        public string RefactorName { get => m_RefactorName; set => m_RefactorName = value; }
+        public Vector2 MouseClickDownPosStart { get => m_MouseClickDownPosStart; set => m_MouseClickDownPosStart = value; }
+        public artConfigurationData ConfigData { get => m_ConfigData; set => m_ConfigData = value; }
 
         #endregion
         #region Member Functions
         public ArtimechEditor() : base()
         {
-            if (m_Instance == null)
-                m_Instance = this;
+ //           if (m_Instance == null)
+ //               m_Instance = this;
 
 
         }
@@ -125,11 +89,7 @@ namespace Artimech
 
         new void OnEnable()
         {
-            if (!m_Instance)
-            {
-                m_Instance = (ArtimechEditor)EditorWindow.GetWindow(typeof(ArtimechEditor), true, "Artimech");
-                m_Instance.Show();
-            }
+            this.Show();
             base.OnEnable();
             //m_MainWindow = new artMainWindow("test", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             VisualStateNodes = new List<artVisualStateNode>();
@@ -147,7 +107,7 @@ namespace Artimech
         new void Update()
         {
             base.Update();
-            ArtimechEditor.Inst.WasSelectedObj = ArtimechEditor.Inst.SelectedObj;
+            WasSelectedObj = SelectedObj;
         }
 
         new void FixedUpdate()
@@ -205,11 +165,11 @@ namespace Artimech
         /// <returns></returns>
         public artVisualStateNode GetResizeNode()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            for (int i = 0; i < VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].Resize)
+                if (VisualStateNodes[i].Resize)
                 {
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                    return VisualStateNodes[i];
                 }
             }
             return null;
@@ -221,11 +181,11 @@ namespace Artimech
         /// <returns></returns>
         public artVisualStateNode GetLeftButtonNode()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            for (int i = 0; i < VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].LeftMouseButton)
+                if (VisualStateNodes[i].LeftMouseButton)
                 {
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                    return VisualStateNodes[i];
                 }
             }
             return null;
@@ -233,7 +193,7 @@ namespace Artimech
 
         public void SaveMetaDataInStates()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            for (int i = 0; i < VisualStateNodes.Count; i++)
             {
                 VisualStateNodes[i].SaveMetaData();
             }
@@ -248,6 +208,7 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artSetSingleMachine(this), "artSetSingleMachine");
             AddState(new artRefactorStateClass(this), "artRefactorStateClass");
             AddState(new artRefactorEnterData(this), "artRefactorEnterData");
             AddState(new artRefactScreen(this), "artRefactScreen");
@@ -275,7 +236,7 @@ namespace Artimech
 
         void OnConfigure()
         {
-            SaveConfigureBool = true;
+
         }
 
         void OnPrintAboutToConsole()

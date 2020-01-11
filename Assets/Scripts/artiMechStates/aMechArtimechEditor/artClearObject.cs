@@ -87,7 +87,8 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor.Inst.SelectedObj = null;
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.SelectedObj = null;
             base.Enter();
         }
 

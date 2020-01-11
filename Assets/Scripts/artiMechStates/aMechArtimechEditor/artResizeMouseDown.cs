@@ -34,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Resize Mouse Down</alias>
     <comment></comment>
-    <posX>374</posX>
-    <posY>-30</posY>
+    <posX>559</posX>
+    <posY>-161</posY>
     <sizeX>145</sizeX>
     <sizeY>39</sizeY>
   </State>
@@ -81,14 +81,14 @@ namespace Artimech
         public override void UpdateEditorGUI()
         {
             Event ev = Event.current;
-
-            artVisualStateNode visualNode = ArtimechEditor.Inst.GetResizeNode();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            artVisualStateNode visualNode = theMachineScript.GetResizeNode();
             if(visualNode!=null)
             {
                 Rect rect = visualNode.WinRect;
 
                 Vector2 mousePosTrans = new Vector2();
-                mousePosTrans = ArtimechEditor.Inst.TransMtx.UnTransform(ev.mousePosition);
+                mousePosTrans = theMachineScript.TransMtx.UnTransform(ev.mousePosition);
 
                 rect.width = mousePosTrans.x - visualNode.WinRect.x+7;
                 rect.height = mousePosTrans.y - visualNode.WinRect.y-14;
@@ -100,7 +100,7 @@ namespace Artimech
             }
 
             base.UpdateEditorGUI();
-            ArtimechEditor.Inst.Repaint();
+            theMachineScript.Repaint();
         }
 
         /// <summary>

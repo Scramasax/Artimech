@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Drop</alias>
     <comment></comment>
-    <posX>344</posX>
-    <posY>230</posY>
-    <sizeX>150</sizeX>
-    <sizeY>80</sizeY>
+    <posX>362</posX>
+    <posY>242</posY>
+    <sizeX>148</sizeX>
+    <sizeY>58</sizeY>
   </State>
 </stateMetaData>
 

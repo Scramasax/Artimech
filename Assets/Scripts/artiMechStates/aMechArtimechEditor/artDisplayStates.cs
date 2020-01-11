@@ -87,7 +87,6 @@ namespace Artimech
         {
             //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artDisplayStates_To_artConfigure("artConfigure"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorEnterData("artRefactorEnterData"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorDataEntry("artRefactorDataEntry"));
             m_ConditionalList.Add(new artDisplayStates_To_artRename("artRename"));
@@ -128,12 +127,12 @@ namespace Artimech
             {
                 SaveDataBool = true;
             }
-
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
             if (Event.current.type == EventType.MouseDown)
-                ArtimechEditor.Inst.MouseClickDownPosStart = Event.current.mousePosition;
+                theMachineScript.MouseClickDownPosStart = Event.current.mousePosition;
 
             base.UpdateEditorGUI();
-            //ArtimechEditor.Inst.Repaint();
+            //theMachineScript.Repaint();
         }
 
 
@@ -143,11 +142,12 @@ namespace Artimech
         public override void Enter()
         {
             SaveDataBool = false;
-            ArtimechEditor.Inst.DrawToolBarBool = true;
-            ArtimechEditor.Inst.Repaint();
-            for(int i=0;i<ArtimechEditor.Inst.VisualStateNodes.Count;i++)
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.DrawToolBarBool = true;
+            theMachineScript.Repaint();
+            for(int i=0;i<theMachineScript.VisualStateNodes.Count;i++)
             {
-                ArtimechEditor.Inst.VisualStateNodes[i].Reset();
+                theMachineScript.VisualStateNodes[i].Reset();
             }
             base.Enter();
         }

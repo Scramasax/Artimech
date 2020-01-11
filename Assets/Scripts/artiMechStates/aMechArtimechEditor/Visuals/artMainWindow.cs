@@ -77,27 +77,17 @@ namespace Artimech
 
         new public void Draw(int id)
         {
-
             m_MousePos = Event.current.mousePosition;
-            // Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
             stateEditorDrawUtils.DrawGridBackground();
 
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            ArtimechEditor theMachineScript = (ArtimechEditor)m_State.m_UnityObject;
+            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
             {
-                ArtimechEditor.Inst.VisualStateNodes[i].Update(m_State, ArtimechEditor.Inst.TransMtx);
+                theMachineScript.VisualStateNodes[i].Update(m_State, theMachineScript.TransMtx);
             }
-
-
-            //         GUILayout.BeginHorizontal("");
-
-            //         GUILayout.EndHorizontal();
-
-            //         GUI.DrawTexture(new Rect(m_TexturePosAndSize.x, m_TexturePosAndSize.y, m_TexturePosAndSize.z, m_TexturePosAndSize.w), m_ExclamtionTexture);
-
-            //GUI.DragWindow();
         }
     }
     #endregion

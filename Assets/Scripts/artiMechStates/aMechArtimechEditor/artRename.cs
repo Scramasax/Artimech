@@ -96,12 +96,13 @@ namespace Artimech
 
         artVisualStateNode GetSelectedNode()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].RenameBool)
+                if (theMachineScript.VisualStateNodes[i].RenameBool)
                 {
 
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                    return theMachineScript.VisualStateNodes[i];
                 }
             }
             return null;

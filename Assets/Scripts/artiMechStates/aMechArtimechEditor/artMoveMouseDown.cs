@@ -34,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Move Mouse Down</alias>
     <comment></comment>
-    <posX>531</posX>
-    <posY>26</posY>
+    <posX>678</posX>
+    <posY>-79</posY>
     <sizeX>138</sizeX>
     <sizeY>37</sizeY>
   </State>
@@ -105,8 +105,8 @@ namespace Artimech
             base.UpdateEditorGUI();
 
             m_MainWindow.Update();
-
-            ArtimechEditor.Inst.Repaint();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.Repaint();
         }
 
         /// <summary>
@@ -115,12 +115,13 @@ namespace Artimech
         /// <returns></returns>
         artVisualStateNode GetSelectedNode()
         {
-            for (int i = 0; i < ArtimechEditor.Inst.VisualStateNodes.Count; i++)
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
             {
-                if (ArtimechEditor.Inst.VisualStateNodes[i].Selected)
+                if (theMachineScript.VisualStateNodes[i].Selected)
                 {
 
-                    return ArtimechEditor.Inst.VisualStateNodes[i];
+                    return theMachineScript.VisualStateNodes[i];
                 }
             }
             return null;
@@ -134,10 +135,11 @@ namespace Artimech
             artVisualStateNode visualStateNode = GetSelectedNode();
             if (visualStateNode != null)
             {
-                float diff = ArtimechEditor.Inst.MouseClickDownPosStart.x - visualStateNode.WinRect.x;
+                ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+                float diff = theMachineScript.MouseClickDownPosStart.x - visualStateNode.WinRect.x;
                 m_MoveOffsetPercent.x = diff / visualStateNode.WinRect.width;
 
-                diff = ArtimechEditor.Inst.MouseClickDownPosStart.y - visualStateNode.WinRect.y;
+                diff = theMachineScript.MouseClickDownPosStart.y - visualStateNode.WinRect.y;
                 m_MoveOffsetPercent.y = diff / visualStateNode.WinRect.height;
             }
 

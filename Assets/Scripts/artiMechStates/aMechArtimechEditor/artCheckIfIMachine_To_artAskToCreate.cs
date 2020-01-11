@@ -54,7 +54,9 @@ namespace Artimech
         {
             string strOut = null;
 
-            GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;
+            ArtimechEditor theMachineScript = (ArtimechEditor)state.m_UnityObject;
+
+            GameObject gmObject = (GameObject) theMachineScript.SelectedObj;
 
             if (gmObject.GetComponent<iMachineBase>() == null)
                 strOut = m_ChangeStateName;

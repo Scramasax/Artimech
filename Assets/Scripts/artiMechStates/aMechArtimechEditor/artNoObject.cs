@@ -21,6 +21,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -55,12 +56,11 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artNoObject(Object unityObj) : base (unityObj)
+        public artNoObject(Object unityObj) : base(unityObj)
         {
             //m_TestWin = new artWindowBase("test",new Rect(100,100,100,100),new Color(1,1,1,0.8f),1);
             InitImage();
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artNoObject_To_artConfigure("artConfigure"));
             m_ConditionalList.Add(new artNoObject_To_artCheckIfIMachine("artCheckIfIMachine"));
         }
 
@@ -99,7 +99,7 @@ namespace Artimech
         {
             //         m_TestWin.Draw(1);
             GUILayout.Label(m_LoadingImage);
- //           m_TestWin.Update();
+            //           m_TestWin.Update();
             base.UpdateEditorGUI();
         }
 
@@ -108,9 +108,11 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor.Inst.SaveConfigureBool = false;
-            ArtimechEditor.Inst.DrawToolBarBool = true;
-            ArtimechEditor.Inst.Repaint();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.DrawToolBarBool = true;
+            string assetPath = "Assets/Resources/Config/ArtimechConfig.asset";
+            theMachineScript.ConfigData = (artConfigurationData) AssetDatabase.LoadAssetAtPath(assetPath, typeof(artConfigurationData));
+            theMachineScript.Repaint();
             base.Enter();
         }
 

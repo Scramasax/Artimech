@@ -380,7 +380,7 @@ namespace Artimech
         {
             string className = (string)obj;
             string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
-            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1);
+            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1, 1);
         }
 
         void DeleteEditConditionalCallback(object obj)

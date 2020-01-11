@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Choose A Machine</alias>
     <comment></comment>
-    <posX>101</posX>
-    <posY>318</posY>
+    <posX>104</posX>
+    <posY>317</posY>
     <sizeX>147</sizeX>
     <sizeY>38</sizeY>
   </State>
@@ -133,15 +133,16 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
             m_ChooseWindow = new artMachineChooseWindow(this, machines, "Choose Or Create A State Machine", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
 
             m_CancelBool = false;
             m_OkBool = false;
             m_CreateBool = false;
-            ArtimechEditor.Inst.DrawToolBarBool = false;
-            ArtimechEditor.Inst.Repaint();
+            theMachineScript.DrawToolBarBool = false;
+            theMachineScript.Repaint();
             base.Enter();
         }
 

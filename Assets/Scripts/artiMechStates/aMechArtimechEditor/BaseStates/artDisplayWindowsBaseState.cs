@@ -39,13 +39,13 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            //artGUIUtils.DrawGridBackground(ArtimechEditor.Inst.TransMtx);
+            //artGUIUtils.DrawGridBackground(theMachineScript.TransMtx);
             m_MainWindow.Update();
             //m_MainWindow.Update();
 
 
             base.UpdateEditorGUI();
-            //ArtimechEditor.Inst.Repaint();
+            //theMachineScript.Repaint();
         }
 
         /// <summary>
@@ -53,8 +53,9 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor.Inst.DrawToolBarBool = true;
-            ArtimechEditor.Inst.Repaint();
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            theMachineScript.DrawToolBarBool = true;
+            theMachineScript.Repaint();
             base.Enter();
         }
 

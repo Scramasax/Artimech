@@ -145,12 +145,14 @@ namespace Artimech
             m_OkBool = false;
             StateMachineName = "";
 
-            GameObject gmObject = (GameObject)ArtimechEditor.Inst.SelectedObj;
+            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+
+            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
             m_CreateWindow = new artChooseStateMachineNameMachineWindow(this, "Choose A State Machine To Create", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
 
-            ArtimechEditor.Inst.DrawToolBarBool = false;
-            ArtimechEditor.Inst.Repaint();
+            theMachineScript.DrawToolBarBool = false;
+            theMachineScript.Repaint();
             base.Enter();
         }
 
