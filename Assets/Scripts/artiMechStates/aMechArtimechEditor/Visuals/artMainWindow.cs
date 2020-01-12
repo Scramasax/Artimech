@@ -83,10 +83,10 @@ namespace Artimech
 
             stateEditorDrawUtils.DrawGridBackground();
 
-            ArtimechEditor theMachineScript = (ArtimechEditor)m_State.m_UnityObject;
-            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
-                theMachineScript.VisualStateNodes[i].Update(m_State, theMachineScript.TransMtx);
+                theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx);
             }
         }
     }

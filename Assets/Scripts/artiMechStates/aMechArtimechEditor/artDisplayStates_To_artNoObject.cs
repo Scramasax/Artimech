@@ -53,9 +53,9 @@ namespace Artimech
         public override string UpdateConditionalTest(baseState state)
         {
             string strOut = null;
-            ArtimechEditor theMachineScript = (ArtimechEditor)state.m_UnityObject;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
 
-            if (theMachineScript.SelectedObj==null)
+            if (theStateMachineEditor.SelectedObj==null)
                 strOut = m_ChangeStateName;
 
             return strOut;

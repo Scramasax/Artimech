@@ -81,14 +81,14 @@ namespace Artimech
         public override void UpdateEditorGUI()
         {
             Event ev = Event.current;
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            artVisualStateNode visualNode = theMachineScript.GetResizeNode();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            artVisualStateNode visualNode = theStateMachineEditor.GetResizeNode();
             if(visualNode!=null)
             {
                 Rect rect = visualNode.WinRect;
 
                 Vector2 mousePosTrans = new Vector2();
-                mousePosTrans = theMachineScript.TransMtx.UnTransform(ev.mousePosition);
+                mousePosTrans = theStateMachineEditor.TransMtx.UnTransform(ev.mousePosition);
 
                 rect.width = mousePosTrans.x - visualNode.WinRect.x+7;
                 rect.height = mousePosTrans.y - visualNode.WinRect.y-14;
@@ -100,7 +100,7 @@ namespace Artimech
             }
 
             base.UpdateEditorGUI();
-            theMachineScript.Repaint();
+            theStateMachineEditor.Repaint();
         }
 
         /// <summary>

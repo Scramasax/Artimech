@@ -88,13 +88,13 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             m_MessageWindow = new artMessageWindowPromt(this,"Error", "Selected object isn't of the correct type!", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             m_MessageWindow.Width = 0.6f;
             m_MessageWindow.ButtonSideSpacing = 120.0f;
             m_MessageWindow.InitImage("exclimation.png");
-            theMachineScript.DrawToolBarBool = false;
-            theMachineScript.Repaint();
+            theStateMachineEditor.DrawToolBarBool = false;
+            theStateMachineEditor.Repaint();
             base.Enter();
         }
 
@@ -103,8 +103,8 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            theMachineScript.SelectedObj = null;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.SelectedObj = null;
             base.Exit();
         }
     }

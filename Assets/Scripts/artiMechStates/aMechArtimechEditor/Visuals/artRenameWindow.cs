@@ -208,8 +208,8 @@ namespace Artimech
 
             GUILayout.Space(10);
             m_State.EntryString = EditorGUILayout.TextField(EntryLabel, m_State.EntryString);
-            ArtimechEditor theMachineScript = (ArtimechEditor)m_State.m_UnityObject;
-            theMachineScript.RefactorName = m_State.EntryString;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            theStateMachineEditor.RefactorName = m_State.EntryString;
             GUILayout.Space(10);
 
             GUILayout.BeginHorizontal("");

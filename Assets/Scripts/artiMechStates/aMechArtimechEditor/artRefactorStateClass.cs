@@ -90,8 +90,8 @@ namespace Artimech
         public override void Enter()
         {
             artVisualStateNode node = GetSelectedNode();
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            utlDataAndFile.RefactorAllAssets(node.ClassName, theMachineScript.RefactorName, Application.dataPath, true);
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            utlDataAndFile.RefactorAllAssets(node.ClassName, theStateMachineEditor.RefactorName, Application.dataPath, true);
             AssetDatabase.Refresh();
             base.Enter();
         }
@@ -106,13 +106,13 @@ namespace Artimech
 
         artVisualStateNode GetSelectedNode()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
-                if (theMachineScript.VisualStateNodes[i].RefactorBool)
+                if (theStateMachineEditor.VisualStateNodes[i].RefactorBool)
                 {
 
-                    return theMachineScript.VisualStateNodes[i];
+                    return theStateMachineEditor.VisualStateNodes[i];
                 }
             }
             return null;

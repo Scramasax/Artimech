@@ -54,11 +54,11 @@ namespace Artimech
         public override string UpdateConditionalTest(baseState state)
         {
             string strOut = null;
-            ArtimechEditor theMachineScript = (ArtimechEditor)state.m_UnityObject;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
 
-            if (theMachineScript.SelectedObj != null)
+            if (theStateMachineEditor.SelectedObj != null)
             {
-                bool abool = theMachineScript.SelectedObj is GameObject;
+                bool abool = theStateMachineEditor.SelectedObj is GameObject;
                 if (!abool)
                     strOut = m_ChangeStateName;
             }

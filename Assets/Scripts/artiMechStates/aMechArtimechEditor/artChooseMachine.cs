@@ -133,16 +133,16 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            GameObject gmObject = (GameObject)theStateMachineEditor.SelectedObj;
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
             m_ChooseWindow = new artMachineChooseWindow(this, machines, "Choose Or Create A State Machine", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
 
             m_CancelBool = false;
             m_OkBool = false;
             m_CreateBool = false;
-            theMachineScript.DrawToolBarBool = false;
-            theMachineScript.Repaint();
+            theStateMachineEditor.DrawToolBarBool = false;
+            theStateMachineEditor.Repaint();
             base.Enter();
         }
 

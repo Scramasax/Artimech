@@ -127,12 +127,12 @@ namespace Artimech
             {
                 SaveDataBool = true;
             }
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             if (Event.current.type == EventType.MouseDown)
-                theMachineScript.MouseClickDownPosStart = Event.current.mousePosition;
+                theStateMachineEditor.MouseClickDownPosStart = Event.current.mousePosition;
 
             base.UpdateEditorGUI();
-            //theMachineScript.Repaint();
+            //theStateMachineEditor.Repaint();
         }
 
 
@@ -142,12 +142,12 @@ namespace Artimech
         public override void Enter()
         {
             SaveDataBool = false;
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            theMachineScript.DrawToolBarBool = true;
-            theMachineScript.Repaint();
-            for(int i=0;i<theMachineScript.VisualStateNodes.Count;i++)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.DrawToolBarBool = true;
+            theStateMachineEditor.Repaint();
+            for(int i=0;i<theStateMachineEditor.VisualStateNodes.Count;i++)
             {
-                theMachineScript.VisualStateNodes[i].Reset();
+                theStateMachineEditor.VisualStateNodes[i].Reset();
             }
             base.Enter();
         }

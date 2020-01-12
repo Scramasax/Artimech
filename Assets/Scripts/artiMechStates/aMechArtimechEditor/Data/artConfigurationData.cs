@@ -21,7 +21,10 @@ namespace Artimech
         [Header("Naming")]
         [SerializeField]
         [Tooltip("Prefix naming allows for the various state machines to be named with a pre sub string.")]
-        string m_PrefixNaming;
+        string m_PrefixName;
+        [SerializeField]
+        [Tooltip("Postfix naming allows for the various state machines to be named with a post sub string.")]
+        string m_PostfixName;
 
         [Space(10)]
         [Header("Colors")]
@@ -41,6 +44,24 @@ namespace Artimech
         [Tooltip("State window header's color.")]
         Color m_StateHeaderColor;
 
+        [SerializeField]
+        [Tooltip("Arrow color line for the arrows that connect the states.")]
+        Color m_ArrowLineColor;
+
+        [SerializeField]
+        [Tooltip("Arrow fill color for the arrows that connect the states.")]
+        Color m_ArrowFillColor;
+
+        public string MasterScriptDirectory { get => m_MasterScriptDirectory; }
+        public string CopyToDirectory { get => m_CopyToDirectory; }
+        public string PrefixName { get => m_PrefixName;  }
+        public string PostfixName { get => m_PostfixName; }
+        public Color BackgroundColor { get => m_BackgroundColor; }
+        public Color LineColor { get => m_LineColor; }
+        public Color StateWindowColor { get => m_StateWindowColor; }
+        public Color StateHeaderColor { get => m_StateHeaderColor; }
+        public Color ArrowLineColor { get => m_ArrowLineColor; }
+        public Color ArrowFillColor { get => m_ArrowFillColor; }
     }
 }
 

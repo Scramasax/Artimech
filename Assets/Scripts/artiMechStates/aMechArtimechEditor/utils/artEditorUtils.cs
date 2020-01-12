@@ -46,5 +46,67 @@ namespace Artimech
             return true;
         }
 
+        /*
+        public static void CreateStateContextCallback(ArtimechEditor theArtimechEditor, object obj)
+        {
+            //make the passed object to a string
+            //string clb = obj.ToString();
+            editorDisplayWindowsState.menuData menuData = (editorDisplayWindowsState.menuData)obj;
+
+
+            if (theArtimechEditor.SelectedObj != null)
+            {
+                theArtimechEditor.SaveMetaDataInStates();
+
+                if (theArtimechEditor.StateList.Count == 0)
+                {
+                    Debug.LogError("StateList is Empty so you can't create a state.");
+                    return;
+                }
+                //string stateName = "aMech" + GameObject.name + "State" + utlDataAndFile.GetCode(StateList.Count);
+
+                int codeIndex = theArtimechEditor.StateList.Count;
+                string stateName = theArtimechEditor.ConfigData.PrefixName + theArtimechEditor.name + theArtimechEditor.ConfigData.PostfixName + utlDataAndFile.GetCode(codeIndex);
+
+                UnityEngine.Object unityObj = null;
+                if (stateEditorUtils.SelectedObject is UnityEngine.Object)
+                {
+                    unityObj = (UnityEngine.Object)stateEditorUtils.SelectedObject;
+                }
+
+                while (!CreateAndAddStateCodeToProject(unityObj, stateName, menuData.m_FileAndPath, menuData.m_ReplaceName, false))
+                {
+                    codeIndex += 1;
+                    stateName = theArtimechEditor.ConfigData.PrefixName + theArtimechEditor.name + theArtimechEditor.ConfigData.PostfixName + utlDataAndFile.GetCode(codeIndex);
+
+                    //geohack: sanity check
+                    if (codeIndex > 10000)
+                        return;
+                }
+
+
+                string fileAndPath = "";
+                fileAndPath = utlDataAndFile.FindPathAndFileByClassName(stateName);
+
+                //stateWindowsNode windowNode = new stateWindowsNode(stateEditorUtils.StateList.Count);
+
+                Event ev = Event.current;
+                Vector3 transMousePos = new Vector3();
+                transMousePos = stateEditorUtils.TranslationMtx.UnTransform(ev.mousePosition);
+
+                windowNode.Set(fileAndPath, stateName, stateName, transMousePos.x, transMousePos.y, 150, 80);
+                theArtimechEditor.StateList.Add(windowNode);
+
+                SaveStateWindowsNodeData(fileAndPath, stateName, (int)MousePos.x, (int)MousePos.y, 150, 80);
+
+                fileAndPath = utlDataAndFile.FindPathAndFileByClassName(StateMachineName);
+
+                SaveStateInfo(StateMachineName, SelectedObject.name);
+
+                AddStateCodeToStateMachineCode(fileAndPath, stateName);
+
+            }
+        }*/
+
     }
 }

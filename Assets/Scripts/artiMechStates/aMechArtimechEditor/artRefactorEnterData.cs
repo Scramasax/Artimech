@@ -81,7 +81,7 @@ namespace Artimech
         public override void UpdateEditorGUI()
         {
             m_RenameWindow.Update();
-            //theMachineScript.EditorRepaint();
+            //theStateMachineEditor.EditorRepaint();
             base.UpdateEditorGUI();
         }
 
@@ -107,13 +107,13 @@ namespace Artimech
 
         artVisualStateNode GetSelectedNode()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
-                if (theMachineScript.VisualStateNodes[i].RefactorBool)
+                if (theStateMachineEditor.VisualStateNodes[i].RefactorBool)
                 {
 
-                    return theMachineScript.VisualStateNodes[i];
+                    return theStateMachineEditor.VisualStateNodes[i];
                 }
             }
             return null;

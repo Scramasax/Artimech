@@ -88,9 +88,9 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            for (int i = 0; i < theMachineScript.VisualStateNodes.Count; i++)
-                theMachineScript.VisualStateNodes[i].SaveMetaData();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+                theStateMachineEditor.VisualStateNodes[i].SaveMetaData();
             base.Enter();
         }
 

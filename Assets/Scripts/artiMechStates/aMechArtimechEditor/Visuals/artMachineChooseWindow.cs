@@ -156,12 +156,12 @@ namespace Artimech
 
         void SetMachineScript()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)m_State.m_UnityObject;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             for (int i = 0; i < m_MachineSelectionBools.Length; i++)
             {
                 if (m_MachineSelectionBools[i] == true)
                 {
-                    theMachineScript.MachineScript = m_Machines[i];
+                    theStateMachineEditor.MachineScript = m_Machines[i];
                     return;
                 }
             }

@@ -87,10 +87,10 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            GameObject gmObject = (GameObject)theStateMachineEditor.SelectedObj;
             iMachineBase machine = gmObject.GetComponent<iMachineBase>();
-            theMachineScript.MachineScript = machine;
+            theStateMachineEditor.MachineScript = machine;
 
             base.Enter();
         }

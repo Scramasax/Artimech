@@ -55,15 +55,15 @@ namespace Artimech
         {
             string strOut = null;
 
-            ArtimechEditor theMachineScript = (ArtimechEditor)state.m_UnityObject;
-            if (theMachineScript.SelectedObj == null)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
+            if (theStateMachineEditor.SelectedObj == null)
                 return null;
 
-            bool abool = theMachineScript.SelectedObj is GameObject;
+            bool abool = theStateMachineEditor.SelectedObj is GameObject;
             if (!abool)
                 return null;
 
-            GameObject gmObject = (GameObject)theMachineScript.SelectedObj;
+            GameObject gmObject = (GameObject)theStateMachineEditor.SelectedObj;
 
             if (gmObject == null)
                 return null;

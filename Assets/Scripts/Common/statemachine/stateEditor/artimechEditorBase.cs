@@ -9,9 +9,11 @@ namespace Artimech
     public class artimechEditorBase : EditorWindow, iMachineBase
     {
         artimechEditorBase m_ArtimechWindow;
-        protected IList<baseState> m_StateList;
+        private IList<baseState> m_StateList;
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
+
+        public IList<baseState> StateList { get => m_StateList; set => m_StateList = value; }
 
         public string GetName()
         {
@@ -37,7 +39,7 @@ namespace Artimech
                 m_ArtimechWindow.Show();
             }
             m_StateChanger = new stateChanger();
-            m_StateList = new List<baseState>();
+            StateList = new List<baseState>();
         }
 
         public void Awake()
@@ -60,7 +62,7 @@ namespace Artimech
                 return;
             }
 
-            baseState state = m_StateChanger.UpdateChangeStates(m_StateList, m_CurrentState, this, false);
+            baseState state = m_StateChanger.UpdateChangeStates(StateList, m_CurrentState, this, false);
             if (state != null)
                 m_CurrentState = state;
 
@@ -91,13 +93,13 @@ namespace Artimech
         public baseState AddState(baseState state, string statename)
         {
             state.m_StateName = statename;
-            m_StateList.Add(state);
+            StateList.Add(state);
             return state;
         }
 
         public void ForceChangeState(string stateName)
         {
-            m_CurrentState = m_StateChanger.ForceChangeState(m_StateList, m_CurrentState, stateName, this, false);
+            m_CurrentState = m_StateChanger.ForceChangeState(StateList, m_CurrentState, stateName, this, false);
         }
 
         public void EditorRepaint()

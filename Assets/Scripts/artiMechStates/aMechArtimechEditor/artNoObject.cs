@@ -108,11 +108,11 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theMachineScript = (ArtimechEditor)GetScriptableObject;
-            theMachineScript.DrawToolBarBool = true;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.DrawToolBarBool = true;
             string assetPath = "Assets/Resources/Config/ArtimechConfig.asset";
-            theMachineScript.ConfigData = (artConfigurationData) AssetDatabase.LoadAssetAtPath(assetPath, typeof(artConfigurationData));
-            theMachineScript.Repaint();
+            theStateMachineEditor.ConfigData = (artConfigurationData) AssetDatabase.LoadAssetAtPath(assetPath, typeof(artConfigurationData));
+            theStateMachineEditor.Repaint();
             base.Enter();
         }
 
