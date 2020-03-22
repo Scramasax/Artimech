@@ -12,4 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8aa2d4d28c877d4f8a40c2204c177d2, type: 3}
   m_Name: ArtimechConfig
   m_EditorClassIdentifier: 
-  m_MasterScriptDirectory: 
+  m_MasterScripStateMachineFile:
+    m_PathAndName: E:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
+  m_MasterScriptStateFile:
+    m_PathAndName: E:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
+  m_CopyToDirectory:
+    m_PathName: E:/Work/Artimech/Assets/Scripts/artiMechStates
+  m_PrefixName: artiMech
+  m_PostfixName: State
+  m_BackgroundColor: {r: 0.5647059, g: 0.5647059, b: 0.56078434, a: 1}
+  m_LineColor: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 1}
+  m_StateWindowColor: {r: 0.1997152, g: 0.1997152, b: 0.4811321, a: 1}
+  m_StateHeaderColor: {r: 0, g: 0.47843137, b: 0.7176471, a: 1}
+  m_ArrowLineColor: {r: 0, g: 0.7058824, b: 0.5294118, a: 1}
+  m_ArrowFillColor: {r: 1, g: 1, b: 1, a: 1}

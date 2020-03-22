@@ -37,7 +37,7 @@ public static class utlGameObject
         modTargetPos.y = gameobject.transform.position.y;
         Vector3 direction = (modTargetPos - gameobject.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction, Vector3.up);
-        gameobject.transform.rotation = Quaternion.Slerp(gameobject.transform.rotation, lookRotation, gameMgr.GetSeconds() * turnSpeed);
+        gameobject.transform.rotation = Quaternion.Slerp(gameobject.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 
     public static float GetTargetAngle(GameObject gameobject,Vector3 target)

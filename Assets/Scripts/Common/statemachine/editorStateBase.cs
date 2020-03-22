@@ -47,7 +47,7 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
-            m_StateTime += gameMgr.GetSeconds();
+            m_StateTime += Time.deltaTime;
             for (int i = 0; i < m_ConditionalList.Count; i++)
             {
                 string changeNameToThisState = null;

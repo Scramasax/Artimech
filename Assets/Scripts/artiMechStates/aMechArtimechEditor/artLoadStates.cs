@@ -20,6 +20,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -149,6 +150,32 @@ namespace Artimech
             {
                 Error = true;
             }
+
+            string dataPath = Application.dataPath + "/Resources/Config/";
+            string fileName = dataPath + theStateMachineEditor.SelectedObj.name + ".json";
+            if (System.IO.File.Exists(fileName))
+            {
+                theStateMachineEditor.LoadingInfo.LoadFromFile(fileName);
+                theStateMachineEditor.SetConfigurationDataViaLoadInfo();
+            }
+            else
+            {
+                theStateMachineEditor.LoadingInfo.m_NameOfConfigData = theStateMachineEditor.ConfigData.name;
+                theStateMachineEditor.LoadingInfo.SaveToFile(fileName);
+            } 
+
+            /*
+            if (!theStateMachineEditor.LoadingInfo.LoadFromFile(dataPath + theStateMachineEditor.SelectedObj.name))
+            {
+                theStateMachineEditor.LoadingInfo.m_NameOfConfigData = theStateMachineEditor.ConfigData.name;
+                theStateMachineEditor.LoadingInfo.SaveToFile(dataPath + theStateMachineEditor.SelectedObj.name);
+            }
+            else
+            {
+                theStateMachineEditor.SetConfigurationDataViaLoadInfo();
+            }
+            */
+
 
             base.Enter();
         }

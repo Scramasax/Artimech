@@ -39,6 +39,8 @@ namespace Artimech
         Vector2 m_MouseClickDownPosStart;
         string m_RefactorName = "";
         artConfigurationData m_ConfigData;
+        Texture m_MenuArrowTexture;
+        editorOnLoadInfo m_LoadingInfo = new editorOnLoadInfo();
 
         #endregion
         #region Accessors
@@ -66,18 +68,16 @@ namespace Artimech
         /// <summary>A list of visual state nodes.</summary>
         public IList<artVisualStateNode> VisualStateNodes { get { return m_VisualStateNodes; } set { m_VisualStateNodes = value; } }
 
-        
+
         public string RefactorName { get => m_RefactorName; set => m_RefactorName = value; }
         public Vector2 MouseClickDownPosStart { get => m_MouseClickDownPosStart; set => m_MouseClickDownPosStart = value; }
         public artConfigurationData ConfigData { get => m_ConfigData; set => m_ConfigData = value; }
+        public editorOnLoadInfo LoadingInfo { get => m_LoadingInfo; set => m_LoadingInfo = value; }
 
         #endregion
         #region Member Functions
         public ArtimechEditor() : base()
         {
- //           if (m_Instance == null)
- //               m_Instance = this;
-
 
         }
 
@@ -91,9 +91,14 @@ namespace Artimech
         {
             this.Show();
             base.OnEnable();
-            //m_MainWindow = new artMainWindow("test", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
+
             VisualStateNodes = new List<artVisualStateNode>();
             TransMtx = new utlMatrix34();
+
+            m_MenuArrowTexture = (Texture)AssetDatabase.LoadAssetAtPath("Assets/Materials/menuArrow.png", typeof(Texture));
+            //        m_MenuArrowTexture.width = 10;
+            //        m_MenuArrowTexture.height = 10;
+
             CreateStates();
         }
 
@@ -130,17 +135,42 @@ namespace Artimech
             {
                 GenericMenu toolsMenu = new GenericMenu();
                 toolsMenu.AddSeparator("");
-                toolsMenu.AddItem(new GUIContent("Configure"), false, OnConfigure);
+                //                toolsMenu.AddItem(new GUIContent("Configure", "Select a configuartion file to use."), false, OnConfigure);
+                //                toolsMenu.AddItem(new GUIContent("Configure/Test", "Select a configuartion file to use."), false, OnConfigure);
+                AddConfigureMenuEntries(toolsMenu);
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, OnPrintAboutToConsole);
                 toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
 
-                toolsMenu.DropDown(new Rect(Screen.width - 154, 0, 0, 16));
+                toolsMenu.DropDown(new Rect(position.width - 150 + 19, 0, 0, 16));
 
                 EditorGUIUtility.ExitGUI();
             }
 
             EditorGUI.EndDisabledGroup();
+        }
+
+        void AddConfigureMenuEntries(GenericMenu toolsMenu)
+        {
+            artConfigurationData[] data = utlDataAndFile.GetAllInstances<artConfigurationData>();
+            for (int i = 0; i < data.Length; i++)
+            {
+                //new GenericMenu.MenuFunction2(this.ToggleLogStackTraces), current
+                toolsMenu.AddItem(new GUIContent("Configure/" + data[i].name, "Select a configuartion file to use."), data[i] == m_ConfigData ? true : false, new GenericMenu.MenuFunction2(this.OnConfigure), data[i]);
+            }
+        }
+
+        public void SetConfigurationDataViaLoadInfo()
+        {
+            artConfigurationData[] data = utlDataAndFile.GetAllInstances<artConfigurationData>();
+            for (int i = 0; i < data.Length; i++)
+            {
+                if(data[i].name == LoadingInfo.m_NameOfConfigData)
+                {
+                    m_ConfigData = data[i];
+                    return;
+                }
+            }
         }
 
         new void OnGUI()
@@ -234,9 +264,9 @@ namespace Artimech
 
         }
 
-        void OnConfigure()
+        void OnConfigure(object obj)
         {
-
+            m_ConfigData = (artConfigurationData)obj;
         }
 
         void OnPrintAboutToConsole()

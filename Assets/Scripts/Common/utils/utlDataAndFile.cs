@@ -321,14 +321,6 @@ public static class utlDataAndFile
                 string moveFileName = file.Replace(findName, replaceName);
                 File.Move(oldFileName, moveFileName);
             }
-
-            /*
-            string[] words = file.Split(new char[] { '/', '\\' });
-            for (int i = 0; i < words.Length; i++)
-            {
-                if (words[i] == findName)
-                    return file;
-            }*/
         }
 
         foreach (string dir in Directory.GetDirectories(startDir))
@@ -430,6 +422,21 @@ public static class utlDataAndFile
             }
         }
         return listOfStrings.Distinct().ToList();
+    }
+
+    public static T[] GetAllInstances<T>() where T : ScriptableObject
+    {
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name); 
+
+        T[] a = new T[guids.Length];
+        for (int i = 0; i < guids.Length; i++)   
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+            a[i] = AssetDatabase.LoadAssetAtPath<T>(path);
+        }
+
+        return a;
+
     }
 
 }

@@ -35,8 +35,8 @@ using UnityEditor;
   <State>
     <alias>Refactor State Class</alias>
     <comment></comment>
-    <posX>391</posX>
-    <posY>598</posY>
+    <posX>401</posX>
+    <posY>603</posY>
     <sizeX>171</sizeX>
     <sizeY>48</sizeY>
   </State>

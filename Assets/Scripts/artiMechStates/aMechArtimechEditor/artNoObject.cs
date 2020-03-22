@@ -36,8 +36,8 @@ using UnityEditor;
   <State>
     <alias>No Object</alias>
     <comment></comment>
-    <posX>-187</posX>
-    <posY>184</posY>
+    <posX>-188</posX>
+    <posY>172</posY>
     <sizeX>104</sizeX>
     <sizeY>55</sizeY>
   </State>
@@ -97,9 +97,9 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            //         m_TestWin.Draw(1);
+            
             GUILayout.Label(m_LoadingImage);
-            //           m_TestWin.Update();
+            
             base.UpdateEditorGUI();
         }
 
