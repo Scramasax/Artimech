@@ -135,8 +135,6 @@ namespace Artimech
             {
                 GenericMenu toolsMenu = new GenericMenu();
                 toolsMenu.AddSeparator("");
-                //                toolsMenu.AddItem(new GUIContent("Configure", "Select a configuartion file to use."), false, OnConfigure);
-                //                toolsMenu.AddItem(new GUIContent("Configure/Test", "Select a configuartion file to use."), false, OnConfigure);
                 AddConfigureMenuEntries(toolsMenu);
                 toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, OnPrintAboutToConsole);
@@ -152,12 +150,18 @@ namespace Artimech
 
         void AddConfigureMenuEntries(GenericMenu toolsMenu)
         {
+            //EditorGUI.BeginDisabledGroup(SelectedObj == null ? true : false);
+          //  EditorGUI.BeginDisabledGroup(true);
             artConfigurationData[] data = utlDataAndFile.GetAllInstances<artConfigurationData>();
             for (int i = 0; i < data.Length; i++)
             {
                 //new GenericMenu.MenuFunction2(this.ToggleLogStackTraces), current
-                toolsMenu.AddItem(new GUIContent("Configure/" + data[i].name, "Select a configuartion file to use."), data[i] == m_ConfigData ? true : false, new GenericMenu.MenuFunction2(this.OnConfigure), data[i]);
+                if (SelectedObj == null)
+                    toolsMenu.AddDisabledItem(new GUIContent("Configure/" + data[i].name));
+                else
+                    toolsMenu.AddItem(new GUIContent("Configure/" + data[i].name, "Select a configuartion file to use."), data[i] == m_ConfigData ? true : false, new GenericMenu.MenuFunction2(this.OnConfigure), data[i]);
             }
+           // EditorGUI.EndDisabledGroup();
         }
 
         public void SetConfigurationDataViaLoadInfo()
@@ -165,7 +169,7 @@ namespace Artimech
             artConfigurationData[] data = utlDataAndFile.GetAllInstances<artConfigurationData>();
             for (int i = 0; i < data.Length; i++)
             {
-                if(data[i].name == LoadingInfo.m_NameOfConfigData)
+                if (data[i].name == LoadingInfo.m_NameOfConfigData)
                 {
                     m_ConfigData = data[i];
                     return;
@@ -267,6 +271,10 @@ namespace Artimech
         void OnConfigure(object obj)
         {
             m_ConfigData = (artConfigurationData)obj;
+            string dataPath = Application.dataPath + "/Resources/Config/";
+            string fileName = dataPath + SelectedObj.name + ".json";
+            LoadingInfo.m_NameOfConfigData = ConfigData.name;
+            LoadingInfo.SaveToFile(fileName);
         }
 
         void OnPrintAboutToConsole()

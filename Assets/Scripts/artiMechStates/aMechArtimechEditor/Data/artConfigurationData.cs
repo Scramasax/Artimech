@@ -44,6 +44,37 @@ namespace Artimech
         Color m_LineColor = Color.blue;
 
         [SerializeField]
+        [Tooltip("Line color for the state windows.")]
+        Color m_LineShadowColor = Color.grey;
+
+        [SerializeField]
+        [Tooltip("Line color for the state windows.")]
+        Vector2 m_MainWindowGridSize = new Vector2(-5000, 5000);
+
+        [SerializeField]
+        [Tooltip("Line color for the state windows.")]
+        Vector2 m_SmallSquareGridSize = new Vector2(25, 25);
+
+        [SerializeField]
+        [Tooltip("Small grid line width.")]
+        [Range(0.5f, 10)]
+        float m_SmallSquareGridLineWidth = 1.0f;
+
+        [SerializeField]
+        [Tooltip("Line color for the state windows.")]
+        Vector2 m_BigSqureGridSize = new Vector2(250, 250);
+
+        [SerializeField]
+        [Tooltip("Small grid line width.")]
+        [Range(0.5f, 10)]
+        float m_BigSquareGridLineWidth = 3.0f;
+
+        [Space(10)]
+        [SerializeField]
+        [Tooltip("Line color for the state windows.")]
+        Color m_WindowLineColor = Color.black;
+
+        [SerializeField]
         [Tooltip("State window background window color default.")]
         Color m_StateWindowColor = Color.gray;
 
@@ -51,6 +82,7 @@ namespace Artimech
         [Tooltip("State window header's color.")]
         Color m_StateHeaderColor = Color.grey;
 
+        [Space(10)]
         [SerializeField]
         [Tooltip("Arrow color line for the arrows that connect the states.")]
         Color m_ArrowLineColor = Color.black;
@@ -58,6 +90,11 @@ namespace Artimech
         [SerializeField]
         [Tooltip("Arrow fill color for the arrows that connect the states.")]
         Color m_ArrowFillColor = Color.white;
+
+        [SerializeField]
+        [Tooltip("Arrow fill color for the arrows that connect the states.")]
+        [Range(0.5f, 10)]
+        float m_ArrowLineWidth = 2.0f;
 
         public filePathAndName MasterScripStateMachineFile { get => m_MasterScripStateMachineFile; }
         public filePathAndName MasterScriptStateFile { get => m_MasterScriptStateFile; }
@@ -70,7 +107,14 @@ namespace Artimech
         public Color StateHeaderColor { get => m_StateHeaderColor; }
         public Color ArrowLineColor { get => m_ArrowLineColor; }
         public Color ArrowFillColor { get => m_ArrowFillColor; }
-
+        public Color WindowLineColor { get => m_WindowLineColor; }
+        public float ArrowLineWidth { get => m_ArrowLineWidth; }
+        public Color LineShadowColor { get => m_LineShadowColor; }
+        public Vector2 MainWindowGridSize { get => m_MainWindowGridSize; }
+        public Vector2 SmallSquareGridSize { get => m_SmallSquareGridSize; }
+        public float SmallSquareGridLineWidth { get => m_SmallSquareGridLineWidth; }
+        public Vector2 BigSqureGridSize { get => m_BigSqureGridSize; }
+        public float BigSquareGridLineWidth { get => m_BigSquareGridLineWidth; }
     }
 }
 

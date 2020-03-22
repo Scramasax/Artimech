@@ -81,12 +81,13 @@ namespace Artimech
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
-            stateEditorDrawUtils.DrawGridBackground();
-
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            stateEditorDrawUtils.DrawGridBackground(theStateMachineEditor.ConfigData);
+
+            
             for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
-                theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx);
+                theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx, theStateMachineEditor.ConfigData);
             }
         }
     }

@@ -34,7 +34,7 @@ using System.Collections.Generic;
     <alias>Start</alias>
     <comment></comment>
     <posX>20</posX>
-    <posY>40</posY>
+    <posY>35</posY>
     <sizeX>150</sizeX>
     <sizeY>80</sizeY>
   </State>

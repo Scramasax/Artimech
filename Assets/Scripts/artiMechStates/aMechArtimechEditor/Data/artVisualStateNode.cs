@@ -52,7 +52,7 @@ namespace Artimech
         bool m_Resize = false;
         bool m_RenameBool = false;
         bool m_RefactorBool = false;
-      
+
 
         Vector2 m_ConditionOffset;
 
@@ -252,12 +252,12 @@ namespace Artimech
 
         public void Reset()
         {
-             m_MoveBool = false;
-             m_LeftMouseButton = false;
-             m_Selected = false;
-             m_Resize = false;
-             m_RenameBool = false;
-             m_RefactorBool = false;
+            m_MoveBool = false;
+            m_LeftMouseButton = false;
+            m_Selected = false;
+            m_Resize = false;
+            m_RenameBool = false;
+            m_RefactorBool = false;
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace Artimech
             return null;
         }
 
-        public void Update(baseState state, utlMatrix34 mtx)
+        public void Update(baseState state, utlMatrix34 mtx, artConfigurationData configData)
         {
             m_State = state;
 
@@ -466,7 +466,7 @@ namespace Artimech
                 {
                     this.Resize = true;
                 }
-                if(this.m_TitleHover)
+                if (this.m_TitleHover)
                 {
                     RenameBool = true;
                 }
@@ -492,9 +492,9 @@ namespace Artimech
 
                 Color shadowCol = new Color(0, 0, 1, 0.06f);
                 //artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol, Color.white);
-                artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 3, Color.black, Color.green);
+                artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, configData.ArrowLineWidth, configData.ArrowLineColor, configData.ArrowFillColor);
             }
-            DrawNodeWindow(this.m_Id);
+            DrawNodeWindow(this.m_Id, configData);
         }
 
         public bool CheckWinNodeToSeeIfItIsLinked(artVisualStateNode winNode)
@@ -595,7 +595,7 @@ namespace Artimech
         /// Draws the "Display" window of this window.  Everything is active.
         /// </summary>
         /// <param name="id"></param>
-        void DrawNodeWindow(int id)
+        void DrawNodeWindow(int id, artConfigurationData configData)
         {
             if (Event.current.button == 0 && Event.current.isMouse && ResizeBodyHover)
             {
@@ -641,10 +641,10 @@ namespace Artimech
             Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);
 
             Rect rect = new Rect(m_WinRect.x, m_WinRect.y, WinRect.width, WinRect.height);
-            artGUIUtils.DrawRect(rect, lineWidth, lineColor, backGroundColor);
+            artGUIUtils.DrawRect(rect, lineWidth, configData.WindowLineColor, configData.StateWindowColor);
 
 
-            DrawStateContent();
+            DrawStateContent(configData);
 
 
             //draw the exit button in the title bar
@@ -702,15 +702,15 @@ namespace Artimech
             //GUI.DragWindow();
         }
 
-        void DrawStateContent()
+        void DrawStateContent(artConfigurationData configData)
         {
             GUILayout.BeginArea(WinRect);
 
             var rect = EditorGUILayout.BeginVertical();
-            GUI.color = Color.yellow;
+            GUI.color = configData.StateHeaderColor;
             GUI.Box(rect, GUIContent.none);
 
-            GUI.color = Color.white;
+            //GUI.color = Color.white;
 
             GUILayout.Space(2);
             GUILayout.BeginHorizontal();

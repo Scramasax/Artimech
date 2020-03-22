@@ -33,6 +33,27 @@ namespace Artimech
     public static class stateEditorDrawUtils
     {
 
+        public static void DrawGridBackground(artConfigurationData configData)
+        {
+            //Color shadowCol = new Color(0, 0, 0, 0.2f);
+           
+            stateEditorDrawUtils.DrawGridBackground(new Vector2(configData.MainWindowGridSize.x, configData.MainWindowGridSize.x), 
+                                                    new Vector2(configData.MainWindowGridSize.y, configData.MainWindowGridSize.y), 
+                                                    new Vector2(configData.SmallSquareGridSize.x, configData.SmallSquareGridSize.y), 
+                                                    configData.SmallSquareGridLineWidth, 
+                                                    configData.LineShadowColor);
+            //Color blueCol = new Color(0, 0, 1, 0.4f);
+            //stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 3, blueCol);
+
+            stateEditorDrawUtils.DrawGridBackground(new Vector2(configData.MainWindowGridSize.x, configData.MainWindowGridSize.x),
+                                        new Vector2(configData.MainWindowGridSize.y, configData.MainWindowGridSize.y),
+                                        new Vector2(configData.BigSqureGridSize.x, configData.BigSqureGridSize.y),
+                                        configData.BigSquareGridLineWidth,
+                                        configData.LineColor);
+
+            //stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 1, blueCol);
+        }
+
         public static void DrawGridBackground()
         {
             Color shadowCol = new Color(0, 0, 0, 0.2f);
@@ -42,7 +63,7 @@ namespace Artimech
             //stateEditorDrawUtils.DrawGridBackground(new Vector2(-5000, -5000), new Vector2(5000, 5000), new Vector2(250, 250), 1, blueCol);
         }
 
-        public static void DrawGridBackground(Vector2 gridStart, Vector2 gridEnd, Vector2 gridSize, int lineWidth, Color lineColor)
+        public static void DrawGridBackground(Vector2 gridStart, Vector2 gridEnd, Vector2 gridSize, float lineWidth, Color lineColor)
         {
             Vector2 startPos = new Vector2(gridStart.x, gridStart.y);
             Vector2 endPos = new Vector2(gridEnd.x, gridStart.y);
@@ -125,10 +146,15 @@ namespace Artimech
 
         }
 
-        public static void DrawLine(Vector3 startPos, Vector3 endPos, int lineWidth, Color lineColor)
+        public static void DrawLine(Vector3 startPos, Vector3 endPos, float lineWidth, Color lineColor)
         {
             Handles.color = lineColor;
-            Handles.DrawLine(startPos, endPos);//, lineColor, lineWidth);
+            Vector3[] vects = new Vector3[2];
+            vects[0] = startPos;
+            vects[1] = endPos;
+            
+            Handles.DrawAAPolyLine(lineWidth, vects);
+            //Handles.DrawLine(startPos, endPos);//, lineColor, lineWidth);
         }
 
         public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
