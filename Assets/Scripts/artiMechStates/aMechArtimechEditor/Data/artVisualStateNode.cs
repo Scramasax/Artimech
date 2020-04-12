@@ -636,12 +636,12 @@ namespace Artimech
             }
 
             //draws background and outline.
-            int lineWidth = 2;
-            Color lineColor = new Color(0, 0.3f, 0, 1);
-            Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);
+            //int lineWidth = 2;
+  /*          Color lineColor = new Color(0, 0.3f, 0, 1);
+            Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);*/
 
             Rect rect = new Rect(m_WinRect.x, m_WinRect.y, WinRect.width, WinRect.height);
-            artGUIUtils.DrawRect(rect, lineWidth, configData.WindowLineColor, configData.StateWindowColor);
+            artGUIUtils.DrawRect(rect, configData.WindowOutlineLineWidth, configData.WindowLineColor, configData.StateWindowColor);
 
 
             DrawStateContent(configData);
@@ -707,7 +707,7 @@ namespace Artimech
             GUILayout.BeginArea(WinRect);
 
             var rect = EditorGUILayout.BeginVertical();
-            GUI.color = configData.StateHeaderColor;
+            GUI.color = configData.StateWindowColor;
             GUI.Box(rect, GUIContent.none);
 
             //GUI.color = Color.white;
@@ -725,7 +725,7 @@ namespace Artimech
 
             GUILayout.EndArea();
 
-            Handles.EndGUI();
+            //Handles.EndGUI();
         }
 
         /// <summary>

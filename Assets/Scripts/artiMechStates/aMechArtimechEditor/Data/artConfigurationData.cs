@@ -82,6 +82,11 @@ namespace Artimech
         [Tooltip("State window header's color.")]
         Color m_StateHeaderColor = Color.grey;
 
+        [SerializeField]
+        [Tooltip("The outline the window is drawn with.")]
+        [Range(0.5f, 10)]
+        float m_WindowOutlineLineWidth = 1.0f;
+
         [Space(10)]
         [SerializeField]
         [Tooltip("Arrow color line for the arrows that connect the states.")]
@@ -115,6 +120,7 @@ namespace Artimech
         public float SmallSquareGridLineWidth { get => m_SmallSquareGridLineWidth; }
         public Vector2 BigSqureGridSize { get => m_BigSqureGridSize; }
         public float BigSquareGridLineWidth { get => m_BigSquareGridLineWidth; }
+        public float WindowOutlineLineWidth { get => m_WindowOutlineLineWidth; }
     }
 }
 

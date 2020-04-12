@@ -138,7 +138,7 @@ namespace Artimech
 
             EditorGUI.DrawRect(rect, backGroundColor);
 
-            artGUIUtils.DrawLine(position, position + new Vector2(rect.width, 0), lineWidth, lineColor);
+            artGUIUtils.DrawLine(position, position + new Vector2(rect.width , 0), lineWidth, lineColor);
             artGUIUtils.DrawLine(position, position + new Vector2(0, rect.height), lineWidth, lineColor);
 
             artGUIUtils.DrawLine(position + new Vector2(0, rect.height), position + new Vector2(rect.width, rect.height), lineWidth, lineColor);
@@ -146,7 +146,7 @@ namespace Artimech
 
         }
 
-        public static void DrawArrowTranformed(utlMatrix34 mtx,Vector2 startPos,Vector2 endPos,Rect winRectStart, Rect winRectEnd,float lineWidth,Color lineColor,Color bodyColor)
+        public static void DrawArrowTranformed(utlMatrix34 mtx, Vector2 startPos, Vector2 endPos, Rect winRectStart, Rect winRectEnd, float lineWidth, Color lineColor, Color bodyColor)
         {
             Vector3 startPosTrans = new Vector3();
             startPosTrans = mtx.Transform(startPos);
@@ -163,6 +163,7 @@ namespace Artimech
             DrawArrow(startPosTrans, endPosTrans, transStartRect, transEndRect, lineWidth, lineColor, bodyColor);
         }
 
+        /*
         public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
         {
             Vector3 startPosTrans = new Vector3();
@@ -184,9 +185,9 @@ namespace Artimech
                 lineWidth,
                 lineColor, shadowWidth, shadowColor, bodyColor);
 
-        }
+        }*/
 
-        public static void DrawArrow(Vector2 startPos,Vector2 endPos,Rect winRectStart,Rect winRectEnd,float lineWidth,Color lineColor,Color bodyColor)
+        public static void DrawArrow(Vector2 startPos, Vector2 endPos, Rect winRectStart, Rect winRectEnd, float lineWidth, Color lineColor, Color bodyColor)
         {
             Vector2 colPos = new Vector2();
             if (LineRectIntersection(startPos, endPos, winRectStart, ref colPos))
@@ -195,9 +196,10 @@ namespace Artimech
             if (LineRectIntersection(startPos, endPos, winRectEnd, ref colPos))
                 endPos = colPos;
 
-            Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
+            //Handles.DrawBezier(startPos, endPos, endPos, startPos, lineColor, null, lineWidth);
+            DrawLine(startPos, endPos, lineWidth, lineColor);
 
-            artGUIUtils.DrawRect(new Rect(startPos.x-5, startPos.y-5, 10, 10), lineWidth, lineColor, bodyColor);
+            artGUIUtils.DrawRect(new Rect(startPos.x - 5, startPos.y - 5, 10, 10), lineWidth, lineColor, bodyColor);
 
 
             //arrow head draw
@@ -228,7 +230,8 @@ namespace Artimech
             for (float i = slice; i < 1.0f - slice; i += slice)
             {
                 Vector3 lerpVect = Vector3.Lerp(arrowHeadWorld[1], arrowHeadWorld[2], i);
-                Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], bodyColor, null, 3);
+                //Handles.DrawBezier(arrowHeadWorld[0], lerpVect, lerpVect, arrowHeadWorld[0], bodyColor, null, 3);
+                DrawLine(arrowHeadWorld[0], lerpVect, 3, bodyColor);
             }
 
             Handles.color = lineColor;
