@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Choose Name</alias>
     <comment></comment>
-    <posX>131</posX>
-    <posY>460</posY>
+    <posX>122</posX>
+    <posY>462</posY>
     <sizeX>123</sizeX>
     <sizeY>44</sizeY>
   </State>
@@ -132,7 +132,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_CreateWindow.Update();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_CreateWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 

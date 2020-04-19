@@ -141,15 +141,16 @@ namespace Artimech
         /// <summary>
         /// Update
         /// </summary>
-        new public void Update()
+        public void Update(EditorWindow eWindow)
         {
-            m_WinRect.x = Screen.width * 0.5f;
-            m_WinRect.width = Screen.width * m_Width;
+            m_WinRect.x = eWindow.position.width * 0.5f;
+            m_WinRect.width = eWindow.position.width * m_Width;
             //m_WinRect.height = Screen.height * 0.25f;
             m_WinRect.height = m_Height;
-            m_WinRect.x = (Screen.width * 0.5f) - (m_WinRect.width * 0.5f);
-            m_WinRect.y = (Screen.height * 0.5f) - (m_WinRect.height * 0.5f);
+            m_WinRect.x = (eWindow.position.width * 0.5f) - (m_WinRect.width * 0.5f);
+            m_WinRect.y = (eWindow.position.height * 0.5f) - (m_WinRect.height * 0.5f);
             m_TexturePosAndSize.Set(m_WinRect.width - 40, 32, 32, 32);
+            //base.Update();
             GUI.Window(m_Id, WinRect, Draw, m_Title);
         }
 
@@ -180,7 +181,7 @@ namespace Artimech
             //Color backroundColor = new Color(1, 1, 1, 0.8f);
 
             // Color backroundColor = new Color(1, 1, 1, 0.8f);
-            Rect rect = new Rect(0, 16, WinRect.width, WinRect.height);
+            Rect rect = new Rect(0, 18, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
             GUILayout.Space(20);

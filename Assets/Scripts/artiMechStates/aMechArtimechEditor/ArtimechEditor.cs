@@ -41,6 +41,7 @@ namespace Artimech
         artConfigurationData m_ConfigData;
         Texture m_MenuArrowTexture;
         editorOnLoadInfo m_LoadingInfo = new editorOnLoadInfo();
+        bool m_RepaintOnUpdate = false;
 
         #endregion
         #region Accessors
@@ -73,6 +74,7 @@ namespace Artimech
         public Vector2 MouseClickDownPosStart { get => m_MouseClickDownPosStart; set => m_MouseClickDownPosStart = value; }
         public artConfigurationData ConfigData { get => m_ConfigData; set => m_ConfigData = value; }
         public editorOnLoadInfo LoadingInfo { get => m_LoadingInfo; set => m_LoadingInfo = value; }
+        public bool RepaintOnUpdate { get => m_RepaintOnUpdate; set => m_RepaintOnUpdate = value; }
 
         #endregion
         #region Member Functions
@@ -113,6 +115,11 @@ namespace Artimech
         {
             base.Update();
             WasSelectedObj = SelectedObj;
+            if(RepaintOnUpdate)
+            {
+                RepaintOnUpdate = false;
+                Repaint();
+            }
         }
 
         new void FixedUpdate()
@@ -268,7 +275,7 @@ namespace Artimech
 
         }
 
-        void OnConfigure(object obj)
+        public void OnConfigure(object obj)
         {
             m_ConfigData = (artConfigurationData)obj;
             string dataPath = Application.dataPath + "/Resources/Config/";

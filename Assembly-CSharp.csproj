@@ -177,6 +177,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artProcessingWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
@@ -293,13 +294,13 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
     <None Include="Assets\SaveData.xml" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />

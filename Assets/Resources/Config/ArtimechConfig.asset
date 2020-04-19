@@ -33,5 +33,5 @@ MonoBehaviour:
   m_StateHeaderColor: {r: 0.3707795, g: 1, b: 0.2235294, a: 1}
   m_WindowOutlineLineWidth: 2
   m_ArrowLineColor: {r: 0.24670699, g: 0.37637913, b: 0.7264151, a: 1}
-  m_ArrowFillColor: {r: 1, g: 1, b: 1, a: 1}
+  m_ArrowFillColor: {r: 0.9852284, g: 1, b: 0.254717, a: 1}
   m_ArrowLineWidth: 2

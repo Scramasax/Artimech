@@ -97,9 +97,11 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            
-            GUILayout.Label(m_LoadingImage);
-            
+
+            //GUILayout.Box(m_LoadingImage);
+            ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
+            GUI.DrawTexture(new Rect(0, 16, theScript.position.width, theScript.position.height), m_LoadingImage, ScaleMode.ScaleToFit, true);
+
             base.UpdateEditorGUI();
         }
 

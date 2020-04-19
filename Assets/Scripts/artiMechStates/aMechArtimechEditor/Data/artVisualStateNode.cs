@@ -707,7 +707,6 @@ namespace Artimech
             GUILayout.BeginArea(WinRect);
 
             var rect = EditorGUILayout.BeginVertical();
-            GUI.color = configData.StateWindowColor;
             GUI.Box(rect, GUIContent.none);
 
             //GUI.color = Color.white;

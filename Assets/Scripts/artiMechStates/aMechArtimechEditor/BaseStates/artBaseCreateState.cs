@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using UnityEngine;
 namespace Artimech
 {
@@ -38,8 +40,10 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+
             base.Enter();
         }
+
 
         /// <summary>
         /// When the state becomes inactive Exit() is called once.
@@ -49,7 +53,6 @@ namespace Artimech
             base.Exit();
         }
 
-        
         /// <summary>
         /// 
         /// </summary>
@@ -244,7 +247,7 @@ namespace Artimech
                 }
             }
         }
-        
+
 
     }
 }

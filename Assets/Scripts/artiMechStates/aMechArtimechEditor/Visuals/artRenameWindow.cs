@@ -195,7 +195,7 @@ namespace Artimech
             //Color backroundColor = new Color(1, 1, 1, 0.8f);
 
             // Color backroundColor = new Color(1, 1, 1, 0.8f);
-            Rect rect = new Rect(0, 16, WinRect.width, WinRect.height);
+            Rect rect = new Rect(0, 18, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
             GUILayout.Space(10);

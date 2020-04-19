@@ -18,6 +18,10 @@ namespace Artimech
         string m_Message;
         int m_FontSize;
         Color m_FontColor;
+
+        public int FontSize { get => m_FontSize; set => m_FontSize = value; }
+        public Color FontColor { get => m_FontColor; set => m_FontColor = value; }
+        public string Message { get => m_Message; set => m_Message = value; }
         #endregion
         #region Gets Sets
         #endregion
@@ -33,24 +37,24 @@ namespace Artimech
         /// <param name="id"></param>
         public artMessageWindow(string title, string message, int fontSize, Color fontColor,Rect rect, Color color, int id) : base(title, rect, color, id)
         {
-            m_Message = message;
-            m_FontSize = fontSize;
-            m_FontColor = fontColor;
+            Message = message;
+            FontSize = fontSize;
+            FontColor = fontColor;
         }
 
         /// <summary>
         /// Update
         /// </summary>
-        new public void Update()
+        public void Update(EditorWindow editorWindow)
         {
-            m_WinRect.x = Screen.width * 0.5f;
-            m_WinRect.width = Screen.width * 0.5f;
+            m_WinRect.x = editorWindow.position.width * 0.5f;
+            m_WinRect.width = editorWindow.position.width * 0.5f;
             //m_WinRect.height = Screen.height * 0.25f;
             m_WinRect.height = 85;
-            m_WinRect.x = (Screen.width * 0.5f) - (m_WinRect.width * 0.5f);
-            m_WinRect.y = (Screen.height * 0.5f) - (m_WinRect.height * 0.5f);
-            GUI.Window(m_Id, WinRect, Draw, m_Title);
-            base.Update();
+            m_WinRect.x = (editorWindow.position.width * 0.5f) - (m_WinRect.width * 0.5f);
+            m_WinRect.y = (editorWindow.position.height * 0.5f) - (m_WinRect.height * 0.5f);
+            GUI.Window(m_Id, WinRect, DrawMessage, m_Title);
+           //base.Update();
         }
 
         /// <summary>
@@ -70,24 +74,24 @@ namespace Artimech
             return false;
         }
 
-        new public void Draw(int id)
+        public void DrawMessage(int id)
         {
             var TextStyle = new GUIStyle();
-            TextStyle.normal.textColor = m_FontColor;
-            TextStyle.fontSize = m_FontSize;
+            TextStyle.normal.textColor = FontColor;
+            TextStyle.fontSize = FontSize;
 
 
             //Color backroundColor = new Color(1, 1, 1, 0.8f);
 
             // Color backroundColor = new Color(1, 1, 1, 0.8f);
-            Rect rect = new Rect(0, 16, WinRect.width, WinRect.height);
+            Rect rect = new Rect(0, 20, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
 
             GUILayout.Space(10);
 
             GUILayout.BeginHorizontal("");
             GUILayout.Space(10);
-            GUILayout.Label(m_Message, TextStyle);
+            GUILayout.Label(Message, TextStyle);
             GUILayout.Space(10);
             GUILayout.EndHorizontal();
 

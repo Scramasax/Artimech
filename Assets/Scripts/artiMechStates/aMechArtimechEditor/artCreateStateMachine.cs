@@ -35,8 +35,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create</alias>
     <comment></comment>
-    <posX>287</posX>
-    <posY>352</posY>
+    <posX>289</posX>
+    <posY>337</posY>
     <sizeX>109</sizeX>
     <sizeY>57</sizeY>
   </State>
@@ -49,7 +49,7 @@ namespace Artimech
 {
     public class artCreateStateMachine : artBaseCreateState
     {
-        artMessageWindow m_MessageWindow;
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -81,7 +81,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -90,7 +91,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindow("Artimech System Status", "Creating State Machine.....", 16, new Color(0.0f, 0.7f, 0.3f, 1), new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating State Machine.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
 
             theStateMachineEditor.Repaint();
@@ -102,6 +103,7 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
+            m_MessageWindow.AbortThread();
             base.Exit();
         }
     }

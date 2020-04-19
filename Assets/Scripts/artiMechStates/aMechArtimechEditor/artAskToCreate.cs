@@ -82,7 +82,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(editorScript);
             base.UpdateEditorGUI();
         }
 
