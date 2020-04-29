@@ -21,6 +21,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 #region XML_DATA
 
@@ -35,8 +36,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create</alias>
     <comment></comment>
-    <posX>289</posX>
-    <posY>337</posY>
+    <posX>294</posX>
+    <posY>332</posY>
     <sizeX>109</sizeX>
     <sizeY>57</sizeY>
   </State>
@@ -57,6 +58,7 @@ namespace Artimech
         public artCreateStateMachine(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artCreateStateMachine_To_artDirectoryAlreadyExistsError("artDirectoryAlreadyExistsError"));
             m_ConditionalList.Add(new artCreateStateMachine_To_artDisplayStates("artDisplayStates"));
         }
 
@@ -92,9 +94,26 @@ namespace Artimech
         public override void Enter()
         {
             m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating State Machine.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
 
-            theStateMachineEditor.Repaint();
+            //string pathAndFileNameForStateMachine = theScript.ConfigData.path
+
+            string directoryName =  theScript.ConfigData.CopyToDirectory.m_PathName +
+                                    "/"+
+                                    theScript.ConfigData.PrefixName + 
+                                    theScript.CurrentStateMachineName;
+
+
+            
+            if(Directory.Exists(directoryName))
+            {
+                CancelBool = true;
+                return;
+            }
+            Directory.CreateDirectory(directoryName);
+
+
+            theScript.Repaint();
             base.Enter();
         }
 

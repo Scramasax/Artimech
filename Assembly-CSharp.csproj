@@ -163,8 +163,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlSkeleton.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMech\aMech.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMech\aMechStartState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseDisplayOkCanel.cs" />
@@ -203,6 +201,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDirectoryAlreadyExistsError.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk.cs" />
@@ -210,6 +209,9 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artAskToCreate.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artDirectoryAlreadyExistsError.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
@@ -294,7 +296,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
-    <None Include="Assets\StateMachine.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />

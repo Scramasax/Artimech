@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artCreateStateMachine_To_artDisplayStates : stateConditionalBase
+    public class artDirectoryAlreadyExistsError_To_artAskToCreate : stateConditionalBase
     {
         
-        public artCreateStateMachine_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artDirectoryAlreadyExistsError_To_artAskToCreate(string changeStateName) : base (changeStateName)
         {
             
         }

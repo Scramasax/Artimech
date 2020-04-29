@@ -126,6 +126,7 @@ namespace Artimech
                 if (GUILayout.Button("Ok"))
                 {
                     m_State.OkBool = true;
+                    m_ArtimechEditor.CurrentStateMachineName = m_State.StateMachineName;
                     //                SetMachineScript();
                 }
             }

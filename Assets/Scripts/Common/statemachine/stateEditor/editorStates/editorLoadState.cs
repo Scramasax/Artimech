@@ -156,9 +156,13 @@ namespace Artimech
                 //Debug.Log("<color=green>" + "<b>" + "machine type is = " + "</b></color>" + "<color=grey>" + machine.GetType().Name + "</color>" + " .");
 
                 //remember what the state machine class name is.
+
                 stateEditorUtils.StateMachineName = machine.GetType().Name;
                 string strBuff = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
-                stateEditorUtils.CreateStateWindows(strBuff);
+                if (strBuff != null)
+                    stateEditorUtils.CreateStateWindows(strBuff);
+                else
+                    Debug.Log("Can't find StateMachineName = " + stateEditorUtils.StateMachineName);
             }
         }
 

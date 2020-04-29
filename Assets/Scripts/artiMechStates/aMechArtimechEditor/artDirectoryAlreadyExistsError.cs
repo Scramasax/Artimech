@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>nada</alias>
+    <alias>Directory Already Exists Error</alias>
     <comment></comment>
-    <posX>20</posX>
-    <posY>40</posY>
-    <sizeX>150</sizeX>
-    <sizeY>80</sizeY>
+    <posX>94</posX>
+    <posY>603</posY>
+    <sizeX>205</sizeX>
+    <sizeY>52</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,16 +45,18 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class aMechStartState : stateGameBase
+    public class artDirectoryAlreadyExistsError : artBaseOkCancel
     {
-
+        artMessageWindowPromt m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public aMechStartState(GameObject gameobject) : base (gameobject)
+        public artDirectoryAlreadyExistsError(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDirectoryAlreadyExistsError_To_artAskToCreate("artAskToCreate"));
+            // m_ConditionalList.Add(new artDirectoryAlreadyExistsError_To_artDirectoryAlreadyExistsError("artDirectoryAlreadyExistsError"));
         }
 
         /// <summary>
@@ -78,6 +80,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(editorScript);
             base.UpdateEditorGUI();
         }
 
@@ -86,6 +90,16 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Directory and/or state machine already exists! Choose a different name.", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow.Width = 0.55f;
+            m_MessageWindow.ButtonSideSpacing = 120.0f;
+           // m_MessageWindow.CancelPrompt = true;
+            m_MessageWindow.InitImage("exclimation.png");
+
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            editorScript.DrawToolBarBool = false;
+            editorScript.Repaint();
+
             base.Enter();
         }
 

@@ -42,6 +42,7 @@ namespace Artimech
         Texture m_MenuArrowTexture;
         editorOnLoadInfo m_LoadingInfo = new editorOnLoadInfo();
         bool m_RepaintOnUpdate = false;
+        string m_CurrentStateMachineName = "";
 
         #endregion
         #region Accessors
@@ -75,6 +76,7 @@ namespace Artimech
         public artConfigurationData ConfigData { get => m_ConfigData; set => m_ConfigData = value; }
         public editorOnLoadInfo LoadingInfo { get => m_LoadingInfo; set => m_LoadingInfo = value; }
         public bool RepaintOnUpdate { get => m_RepaintOnUpdate; set => m_RepaintOnUpdate = value; }
+        public string CurrentStateMachineName { get => m_CurrentStateMachineName; set => m_CurrentStateMachineName = value; }
 
         #endregion
         #region Member Functions
@@ -249,6 +251,7 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artDirectoryAlreadyExistsError(this),"artDirectoryAlreadyExistsError");
             AddState(new artSetSingleMachine(this), "artSetSingleMachine");
             AddState(new artRefactorStateClass(this), "artRefactorStateClass");
             AddState(new artRefactorEnterData(this), "artRefactorEnterData");

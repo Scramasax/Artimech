@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine;
 namespace Artimech
 {
-    public class artBaseCreateState : editorStateBase
+    public class artBaseCreateState : artBaseOkCancel
     {
         protected IList<string> m_ListOfStateStringsInMachine;
         public artBaseCreateState(UnityEngine.Object unityObj) : base(unityObj)
