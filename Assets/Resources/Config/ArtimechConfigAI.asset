@@ -13,16 +13,25 @@ MonoBehaviour:
   m_Name: ArtimechConfigAI
   m_EditorClassIdentifier: 
   m_MasterScripStateMachineFile:
-    m_PathAndName: E:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
+    m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
   m_MasterScriptStateFile:
-    m_PathAndName: E:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
+    m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateMachineTemplate.cs
   m_CopyToDirectory:
-    m_PathName: E:/Work/Artimech/Assets/Scripts/artiMechStates
+    m_PathName: D:/Work/Artimech/Assets/Scripts/artiMechStates
   m_PrefixName: artiMech
   m_PostfixName: State
   m_BackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_LineColor: {r: 0.026313305, g: 0, b: 1, a: 1}
+  m_LineShadowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_MainWindowGridSize: {x: -5000, y: 5000}
+  m_SmallSquareGridSize: {x: 25, y: 25}
+  m_SmallSquareGridLineWidth: 1
+  m_BigSqureGridSize: {x: 250, y: 250}
+  m_BigSquareGridLineWidth: 3
+  m_WindowLineColor: {r: 0, g: 0, b: 0, a: 1}
   m_StateWindowColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   m_StateHeaderColor: {r: 0.20893455, g: 1, b: 0, a: 1}
+  m_WindowOutlineLineWidth: 1
   m_ArrowLineColor: {r: 0.31081167, g: 0.18316127, b: 0.3962264, a: 1}
   m_ArrowFillColor: {r: 1, g: 0.9595408, b: 0, a: 1}
+  m_ArrowLineWidth: 2

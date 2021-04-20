@@ -55,7 +55,7 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artCreateStateMachine(Object unityObj) : base (unityObj)
+        public artCreateStateMachine(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artCreateStateMachine_To_artDirectoryAlreadyExistsError("artDirectoryAlreadyExistsError"));
@@ -98,20 +98,40 @@ namespace Artimech
 
             //string pathAndFileNameForStateMachine = theScript.ConfigData.path
 
-            string directoryName =  theScript.ConfigData.CopyToDirectory.m_PathName +
-                                    "/"+
-                                    theScript.ConfigData.PrefixName + 
+            string directoryName = theScript.ConfigData.CopyToDirectory.m_PathName +
+                                    "/" +
+                                    theScript.ConfigData.PrefixName +
                                     theScript.CurrentStateMachineName;
 
 
-            
-            if(Directory.Exists(directoryName))
+
+            if (Directory.Exists(directoryName))
             {
+                //  Debug.Log(directoryName);
                 CancelBool = true;
                 return;
             }
             Directory.CreateDirectory(directoryName);
 
+            string stateStartName = "";
+            stateStartName = ReadReplaceAndWrite(
+                        theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
+                        theScript.CurrentStateMachineName + "StartState",
+                        theScript.ConfigData.CopyToDirectory.m_PathName,
+                        directoryName + "/" + theScript.CurrentStateMachineName + "StartState.cs",
+                        "stateEmptyExample",
+                        theScript.ConfigData.PrefixName);
+
+            Debug.Log("stateStartName = " + stateStartName);
+
+            string stateMachName = "";
+            stateStartName = ReadReplaceAndWrite(
+                        theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
+                        theScript.CurrentStateMachineName,
+                        theScript.ConfigData.CopyToDirectory.m_PathName,
+                        directoryName + "/" + theScript.CurrentStateMachineName + ".cs",
+                        "stateMachineTemplate",
+                        theScript.ConfigData.PrefixName);
 
             theScript.Repaint();
             base.Enter();

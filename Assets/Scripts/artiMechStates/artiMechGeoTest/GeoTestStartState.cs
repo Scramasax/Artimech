@@ -20,7 +20,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-#if UNITY_EDITOR
 #region XML_DATA
 
 #if ARTIMECH_META_DATA
@@ -32,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Directory Already Exists Error</alias>
+    <alias>nada</alias>
     <comment></comment>
-    <posX>94</posX>
-    <posY>603</posY>
-    <sizeX>205</sizeX>
-    <sizeY>52</sizeY>
+    <posX>20</posX>
+    <posY>40</posY>
+    <sizeX>150</sizeX>
+    <sizeY>80</sizeY>
   </State>
 </stateMetaData>
 
@@ -46,18 +45,16 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artDirectoryAlreadyExistsError : artBaseOkCancel
+    public class artiMechGeoTestStartState : stateGameBase
     {
-        artMessageWindowPromt m_MessageWindow;
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artDirectoryAlreadyExistsError(Object unityObj) : base(unityObj)
+        public artiMechGeoTestStartState(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artDirectoryAlreadyExistsError_To_artAskToCreate("artAskToCreate"));
-            // m_ConditionalList.Add(new artDirectoryAlreadyExistsError_To_artDirectoryAlreadyExistsError("artDirectoryAlreadyExistsError"));
         }
 
         /// <summary>
@@ -81,8 +78,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
-            m_MessageWindow.Update(editorScript);
             base.UpdateEditorGUI();
         }
 
@@ -91,16 +86,6 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Directory and/or state machine already exists! Choose a different name.", 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
-            m_MessageWindow.Width = 0.55f;
-            m_MessageWindow.ButtonSideSpacing = 120.0f;
-           // m_MessageWindow.CancelPrompt = true;
-            m_MessageWindow.InitImage("exclimation.png");
-
-            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
-            editorScript.DrawToolBarBool = false;
-            editorScript.Repaint();
-
             base.Enter();
         }
 
@@ -113,4 +98,3 @@ namespace Artimech
         }
     }
 }
-#endif

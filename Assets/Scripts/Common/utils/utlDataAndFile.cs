@@ -26,6 +26,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
+#if UNITY_EDITOR
 /// <summary>
 /// A static class to help read and write files as well as do some search
 /// search an replace.  Some misc string functions. TODO xml or json.
@@ -440,3 +441,4 @@ public static class utlDataAndFile
     }
 
 }
+#endif

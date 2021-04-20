@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 namespace Artimech
 {
     /// <summary>
@@ -94,3 +95,4 @@ namespace Artimech
     }
 }
 
+#endif

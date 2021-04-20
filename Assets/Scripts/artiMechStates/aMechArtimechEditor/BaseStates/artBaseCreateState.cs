@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using UnityEngine;
+
+#if UNITY_EDITOR
 namespace Artimech
 {
     public class artBaseCreateState : artBaseOkCancel
@@ -248,6 +250,27 @@ namespace Artimech
             }
         }
 
+        protected string ReadReplaceAndWrite(
+                    string fileName,
+                    string objectName,
+                    string pathName,
+                    string pathAndFileName,
+                    string findName,
+                    string replaceName)
+        {
+
+            string text = utlDataAndFile.LoadTextFromFile(fileName);
+
+            string changedName = replaceName + objectName;
+            string modText = text.Replace(findName, changedName);
+
+            StreamWriter writeStream = new StreamWriter(pathAndFileName);
+            writeStream.Write(modText);
+            writeStream.Close();
+
+            return changedName;
+        }
 
     }
 }
+#endif
