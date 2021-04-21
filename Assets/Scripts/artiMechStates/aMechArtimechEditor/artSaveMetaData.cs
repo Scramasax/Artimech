@@ -34,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Save Data</alias>
     <comment></comment>
-    <posX>829</posX>
-    <posY>109</posY>
+    <posX>740</posX>
+    <posY>-135</posY>
     <sizeX>140</sizeX>
     <sizeY>52</sizeY>
   </State>

@@ -33,10 +33,10 @@ using System.Collections.Generic;
   <State>
     <alias>Rename Alias</alias>
     <comment></comment>
-    <posX>824</posX>
-    <posY>261</posY>
-    <sizeX>162</sizeX>
-    <sizeY>40</sizeY>
+    <posX>830</posX>
+    <posY>-221</posY>
+    <sizeX>113</sizeX>
+    <sizeY>39</sizeY>
   </State>
 </stateMetaData>
 
@@ -79,7 +79,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_RenameWindow.Update();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_RenameWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 

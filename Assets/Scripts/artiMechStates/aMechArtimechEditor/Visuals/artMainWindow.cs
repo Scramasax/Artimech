@@ -77,11 +77,13 @@ namespace Artimech
 
         new public void Draw(int id)
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+
             m_MousePos = Event.current.mousePosition;
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
-            EditorGUI.DrawRect(rect, m_WindowColor);
+            EditorGUI.DrawRect(rect, theStateMachineEditor.ConfigData.BackgroundColor);
 
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            
             stateEditorDrawUtils.DrawGridBackground(theStateMachineEditor.ConfigData);
 
             

@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Save Screen</alias>
     <comment></comment>
-    <posX>758</posX>
-    <posY>31</posY>
+    <posX>676</posX>
+    <posY>-224</posY>
     <sizeX>129</sizeX>
     <sizeY>49</sizeY>
   </State>
