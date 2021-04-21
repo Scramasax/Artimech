@@ -118,23 +118,30 @@ namespace Artimech
                         theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
                         theScript.CurrentStateMachineName + "StartState",
                         theScript.ConfigData.CopyToDirectory.m_PathName,
-                        directoryName + "/" + theScript.CurrentStateMachineName + "StartState.cs",
+                        directoryName + "/" + theScript.ConfigData.PrefixName + theScript.CurrentStateMachineName + "StartState.cs",
                         "stateEmptyExample",
                         theScript.ConfigData.PrefixName);
 
-            Debug.Log("stateStartName = " + stateStartName);
+            //Debug.Log("stateStartName = " + stateStartName);
 
+            string stateMachineFileName = directoryName + "/" + theScript.ConfigData.PrefixName + theScript.CurrentStateMachineName + ".cs";
             string stateMachName = "";
-            stateStartName = ReadReplaceAndWrite(
-                        theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
+            stateMachName = ReadReplaceAndWrite(
+                        theScript.ConfigData.MasterScripStateMachineFile.m_PathAndName,
                         theScript.CurrentStateMachineName,
                         theScript.ConfigData.CopyToDirectory.m_PathName,
-                        directoryName + "/" + theScript.CurrentStateMachineName + ".cs",
+                        stateMachineFileName,
                         "stateMachineTemplate",
                         theScript.ConfigData.PrefixName);
 
-            theScript.Repaint();
+            //Debug.Log("stateMachName = " + stateMachName);
+
+            utlDataAndFile.ReplaceTextInFile(stateMachineFileName, "stateEmptyExample", stateStartName);
+
+            //theScript.Repaint();
             base.Enter();
+
+            OkBool = true;
         }
 
         /// <summary>

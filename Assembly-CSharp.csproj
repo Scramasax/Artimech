@@ -118,7 +118,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechGeoTest\GeoTestStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -289,7 +288,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherTest\AnotherTestStartState.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
