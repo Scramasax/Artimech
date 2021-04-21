@@ -249,7 +249,16 @@ namespace Artimech
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="objectName"></param>
+        /// <param name="pathName"></param>
+        /// <param name="pathAndFileName"></param>
+        /// <param name="findName"></param>
+        /// <param name="replaceName"></param>
+        /// <returns></returns>
         protected string ReadReplaceAndWrite(
                     string fileName,
                     string objectName,

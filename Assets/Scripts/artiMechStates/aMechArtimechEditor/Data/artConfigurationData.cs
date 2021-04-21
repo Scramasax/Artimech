@@ -27,6 +27,9 @@ namespace Artimech
         [Space(10)]
         [Header("Naming")]
         [SerializeField]
+        [Tooltip("Namespace when generating files.")]
+        string m_NamespaceName = "Artimech";
+        [SerializeField]
         [Tooltip("Prefix naming allows for the various state machines to be named with a pre sub string.")]
         string m_PrefixName = "";
         [SerializeField]
@@ -121,6 +124,7 @@ namespace Artimech
         public Vector2 BigSqureGridSize { get => m_BigSqureGridSize; }
         public float BigSquareGridLineWidth { get => m_BigSquareGridLineWidth; }
         public float WindowOutlineLineWidth { get => m_WindowOutlineLineWidth; }
+        public string NamespaceName { get => m_NamespaceName; }
     }
 }
 

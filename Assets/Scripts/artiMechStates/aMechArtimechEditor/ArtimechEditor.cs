@@ -251,6 +251,7 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artAddToObj(this),"artAddToObj");
             AddState(new artDirectoryAlreadyExistsError(this),"artDirectoryAlreadyExistsError");
             AddState(new artSetSingleMachine(this), "artSetSingleMachine");
             AddState(new artRefactorStateClass(this), "artRefactorStateClass");

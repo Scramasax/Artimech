@@ -285,9 +285,23 @@
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateMachineTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMach\artiMechTestMach.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMach\artiMechTestMachStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherMach\artiMechYetAnotherMachStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherMach\artiMechYetAnotherMach.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechJustToBreak\artiMechJustToBreak.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechJustToBreak\artiMechJustToBreakStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachineB\artiMechAnotherMachineBStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachineB\artiMechAnotherMachineB.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAVeryVeryVeryVeryVeryVeryLongName\artiMechAVeryVeryVeryVeryVeryVeryLongName.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAVeryVeryVeryVeryVeryVeryLongName\artiMechAVeryVeryVeryVeryVeryVeryLongNameStartState.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
@@ -309,6 +323,7 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\Resources\CreatedState.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

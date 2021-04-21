@@ -41,14 +41,14 @@ namespace Artimech
         /// <summary>
         /// Update
         /// </summary>
-        new public void Update()
+        public void Update(EditorWindow editorWindow)
         {
-            m_WinRect.x = Screen.width * 0.5f;
-            m_WinRect.width = Screen.width * 0.5f;
+            m_WinRect.x = editorWindow.position.width * 0.5f;
+            m_WinRect.width = editorWindow.position.width * 0.5f;
             //m_WinRect.height = Screen.height * 0.25f;
-            m_WinRect.height = (m_MachineSelectionBools.Length * 25) + 85;
-            m_WinRect.x = (Screen.width * 0.5f) - (m_WinRect.width * 0.5f);
-            m_WinRect.y = (Screen.height * 0.5f) - (m_WinRect.height * 0.5f);
+            m_WinRect.height = 130 + (m_Machines.Length * 15);
+            m_WinRect.x = (editorWindow.position.width * 0.5f) - (m_WinRect.width * 0.5f);
+            m_WinRect.y = (editorWindow.position.height * 0.5f) - (m_WinRect.height * 0.5f);
             GUI.Window(m_Id, WinRect, Draw, m_Title);
         }
 
@@ -71,6 +71,9 @@ namespace Artimech
 
         new public void Draw(int id)
         {
+            var TextStyle = new GUIStyle();
+            TextStyle.normal.textColor = Color.black;
+            
             // Color backroundColor = new Color(1, 1, 1, 0.8f);
             Rect rect = new Rect(0, 18, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, m_WindowColor);
@@ -82,12 +85,10 @@ namespace Artimech
             // GUILayout.BeginHorizontal("");
             for (int i = 0; i < m_Machines.Length; i++)
             {
-                //UnityEngine.Object obj = (UnityEngine.Object) m_Machines[i];
-                //arrayOfBools[i] = EditorGUILayout.Toggle(obj.name, arrayOfBools[i]);
                 Type type = m_Machines[i].GetType().UnderlyingSystemType;
                 String className = type.Name;
 
-                m_MachineSelectionBools[i] = EditorGUILayout.Toggle(className, m_MachineSelectionBools[i]);
+                m_MachineSelectionBools[i] = EditorGUILayout.ToggleLeft(className, m_MachineSelectionBools[i],TextStyle);
                 if (m_MachineSelectionBools[i])
                     ToggleBools(i);
 

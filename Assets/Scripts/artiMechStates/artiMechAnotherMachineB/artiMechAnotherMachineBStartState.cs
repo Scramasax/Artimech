@@ -15,7 +15,7 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-#if UNITY_EDITOR
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Choose A Machine</alias>
+    <alias>nada</alias>
     <comment></comment>
-    <posX>104</posX>
-    <posY>317</posY>
-    <sizeX>147</sizeX>
-    <sizeY>38</sizeY>
+    <posX>20</posX>
+    <posY>40</posY>
+    <sizeX>150</sizeX>
+    <sizeY>80</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,62 +45,16 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artChooseMachine : editorStateBase
+    public class artiMechAnotherMachineBStartState : stateGameBase
     {
-        bool m_OkBool = false;
-        bool m_CancelBool = false;
-        bool m_CreateBool = false;
-        artMachineChooseWindow m_ChooseWindow;
-
-        public bool OkBool
-        {
-            get
-            {
-                return m_OkBool;
-            }
-
-            set
-            {
-                m_OkBool = value;
-            }
-        }
-
-        public bool CancelBool
-        {
-            get
-            {
-                return m_CancelBool;
-            }
-
-            set
-            {
-                m_CancelBool = value;
-            }
-        }
-
-        public bool CreateBool
-        {
-            get
-            {
-                return m_CreateBool;
-            }
-
-            set
-            {
-                m_CreateBool = value;
-            }
-        }
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artChooseMachine(Object unityObj) : base(unityObj)
+        public artiMechAnotherMachineBStartState(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artChooseMachine_To_artChooseStateMachineName("artChooseStateMachineName"));
-            m_ConditionalList.Add(new artChooseMachine_To_artClearObject("artClearObject"));
-            m_ConditionalList.Add(new artChooseMachine_To_artLoadStates("artLoadStates"));
         }
 
         /// <summary>
@@ -124,8 +78,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
-            m_ChooseWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -134,16 +86,6 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
-            GameObject gmObject = (GameObject)theStateMachineEditor.SelectedObj;
-            iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
-            m_ChooseWindow = new artMachineChooseWindow(this, machines, "Choose Or Create A State Machine", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
-
-            m_CancelBool = false;
-            m_OkBool = false;
-            m_CreateBool = false;
-            theStateMachineEditor.DrawToolBarBool = false;
-            theStateMachineEditor.Repaint();
             base.Enter();
         }
 
@@ -156,4 +98,3 @@ namespace Artimech
         }
     }
 }
-#endif

@@ -22,6 +22,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -34,12 +35,12 @@ using System.IO;
 
 <stateMetaData>
   <State>
-    <alias>Create</alias>
+    <alias>Create Machine</alias>
     <comment></comment>
     <posX>294</posX>
     <posY>332</posY>
-    <sizeX>109</sizeX>
-    <sizeY>57</sizeY>
+    <sizeX>131</sizeX>
+    <sizeY>58</sizeY>
   </State>
 </stateMetaData>
 
@@ -50,6 +51,7 @@ namespace Artimech
 {
     public class artCreateStateMachine : artBaseCreateState
     {
+        string m_StateMachineName = "";
         artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
@@ -59,7 +61,6 @@ namespace Artimech
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artCreateStateMachine_To_artDirectoryAlreadyExistsError("artDirectoryAlreadyExistsError"));
-            m_ConditionalList.Add(new artCreateStateMachine_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -67,6 +68,17 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
+      /*      ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
+            // if (System.Type.GetType(theScript.ConfigData.PrefixName + "." + m_StateMachineName) != null)
+            if (System.Type.GetType(theScript.ConfigData.NamespaceName + "." + m_StateMachineName) != null)
+            {
+                Debug.Log("foundtype");
+                if (stateEditorUtils.SelectedObject is GameObject)
+                {
+                    GameObject gameObj = (GameObject)stateEditorUtils.SelectedObject;
+                    gameObj.AddComponent(System.Type.GetType(theScript.ConfigData.NamespaceName + "." + m_StateMachineName));
+                }
+            } */
             base.Update();
         }
 
@@ -93,6 +105,9 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            utlDataAndFile.SaveTextToFile(Application.dataPath + "/Resources/CreatedState.txt", "");
+            m_StateMachineName = "";
+
             m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating State Machine.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
             ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
 
@@ -125,8 +140,8 @@ namespace Artimech
             //Debug.Log("stateStartName = " + stateStartName);
 
             string stateMachineFileName = directoryName + "/" + theScript.ConfigData.PrefixName + theScript.CurrentStateMachineName + ".cs";
-            string stateMachName = "";
-            stateMachName = ReadReplaceAndWrite(
+
+            m_StateMachineName = ReadReplaceAndWrite(
                         theScript.ConfigData.MasterScripStateMachineFile.m_PathAndName,
                         theScript.CurrentStateMachineName,
                         theScript.ConfigData.CopyToDirectory.m_PathName,
@@ -134,7 +149,7 @@ namespace Artimech
                         "stateMachineTemplate",
                         theScript.ConfigData.PrefixName);
 
-            //Debug.Log("stateMachName = " + stateMachName);
+            Debug.Log("<b><color=white> m_StateMachineName = </color></b>" + m_StateMachineName);
 
             utlDataAndFile.ReplaceTextInFile(stateMachineFileName, "stateEmptyExample", stateStartName);
 
@@ -142,6 +157,10 @@ namespace Artimech
             base.Enter();
 
             OkBool = true;
+
+            utlDataAndFile.SaveTextToFile(Application.dataPath + "/Resources/CreatedState.txt", theScript.ConfigData.NamespaceName + "." + m_StateMachineName);
+
+            AssetDatabase.Refresh();
         }
 
         /// <summary>

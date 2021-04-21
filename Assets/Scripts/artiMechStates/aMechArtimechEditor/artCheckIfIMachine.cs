@@ -58,6 +58,7 @@ namespace Artimech
         {
             InitImage();
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artCheckIfIMachine_To_artAddToObj("artAddToObj"));
             m_ConditionalList.Add(new artCheckIfIMachine_To_artSetSingleMachine("artSetSingleMachine"));
             m_ConditionalList.Add(new artCheckIfIMachine_To_artChooseMachine("artChooseMachine"));
             m_ConditionalList.Add(new artCheckIfIMachine_To_artNotEditorOrGameObject("artNotEditorOrGameObject"));
