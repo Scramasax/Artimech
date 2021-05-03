@@ -220,6 +220,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artDisplayStates.cs" />
@@ -259,12 +260,14 @@
     <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Rename_To_Display.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlDataAndFile.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine.cs" />
@@ -287,21 +290,8 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMach\artiMechTestMach.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMach\artiMechTestMachStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherMach\artiMechYetAnotherMachStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherMach\artiMechYetAnotherMach.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechJustToBreak\artiMechJustToBreak.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechJustToBreak\artiMechJustToBreakStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachineB\artiMechAnotherMachineBStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachineB\artiMechAnotherMachineB.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAVeryVeryVeryVeryVeryVeryLongName\artiMechAVeryVeryVeryVeryVeryVeryLongName.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAVeryVeryVeryVeryVeryVeryLongName\artiMechAVeryVeryVeryVeryVeryVeryLongNameStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />

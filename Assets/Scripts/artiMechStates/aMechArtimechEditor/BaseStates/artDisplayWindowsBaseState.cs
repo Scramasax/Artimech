@@ -34,17 +34,26 @@ namespace Artimech
             base.FixedUpdate();
         }
 
+        public override void LateUpdate()
+        {
+            //m_MainWindow.AlreadyDrawn = false;
+            base.LateUpdate();
+        }
+
         /// <summary>
         /// For updateing the unity gui.
         /// </summary>
         public override void UpdateEditorGUI()
         {
             //artGUIUtils.DrawGridBackground(theStateMachineEditor.TransMtx);
+            // if (!m_MainWindow.AlreadyDrawn)
             m_MainWindow.Update();
+            //m_MainWindow.AlreadyDrawn = true;
             //m_MainWindow.Update();
 
 
             base.UpdateEditorGUI();
+
             //theStateMachineEditor.Repaint();
         }
 

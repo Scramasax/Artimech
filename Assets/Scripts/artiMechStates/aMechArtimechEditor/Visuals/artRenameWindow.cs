@@ -158,15 +158,15 @@ namespace Artimech
         /// </summary>
         public void Update(EditorWindow editorWindow)
         {
-            GUI.Window(m_Id, WinRect, Draw, m_Title);
-
             m_WinRect.x = editorWindow.position.width * 0.5f;
-            m_WinRect.width = editorWindow.position.width * 0.5f;
+            m_WinRect.width = editorWindow.position.width * m_Width;
             //m_WinRect.height = Screen.height * 0.25f;
             m_WinRect.height = m_Height;
             m_WinRect.x = (editorWindow.position.width * 0.5f) - (m_WinRect.width * 0.5f);
             m_WinRect.y = (editorWindow.position.height * 0.5f) - (m_WinRect.height * 0.5f);
             m_TexturePosAndSize.Set(m_WinRect.width - 40, 32, 32, 32);
+            //base.Update();
+
             GUI.Window(m_Id, WinRect, Draw, m_Title);
         }
 
@@ -189,6 +189,7 @@ namespace Artimech
 
         new public void Draw(int id)
         {
+            GUI.depth = 0;
             var TextStyle = new GUIStyle();
             TextStyle.normal.textColor = m_FontColor;
             TextStyle.fontSize = m_FontSize;

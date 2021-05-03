@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Refactor Message Screen</alias>
     <comment></comment>
-    <posX>279</posX>
-    <posY>519</posY>
+    <posX>352</posX>
+    <posY>568</posY>
     <sizeX>185</sizeX>
     <sizeY>39</sizeY>
   </State>

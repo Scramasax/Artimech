@@ -124,6 +124,11 @@ namespace Artimech
             }
         }
 
+        new void LateUpdate()
+        {
+            base.LateUpdate();
+        }
+
         new void FixedUpdate()
         {
             base.FixedUpdate();

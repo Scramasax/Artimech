@@ -21,7 +21,7 @@ using System.Collections;
 
 namespace Artimech
 {
-    public class artiMechJustToBreak : stateMachineGame
+    public class artiMechTestMachine : stateMachineGame
     {
 
         new void Awake()
@@ -53,7 +53,7 @@ namespace Artimech
         void CreateStates()
         {
 
-            m_CurrentState = AddState(new artiMechJustToBreakStartState(this.gameObject), "artiMechJustToBreakStartState");
+            m_CurrentState = AddState(new artiMechTestMachineStartState(this.gameObject), "artiMechTestMachineStartState");
 
             //<ArtiMechStates>
 

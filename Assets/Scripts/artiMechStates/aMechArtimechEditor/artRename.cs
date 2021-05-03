@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Rename Alias</alias>
     <comment></comment>
-    <posX>830</posX>
-    <posY>-221</posY>
+    <posX>832</posX>
+    <posY>-220</posY>
     <sizeX>113</sizeX>
     <sizeY>39</sizeY>
   </State>
@@ -48,6 +48,7 @@ namespace Artimech
     public class artRename : artBaseDisplayOkCanel
     {
         artRenameWindow m_RenameWindow;
+        bool m_Once = false;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -81,7 +82,13 @@ namespace Artimech
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             m_RenameWindow.Update(theStateMachineEditor);
-            base.UpdateEditorGUI();
+
+            if (!m_Once)
+            {
+                theStateMachineEditor.DrawToolBarBool = false;
+                base.UpdateEditorGUI();
+                m_Once = true;
+            }
         }
 
         /// <summary>
@@ -89,6 +96,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_Once = false;
             artVisualStateNode node = GetSelectedNode();
             EntryString = node.WindowStateAlias;
             m_RenameWindow = new artRenameWindow(this, "Rename Alias", "Enter an alias name for the selected state:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
@@ -118,6 +126,10 @@ namespace Artimech
             if (OkBool)
                 node.WindowStateAlias = EntryString; 
             node.RenameBool = false;
+
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.DrawToolBarBool = false;
+
             base.Exit();
         }
     }

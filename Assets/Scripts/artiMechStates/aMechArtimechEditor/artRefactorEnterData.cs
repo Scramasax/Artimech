@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Refactor Enter Data</alias>
     <comment></comment>
-    <posX>304</posX>
-    <posY>437</posY>
+    <posX>365</posX>
+    <posY>456</posY>
     <sizeX>156</sizeX>
     <sizeY>39</sizeY>
   </State>
@@ -52,7 +52,9 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artRefactorEnterData(Object unityObj) : base (unityObj)
+        /// 
+        bool m_Once = false;
+        public artRefactorEnterData(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artRefactorEnterData_To_artDisplayStates("artDisplayStates"));
@@ -80,9 +82,14 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_RenameWindow.Update();
-            //theStateMachineEditor.EditorRepaint();
-            base.UpdateEditorGUI();
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_RenameWindow.Update(theStateMachineEditor);
+            if (!m_Once)
+            {
+                theStateMachineEditor.DrawToolBarBool = false;
+                base.UpdateEditorGUI();
+                m_Once = true;
+            }
         }
 
         /// <summary>
@@ -90,10 +97,15 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_Once = false;
             artVisualStateNode node = GetSelectedNode();
             EntryString = node.ClassName;
-            m_RenameWindow = new artRenameWindow(this, "Refactor Class", "Search and replace all code refs to this class:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_RenameWindow = new artRenameWindow(this, "Refactor Class", "Refactors the state class name:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             m_RenameWindow.EntryLabel = "Refactor Name";
+
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.DrawToolBarBool = false;
+
             base.Enter();
         }
 
@@ -102,6 +114,9 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
+
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.DrawToolBarBool = true;
             base.Exit();
         }
 

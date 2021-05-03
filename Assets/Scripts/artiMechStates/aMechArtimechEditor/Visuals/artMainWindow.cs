@@ -18,6 +18,10 @@ namespace Artimech
         baseState m_State;
         Vector2 m_MousePos;
 
+        static int m_Count = 0;
+        bool m_AlreadyDrawn = false;
+        int m_MyCount = 0;
+
         #endregion
         #region Gets Sets
         public Vector2 MousePos
@@ -32,6 +36,8 @@ namespace Artimech
                 m_MousePos = value;
             }
         }
+
+        public bool AlreadyDrawn { get => m_AlreadyDrawn; set => m_AlreadyDrawn = value; }
         #endregion
         #region Member Functions
 
@@ -46,6 +52,9 @@ namespace Artimech
         public artMainWindow(baseState state, string title, Rect rect, Color color, int id) : base(title, rect, color, id)
         {
             m_State = state;
+            m_Count += 1;
+            m_MyCount = m_Count;
+           // Debug.Log("m_Count" + m_Count);
         }
 
         /// <summary>
@@ -53,9 +62,13 @@ namespace Artimech
         /// </summary>
         new public void Update()
         {
-            m_WinRect.width = Screen.width;
-            m_WinRect.height = Screen.height;
-            GUI.Window(m_Id, WinRect, Draw, m_Title);
+            //if (m_MyCount == 1)
+            {
+                m_WinRect.width = Screen.width;
+                m_WinRect.height = Screen.height;
+                GUI.Window(m_Id, WinRect, Draw, "Artimech");
+            }
+           // Debug.Log("Update m_Count" + m_Count);
         }
 
         /// <summary>
@@ -83,14 +96,42 @@ namespace Artimech
             Rect rect = new Rect(0, 0, WinRect.width, WinRect.height);
             EditorGUI.DrawRect(rect, theStateMachineEditor.ConfigData.BackgroundColor);
 
-            
-            stateEditorDrawUtils.DrawGridBackground(theStateMachineEditor.ConfigData);
 
-            
+            stateEditorDrawUtils.DrawGridBackground(theStateMachineEditor.ConfigData);
+            DrawBackGroundWindow(id, theStateMachineEditor.ConfigData);
+
             for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
                 theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx, theStateMachineEditor.ConfigData);
             }
+
+           // Debug.Log("m_MyCount = " + m_MyCount);
+        }
+
+        void DrawBackGroundWindow(int id, artConfigurationData configData)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+            {
+                if (theStateMachineEditor.VisualStateNodes[i].IsWithinUsingPanZoomTransform(Event.current.mousePosition, theStateMachineEditor.TransMtx))
+                    return;
+            }
+
+            if (Event.current.button == 1 && Event.current.isMouse)
+            {
+                if (Event.current.type == EventType.MouseDown/* && m_State is artDisplayStates*/)
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("Add State/Game State"), false, AddStateClassCallback, this);
+                    menu.ShowAsContext();
+                    Event.current.Use();
+                }
+            }
+        }
+
+        public void AddStateClassCallback(object obj)
+        {
+            Debug.Log("Add State");
         }
     }
     #endregion

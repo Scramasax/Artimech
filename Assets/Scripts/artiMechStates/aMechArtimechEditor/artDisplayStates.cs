@@ -171,6 +171,11 @@ namespace Artimech
         public void RefactorClassCallback(object obj)
         {
         }
+
+        public void AddStateClassCallback(object obj)
+        {
+
+        }
     }
 }
 #endif

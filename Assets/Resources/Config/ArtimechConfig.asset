@@ -21,7 +21,7 @@ MonoBehaviour:
   m_NamespaceName: Artimech
   m_PrefixName: artiMech
   m_PostfixName: State
-  m_BackgroundColor: {r: 0.117983796, g: 0.79149336, b: 0.9150943, a: 1}
+  m_BackgroundColor: {r: 0.117983796, g: 0.79149336, b: 0.9150943, a: 0.45882353}
   m_LineColor: {r: 0, g: 0, b: 0, a: 1}
   m_LineShadowColor: {r: 0, g: 0, b: 1, a: 0.14901961}
   m_MainWindowGridSize: {x: -5000, y: 5000}
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_BigSqureGridSize: {x: 250, y: 250}
   m_BigSquareGridLineWidth: 1.5
   m_WindowLineColor: {r: 0, g: 0, b: 0, a: 1}
-  m_StateWindowColor: {r: 0.29310542, g: 0.40073675, b: 0.8962264, a: 1}
+  m_StateWindowColor: {r: 0.29310542, g: 0.40073675, b: 0.8962264, a: 0.5803922}
   m_StateHeaderColor: {r: 0.3707795, g: 1, b: 0.2235294, a: 1}
   m_WindowOutlineLineWidth: 2
   m_ArrowLineColor: {r: 0.24670699, g: 0.37637913, b: 0.7264151, a: 1}
