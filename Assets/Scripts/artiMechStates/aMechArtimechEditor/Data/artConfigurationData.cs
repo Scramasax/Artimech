@@ -35,6 +35,9 @@ namespace Artimech
         [SerializeField]
         [Tooltip("Postfix naming allows for the various state machines to be named with a post sub string.")]
         string m_PostfixName = "";
+        [SerializeField]
+        [Tooltip("Generic State Name.")]
+        string m_GenericStateName = "State";
 
         [Space(10)]
         [Header("Colors")]
@@ -125,6 +128,7 @@ namespace Artimech
         public float BigSquareGridLineWidth { get => m_BigSquareGridLineWidth; }
         public float WindowOutlineLineWidth { get => m_WindowOutlineLineWidth; }
         public string NamespaceName { get => m_NamespaceName; }
+        public string GenericStateName { get => m_GenericStateName; }
     }
 }
 

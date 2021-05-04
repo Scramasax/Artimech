@@ -51,6 +51,14 @@ namespace Artimech
             return this.name;
         }
 
+        public int NumberOfStates()
+        {
+            if (m_StateList == null)
+                return -1;
+
+            return m_StateList.Count;
+        }
+
         /// <summary>
         /// starts before the start function.
         /// </summary>

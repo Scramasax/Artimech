@@ -35,5 +35,7 @@ namespace Artimech
         baseState AddState(baseState state, string statename);
         string GetName();
         void ForceChangeState(string stateName);
+
+        int NumberOfStates();
     }
 }

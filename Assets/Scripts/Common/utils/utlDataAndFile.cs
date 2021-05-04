@@ -182,6 +182,19 @@ public static class utlDataAndFile
         return null;
     }
 
+    public static string GetAfter(string strSource, string searStr)
+    {
+        int startIndex = strSource.LastIndexOf(searStr);
+        if (startIndex == -1)
+            return "";
+        
+        int afterPos = startIndex + searStr.Length;
+        if (afterPos >= strSource.Length)
+            return "";
+       
+        return strSource.Substring(afterPos);
+    }
+
     /// <summary>
     /// Returns a string that has had a string inserted from a str token.
     /// </summary>
@@ -438,6 +451,17 @@ public static class utlDataAndFile
 
         return a;
 
+    }
+
+    public static int CountSubstring(this string text, string value)
+    {
+        int count = 0, minIndex = text.IndexOf(value, 0);
+        while (minIndex != -1)
+        {
+            minIndex = text.IndexOf(value, minIndex + value.Length);
+            count++;
+        }
+        return count;
     }
 
 }

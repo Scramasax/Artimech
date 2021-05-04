@@ -32,6 +32,13 @@ namespace Artimech
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
 
+        public int NumberOfStates()
+        {
+            if (m_StateList == null)
+                return -1;
+            return m_StateList.Count;
+        }
+
         public string GetName()
         {
             return this.name;

@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create State Data Entry</alias>
     <comment></comment>
-    <posX>838</posX>
-    <posY>381</posY>
+    <posX>853</posX>
+    <posY>346</posY>
     <sizeX>170</sizeX>
     <sizeY>46</sizeY>
   </State>
@@ -45,14 +45,15 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artCreateStateDataEnter : editorStateBase
+    public class artCreateStateDataEnter : artBaseDisplayOkCanel
     {
-
+        artRenameWindow m_NameStateindow;
+        bool m_Once = false;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artCreateStateDataEnter(Object unityObj) : base (unityObj)
+        public artCreateStateDataEnter(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artCreateStateDataEnter_To_artDisplayStates("artDisplayStates"));
@@ -80,6 +81,15 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_NameStateindow.Update(theStateMachineEditor);
+
+            if (!m_Once)
+            {
+                theStateMachineEditor.DrawToolBarBool = false;
+                base.UpdateEditorGUI();
+                m_Once = true;
+            }
             base.UpdateEditorGUI();
         }
 
@@ -88,6 +98,19 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+
+            m_Once = false;
+
+            string machineName = utlDataAndFile.GetAfter(theStateMachineEditor.MachineScript.GetType().ToString(), ".");
+            string className = theStateMachineEditor.MachineScript.GetType().ToString();
+            string fileAndPathForClass = utlDataAndFile.FindPathAndFileByClassName(machineName);
+            string fileText = utlDataAndFile.LoadTextFromFile(fileAndPathForClass);
+            int codeIndex = utlDataAndFile.CountSubstring(fileText, "AddState");
+
+            EntryString = machineName + theStateMachineEditor.ConfigData.GenericStateName + utlDataAndFile.GetCode(codeIndex);
+            m_NameStateindow = new artRenameWindow(this, "New State Name", "Enter a name for the new state:", 12, Color.black, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+
             base.Enter();
         }
 
@@ -96,6 +119,11 @@ namespace Artimech
         /// </summary>
         public override void Exit()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+
+            if(OkBool)
+                theStateMachineEditor.NewStateName = EntryString;
+
             base.Exit();
         }
     }

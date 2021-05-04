@@ -12,8 +12,12 @@ namespace Artimech
         private IList<baseState> m_StateList;
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
+        bool m_CreateStateBool = false;
+        string m_NewStateName = "";
 
         public IList<baseState> StateList { get => m_StateList; set => m_StateList = value; }
+        public bool CreateStateBool { get => m_CreateStateBool; set => m_CreateStateBool = value; }
+        public string NewStateName { get => m_NewStateName; set => m_NewStateName = value; }
 
         public string GetName()
         {
@@ -28,6 +32,11 @@ namespace Artimech
         protected artimechEditorBase()
         {
             //stateEditor.Inst.EditorScripts.Add(this);
+        }
+
+        public int NumberOfStates()
+        {
+            return StateList.Count;
         }
 
         protected void OnEnable()

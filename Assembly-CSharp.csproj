@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <CscToolPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
+    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,271 +46,253 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <PropertyGroup>
-    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.5</UnityProjectGeneratorVersion>
-    <UnityProjectType>Game:1</UnityProjectType>
-    <UnityBuildTarget>WebGL:20</UnityBuildTarget>
-    <UnityVersion>2020.2.2f1</UnityVersion>
-  </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateDeleteWindow.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artEditorUtils.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artResizeMouseDown.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddCondToPosAddConditional.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorLoadState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNotEditorOrGameObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\inspector\editorFolderBrowserDrawer.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAlias.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Save.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlDrawBones.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart_To_cubeUpThrust.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlBoundingBox.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Delete_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCopyStateMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayWindowsState.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artChooseMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artCreateState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Refactor.cs" />
-    <Compile Include="Assets\Scripts\Common\inspector\editorFileBrowserDrawer.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject_To_artNoObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\editorOnLoadInfo.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artVisualStateNode.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artConfigurationData.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlDebugPrint.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen_To_artSaveMetaData.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_CopyStateMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artAskToCreate.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artClearObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCreateState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artCheckIfIMachine.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Wait.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRefactorWindow.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToLoadConditional.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlSkeleton.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artNotEditorOrGameObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRename.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artMoveMouseDown.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateCopyStateMachineWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artChooseStateMachineName.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayImageBaseState.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Move_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artChooseStateMachineName.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRenameState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteAsk.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artClearObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddPostCondtionalToDisplay.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editorDisplayToMoveConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Rename.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlDebugDraw.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artSaveScreen.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlEventRouter.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorSaveState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artRefactScreen.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artGUIUtils.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRefactorState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineEditor.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorStateClass_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_MoveBackground.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artProcessingWindow.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddPostCondtionalState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Refactor_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_MoveBackground_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDirectoryAlreadyExistsError.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
-    <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen_To_artRefactorStateClass.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorResizeState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseCreateState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRenameWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseDisplayOkCanel.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artDirectoryAlreadyExistsError.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorStateClass.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artDisplayStates.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Resize_To_Display.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_CopyStateMachine_To_Display.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorDrawUtils.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveBackground.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventPublishExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\artimechEditorBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Delete.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddConditionalToDisplay.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventSubscribeExample.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\editorStateMachineExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateMessageWindow.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Resize.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToCreateConditional.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artDisplayWindowsBaseState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorWaitState.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateMachineGame.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Rename_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlDataAndFile.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\utlEquipmentizer.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateGameBase.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_DeleteCondition_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDeleteState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseOkCancel.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorDataEntry.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorEnterData.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateMachineTemplate.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
-    <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
-  </ItemGroup>
-  <ItemGroup>
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateDeleteWindow.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artEditorUtils.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artResizeMouseDown.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddCondToPosAddConditional.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorLoadState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNotEditorOrGameObject.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\inspector\editorFolderBrowserDrawer.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAlias.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Save.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlDrawBones.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart_To_cubeUpThrust.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlBoundingBox.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Delete_To_Display.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCopyStateMachine.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayWindowsState.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artChooseMachine.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artCreateState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Refactor.cs" />
+     <Compile Include="Assets\Scripts\Common\inspector\editorFileBrowserDrawer.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Display.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject_To_artNoObject.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\editorOnLoadInfo.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artVisualStateNode.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Data\artConfigurationData.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlDebugPrint.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveScreen_To_artSaveMetaData.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_CopyStateMachine.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artAskToCreate.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artClearObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCreateState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artNoObject.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNoObject_To_artCheckIfIMachine.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Wait.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRefactorWindow.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToLoadConditional.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlSkeleton.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artNotEditorOrGameObject.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRename.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artMoveMouseDown.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateCopyStateMachineWindow.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artChooseStateMachineName.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayImageBaseState.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlGameObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Move_To_Display.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate_To_artChooseStateMachineName.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRenameState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateCondSubExample.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteAsk.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artClearObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddPostCondtionalToDisplay.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editorDisplayToMoveConditional.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Rename.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlDebugDraw.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artSaveScreen.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlEventRouter.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorSaveState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditor.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateChanger.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artRefactScreen.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artGUIUtils.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRefactorState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineEditor.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorStateClass_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_MoveBackground.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart_To_artNoObject.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artProcessingWindow.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddPostCondtionalState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Refactor_To_Display.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_MoveBackground_To_Display.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDirectoryAlreadyExistsError.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindow.cs" />
+     <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen_To_artRefactorStateClass.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorResizeState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseCreateState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRenameWindow.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseDisplayOkCanel.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDirectoryAlreadyExistsError_To_artDirectoryAlreadyExistsError.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorStateClass.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artDisplayStates.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Resize_To_Display.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_CopyStateMachine_To_Display.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorDrawUtils.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveBackground.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventPublishExample.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\artimechEditorBase.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Delete.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddConditionalToDisplay.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventSubscribeExample.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlLayerMaskExtensions.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMessageWindowPromt.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\editorStateMachineExample.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateMessageWindow.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Resize.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artStart.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToCreateConditional.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artDisplayWindowsBaseState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorWaitState.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateMachineGame.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlAnimCurve.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateConditionalBase.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Rename_To_Display.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlDataAndFile.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\utlEquipmentizer.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateGameBase.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_DeleteCondition_To_Display.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDeleteState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseOkCancel.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorDataEntry.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorEnterData.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateMachineTemplate.cs" />
+     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
+     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
+     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
+     <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\TextMesh Pro\Plugins\64 Bit Plugins\TMPro_Plugin.dll" />
-     <None Include="Assets\TextMesh Pro\Plugins\vcomp120.dll" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\Runtime DLL\TextMeshPro-2017.3-Runtime.dll" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
      <None Include="Assets\SaveData.xml" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Runtime.dll" />
-     <None Include="Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Editor.dll" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
@@ -318,603 +302,601 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\32 Bit Plugins\TMPro_Plugin.dll" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
-    <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AccessibilityModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AccessibilityModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AndroidJNIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AndroidJNIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ClothModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.CrashReportingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.DSPGraphModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.DirectorModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.GIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GameCenterModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.GameCenterModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.GridModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.HotReloadModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.JSONSerializeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.LocalizationModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.LocalizationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.ParticleSystemModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PerformanceReportingModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.PerformanceReportingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.ProfilerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.ScreenCaptureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteMaskModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.SpriteShapeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StreamingModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.StreamingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SubstanceModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SubsystemsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextCoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsNativeModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsNativeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UNETModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UNETModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UmbraModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityConnectModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityCurlModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityCurlModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VFXModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VRModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VehiclesModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.WebGLModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\PlaybackEngines\WebGLSupport\Managed\UnityEngine.WebGLModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.WindModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.XRModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.CoreModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.GraphViewModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.GraphViewModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.PackageManagerUIModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.PackageManagerUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.SceneTemplateModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.SceneTemplateModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UIElementsModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UIElementsSamplesModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIElementsSamplesModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UIServiceModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.UIServiceModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UnityConnectModule">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.3-Editor">
-      <HintPath>Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.3-Runtime">
-      <HintPath>Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="netstandard">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Win32.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\Microsoft.Win32.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.AppContext">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.AppContext.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Concurrent">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Collections.Concurrent.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.NonGeneric">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Collections.NonGeneric.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Specialized">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Collections.Specialized.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ComponentModel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.EventBasedAsync">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ComponentModel.EventBasedAsync.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ComponentModel.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.TypeConverter">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ComponentModel.TypeConverter.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Console">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Console.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Common">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Data.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Contracts">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.Contracts.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Debug">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.Debug.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.FileVersionInfo">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.FileVersionInfo.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Process">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.Process.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.StackTrace">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.StackTrace.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.TextWriterTraceListener">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Tools">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.TraceSource">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.TraceSource.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Diagnostics.Tracing">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Diagnostics.Tracing.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Drawing.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Dynamic.Runtime">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Dynamic.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Globalization.Calendars">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Globalization.Calendars.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Globalization">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Globalization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Globalization.Extensions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Globalization.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.Compression.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression.ZipFile">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.Compression.ZipFile.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.FileSystem">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.FileSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.FileSystem.DriveInfo">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.FileSystem.DriveInfo.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.FileSystem.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.FileSystem.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.FileSystem.Watcher">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.FileSystem.Watcher.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.IsolatedStorage">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.IsolatedStorage.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.MemoryMappedFiles">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.MemoryMappedFiles.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Pipes">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.Pipes.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.UnmanagedMemoryStream">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.IO.UnmanagedMemoryStream.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq.Expressions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Linq.Expressions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq.Parallel">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Linq.Parallel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Linq.Queryable">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Linq.Queryable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.NameResolution">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.NameResolution.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.NetworkInformation">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.NetworkInformation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Ping">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Ping.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Requests">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Requests.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Security">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Sockets">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.Sockets.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.WebHeaderCollection">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.WebHeaderCollection.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.WebSockets.Client">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.WebSockets.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.WebSockets">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Net.WebSockets.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ObjectModel">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Extensions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Reflection.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Reflection.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Resources.Reader">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Resources.Reader.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Resources.ResourceManager">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Resources.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Resources.Writer">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Resources.Writer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.VisualC">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.CompilerServices.VisualC.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Extensions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Handles">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Handles.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.InteropServices.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Numerics">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Formatters">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Serialization.Formatters.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Json">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Serialization.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Serialization.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Xml">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Runtime.Serialization.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Claims">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Claims.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Algorithms">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Cryptography.Algorithms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Csp">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Cryptography.Csp.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Encoding">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Cryptography.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Cryptography.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Cryptography.X509Certificates.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Principal">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.Principal.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.SecureString">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Security.SecureString.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Text.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.Extensions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Text.Encoding.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.RegularExpressions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Text.RegularExpressions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Overlapped">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.Overlapped.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Parallel">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.Tasks.Parallel.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Thread">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.Thread.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.ThreadPool">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.ThreadPool.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Timer">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Threading.Timer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.ReaderWriter">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.ReaderWriter.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XDocument">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.XDocument.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XmlDocument">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.XmlDocument.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XmlSerializer">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.XmlSerializer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XPath">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.XPath.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XPath.XDocument">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netstandard\System.Xml.XPath.XDocument.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics.Vectors">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\mscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.ComponentModel.Composition.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="System.IO.Compression.FileSystem">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.IO.Compression.FileSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Numerics.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Runtime.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ServiceModel.Web">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.ServiceModel.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Transactions">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Transactions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Windows.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Serialization">
-      <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VSCode.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
+ <Reference Include="UnityEngine">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AccessibilityModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AndroidJNIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AnimationModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AssetBundleModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.AudioModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ClothModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.CoreModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.CrashReportingModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.DSPGraphModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.DirectorModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GameCenterModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.GridModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HotReloadModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.IMGUIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ImageConversionModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.InputModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.InputLegacyModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.JSONSerializeModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.LocalizationModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ParticleSystemModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PerformanceReportingModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PhysicsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Physics2DModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ProfilerModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ProfilerModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.ScreenCaptureModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SharedInternalsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SpriteMaskModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SpriteShapeModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.StreamingModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SubstanceModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.SubsystemsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TLSModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TerrainModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TerrainPhysicsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TextCoreModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TextRenderingModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TilemapModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIElementsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UIElementsNativeModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsNativeModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UNETModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UmbraModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityAnalyticsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityConnectModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityCurlModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityTestProtocolModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VFXModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VRModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VehiclesModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VideoModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.WebGLModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.WebGLModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.WindModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.XRModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.CoreModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.GraphViewModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphViewModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.PackageManagerUIModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.PackageManagerUIModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.SceneTemplateModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UIElementsModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UIElementsSamplesModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UIServiceModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIServiceModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UnityConnectModule">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
+ </Reference>
+ <Reference Include="TextMeshPro-2017.3-Editor">
+ <HintPath>D:/Work/Artimech/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="TextMeshPro-2017.3-Runtime">
+ <HintPath>D:/Work/Artimech/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="netstandard">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
+ </Reference>
+ <Reference Include="Microsoft.Win32.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/Microsoft.Win32.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.AppContext">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.AppContext.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Collections.Concurrent">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Concurrent.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Collections">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Collections.NonGeneric">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.NonGeneric.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Collections.Specialized">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Specialized.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.EventBasedAsync">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.TypeConverter">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.TypeConverter.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Console">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Console.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data.Common">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Data.Common.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.Contracts">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Contracts.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.Debug">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Debug.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.FileVersionInfo">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.Process">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Process.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.StackTrace">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.StackTrace.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.TextWriterTraceListener">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.Tools">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tools.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.TraceSource">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TraceSource.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Diagnostics.Tracing">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tracing.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Drawing.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Drawing.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Dynamic.Runtime">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Dynamic.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Globalization.Calendars">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Calendars.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Globalization">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Globalization.Extensions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Compression">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Compression.ZipFile">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.ZipFile.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.FileSystem">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.FileSystem.DriveInfo">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.FileSystem.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.FileSystem.Watcher">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Watcher.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.IsolatedStorage">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.IsolatedStorage.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.MemoryMappedFiles">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.MemoryMappedFiles.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Pipes">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Pipes.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.UnmanagedMemoryStream">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq.Expressions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Expressions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq.Parallel">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Parallel.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Linq.Queryable">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Queryable.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Http">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Http.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.NameResolution">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NameResolution.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.NetworkInformation">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NetworkInformation.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Ping">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Ping.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Requests">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Requests.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Security">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Security.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.Sockets">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Sockets.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.WebHeaderCollection">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebHeaderCollection.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.WebSockets.Client">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.Client.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net.WebSockets">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ObjectModel">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ObjectModel.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Reflection">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Reflection.Extensions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Reflection.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Resources.Reader">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Reader.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Resources.ResourceManager">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.ResourceManager.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Resources.Writer">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Writer.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.CompilerServices.VisualC">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Extensions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Handles">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Handles.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.InteropServices">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Numerics">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Numerics.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization.Formatters">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization.Json">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization.Xml">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Xml.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Claims">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Claims.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Cryptography.Algorithms">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Cryptography.Csp">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Csp.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Cryptography.Encoding">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Encoding.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Cryptography.Primitives">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Primitives.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Cryptography.X509Certificates">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.Principal">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Principal.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Security.SecureString">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.SecureString.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Text.Encoding">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Text.Encoding.Extensions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Text.RegularExpressions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.RegularExpressions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Overlapped">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Overlapped.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Tasks">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Tasks.Parallel">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.Parallel.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Thread">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Thread.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.ThreadPool">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.ThreadPool.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Threading.Timer">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Timer.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ValueTuple">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ValueTuple.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.ReaderWriter">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.ReaderWriter.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XDocument">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XDocument.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XmlDocument">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlDocument.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XmlSerializer">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlSerializer.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XPath">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.XPath.XDocument">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.XDocument.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Numerics.Vectors">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+ </Reference>
+ <Reference Include="mscorlib">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.Composition">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ComponentModel.Composition.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Core">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Core.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Data.dll</HintPath>
+ </Reference>
+ <Reference Include="System">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Drawing">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Drawing.dll</HintPath>
+ </Reference>
+ <Reference Include="System.IO.Compression.FileSystem">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.IO.Compression.FileSystem.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Net">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Net.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Numerics">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Numerics.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Runtime.Serialization">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Runtime.Serialization.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ServiceModel.Web">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ServiceModel.Web.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Transactions">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Transactions.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Web">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Web.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Windows">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Windows.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.Linq">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Linq.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Xml.Serialization">
+ <HintPath>D:/Program Files/Unity/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.VSCode.Editor">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.VisualStudio.Editor">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Rider.Editor">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>D:/Work/Artimech/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

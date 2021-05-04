@@ -53,18 +53,10 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            string strOut = null;
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
-            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
-            {
-                if (theStateMachineEditor.VisualStateNodes[i].RenameBool)
-                {
-                    strOut = m_ChangeStateName;
-                    return strOut;
-                }
-            }
-
-            return strOut;
+            if (theStateMachineEditor.CreateStateBool)
+                return m_ChangeStateName;
+            return null;
         }
     }
 }

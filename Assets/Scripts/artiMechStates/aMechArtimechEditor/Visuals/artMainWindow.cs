@@ -131,7 +131,9 @@ namespace Artimech
 
         public void AddStateClassCallback(object obj)
         {
-            Debug.Log("Add State");
+            //Debug.Log("Add State");
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            theStateMachineEditor.CreateStateBool = true;
         }
     }
     #endregion
