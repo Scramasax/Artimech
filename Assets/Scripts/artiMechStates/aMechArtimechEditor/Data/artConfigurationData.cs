@@ -2,13 +2,23 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System;
 
 namespace Artimech
 {
     [CreateAssetMenu(fileName = "ArtimechConfig", menuName = "Artimech/Configure", order = 1)]
     public class artConfigurationData : ScriptableObject
     {
-
+        [Serializable]
+        public class CopyStateInfo
+        {
+            [Tooltip("This is where Artimech copies the master state code from when building new states via a renaming system.")]
+            [SerializeField]
+            public string m_MenuString;
+            [Tooltip("This is where Artimech copies the master state code from when building new states via a renaming system.")]
+            [SerializeField]
+            public filePathAndName m_StateSript;
+        }
         [Space(10)]
         [Header("Directories")]
 
@@ -23,6 +33,10 @@ namespace Artimech
         [SerializeField]
         [Tooltip("Directory where Artimech puts newly generated scripts.")]
         folderPathName m_CopyToDirectory = null;
+
+        [SerializeField]
+        [Tooltip("Menu entries for creating a state.")]
+        CopyStateInfo[] m_StateCopyInfo = null;
 
         [Space(10)]
         [Header("Naming")]
@@ -129,6 +143,7 @@ namespace Artimech
         public float WindowOutlineLineWidth { get => m_WindowOutlineLineWidth; }
         public string NamespaceName { get => m_NamespaceName; }
         public string GenericStateName { get => m_GenericStateName; }
+        public CopyStateInfo[] StateCopyInfo { get => m_StateCopyInfo; }
     }
 }
 

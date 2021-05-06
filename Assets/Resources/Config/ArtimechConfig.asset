@@ -18,9 +18,17 @@ MonoBehaviour:
     m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
   m_CopyToDirectory:
     m_PathName: D:/Work/Artimech/Assets/Scripts/artiMechStates
+  m_StateCopyInfo:
+  - m_MenuString: Game State
+    m_StateSript:
+      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
+  - m_MenuString: Game State 2
+    m_StateSript:
+      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
   m_NamespaceName: Artimech
   m_PrefixName: artiMech
   m_PostfixName: State
+  m_GenericStateName: State
   m_BackgroundColor: {r: 0.117983796, g: 0.79149336, b: 0.9150943, a: 0.45882353}
   m_LineColor: {r: 0, g: 0, b: 0, a: 1}
   m_LineShadowColor: {r: 0, g: 0, b: 1, a: 0.14901961}

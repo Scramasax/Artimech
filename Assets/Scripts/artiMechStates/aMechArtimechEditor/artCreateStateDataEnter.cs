@@ -90,7 +90,7 @@ namespace Artimech
                 base.UpdateEditorGUI();
                 m_Once = true;
             }
-            base.UpdateEditorGUI();
+           // base.UpdateEditorGUI();
         }
 
         /// <summary>

@@ -13,11 +13,13 @@ namespace Artimech
         protected baseState m_CurrentState = null;
         protected stateChanger m_StateChanger;
         bool m_CreateStateBool = false;
+        string m_CreateStateCopyDir = "";
         string m_NewStateName = "";
 
         public IList<baseState> StateList { get => m_StateList; set => m_StateList = value; }
         public bool CreateStateBool { get => m_CreateStateBool; set => m_CreateStateBool = value; }
         public string NewStateName { get => m_NewStateName; set => m_NewStateName = value; }
+        public string CreateStateCopyDir { get => m_CreateStateCopyDir; set => m_CreateStateCopyDir = value; }
 
         public string GetName()
         {

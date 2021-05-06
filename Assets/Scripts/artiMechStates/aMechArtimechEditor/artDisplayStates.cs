@@ -144,6 +144,7 @@ namespace Artimech
             SaveDataBool = false;
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             theStateMachineEditor.DrawToolBarBool = true;
+            theStateMachineEditor.CreateStateBool = false;
             theStateMachineEditor.Repaint();
             for(int i=0;i<theStateMachineEditor.VisualStateNodes.Count;i++)
             {

@@ -22,6 +22,8 @@ namespace Artimech
         bool m_AlreadyDrawn = false;
         int m_MyCount = 0;
 
+        int m_GameStateSelectionIndex = 0;
+
         #endregion
         #region Gets Sets
         public Vector2 MousePos
@@ -122,7 +124,11 @@ namespace Artimech
                 if (Event.current.type == EventType.MouseDown/* && m_State is artDisplayStates*/)
                 {
                     GenericMenu menu = new GenericMenu();
-                    menu.AddItem(new GUIContent("Add State/Game State"), false, AddStateClassCallback, this);
+                    for (int i = 0; i < theStateMachineEditor.ConfigData.StateCopyInfo.Length; i++)
+                    {
+                        menu.AddItem(new GUIContent("Add State/" + theStateMachineEditor.ConfigData.StateCopyInfo[i].m_MenuString), false, AddStateClassCallback, i);
+                    }
+                    //menu.AddItem(new GUIContent("Add State/Game State"), false, AddStateClassCallback, this);
                     menu.ShowAsContext();
                     Event.current.Use();
                 }
@@ -134,6 +140,7 @@ namespace Artimech
             //Debug.Log("Add State");
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             theStateMachineEditor.CreateStateBool = true;
+            theStateMachineEditor.CreateStateCopyDir = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_MenuString;
         }
     }
     #endregion
