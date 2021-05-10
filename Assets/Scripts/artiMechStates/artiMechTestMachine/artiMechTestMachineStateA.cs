@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Create State</alias>
+    <alias>nada</alias>
     <comment></comment>
-    <posX>864</posX>
-    <posY>480</posY>
-    <sizeX>125</sizeX>
-    <sizeY>38</sizeY>
+    <posX>20</posX>
+    <posY>40</posY>
+    <sizeX>150</sizeX>
+    <sizeY>80</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,17 +45,16 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artCreateState : artBaseCreateState
+    public class artiMechTestMachineStateA : stateGameBase
     {
-        artProcessingWindow m_MessageWindow;
+
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artCreateState(Object unityObj) : base (unityObj)
+        public artiMechTestMachineStateA(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artCreateState_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -79,8 +78,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
-            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -89,24 +86,6 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating State.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
-
-            ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
-
-            string directoryName = theScript.ConfigData.CopyToDirectory.m_PathName +
-                        "/" +
-                        //                        theScript.ConfigData.PrefixName +
-                        theScript.MachineScript.GetType().Name;
-
-            string stateStartName = "";
-            stateStartName = ReadReplaceAndWrite(
-                                    theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
-                                    theScript.CurrentStateMachineName + theScript.NewStateName,
-                                    theScript.ConfigData.CopyToDirectory.m_PathName,
-                                    directoryName + "/" + /*theScript.ConfigData.PrefixName + theScript.MachineScript.GetType().Name +*/ theScript.NewStateName + ".cs",
-                                    theScript.StateNameClassReplace,
-                                    "");
-
             base.Enter();
         }
 
