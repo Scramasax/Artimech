@@ -12,12 +12,15 @@ namespace Artimech
         [Serializable]
         public class CopyStateInfo
         {
-            [Tooltip("This is where Artimech copies the master state code from when building new states via a renaming system.")]
+            [Tooltip("Name of the menu create state entry.")]
             [SerializeField]
             public string m_MenuString;
-            [Tooltip("This is where Artimech copies the master state code from when building new states via a renaming system.")]
+            [Tooltip("Path and filename for the script to be copied from.")]
             [SerializeField]
             public filePathAndName m_StateSript;
+            [Tooltip("The class name to be replaced.")]
+            [SerializeField]
+            public string m_ReplaceClassString;
         }
         [Space(10)]
         [Header("Directories")]

@@ -141,6 +141,7 @@ namespace Artimech
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             theStateMachineEditor.CreateStateBool = true;
             theStateMachineEditor.CreateStateCopyDir = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_MenuString;
+            theStateMachineEditor.StateNameClassReplace = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_ReplaceClassString;
         }
     }
     #endregion

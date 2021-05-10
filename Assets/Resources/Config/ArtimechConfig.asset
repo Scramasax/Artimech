@@ -22,9 +22,11 @@ MonoBehaviour:
   - m_MenuString: Game State
     m_StateSript:
       m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
+    m_ReplaceClassString: stateEmptyExample
   - m_MenuString: Game State 2
     m_StateSript:
       m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
+    m_ReplaceClassString: stateEmptyExample
   m_NamespaceName: Artimech
   m_PrefixName: artiMech
   m_PostfixName: State

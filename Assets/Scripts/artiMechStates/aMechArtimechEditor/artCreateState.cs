@@ -45,9 +45,9 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artCreateState : editorStateBase
+    public class artCreateState : artBaseCreateState
     {
-
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -79,6 +79,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -87,6 +89,24 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating State.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+
+            ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
+
+            string directoryName = theScript.ConfigData.CopyToDirectory.m_PathName +
+                        "/" +
+                        theScript.ConfigData.PrefixName +
+                        theScript.CurrentStateMachineName;
+
+            string stateStartName = "";
+            stateStartName = ReadReplaceAndWrite(
+                                    theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
+                                    theScript.CurrentStateMachineName + theScript.NewStateName,
+                                    theScript.ConfigData.CopyToDirectory.m_PathName,
+                                    directoryName + "/" + theScript.ConfigData.PrefixName + theScript.CurrentStateMachineName + theScript.NewStateName + ".cs",
+                                    theScript.StateNameClassReplace,
+                                    theScript.ConfigData.PrefixName);
+
             base.Enter();
         }
 
