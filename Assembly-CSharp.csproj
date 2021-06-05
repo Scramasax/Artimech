@@ -57,12 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateDeleteWindow.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\utils\artEditorUtils.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artResizeMouseDown.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddCondToPosAddConditional.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCheckIfIMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorLoadState.cs" />
@@ -70,7 +66,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artChooseStateMachineNameMachineWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNotEditorOrGameObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorDataEntry_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\inspector\editorFolderBrowserDrawer.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRenameAlias.cs" />
@@ -80,6 +75,7 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
@@ -89,39 +85,31 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeStart_To_cubeUpThrust.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlBoundingBox.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Delete_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Add.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorCopyStateMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDisplayWindowsState.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\baseState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artChooseMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Refactor.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\inspector\editorFileBrowserDrawer.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\ArtimechEditor.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Display.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject_To_artNoObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\editorOnLoadInfo.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlXmlLoadSave.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExample.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateConditional.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust_To_cubeUpThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artCreateStateDataEnter.cs" />
@@ -141,12 +129,11 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlSkeleton.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates_To_artNotEditorOrGameObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRename.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDisplayStates.cs" />
@@ -189,7 +176,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Refactor_To_Display.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artNotEditorOrGameObject.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_MoveBackground_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorUtils.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine_To_artDirectoryAlreadyExistsError.cs" />
@@ -197,17 +183,13 @@
     <Compile Include="Assets\Scripts\Common\templates\monoTemplate.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactScreen_To_artRefactorStateClass.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateConditionalTemplate.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorResizeState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artClearObject_To_artNoObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseCreateState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
@@ -219,14 +201,10 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Load.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorStartState.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddToObj_To_artChooseMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artDisplayStates.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Resize_To_Display.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_CopyStateMachine_To_Display.cs" />
@@ -234,7 +212,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSaveMetaData.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorMoveBackground.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEventPublishExample.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\artimechEditorBase.cs" />
@@ -246,7 +223,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\editorStateMachineExample.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\aMechCube.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artWindowBase.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateMessageWindow.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artResizeMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteState.cs" />
@@ -263,7 +239,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAddToObj.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iSubscriptionConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Rename_To_Display.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorBaseState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter_To_artDisplayStates.cs" />
@@ -271,60 +246,31 @@
     <Compile Include="Assets\Scripts\Common\utils\utlDataAndFile.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlEquipmentizer.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMainWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateGameBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_DeleteCondition_To_Display.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteAsk_To_artDeleteState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseMachine_To_artClearObject.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseOkCancel.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorRestoreState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorDataEntry.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artRefactorEnterData.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateMachineTemplate.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateA.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateB.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateC.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artChooseStateMachineName.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStateA.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\TextMesh Pro\Plugins\64 Bit Plugins\TMPro_Plugin.dll" />
-     <None Include="Assets\TextMesh Pro\Plugins\vcomp120.dll" />
-     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\Runtime DLL\TextMeshPro-2017.3-Runtime.dll" />
-     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\NotoSans - License.txt" />
      <None Include="Assets\SaveData.xml" />
-     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Runtime.dll" />
-     <None Include="Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Editor.dll" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\Resources\CreatedState.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-     <None Include="Assets\TextMesh Pro\Plugins\32 Bit Plugins\TMPro_Plugin.dll" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -537,12 +483,6 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.3-Editor">
-      <HintPath>Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="TextMeshPro-2017.3-Runtime">
-      <HintPath>Assets\TextMesh Pro\Plugins\Editor DLL\TextMeshPro-2017.3-Runtime.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

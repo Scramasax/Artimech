@@ -56,6 +56,9 @@ namespace Artimech
             m_CurrentState = AddState(new artiMechTestMachineStartState(this.gameObject), "artiMechTestMachineStartState");
 
             //<ArtiMechStates>
+            AddState(new artiMechTestMachineStateC(this.gameObject),"artiMechTestMachineStateC");
+            AddState(new artiMechTestMachineStateB(this.gameObject),"artiMechTestMachineStateB");
+            AddState(new artiMechTestMachineStateA(this.gameObject),"artiMechTestMachineStateA");
 
         }
     }

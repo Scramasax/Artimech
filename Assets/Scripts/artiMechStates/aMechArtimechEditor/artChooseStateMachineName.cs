@@ -148,6 +148,8 @@ namespace Artimech
 
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
 
+            theStateMachineEditor.CreateStateMachineBool = false;
+
             GameObject gmObject = (GameObject)theStateMachineEditor.SelectedObj;
             iMachineBase[] machines = gmObject.GetComponents<iMachineBase>();
             m_CreateWindow = new artChooseStateMachineNameMachineWindow(this, "Choose A State Machine To Create", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);

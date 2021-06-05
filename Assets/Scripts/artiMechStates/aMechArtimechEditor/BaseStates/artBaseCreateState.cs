@@ -280,6 +280,40 @@ namespace Artimech
             return changedName;
         }
 
+        public bool AddStateCodeToStateMachineCode(string fileAndPath, string stateName)
+        {
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
+            ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
+
+            if (strBuff == null || strBuff.Length == 0)
+                return false;
+
+            string modStr = "";
+
+            string objTypeStr = "";
+            if (theScript.SelectedObj is GameObject)
+                objTypeStr = "(this.gameObject),";
+            else
+                objTypeStr = "(this),";
+
+            string insertString = "\n            AddState(new "
+                                + stateName
+                                + objTypeStr
+                                + "\""
+                                + stateName
+                                + "\""
+                                + ");";
+
+            modStr = utlDataAndFile.InsertInFrontOf(strBuff,
+                                                    "<ArtiMechStates>",
+                                                    insertString);
+
+            utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
+
+            return true;
+        }
+
     }
 }
 #endif

@@ -56,7 +56,7 @@ namespace Artimech
             m_State = state;
             m_Count += 1;
             m_MyCount = m_Count;
-           // Debug.Log("m_Count" + m_Count);
+            // Debug.Log("m_Count" + m_Count);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Artimech
                 m_WinRect.height = Screen.height;
                 GUI.Window(m_Id, WinRect, Draw, "Artimech");
             }
-           // Debug.Log("Update m_Count" + m_Count);
+            // Debug.Log("Update m_Count" + m_Count);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Artimech
                 theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx, theStateMachineEditor.ConfigData);
             }
 
-           // Debug.Log("m_MyCount = " + m_MyCount);
+            // Debug.Log("m_MyCount = " + m_MyCount);
         }
 
         void DrawBackGroundWindow(int id, artConfigurationData configData)
@@ -129,6 +129,8 @@ namespace Artimech
                         menu.AddItem(new GUIContent("Add State/" + theStateMachineEditor.ConfigData.StateCopyInfo[i].m_MenuString), false, AddStateClassCallback, i);
                     }
                     //menu.AddItem(new GUIContent("Add State/Game State"), false, AddStateClassCallback, this);
+                    menu.AddSeparator("");
+                    menu.AddItem(new GUIContent("Create StateMachine"), false, CreateStateMachineCallback, null);
                     menu.ShowAsContext();
                     Event.current.Use();
                 }
@@ -142,6 +144,12 @@ namespace Artimech
             theStateMachineEditor.CreateStateBool = true;
             theStateMachineEditor.CreateStateCopyDir = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_MenuString;
             theStateMachineEditor.StateNameClassReplace = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_ReplaceClassString;
+        }
+
+        public void CreateStateMachineCallback(object obj)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            theStateMachineEditor.CreateStateMachineBool = true;
         }
     }
     #endregion

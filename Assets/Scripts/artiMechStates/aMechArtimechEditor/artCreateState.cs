@@ -20,6 +20,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
 #region XML_DATA
 
 #if ARTIMECH_META_DATA
@@ -52,7 +53,7 @@ namespace Artimech
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artCreateState(Object unityObj) : base (unityObj)
+        public artCreateState(Object unityObj) : base(unityObj)
         {
             //<ArtiMechConditions>
             m_ConditionalList.Add(new artCreateState_To_artDisplayStates("artDisplayStates"));
@@ -98,14 +99,29 @@ namespace Artimech
                         //                        theScript.ConfigData.PrefixName +
                         theScript.MachineScript.GetType().Name;
 
-            string stateStartName = "";
-            stateStartName = ReadReplaceAndWrite(
+            string stateName = "";
+            stateName = ReadReplaceAndWrite(
                                     theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
-                                    theScript.CurrentStateMachineName + theScript.NewStateName,
+                                    /*theScript.CurrentStateMachineName +*/ theScript.NewStateName,
                                     theScript.ConfigData.CopyToDirectory.m_PathName,
                                     directoryName + "/" + /*theScript.ConfigData.PrefixName + theScript.MachineScript.GetType().Name +*/ theScript.NewStateName + ".cs",
                                     theScript.StateNameClassReplace,
                                     "");
+
+            string pathAndFile = directoryName + "/" + theScript.MachineScript.GetType().Name + ".cs";
+
+            AddStateCodeToStateMachineCode(pathAndFile, stateName);
+
+            string pathAndFileStateName = directoryName + "/" + theScript.NewStateName + ".cs";
+
+            stateEditorUtils.SaveStateWindowsNodeData(pathAndFileStateName,
+                                                        stateName,
+                                                        (int)theScript.MouseClickDownPosStart.x,
+                                                        (int)theScript.MouseClickDownPosStart.y,
+                                                        200, 80);
+
+            artVisualStateNode node = CreateVisualStateNode(theScript.NewStateName);
+            theScript.VisualStateNodes.Add(node);
 
             base.Enter();
         }
@@ -119,3 +135,4 @@ namespace Artimech
         }
     }
 }
+#endif

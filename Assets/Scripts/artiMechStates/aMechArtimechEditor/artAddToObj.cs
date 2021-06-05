@@ -20,6 +20,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
 #region XML_DATA
 
 #if ARTIMECH_META_DATA
@@ -117,3 +118,4 @@ namespace Artimech
         }
     }
 }
+#endif

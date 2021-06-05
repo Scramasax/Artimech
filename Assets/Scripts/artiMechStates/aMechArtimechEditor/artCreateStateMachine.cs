@@ -37,8 +37,8 @@ using UnityEditor;
   <State>
     <alias>Create Machine</alias>
     <comment></comment>
-    <posX>294</posX>
-    <posY>332</posY>
+    <posX>307</posX>
+    <posY>299</posY>
     <sizeX>131</sizeX>
     <sizeY>58</sizeY>
   </State>

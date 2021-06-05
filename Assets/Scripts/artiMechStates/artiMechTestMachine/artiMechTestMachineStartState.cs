@@ -31,7 +31,7 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Start</alias>
+    <alias>artiMechTestMachineStartState</alias>
     <comment></comment>
     <posX>20</posX>
     <posY>40</posY>

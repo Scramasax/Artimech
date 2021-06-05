@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>artiMechTestMachineStateA</alias>
+    <alias>artiMechTestMachineStateB</alias>
     <comment></comment>
-    <posX>204</posX>
-    <posY>169</posY>
-    <sizeX>209</sizeX>
-    <sizeY>75</sizeY>
+    <posX>415</posX>
+    <posY>261</posY>
+    <sizeX>200</sizeX>
+    <sizeY>120</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,14 +45,14 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artiMechTestMachineStateA : stateGameBase
+    public class artiMechTestMachineStateB : stateGameBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artiMechTestMachineStateA(GameObject gameobject) : base (gameobject)
+        public artiMechTestMachineStateB(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
         }

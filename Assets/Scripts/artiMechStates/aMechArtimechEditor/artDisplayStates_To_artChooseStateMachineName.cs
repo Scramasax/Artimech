@@ -22,16 +22,15 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-#if UNITY_EDITOR
 /// <summary>
 /// State Conditionals are created to contain the state transition tests. 
 /// </summary>
 namespace Artimech
 {
-    public class artCreateStateDataEnter_To_artDisplayStates : stateConditionalBase
+    public class artDisplayStates_To_artChooseStateMachineName : stateConditionalBase
     {
         
-        public artCreateStateDataEnter_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artDisplayStates_To_artChooseStateMachineName(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -53,11 +52,10 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            artBaseDisplayOkCanel okCancelState = (artBaseDisplayOkCanel)state;
-            if (okCancelState.CancelBool)
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
+            if (theStateMachineEditor.CreateStateMachineBool)
                 return m_ChangeStateName;
             return null;
         }
     }
 }
-#endif
