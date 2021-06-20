@@ -43,6 +43,7 @@ namespace Artimech
         editorOnLoadInfo m_LoadingInfo = new editorOnLoadInfo();
         bool m_RepaintOnUpdate = false;
         string m_CurrentStateMachineName = "";
+        artVisualStateNode m_SelectedVisualStateNode = null;
 
         #endregion
         #region Accessors
@@ -77,6 +78,7 @@ namespace Artimech
         public editorOnLoadInfo LoadingInfo { get => m_LoadingInfo; set => m_LoadingInfo = value; }
         public bool RepaintOnUpdate { get => m_RepaintOnUpdate; set => m_RepaintOnUpdate = value; }
         public string CurrentStateMachineName { get => m_CurrentStateMachineName; set => m_CurrentStateMachineName = value; }
+        public artVisualStateNode SelectedVisualStateNode { get => m_SelectedVisualStateNode; set => m_SelectedVisualStateNode = value; }
 
         #endregion
         #region Member Functions
@@ -256,6 +258,9 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artAddConditionalCreateState(this),"artAddConditionalCreateState");
+            AddState(new artAddConditionalPostState(this),"artAddConditionalPostState");
+            AddState(new artAddConditionalState(this),"artAddConditionalState");
             AddState(new artAddToObj(this),"artAddToObj");
             AddState(new artDirectoryAlreadyExistsError(this),"artDirectoryAlreadyExistsError");
             AddState(new artSetSingleMachine(this), "artSetSingleMachine");

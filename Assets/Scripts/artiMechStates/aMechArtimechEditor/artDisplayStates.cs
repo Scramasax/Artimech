@@ -87,6 +87,7 @@ namespace Artimech
         {
             //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artAddConditionalState("artAddConditionalState"));
             m_ConditionalList.Add(new artDisplayStates_To_artChooseStateMachineName("artChooseStateMachineName"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorEnterData("artRefactorEnterData"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorDataEntry("artRefactorDataEntry"));
@@ -145,8 +146,11 @@ namespace Artimech
         {
             SaveDataBool = false;
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+
             theStateMachineEditor.DrawToolBarBool = true;
             theStateMachineEditor.CreateStateBool = false;
+            theStateMachineEditor.CreateConditionalBool = false;
+
             theStateMachineEditor.Repaint();
             for(int i=0;i<theStateMachineEditor.VisualStateNodes.Count;i++)
             {
@@ -161,14 +165,6 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
-        }
-
-        public void AddConditionalCallback(object obj)
-        {
-        }
-
-        public void EditScriptCallback(object obj)
-        {
         }
 
         public void RefactorClassCallback(object obj)

@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>artiMechTestMachineStateA</alias>
+    <alias>test</alias>
     <comment></comment>
-    <posX>204</posX>
-    <posY>169</posY>
-    <sizeX>209</sizeX>
-    <sizeY>75</sizeY>
+    <posX>136</posX>
+    <posY>177</posY>
+    <sizeX>203</sizeX>
+    <sizeY>64</sizeY>
   </State>
 </stateMetaData>
 

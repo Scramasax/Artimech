@@ -17,11 +17,26 @@ namespace Artimech
             public string m_MenuString;
             [Tooltip("Path and filename for the script to be copied from.")]
             [SerializeField]
-            public filePathAndName m_StateSript;
+            public filePathAndName m_StateScript;
             [Tooltip("The class name to be replaced.")]
             [SerializeField]
             public string m_ReplaceClassString;
         }
+
+        [Serializable]
+        public class CopyConditionalInfo
+        {
+            [Tooltip("Name of the menu create state entry.")]
+            [SerializeField]
+            public string m_MenuString;
+            [Tooltip("Path and filename for the script to be copied from.")]
+            [SerializeField]
+            public filePathAndName m_ConditionalSript;
+            [Tooltip("The class name to be replaced.")]
+            [SerializeField]
+            public string m_ReplaceClassString;
+        }
+
         [Space(10)]
         [Header("Directories")]
 
@@ -40,6 +55,10 @@ namespace Artimech
         [SerializeField]
         [Tooltip("Menu entries for creating a state.")]
         CopyStateInfo[] m_StateCopyInfo = null;
+
+        [SerializeField]
+        [Tooltip("Menu entries for creating a conditional.")]
+        CopyConditionalInfo[] m_ConditionalCopyInfo = null;
 
         [Space(10)]
         [Header("Naming")]
@@ -147,6 +166,7 @@ namespace Artimech
         public string NamespaceName { get => m_NamespaceName; }
         public string GenericStateName { get => m_GenericStateName; }
         public CopyStateInfo[] StateCopyInfo { get => m_StateCopyInfo; }
+        public CopyConditionalInfo[] ConditionalCopyInfo { get => m_ConditionalCopyInfo; }
     }
 }
 

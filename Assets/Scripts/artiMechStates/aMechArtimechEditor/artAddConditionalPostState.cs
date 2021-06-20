@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>artiMechTestMachineStateB</alias>
+    <alias>Add Conditional Post</alias>
     <comment></comment>
-    <posX>354</posX>
-    <posY>264</posY>
-    <sizeX>200</sizeX>
-    <sizeY>120</sizeY>
+    <posX>1094</posX>
+    <posY>240</posY>
+    <sizeX>175</sizeX>
+    <sizeY>46</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,16 +45,17 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artiMechTestMachineStateB : stateGameBase
+    public class artAddConditionalPostState : editorStateBase
     {
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artiMechTestMachineStateB(GameObject gameobject) : base (gameobject)
+        public artAddConditionalPostState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artAddConditionalPostState_To_artAddConditionalCreateState("artAddConditionalCreateState"));
         }
 
         /// <summary>

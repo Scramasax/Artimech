@@ -163,30 +163,6 @@ namespace Artimech
             DrawArrow(startPosTrans, endPosTrans, transStartRect, transEndRect, lineWidth, lineColor, bodyColor);
         }
 
-        /*
-        public static void DrawArrowTranformed(utlMatrix34 mtx, Vector3 startPos, Vector3 endPos, Rect winRectStart, Rect winRectEnd, int lineWidth, Color lineColor, int shadowWidth, Color shadowColor, Color bodyColor)
-        {
-            Vector3 startPosTrans = new Vector3();
-            startPosTrans = mtx.Transform(startPos);
-
-            Vector3 endPosTrans = new Vector3();
-            endPosTrans = mtx.Transform(endPos);
-
-            Rect transStartRect = new Rect(winRectStart);
-            Rect transEndRect = new Rect(winRectEnd);
-
-            transStartRect.position = mtx.Transform(transStartRect.position);
-            transEndRect.position = mtx.Transform(transEndRect.position);
-
-            DrawArrow(startPosTrans,
-                endPosTrans,
-                transStartRect,
-                transEndRect,
-                lineWidth,
-                lineColor, shadowWidth, shadowColor, bodyColor);
-
-        }*/
-
         public static void DrawArrow(Vector2 startPos, Vector2 endPos, Rect winRectStart, Rect winRectEnd, float lineWidth, Color lineColor, Color bodyColor)
         {
             Vector2 colPos = new Vector2();

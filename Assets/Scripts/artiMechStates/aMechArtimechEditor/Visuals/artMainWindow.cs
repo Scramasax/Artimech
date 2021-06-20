@@ -14,6 +14,39 @@ namespace Artimech
     /// </summary>
     public class artMainWindow : artWindowBase
     {
+
+        public class ConditionArrowTemp
+        {
+            Vector3 m_StartPos;
+            Vector3 m_EndPos;
+            Rect m_RectStart;
+            Rect m_RectEnd;
+            int m_LineWidth;
+            Color m_LineColor;
+            int m_ShadowWidth;
+            Color m_ShadowColor;
+            Color m_BodyColor;
+            public ConditionArrowTemp(Vector3 startPos, Vector3 endPos, Rect winRectStart, 
+                                        Rect winRectEnd, int lineWidth, Color lineColor, 
+                                        int shadowWidth, Color shadowColor, Color bodyColor)
+            {
+                m_StartPos = startPos;
+                m_EndPos = endPos;
+                m_RectStart = winRectStart;
+                m_RectEnd = winRectEnd;
+                m_LineWidth = lineWidth;
+                m_LineColor = lineColor;
+                m_ShadowWidth = shadowWidth;
+                m_ShadowColor = shadowColor;
+                m_BodyColor = bodyColor;
+            }
+
+            public void DrawArrow()
+            {
+                artGUIUtils.DrawArrow(m_StartPos,m_EndPos,m_RectStart,m_RectEnd,m_LineWidth,m_LineColor,m_ShadowWidth,m_ShadowColor, m_BodyColor);
+            }
+        }
+
         #region Variables
         baseState m_State;
         Vector2 m_MousePos;
@@ -23,6 +56,9 @@ namespace Artimech
         int m_MyCount = 0;
 
         int m_GameStateSelectionIndex = 0;
+
+        ConditionArrowTemp m_ArrowTemp;
+
 
         #endregion
         #region Gets Sets
@@ -40,6 +76,7 @@ namespace Artimech
         }
 
         public bool AlreadyDrawn { get => m_AlreadyDrawn; set => m_AlreadyDrawn = value; }
+        public ConditionArrowTemp ArrowTemp { get => m_ArrowTemp; set => m_ArrowTemp = value; }
         #endregion
         #region Member Functions
 
@@ -107,6 +144,9 @@ namespace Artimech
                 theStateMachineEditor.VisualStateNodes[i].Update(m_State, theStateMachineEditor.TransMtx, theStateMachineEditor.ConfigData);
             }
 
+            if (ArrowTemp != null)
+                ArrowTemp.DrawArrow();
+
             // Debug.Log("m_MyCount = " + m_MyCount);
         }
 
@@ -119,7 +159,9 @@ namespace Artimech
                     return;
             }
 
-            if (Event.current.button == 1 && Event.current.isMouse)
+            artDisplayWindowsBaseState dState = (artDisplayWindowsBaseState)m_State;
+            
+            if (Event.current.button == 1 && Event.current.isMouse && dState.DrawMenuBool)
             {
                 if (Event.current.type == EventType.MouseDown/* && m_State is artDisplayStates*/)
                 {

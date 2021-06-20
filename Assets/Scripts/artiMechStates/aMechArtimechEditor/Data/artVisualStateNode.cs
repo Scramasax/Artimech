@@ -326,7 +326,7 @@ namespace Artimech
         public bool IsWithinUsingPanZoomTransform(Vector2 vect, utlMatrix34 mtx)
         {
             Vector3 transVect = new Vector3();
-            transVect = mtx.Transform(vect);
+            transVect = mtx.UnTransform(vect);
             if (transVect.x >= m_WinRect.x && transVect.x < m_WinRect.x + m_WinRect.width)
             {
                 if (transVect.y >= m_WinRect.y && transVect.y < m_WinRect.y + m_WinRect.height)
@@ -608,19 +608,25 @@ namespace Artimech
                 ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
                 if (IsWithinUsingPanZoomTransform(Event.current.mousePosition, theStateMachineEditor.TransMtx))
                 {
-                    artDisplayStates dState = (artDisplayStates)m_State;
-                    if (dState != null && Event.current.type == EventType.MouseDown)
+                    artDisplayWindowsBaseState dState = (artDisplayWindowsBaseState)m_State;
+                    if (dState != null && Event.current.type == EventType.MouseDown && dState.DrawMenuBool)
                     {
                         GenericMenu menu = new GenericMenu();
-                        menu.AddItem(new GUIContent("Add Conditional/Empty Conditional"),
-                            false,
-                            dState.AddConditionalCallback,
-                            new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs", "stateConditionalTemplate"));
+                        for (int i = 0; i < configData.ConditionalCopyInfo.Length; i++)
+                        {
 
-                        menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"),
-                            false,
-                            dState.AddConditionalCallback,
-                            new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateCondSubExample.cs", "stateCondSubExample"));
+
+                           
+                            menu.AddItem(new GUIContent("Add Conditional/" + configData.ConditionalCopyInfo[i].m_MenuString),
+                                false,
+                                dState.AddConditionalCallback,
+                                //new editorDisplayWindowsState.menuData(configData.ConditionalCopyInfo[i].m_ConditionalSript.m_PathAndName, configData.ConditionalCopyInfo[i].m_ReplaceClassString));
+                                this);
+                        }
+                        /* menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"),
+                             false,
+                             dState.AddConditionalCallback,
+                             new editorDisplayWindowsState.menuData("Assets/Scripts/Common/statemachine/state_examples/stateCondSubExample.cs", "stateCondSubExample"));*/
 
                         menu.AddSeparator("");
                         menu.AddItem(new GUIContent("Edit Script"), false, dState.EditScriptCallback, this);
@@ -637,8 +643,8 @@ namespace Artimech
 
             //draws background and outline.
             //int lineWidth = 2;
-  /*          Color lineColor = new Color(0, 0.3f, 0, 1);
-            Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);*/
+            /*          Color lineColor = new Color(0, 0.3f, 0, 1);
+                      Color backGroundColor = new Color(0.0f, 0.8f, 0.8f, 1.0f);*/
 
             Rect rect = new Rect(m_WinRect.x, m_WinRect.y, WinRect.width, WinRect.height);
             artGUIUtils.DrawRect(rect, configData.WindowOutlineLineWidth, configData.WindowLineColor, configData.StateWindowColor);

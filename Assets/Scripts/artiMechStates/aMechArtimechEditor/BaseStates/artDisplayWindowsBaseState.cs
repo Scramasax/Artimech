@@ -9,6 +9,10 @@ namespace Artimech
     public class artDisplayWindowsBaseState : editorStateBase
     {
         protected artMainWindow m_MainWindow;
+        bool m_DrawMenuBool = true;
+
+        public bool DrawMenuBool { get => m_DrawMenuBool; set => m_DrawMenuBool = value; }
+
         /// <summary>
         /// Base constructor
         /// </summary>
@@ -74,6 +78,32 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
+        }
+
+        public artVisualStateNode GetWindowsNodeAtThisLocation(Vector2 vect)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+            {
+                if (theStateMachineEditor.VisualStateNodes[i].IsWithinUsingPanZoomTransform(vect,theStateMachineEditor.TransMtx))
+                {
+                    return theStateMachineEditor.VisualStateNodes[i];
+                }
+            }
+
+            return null;
+        }
+
+        public void AddConditionalCallback(object obj)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.SelectedVisualStateNode = (artVisualStateNode)obj;
+            theStateMachineEditor.CreateConditionalBool = true;
+        }
+
+        public void EditScriptCallback(object obj)
+        {
+
         }
     }
 }

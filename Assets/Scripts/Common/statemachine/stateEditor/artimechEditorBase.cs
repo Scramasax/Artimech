@@ -14,6 +14,7 @@ namespace Artimech
         protected stateChanger m_StateChanger;
         bool m_CreateStateBool = false;
         bool m_CreateStateMachineBool = false;
+        bool m_CreateConditionalBool = false;
         string m_CreateStateCopyDir = "";
         string m_NewStateName = "";
         string m_StateNameClassReplace = "";
@@ -24,6 +25,7 @@ namespace Artimech
         public string CreateStateCopyDir { get => m_CreateStateCopyDir; set => m_CreateStateCopyDir = value; }
         public string StateNameClassReplace { get => m_StateNameClassReplace; set => m_StateNameClassReplace = value; }
         public bool CreateStateMachineBool { get => m_CreateStateMachineBool; set => m_CreateStateMachineBool = value; }
+        public bool CreateConditionalBool { get => m_CreateConditionalBool; set => m_CreateConditionalBool = value; }
 
         public string GetName()
         {
