@@ -19,6 +19,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -31,12 +33,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>artiMechTestMachineStateD</alias>
+    <alias>Delete Conditional</alias>
     <comment></comment>
-    <posX>257</posX>
-    <posY>441</posY>
-    <sizeX>200</sizeX>
-    <sizeY>80</sizeY>
+    <posX>1091</posX>
+    <posY>74</posY>
+    <sizeX>162</sizeX>
+    <sizeY>48</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,14 +47,14 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artiMechTestMachineStateD : stateGameBase
+    public class artDeleteConditionalState : editorStateBase
     {
-
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artiMechTestMachineStateD(GameObject gameobject) : base (gameobject)
+        public artDeleteConditionalState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
         }
@@ -78,6 +80,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -86,7 +90,13 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Deleting Conditional .....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+            
             base.Enter();
+
+            theStateMachineEditor.DrawToolBarBool = false;
+            DeleteAndRemoveConditonal(theStateMachineEditor.DeleteConditionalClass);
         }
 
         /// <summary>
@@ -95,6 +105,19 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
+        }
+
+        public void DeleteAndRemoveConditonal(string className)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.SaveMetaDataInStates();
+
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            File.Delete(pathAndFileForClassName);
+
+            utlDataAndFile.RemoveLinesBySubStringInFiles(className, Application.dataPath);
+
+            AssetDatabase.Refresh();
         }
     }
 }

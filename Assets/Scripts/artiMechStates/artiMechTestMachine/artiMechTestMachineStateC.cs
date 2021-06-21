@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>artiMechTestMachineStateC</alias>
     <comment></comment>
-    <posX>194</posX>
-    <posY>419</posY>
+    <posX>255</posX>
+    <posY>303</posY>
     <sizeX>200</sizeX>
     <sizeY>80</sizeY>
   </State>
@@ -55,6 +55,7 @@ namespace Artimech
         public artiMechTestMachineStateC(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artiMechTestMachineStateC_To_artiMechTestMachineStateD("artiMechTestMachineStateD"));
         }
 
         /// <summary>

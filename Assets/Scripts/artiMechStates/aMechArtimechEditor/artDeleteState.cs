@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Delete State</alias>
     <comment></comment>
-    <posX>798</posX>
-    <posY>539</posY>
+    <posX>609</posX>
+    <posY>572</posY>
     <sizeX>106</sizeX>
     <sizeY>40</sizeY>
   </State>
@@ -47,7 +47,7 @@ namespace Artimech
 {
     public class artDeleteState : editorStateBase
     {
-
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -55,7 +55,6 @@ namespace Artimech
         public artDeleteState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artDeleteState_To_artDisplayStates("artDisplayStates"));
         }
 
         /// <summary>
@@ -79,6 +78,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -87,7 +88,12 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Deleting State .....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+
             base.Enter();
+
+            theStateMachineEditor.DrawToolBarBool = false;
         }
 
         /// <summary>
@@ -96,6 +102,13 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
+        }
+
+        void DeleteAndRemoveStateAndConditionals(string className)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            theStateMachineEditor.SaveMetaDataInStates();
+
         }
     }
 }

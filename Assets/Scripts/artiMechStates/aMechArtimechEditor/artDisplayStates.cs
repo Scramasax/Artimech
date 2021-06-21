@@ -87,6 +87,7 @@ namespace Artimech
         {
             //m_MainWindow = new artMainWindow(this, "Main Display Window", new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 1);
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDisplayStates_To_artDeleteConditionalStartState("artDeleteConditionalStartState"));
             m_ConditionalList.Add(new artDisplayStates_To_artAddConditionalState("artAddConditionalState"));
             m_ConditionalList.Add(new artDisplayStates_To_artChooseStateMachineName("artChooseStateMachineName"));
             m_ConditionalList.Add(new artDisplayStates_To_artRefactorEnterData("artRefactorEnterData"));
@@ -150,6 +151,8 @@ namespace Artimech
             theStateMachineEditor.DrawToolBarBool = true;
             theStateMachineEditor.CreateStateBool = false;
             theStateMachineEditor.CreateConditionalBool = false;
+            theStateMachineEditor.DeleteConditionalBool = false;
+            theStateMachineEditor.DeleteStateBool = false;
             theStateMachineEditor.FromConditionalStateNode = null;
             theStateMachineEditor.ToConditionalStateNode = null;
 

@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>artiMechTestMachineStateD</alias>
+    <alias>Delete Conditional Start</alias>
     <comment></comment>
-    <posX>257</posX>
-    <posY>441</posY>
-    <sizeX>200</sizeX>
-    <sizeY>80</sizeY>
+    <posX>846</posX>
+    <posY>75</posY>
+    <sizeX>172</sizeX>
+    <sizeY>47</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,16 +45,19 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artiMechTestMachineStateD : stateGameBase
+    public class artDeleteConditionalStartState : artBaseOkCancel
     {
+        artMessageWindowPromt m_MessageWindow;
 
         /// <summary>
         /// State constructor.
         /// </summary>
         /// <param name="gameobject"></param>
-        public artiMechTestMachineStateD(GameObject gameobject) : base (gameobject)
+        public artDeleteConditionalStartState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artDeleteConditionalStartState_To_artDisplayStates("artDisplayStates"));
+            m_ConditionalList.Add(new artDeleteConditionalStartState_To_artDeleteConditionalState("artDeleteConditionalState"));
         }
 
         /// <summary>
@@ -78,6 +81,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(editorScript);
             base.UpdateEditorGUI();
         }
 
@@ -86,7 +91,17 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Delete: " + editorScript.DeleteConditionalClass, 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow.Width = 0.65f;
+            m_MessageWindow.ButtonSideSpacing = 40.0f;
+            m_MessageWindow.CancelPrompt = true;
+            m_MessageWindow.InitImage("questionMark.png");
+            
+            editorScript.Repaint();
+
             base.Enter();
+            editorScript.DrawToolBarBool = false;
         }
 
         /// <summary>

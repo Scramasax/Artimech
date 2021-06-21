@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artAddConditionalCreateState_To_artDisplayStates : stateConditionalBase
+    public class artiMechTestMachineStateB_To_artiMechTestMachineStateC : stateConditionalBase
     {
         
-        public artAddConditionalCreateState_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artiMechTestMachineStateB_To_artiMechTestMachineStateC(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,7 +52,17 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            return m_ChangeStateName;
+            string strOut = null;
+
+#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
+            This is an example of setting a contition to true if the gameobject
+            falls below a certain height ingame.
+            if (state.m_GameObject.transform.position.y <= 1000)
+                strOut = m_ChangeStateName;
+#endif
+
+
+            return strOut;
         }
     }
 }

@@ -47,6 +47,11 @@ namespace Artimech
         artVisualStateNode m_ToConditionalStateNode = null;
         artVisualStateNode m_FromConditionalStateNode = null;
         int m_ConditionalSelectionIndex = -1;
+        bool m_DeleteConditionalBool = false;
+        string m_DeleteConditionalPath = "";
+        string m_DeleteConditionalClass = "";
+        string m_DeleteStateClass = "";
+        bool m_DeleteStateBool = false;
 
         #endregion
         #region Accessors
@@ -85,6 +90,11 @@ namespace Artimech
         public artVisualStateNode ToConditionalStateNode { get => m_ToConditionalStateNode; set => m_ToConditionalStateNode = value; }
         public artVisualStateNode FromConditionalStateNode { get => m_FromConditionalStateNode; set => m_FromConditionalStateNode = value; }
         public int ConditionalSelectionIndex { get => m_ConditionalSelectionIndex; set => m_ConditionalSelectionIndex = value; }
+        public bool DeleteConditionalBool { get => m_DeleteConditionalBool; set => m_DeleteConditionalBool = value; }
+        public string DeleteConditionalPath { get => m_DeleteConditionalPath; set => m_DeleteConditionalPath = value; }
+        public string DeleteConditionalClass { get => m_DeleteConditionalClass; set => m_DeleteConditionalClass = value; }
+        public string DeleteStateClass { get => m_DeleteStateClass; set => m_DeleteStateClass = value; }
+        public bool DeleteStateBool { get => m_DeleteStateBool; set => m_DeleteStateBool = value; }
 
         #endregion
         #region Member Functions
@@ -264,6 +274,8 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
+            AddState(new artDeleteConditionalState(this),"artDeleteConditionalState");
+            AddState(new artDeleteConditionalStartState(this),"artDeleteConditionalStartState");
             AddState(new artAddConditionalCreateState(this),"artAddConditionalCreateState");
             AddState(new artAddConditionalPostState(this),"artAddConditionalPostState");
             AddState(new artAddConditionalState(this),"artAddConditionalState");

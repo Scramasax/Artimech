@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artAddConditionalCreateState_To_artDisplayStates : stateConditionalBase
+    public class artDisplayStates_To_artDeleteConditionalStartState : stateConditionalBase
     {
         
-        public artAddConditionalCreateState_To_artDisplayStates(string changeStateName) : base (changeStateName)
+        public artDisplayStates_To_artDeleteConditionalStartState(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,7 +52,10 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            return m_ChangeStateName;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
+            if (theStateMachineEditor.DeleteConditionalBool)
+                return m_ChangeStateName;
+            return null;
         }
     }
 }

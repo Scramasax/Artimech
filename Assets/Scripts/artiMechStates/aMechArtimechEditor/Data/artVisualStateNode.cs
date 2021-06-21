@@ -28,7 +28,7 @@ namespace Artimech
         {
             public artVisualStateNode m_VisualStateNode;
             public int m_SelectedIndex;
-            public conditionalSelection(artVisualStateNode node,int index)
+            public conditionalSelection(artVisualStateNode node, int index)
             {
                 m_VisualStateNode = node;
                 m_SelectedIndex = index;
@@ -627,11 +627,11 @@ namespace Artimech
                         {
 
 
-                           
+
                             menu.AddItem(new GUIContent("Add Conditional/" + configData.ConditionalCopyInfo[i].m_MenuString),
                                 false,
                                 dState.AddConditionalCallback,
-                                new conditionalSelection(this,i));
+                                new conditionalSelection(this, i));
                         }
                         /* menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"),
                              false,
@@ -672,7 +672,15 @@ namespace Artimech
             //create the close button rectangle
             m_CloseButtonRect = new Rect(WinRect.x + WinRect.width - (xOffset + (boxSize * 0.5f)), WinRect.y + yOffset - (boxSize * 0.5f), boxSize, boxSize);
             if (m_CloseButtonRect.Contains(Event.current.mousePosition))
+            {
                 artGUIUtils.DrawRect(m_CloseButtonRect, 2, Color.black, Color.red);
+                if (Event.current.button == 0 && Event.current.isMouse)
+                {
+                    ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+                    theStateMachineEditor.DeleteStateBool = true;
+                    theStateMachineEditor.DeleteStateClass = ClassName;
+                }
+            }
             else
                 artGUIUtils.DrawRect(m_CloseButtonRect, 2, Color.black, Color.clear);
 

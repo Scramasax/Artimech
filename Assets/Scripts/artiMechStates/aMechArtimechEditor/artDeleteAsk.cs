@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Ask To Delete State</alias>
     <comment></comment>
-    <posX>608</posX>
-    <posY>598</posY>
+    <posX>584</posX>
+    <posY>466</posY>
     <sizeX>154</sizeX>
     <sizeY>47</sizeY>
   </State>
@@ -45,9 +45,9 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artDeleteAsk : editorStateBase
+    public class artDeleteAsk : artBaseOkCancel
     {
-
+        artMessageWindowPromt m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -80,6 +80,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(editorScript);
             base.UpdateEditorGUI();
         }
 
@@ -88,6 +90,17 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor editorScript = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow = new artMessageWindowPromt(this, "Artimech Message", "Delete: " + editorScript.DeleteStateClass, 12, Color.red, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            m_MessageWindow.Width = 0.65f;
+            m_MessageWindow.ButtonSideSpacing = 40.0f;
+            m_MessageWindow.CancelPrompt = true;
+            m_MessageWindow.InitImage("questionMark.png");
+
+            editorScript.Repaint();
+
+            base.Enter();
+            editorScript.DrawToolBarBool = false;
             base.Enter();
         }
 

@@ -166,6 +166,9 @@ namespace Artimech
                 if (Event.current.type == EventType.MouseDown/* && m_State is artDisplayStates*/)
                 {
                     GenericMenu menu = new GenericMenu();
+
+                    DrawConditionalMenus(menu, Event.current.mousePosition);
+                    
                     for (int i = 0; i < theStateMachineEditor.ConfigData.StateCopyInfo.Length; i++)
                     {
                         menu.AddItem(new GUIContent("Add State/" + theStateMachineEditor.ConfigData.StateCopyInfo[i].m_MenuString), false, AddStateClassCallback, i);
@@ -177,6 +180,30 @@ namespace Artimech
                     Event.current.Use();
                 }
             }
+        }
+
+        void DrawConditionalMenus(GenericMenu menu,Vector2 mousePos)
+        {
+            ArtimechEditor theScript = (ArtimechEditor)m_State.m_UnityObject;
+            for (int i = 0; i < theScript.VisualStateNodes.Count; i++)
+            {
+                string condName = theScript.VisualStateNodes[i].GetConditionalByPosition(theScript.TransMtx.UnTransform(mousePos), 10);
+                if (condName != null)
+                {
+                    menu.AddItem(new GUIContent("Edit Conditional"),
+                    false,
+                    CreateEditConditionalCallback,
+                    condName);
+                }
+                if (condName != null)
+                {
+                    menu.AddItem(new GUIContent("Delete Conditional"),
+                    false,
+                    DeleteEditConditionalCallback,
+                    condName);
+                }
+            }
+            menu.AddSeparator("");
         }
 
         public void AddStateClassCallback(object obj)
@@ -192,6 +219,23 @@ namespace Artimech
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             theStateMachineEditor.CreateStateMachineBool = true;
+        }
+
+        public void CreateEditConditionalCallback(object obj)
+        {
+            string className = (string)obj;
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1, 1);
+        }
+
+        public void DeleteEditConditionalCallback(object obj)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+            string className = (string)obj;
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            theStateMachineEditor.DeleteConditionalBool = true;
+            theStateMachineEditor.DeleteConditionalPath = fileAndPathName;
+            theStateMachineEditor.DeleteConditionalClass = className;
         }
     }
     #endregion
