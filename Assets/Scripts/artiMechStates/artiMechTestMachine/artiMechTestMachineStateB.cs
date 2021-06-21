@@ -55,7 +55,7 @@ namespace Artimech
         public artiMechTestMachineStateB(GameObject gameobject) : base (gameobject)
         {
             //<ArtiMechConditions>
-            m_ConditionalList.Add(new artiMechTestMachineStateB_To_artiMechTestMachineStateC("artiMechTestMachineStateC"));
+            m_ConditionalList.Add(new artiMechTestMachineStateB_To_artiMechTestMachineStateE("artiMechTestMachineStateE"));
         }
 
         /// <summary>

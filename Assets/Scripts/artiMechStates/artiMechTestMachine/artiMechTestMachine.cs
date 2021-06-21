@@ -57,8 +57,8 @@ namespace Artimech
 
             //<ArtiMechStates>
             AddState(new artiMechTestMachineStateE(this.gameObject),"artiMechTestMachineStateE");
+            AddState(new artiMechTestMachineStateE(this.gameObject),"artiMechTestMachineStateE");
             AddState(new artiMechTestMachineStateD(this.gameObject),"artiMechTestMachineStateD");
-            AddState(new artiMechTestMachineStateC(this.gameObject),"artiMechTestMachineStateC");
             AddState(new artiMechTestMachineStateB(this.gameObject),"artiMechTestMachineStateB");
             AddState(new artiMechTestMachineStateA(this.gameObject),"artiMechTestMachineStateA");
 

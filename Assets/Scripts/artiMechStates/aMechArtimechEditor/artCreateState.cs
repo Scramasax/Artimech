@@ -124,6 +124,8 @@ namespace Artimech
             theScript.VisualStateNodes.Add(node);
 
             base.Enter();
+
+            UnityEditor.AssetDatabase.Refresh();
         }
 
         /// <summary>

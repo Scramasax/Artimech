@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artiMechTestMachineStateB_To_artiMechTestMachineStateC : stateConditionalBase
+    public class artiMechTestMachineStateE_To_artiMechTestMachineStateD : stateConditionalBase
     {
         
-        public artiMechTestMachineStateB_To_artiMechTestMachineStateC(string changeStateName) : base (changeStateName)
+        public artiMechTestMachineStateE_To_artiMechTestMachineStateD(string changeStateName) : base (changeStateName)
         {
             
         }

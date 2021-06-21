@@ -126,6 +126,12 @@ namespace Artimech
 
             utlDataAndFile.RemoveLinesBySubStringInFiles(className, Application.dataPath);
 
+            var listOfFiles = utlDataAndFile.GetListOfFilesInDirctory(Application.dataPath, className);
+            for (int i = 0; i < listOfFiles.Count; i++)
+            {
+                File.Delete(listOfFiles[i]);
+            }
+
             AssetDatabase.Refresh();
 
         }

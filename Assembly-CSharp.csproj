@@ -76,7 +76,6 @@
     <Compile Include="Assets\Scripts\Common\utils\utlDrawBones.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateC.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
@@ -278,14 +277,14 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalCreateState_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalCreateState_To_artAddConditionalCreateState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState_To_artiMechTestMachineStateA.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateB_To_artiMechTestMachineStateC.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateA_To_artiMechTestMachineStateB.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateC_To_artiMechTestMachineStateD.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteConditionalStartState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState_To_artDeleteConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState_To_artDisplayStates.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateB_To_artiMechTestMachineStateE.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateE_To_artiMechTestMachineStateD.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
