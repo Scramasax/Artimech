@@ -24,6 +24,17 @@ namespace Artimech
 {
     public class artVisualStateNode
     {
+        public class conditionalSelection
+        {
+            public artVisualStateNode m_VisualStateNode;
+            public int m_SelectedIndex;
+            public conditionalSelection(artVisualStateNode node,int index)
+            {
+                m_VisualStateNode = node;
+                m_SelectedIndex = index;
+            }
+        }
+
         #region Variables
 
         Rect m_WinRect;
@@ -620,8 +631,7 @@ namespace Artimech
                             menu.AddItem(new GUIContent("Add Conditional/" + configData.ConditionalCopyInfo[i].m_MenuString),
                                 false,
                                 dState.AddConditionalCallback,
-                                //new editorDisplayWindowsState.menuData(configData.ConditionalCopyInfo[i].m_ConditionalSript.m_PathAndName, configData.ConditionalCopyInfo[i].m_ReplaceClassString));
-                                this);
+                                new conditionalSelection(this,i));
                         }
                         /* menu.AddItem(new GUIContent("Add Conditional/Subscription Conditional"),
                              false,

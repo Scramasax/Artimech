@@ -21,6 +21,9 @@ namespace Artimech
         Thread m_Thread;
         float m_RotAngle;
         EditorWindow m_EditorWindow;
+        int m_GuiDepth = 0;
+
+        public int GuiDepth { get => m_GuiDepth; set => m_GuiDepth = value; }
 
         public artProcessingWindow(string title, string message, int fontSize, Color fontColor, Rect rect, Color color, int id) : base(title, message, fontSize, fontColor, rect, color, id)
         {
@@ -43,6 +46,7 @@ namespace Artimech
 
             var TextStyle = new GUIStyle();
 
+            GUI.depth = m_GuiDepth;
             GUI.Window(m_Id + 1, WinRect, DrawProcessing, "", TextStyle);
             GUI.Window(m_Id, WinRect, DrawMessage, m_Title);
             //m_EditorWindow.Repaint();

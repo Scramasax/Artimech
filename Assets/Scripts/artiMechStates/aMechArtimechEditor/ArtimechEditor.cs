@@ -44,6 +44,9 @@ namespace Artimech
         bool m_RepaintOnUpdate = false;
         string m_CurrentStateMachineName = "";
         artVisualStateNode m_SelectedVisualStateNode = null;
+        artVisualStateNode m_ToConditionalStateNode = null;
+        artVisualStateNode m_FromConditionalStateNode = null;
+        int m_ConditionalSelectionIndex = -1;
 
         #endregion
         #region Accessors
@@ -79,6 +82,9 @@ namespace Artimech
         public bool RepaintOnUpdate { get => m_RepaintOnUpdate; set => m_RepaintOnUpdate = value; }
         public string CurrentStateMachineName { get => m_CurrentStateMachineName; set => m_CurrentStateMachineName = value; }
         public artVisualStateNode SelectedVisualStateNode { get => m_SelectedVisualStateNode; set => m_SelectedVisualStateNode = value; }
+        public artVisualStateNode ToConditionalStateNode { get => m_ToConditionalStateNode; set => m_ToConditionalStateNode = value; }
+        public artVisualStateNode FromConditionalStateNode { get => m_FromConditionalStateNode; set => m_FromConditionalStateNode = value; }
+        public int ConditionalSelectionIndex { get => m_ConditionalSelectionIndex; set => m_ConditionalSelectionIndex = value; }
 
         #endregion
         #region Member Functions

@@ -96,9 +96,11 @@ namespace Artimech
 
         public void AddConditionalCallback(object obj)
         {
+            artVisualStateNode.conditionalSelection condSelection = (artVisualStateNode.conditionalSelection)obj;
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
-            theStateMachineEditor.SelectedVisualStateNode = (artVisualStateNode)obj;
+            theStateMachineEditor.SelectedVisualStateNode = condSelection.m_VisualStateNode;
             theStateMachineEditor.CreateConditionalBool = true;
+            theStateMachineEditor.ConditionalSelectionIndex = condSelection.m_SelectedIndex;
         }
 
         public void EditScriptCallback(object obj)

@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Add Conditonal</alias>
     <comment></comment>
-    <posX>862</posX>
-    <posY>196</posY>
+    <posX>847</posX>
+    <posY>167</posY>
     <sizeX>175</sizeX>
     <sizeY>48</sizeY>
   </State>
@@ -50,8 +50,6 @@ namespace Artimech
         artVisualStateNode m_WindowsSelectedNode = null;
         bool m_RightClickBool = false;
         bool m_LeftClickBool = false;
-        bool m_Once = false;
-        int m_LeftClickBlock = 0;
 
         public bool RightClickBool { get { return m_RightClickBool; } }
         public bool LeftClickBool { get { return m_LeftClickBool; } }
@@ -90,13 +88,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-
-            //base.UpdateEditorGUI();
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             Event ev = Event.current;
-
-            //if(m_WindowsSelectedNode==null)
-            //    m_WindowsSelectedNode = GetWindowsNodeAtThisLocation(ev.mousePosition);
 
             m_MousePos = ev.mousePosition;
             if (m_WindowsSelectedNode == null)
@@ -108,12 +101,11 @@ namespace Artimech
 
             if (ev.button == 0)
             {
-                Debug.Log("-------------> " + ev.type);
-                //if (ev.type == EventType.Used && m_WindowsSelectedNode != null && m_LeftClickBool == false)
+                //Debug.Log("-------------> " + ev.type);
                 if (ev.type == EventType.MouseDown &&  m_WindowsSelectedNode != null && !m_LeftClickBool)
                 {
                     m_LeftClickBool = true;
-                    //stateEditorUtils.CreateConditionalAndAddToState(stateEditorUtils.SelectedNode.WindowTitle, stateNode.WindowTitle);
+                    theStateMachineEditor.MouseClickDownPosStart = ev.mousePosition;
                 }
             }
 
@@ -130,16 +122,11 @@ namespace Artimech
                 }
             }
 
-            //DrawConditionalTemp(ev.mousePosition);
             DrawConditionalTemp(m_MousePos);
 
             base.UpdateEditorGUI();
-            // 
 
             theStateMachineEditor.EditorRepaint();
-
-            m_Once = true;
-            m_LeftClickBlock += 1;
         }
 
         void DrawConditionalTemp(Vector2 mousePos)
@@ -165,30 +152,6 @@ namespace Artimech
                                     Color.black,
                                     2,
                                     shadowCol, arrowCol);
-
-            /*artGUIUtils.DrawArrow(startPos,
-                                    modMousePos,
-                                    theStateMachineEditor.TransMtx.Transform(m_WindowsSelectedNode.WinRect),
-                                    new Rect(0, 0, 0, 0),
-                                    2,
-                                    Color.black,
-                                    2,
-                                    shadowCol, arrowCol);*/
-            //artGUIUtils.DrawArrowTranformed(theStateMachineEditor.TransMtx, new Vector2(0, 0), new Vector2(400, 400), m_MainWindow.WinRect, m_MainWindow.WinRect, 2, Color.black, Color.white);
-        }
-
-        artVisualStateNode GetSelectedNode()
-        {
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
-            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
-            {
-                if (theStateMachineEditor.VisualStateNodes[i].Selected)
-                {
-
-                    return theStateMachineEditor.VisualStateNodes[i];
-                }
-            }
-            return null;
         }
 
         /// <summary>
@@ -198,15 +161,16 @@ namespace Artimech
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
 
-            theStateMachineEditor.DrawToolBarBool = false;
             m_WindowsSelectedNode = theStateMachineEditor.SelectedVisualStateNode;
+            theStateMachineEditor.FromConditionalStateNode = m_WindowsSelectedNode;
             m_MainWindow.ArrowTemp = null;
             DrawMenuBool = false;
-            m_Once = false;
             m_RightClickBool = false;
             m_LeftClickBool = false;
-            m_LeftClickBlock = 0;
+
             base.Enter();
+
+            theStateMachineEditor.DrawToolBarBool = false;
         }
 
         /// <summary>

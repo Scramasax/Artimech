@@ -31,12 +31,12 @@ using System.Collections.Generic;
 
 <stateMetaData>
   <State>
-    <alias>Add Conditional Post</alias>
+    <alias>Check Conditional Selected</alias>
     <comment></comment>
-    <posX>1094</posX>
-    <posY>240</posY>
-    <sizeX>175</sizeX>
-    <sizeY>46</sizeY>
+    <posX>1071</posX>
+    <posY>228</posY>
+    <sizeX>209</sizeX>
+    <sizeY>42</sizeY>
   </State>
 </stateMetaData>
 
@@ -45,7 +45,7 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artAddConditionalPostState : editorStateBase
+    public class artAddConditionalPostState : artDisplayWindowsBaseState
     {
 
         /// <summary>
@@ -55,6 +55,7 @@ namespace Artimech
         public artAddConditionalPostState(Object unityObj) : base (unityObj)
         {
             //<ArtiMechConditions>
+            m_ConditionalList.Add(new artAddConditionalPostState_To_artDisplayStates("artDisplayStates"));
             m_ConditionalList.Add(new artAddConditionalPostState_To_artAddConditionalCreateState("artAddConditionalCreateState"));
         }
 
@@ -87,7 +88,22 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+
             base.Enter();
+
+            theStateMachineEditor.DrawToolBarBool = false;
+
+            theStateMachineEditor.SelectedVisualStateNode = null;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+            {
+                bool windowFoundBool = theStateMachineEditor.VisualStateNodes[i].IsWithinUsingPanZoomTransform(theStateMachineEditor.MouseClickDownPosStart, theStateMachineEditor.TransMtx);
+                if(windowFoundBool)
+                {
+                    theStateMachineEditor.ToConditionalStateNode = theStateMachineEditor.VisualStateNodes[i];
+                    return;
+                }
+            } 
         }
 
         /// <summary>

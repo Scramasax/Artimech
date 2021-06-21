@@ -19,6 +19,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 #region XML_DATA
 
@@ -33,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Create Conditional</alias>
     <comment></comment>
-    <posX>866</posX>
-    <posY>278</posY>
+    <posX>856</posX>
+    <posY>287</posY>
     <sizeX>169</sizeX>
     <sizeY>43</sizeY>
   </State>
@@ -45,9 +46,9 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
-    public class artAddConditionalCreateState : editorStateBase
+    public class artAddConditionalCreateState : artDisplayWindowsBaseState
     {
-
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -80,6 +81,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -88,7 +91,14 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Creating Conditional .....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+            m_MessageWindow.GuiDepth = -1000;
             base.Enter();
+
+            theStateMachineEditor.DrawToolBarBool = false;
+
+            CreateConditionalAndAddToState(theStateMachineEditor.FromConditionalStateNode.ClassName, theStateMachineEditor.ToConditionalStateNode.ClassName);
         }
 
         /// <summary>
@@ -98,5 +108,139 @@ namespace Artimech
         {
             base.Exit();
         }
+
+        bool AddConditionCodeToStateCode(string fileAndPath, string conditionName, string toStateName)
+        {
+            string strBuff = "";
+            strBuff = utlDataAndFile.LoadTextFromFile(fileAndPath);
+
+            if (strBuff == null || strBuff.Length == 0)
+                return false;
+
+            string modStr = "";
+            //AddState(new stateStartTemplate(this.gameObject), "stateStartTemplate", "new state change system");
+            string insertString = "\n            m_ConditionalList.Add(new "
+                                + conditionName
+                                + "("
+                                + "\""
+                                + toStateName
+                                + "\""
+                                + "));";
+
+            //Debug.Log("changeName = " + changeName);
+
+            modStr = utlDataAndFile.InsertInFrontOf(strBuff,
+                                                    "<ArtiMechConditions>",
+                                                    insertString);
+
+            utlDataAndFile.SaveTextToFile(fileAndPath, modStr);
+
+
+
+            return true;
+        }
+
+        artVisualStateNode FindStateWindowsNodeByName(string name)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            artVisualStateNode node = null;
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+            {
+                if (theStateMachineEditor.VisualStateNodes[i].ClassName == name)
+                    return theStateMachineEditor.VisualStateNodes[i];
+            }
+            return node;
+        }
+
+        void CreateConditionalAndAddToState(string fromState, string toState)
+        {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+
+            artConfigurationData.CopyConditionalInfo copyInfo = theStateMachineEditor.ConfigData.ConditionalCopyInfo[theStateMachineEditor.ConditionalSelectionIndex];
+
+            string replaceName = fromState + "_To_" + toState;
+            string templateConditonalPath = copyInfo.m_ConditionalSript.m_PathAndName;
+
+            string text = utlDataAndFile.LoadTextFromFile(templateConditonalPath);
+            string modText = text.Replace(copyInfo.m_ReplaceClassString, replaceName);
+
+            string pathAndFile = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            string outDir = Path.GetDirectoryName(pathAndFile);
+
+            string pathAndFileName = outDir
+                    + "/"
+                    + replaceName
+                    + ".cs";
+
+            StreamWriter writeStream = new StreamWriter(pathAndFileName);
+            writeStream.Write(modText);
+            writeStream.Close();
+
+            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
+
+            AddConditionCodeToStateCode(fileAndPathOfState, replaceName, toState);
+
+            artVisualStateNode node = FindStateWindowsNodeByName(fromState);
+            if (node != null)
+            {
+                for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+                {
+                    if (theStateMachineEditor.VisualStateNodes[i].ClassName == toState)
+                    {
+                        node.ConditionLineList.Add(theStateMachineEditor.VisualStateNodes[i]);
+                        return;
+                    }
+                }
+
+            }
+
+        }
+
+        /*
+        public static void CreateConditionalAndAddToState(string fromState, string toState)
+        {
+
+
+            string replaceName = fromState + "_To_" + toState;
+
+            string text = utlDataAndFile.LoadTextFromFile(AddConditionPath);
+
+            // int a = 12;
+
+            string modText = text.Replace(AddConditionReplace, replaceName);
+
+            string pathAndFile = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            string outDir = Path.GetDirectoryName(pathAndFile);
+
+            string pathAndFileName = outDir
+                    + "/"
+                    + replaceName
+                    + ".cs";
+
+            StreamWriter writeStream = new StreamWriter(pathAndFileName);
+            writeStream.Write(modText);
+            writeStream.Close();
+
+            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
+
+            AddConditionCodeToStateCode(fileAndPathOfState, replaceName, toState);
+
+            stateWindowsNode node = FindStateWindowsNodeByName(fromState);
+            if (node != null)
+            {
+                for (int i = 0; i < m_StateList.Count; i++)
+                {
+                    if (m_StateList[i].ClassName == toState)
+                    {
+                        node.ConditionLineList.Add(m_StateList[i]);
+                        return;
+                    }
+                }
+
+            }
+
+            //AssetDatabase.Refresh();
+        }
+*/
     }
 }

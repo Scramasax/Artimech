@@ -34,10 +34,10 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>512</posX>
-    <posY>239</posY>
-    <sizeX>215</sizeX>
-    <sizeY>129</sizeY>
+    <posX>521</posX>
+    <posY>199</posY>
+    <sizeX>220</sizeX>
+    <sizeY>142</sizeY>
   </State>
 </stateMetaData>
 
@@ -150,6 +150,8 @@ namespace Artimech
             theStateMachineEditor.DrawToolBarBool = true;
             theStateMachineEditor.CreateStateBool = false;
             theStateMachineEditor.CreateConditionalBool = false;
+            theStateMachineEditor.FromConditionalStateNode = null;
+            theStateMachineEditor.ToConditionalStateNode = null;
 
             theStateMachineEditor.Repaint();
             for(int i=0;i<theStateMachineEditor.VisualStateNodes.Count;i++)

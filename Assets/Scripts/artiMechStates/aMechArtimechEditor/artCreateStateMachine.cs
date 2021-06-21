@@ -53,6 +53,7 @@ namespace Artimech
     {
         string m_StateMachineName = "";
         artProcessingWindow m_MessageWindow;
+
         /// <summary>
         /// State constructor.
         /// </summary>
