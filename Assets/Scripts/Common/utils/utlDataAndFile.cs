@@ -438,6 +438,16 @@ public static class utlDataAndFile
         return listOfStrings.Distinct().ToList();
     }
 
+    public static string[] GetFilesBySearchPattern(string path, string searchPattern, SearchOption searchOption)
+    {
+        string[] searchPatterns = searchPattern.Split('|');
+        List<string> files = new List<string>();
+        foreach (string sp in searchPatterns)
+            files.AddRange(System.IO.Directory.GetFiles(path, sp, searchOption));
+        files.Sort();
+        return files.ToArray();
+    }
+
     public static T[] GetAllInstances<T>() where T : ScriptableObject
     {
         string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name); 

@@ -264,8 +264,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteConditionState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateD.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateE.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artAddConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalPostState.cs" />
@@ -283,13 +281,10 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState_To_artDeleteConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState_To_artDisplayStates.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateB_To_artiMechTestMachineStateE.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateE_To_artiMechTestMachineStateD.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
      <None Include="Assets\SaveData.xml" />
-     <None Include="Assets\StateMachine.txt" />
      <None Include="Assets\Resources\CreatedState.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\2020.2.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
