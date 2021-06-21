@@ -19,6 +19,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 
 #region XML_DATA
 
@@ -94,6 +96,8 @@ namespace Artimech
             base.Enter();
 
             theStateMachineEditor.DrawToolBarBool = false;
+
+            DeleteAndRemoveStateAndConditionals(theStateMachineEditor.DeleteStateClass);
         }
 
         /// <summary>
@@ -108,6 +112,21 @@ namespace Artimech
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             theStateMachineEditor.SaveMetaDataInStates();
+            for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
+            {
+                if(theStateMachineEditor.VisualStateNodes[i].ClassName==className)
+                {
+                    theStateMachineEditor.VisualStateNodes.Remove(theStateMachineEditor.VisualStateNodes[i]);
+                    break;
+                }
+            }
+
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            File.Delete(pathAndFileForClassName);
+
+            utlDataAndFile.RemoveLinesBySubStringInFiles(className, Application.dataPath);
+
+            AssetDatabase.Refresh();
 
         }
     }
