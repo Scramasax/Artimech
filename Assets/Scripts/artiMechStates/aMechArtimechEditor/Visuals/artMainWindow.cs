@@ -211,7 +211,7 @@ namespace Artimech
             //Debug.Log("Add State");
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             theStateMachineEditor.CreateStateBool = true;
-            theStateMachineEditor.CreateStateCopyDir = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_MenuString;
+            theStateMachineEditor.CreateStateCopyDir = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_StateScript.m_PathAndName;
             theStateMachineEditor.StateNameClassReplace = theStateMachineEditor.ConfigData.StateCopyInfo[(int)obj].m_ReplaceClassString;
         }
 

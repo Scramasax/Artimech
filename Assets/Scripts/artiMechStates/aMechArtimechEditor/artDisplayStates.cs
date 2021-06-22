@@ -52,31 +52,8 @@ namespace Artimech
         bool m_RenameBool = false;
 
 
-        public bool SaveDataBool
-        {
-            get
-            {
-                return m_SaveDataBool;
-            }
-
-            set
-            {
-                m_SaveDataBool = value;
-            }
-        }
-
-        public bool RenameBool
-        {
-            get
-            {
-                return m_RenameBool;
-            }
-
-            set
-            {
-                m_RenameBool = value;
-            }
-        }
+        public bool SaveDataBool { get { return m_SaveDataBool; }  set { m_SaveDataBool = value; } }
+        public bool RenameBool { get { return m_RenameBool; }  set { m_RenameBool = value; } }
 
         // artMainWindow m_MainWindow;
         /// <summary>
@@ -170,15 +147,6 @@ namespace Artimech
         public override void Exit()
         {
             base.Exit();
-        }
-
-        public void RefactorClassCallback(object obj)
-        {
-        }
-
-        public void AddStateClassCallback(object obj)
-        {
-
         }
     }
 }

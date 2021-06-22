@@ -23,10 +23,10 @@ MonoBehaviour:
     m_StateScript:
       m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs
     m_ReplaceClassString: stateEmptyExample
-  - m_MenuString: Game State 2
+  - m_MenuString: Game State Test
     m_StateScript:
-      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs
-    m_ReplaceClassString: stateEmptyExample
+      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExampleTest.cs
+    m_ReplaceClassString: stateEmptyExampleTest
   m_ConditionalCopyInfo:
   - m_MenuString: Empty Conditional
     m_ConditionalSript:

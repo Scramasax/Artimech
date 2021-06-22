@@ -69,17 +69,6 @@ namespace Artimech
         /// </summary>
         public override void Update()
         {
-      /*      ArtimechEditor theScript = (ArtimechEditor)GetScriptableObject;
-            // if (System.Type.GetType(theScript.ConfigData.PrefixName + "." + m_StateMachineName) != null)
-            if (System.Type.GetType(theScript.ConfigData.NamespaceName + "." + m_StateMachineName) != null)
-            {
-                Debug.Log("foundtype");
-                if (stateEditorUtils.SelectedObject is GameObject)
-                {
-                    GameObject gameObj = (GameObject)stateEditorUtils.SelectedObject;
-                    gameObj.AddComponent(System.Type.GetType(theScript.ConfigData.NamespaceName + "." + m_StateMachineName));
-                }
-            } */
             base.Update();
         }
 

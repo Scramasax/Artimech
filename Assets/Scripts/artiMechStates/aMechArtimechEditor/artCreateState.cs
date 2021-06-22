@@ -101,7 +101,7 @@ namespace Artimech
 
             string stateName = "";
             stateName = ReadReplaceAndWrite(
-                                    theScript.ConfigData.MasterScriptStateFile.m_PathAndName,
+                                    theScript.CreateStateCopyDir,
                                     /*theScript.CurrentStateMachineName +*/ theScript.NewStateName,
                                     theScript.ConfigData.CopyToDirectory.m_PathName,
                                     directoryName + "/" + /*theScript.ConfigData.PrefixName + theScript.MachineScript.GetType().Name +*/ theScript.NewStateName + ".cs",
