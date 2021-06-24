@@ -36,6 +36,8 @@ MonoBehaviour:
     m_ConditionalSript:
       m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs
     m_ReplaceClassString: stateConditionalTemplate
+  m_RefactoringAndConstructionPaths:
+  - m_PathName: D:/Work/Artimech/Assets/Scripts
   m_NamespaceName: Artimech
   m_PrefixName: artiMech
   m_PostfixName: State

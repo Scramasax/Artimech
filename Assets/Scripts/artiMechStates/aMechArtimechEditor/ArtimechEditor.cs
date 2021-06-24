@@ -175,6 +175,8 @@ namespace Artimech
                 toolsMenu.AddSeparator("");
                 AddConfigureMenuEntries(toolsMenu);
                 toolsMenu.AddSeparator("");
+                toolsMenu.AddItem(new GUIContent("Refresh"), false, OnRefreshAssetDatabase);
+                toolsMenu.AddSeparator("");
                 toolsMenu.AddItem(new GUIContent("About"), false, OnPrintAboutToConsole);
                 toolsMenu.AddItem(new GUIContent("Wiki"), false, OnWiki);
 
@@ -322,15 +324,20 @@ namespace Artimech
             LoadingInfo.SaveToFile(fileName);
         }
 
+        void OnRefreshAssetDatabase()
+        {
+            AssetDatabase.Refresh();
+        }
+
         void OnPrintAboutToConsole()
         {
             Debug.Log(
-            "<b><color=navy>Artimech (c) 2017-2019 by George A Lancaster \n</color></b>"
+            "<b><color=navy>Artimech (c) 2017-2021 by George A Lancaster \n</color></b>"
             + "<i><color=grey>Click to view details</color></i>"
             + "\n"
             + "<color=blue>An Opensource Visual State Editor\n</color><b>"
             + "</b>"
-            + "<color=teal>developed in Unity 5.x-2019</color>"
+            + "<color=teal>developed in Unity 5.x-2021</color>"
             + "<color=black>\nEmail: </color>"
             + "<color=green>geolan1024@gmail.com</color>"
             + " .\n\n");

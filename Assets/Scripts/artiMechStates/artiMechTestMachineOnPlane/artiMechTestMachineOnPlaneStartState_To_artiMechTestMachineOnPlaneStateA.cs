@@ -15,7 +15,7 @@
 /// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
 /// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
 /// OTHER DEALINGS IN THE SOFTWARE.
-#if UNITY_EDITOR
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +27,10 @@ using UnityEngine;
 /// </summary>
 namespace Artimech
 {
-    public class artDisplayStates_To_artDeleteConditionalStartState : stateConditionalBase
+    public class artiMechTestMachineOnPlaneStartState_To_artiMechTestMachineOnPlaneStateA : stateConditionalBase
     {
         
-        public artDisplayStates_To_artDeleteConditionalStartState(string changeStateName) : base (changeStateName)
+        public artiMechTestMachineOnPlaneStartState_To_artiMechTestMachineOnPlaneStateA(string changeStateName) : base (changeStateName)
         {
             
         }
@@ -52,11 +52,17 @@ namespace Artimech
         /// <returns>true or false depending if transition conditions are met.</returns>
         public override string UpdateConditionalTest(baseState state)
         {
-            ArtimechEditor theStateMachineEditor = (ArtimechEditor)state.m_UnityObject;
-            if (theStateMachineEditor.DeleteConditionalBool)
-                return m_ChangeStateName;
-            return null;
+            string strOut = null;
+
+#if ARTIMECH_THIS_SHOULD_NEVER_BE_TRUE_BUT_IS_AN_EXAMPLE_OF_A_CONDITION_BEING_TRUE
+            This is an example of setting a contition to true if the gameobject
+            falls below a certain height ingame.
+            if (state.m_GameObject.transform.position.y <= 1000)
+                strOut = m_ChangeStateName;
+#endif
+
+
+            return strOut;
         }
     }
 }
-#endif
