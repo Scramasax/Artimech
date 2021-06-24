@@ -34,8 +34,8 @@ using System.Collections.Generic;
   <State>
     <alias>Display States</alias>
     <comment></comment>
-    <posX>521</posX>
-    <posY>199</posY>
+    <posX>524</posX>
+    <posY>197</posY>
     <sizeX>220</sizeX>
     <sizeY>142</sizeY>
   </State>

@@ -21,7 +21,7 @@ MonoBehaviour:
   m_StateCopyInfo:
   - m_MenuString: Game State
     m_StateScript:
-      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateConditionalTemplate.cs
+      m_PathAndName: D:/Work/Artimech/Assets/Scripts/Common/statemachine/state_examples/stateEmptyExample.cs
     m_ReplaceClassString: stateEmptyExample
   - m_MenuString: Game State Test
     m_StateScript:
@@ -55,3 +55,7 @@ MonoBehaviour:
   m_ArrowLineColor: {r: 0.03284085, g: 0.09285648, b: 0.254717, a: 1}
   m_ArrowFillColor: {r: 0.9852284, g: 1, b: 0.254717, a: 1}
   m_ArrowLineWidth: 2
+  m_DebugBoxSize: 5
+  m_DebugBoxLineSize: 5
+  m_DebugBoxColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  m_DebugBoxLineColor: {r: 0, g: 1, b: 0, a: 1}

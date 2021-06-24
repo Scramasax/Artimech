@@ -45,6 +45,7 @@ using System.Collections.Generic;
 #endregion
 namespace Artimech
 {
+    // to show this was copied
     public class stateEmptyExampleTest : stateGameBase
     {
 

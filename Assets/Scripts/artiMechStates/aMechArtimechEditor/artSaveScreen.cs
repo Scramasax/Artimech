@@ -47,7 +47,7 @@ namespace Artimech
 {
     public class artSaveScreen : artDisplayWindowsBaseState
     {
-        artMessageWindow m_MessageWindow;
+        //artMessageWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -79,7 +79,6 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
-            m_MessageWindow.Update();
             base.UpdateEditorGUI();
         }
 
@@ -88,7 +87,7 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
-            m_MessageWindow = new artMessageWindow("Artimech System Status", "Saving Meta Data....", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
+            //m_MessageWindow = new artMessageWindow("Artimech System Status", "Saving Meta Data....", 14, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 4);
             base.Enter();
         }
 

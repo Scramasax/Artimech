@@ -143,6 +143,25 @@ namespace Artimech
         [Range(0.5f, 10)]
         float m_ArrowLineWidth = 2.0f;
 
+        [Space(10)]
+        [SerializeField]
+        [Tooltip("DebugBox Size.")]
+        [Range(0.0f, 10)]
+
+        float m_DebugBoxSize = 5.0f;
+        [SerializeField]
+        [Tooltip("DebugBox Outline Size.")]
+        [Range(0.0f, 10)]
+        float m_DebugBoxLineSize = 5.0f;
+
+        [SerializeField]
+        [Tooltip("DebugBox Color.")]
+        Color m_DebugBoxColor = Color.yellow;
+
+        [SerializeField]
+        [Tooltip("DebugBox Outline Line Color.")]
+        Color m_DebugBoxLineColor = Color.green;
+
         public filePathAndName MasterScripStateMachineFile { get => m_MasterScripStateMachineFile; }
         public filePathAndName MasterScriptStateFile { get => m_MasterScriptStateFile; }
         public folderPathName CopyToDirectory { get => m_CopyToDirectory; }
@@ -167,6 +186,10 @@ namespace Artimech
         public string GenericStateName { get => m_GenericStateName; }
         public CopyStateInfo[] StateCopyInfo { get => m_StateCopyInfo; }
         public CopyConditionalInfo[] ConditionalCopyInfo { get => m_ConditionalCopyInfo; }
+        public float DebugBoxSize { get => m_DebugBoxSize; set => m_DebugBoxSize = value; }
+        public float DebugBoxLineSize { get => m_DebugBoxLineSize; set => m_DebugBoxLineSize = value; }
+        public Color DebugBoxColor { get => m_DebugBoxColor; set => m_DebugBoxColor = value; }
+        public Color DebugBoxLineColor { get => m_DebugBoxLineColor; set => m_DebugBoxLineColor = value; }
     }
 }
 

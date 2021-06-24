@@ -96,15 +96,14 @@ namespace Artimech
 
             string directoryName = theScript.ConfigData.CopyToDirectory.m_PathName +
                         "/" +
-                        //                        theScript.ConfigData.PrefixName +
                         theScript.MachineScript.GetType().Name;
 
             string stateName = "";
             stateName = ReadReplaceAndWrite(
                                     theScript.CreateStateCopyDir,
-                                    /*theScript.CurrentStateMachineName +*/ theScript.NewStateName,
+                                    theScript.NewStateName,
                                     theScript.ConfigData.CopyToDirectory.m_PathName,
-                                    directoryName + "/" + /*theScript.ConfigData.PrefixName + theScript.MachineScript.GetType().Name +*/ theScript.NewStateName + ".cs",
+                                    directoryName + "/" + theScript.NewStateName + ".cs",
                                     theScript.StateNameClassReplace,
                                     "");
 

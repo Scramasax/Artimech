@@ -85,152 +85,31 @@ namespace Artimech
         public bool TitleHover { get { return m_TitleHover; } }
 
         /// <summary>  The entire window rectangle. </summary>
-        public Rect WinRect
-        {
-            get
-            {
-                return m_WinRect;
-            }
-
-            set
-            {
-                m_WinRect = value;
-            }
-        }
+        public Rect WinRect { get { return m_WinRect; } set { m_WinRect = value; } }
 
         /// <summary> Returns the name of the refrencing class the state. </summary>
-        public string ClassName
-        {
-            get
-            {
-                return m_ClassName;
-            }
-
-            set
-            {
-                m_ClassName = value;
-            }
-        }
+        public string ClassName { get { return m_ClassName; } set { m_ClassName = value; } }
 
         /// <summary> Returns the path of the class. </summary>
-        public string PathAndFileOfClass
-        {
-            get
-            {
-                return m_PathAndFileOfClass;
-            }
-
-            set
-            {
-                m_PathAndFileOfClass = value;
-            }
-        }
+        public string PathAndFileOfClass { get { return m_PathAndFileOfClass; } set { m_PathAndFileOfClass = value; } }
 
         /// <summary> Returns a list of conditions. </summary>
-        public IList<artVisualStateNode> ConditionLineList
-        {
-            get
-            {
-                return m_ConditionLineList;
-            }
-
-            set
-            {
-                m_ConditionLineList = value;
-            }
-        }
+        public IList<artVisualStateNode> ConditionLineList { get { return m_ConditionLineList; } set { m_ConditionLineList = value; } }
 
         /// <summary> Returns the name of the window in the title. </summary>
-        public string WindowStateAlias
-        {
-            get
-            {
-                return m_WindowStateAlias;
-            }
+        public string WindowStateAlias { get { return m_WindowStateAlias; } set { m_WindowStateAlias = value; } }
 
-            set
-            {
-                m_WindowStateAlias = value;
-            }
-        }
+        public Vector3 LinePos { get { return m_LinePos; } set { m_LinePos = value; } }
 
-        public Vector3 LinePos
-        {
-            get
-            {
-                return m_LinePos;
-            }
+        public bool MoveBool { get { return m_MoveBool; } set { m_MoveBool = value; } }
 
-            set
-            {
-                m_LinePos = value;
-            }
-        }
+        public bool LeftMouseButton { get { return m_LeftMouseButton; } set { m_LeftMouseButton = value; } }
 
-        public bool MoveBool
-        {
-            get
-            {
-                return m_MoveBool;
-            }
+        public bool Selected { get { return m_Selected; } set { m_Selected = value; } }
 
-            set
-            {
-                m_MoveBool = value;
-            }
-        }
+        public bool Resize { get { return m_Resize; } set { m_Resize = value; } }
 
-        public bool LeftMouseButton
-        {
-            get
-            {
-                return m_LeftMouseButton;
-            }
-
-            set
-            {
-                m_LeftMouseButton = value;
-            }
-        }
-
-        public bool Selected
-        {
-            get
-            {
-                return m_Selected;
-            }
-
-            set
-            {
-                m_Selected = value;
-            }
-        }
-
-        public bool Resize
-        {
-            get
-            {
-                return m_Resize;
-            }
-
-            set
-            {
-                m_Resize = value;
-            }
-        }
-
-        public bool RenameBool
-        {
-            get
-            {
-                return m_RenameBool;
-            }
-
-            set
-            {
-                m_RenameBool = value;
-            }
-        }
+        public bool RenameBool { get { return m_RenameBool; } set { m_RenameBool = value; } }
 
         public bool RefactorBool
         {
@@ -505,7 +384,42 @@ namespace Artimech
                 //artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, 1, Color.black, 1, shadowCol, Color.white);
                 artGUIUtils.DrawArrowTranformed(mtx, startPos, endPos, WinRect, ConditionLineList[i].WinRect, configData.ArrowLineWidth, configData.ArrowLineColor, configData.ArrowFillColor);
             }
+            DrawCurrentRunningState(configData);
             DrawNodeWindow(this.m_Id, configData);
+            //DrawCurrentRunningState();
+        }
+
+        void DrawCurrentRunningState(artConfigurationData configData)
+        {
+            if (!Application.isPlaying)
+                return;
+
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
+
+            GameObject gameObj = null;
+            iMachineBase stateMachine;
+            if (theStateMachineEditor.SelectedObj is GameObject)
+            {
+                gameObj = (GameObject)theStateMachineEditor.SelectedObj;
+                stateMachine = gameObj.GetComponent<iMachineBase>();
+            }
+            else
+            {
+                stateMachine = (iMachineBase)theStateMachineEditor.SelectedObj;
+            }
+            string currentClassName = stateMachine.GetCurrentState().GetType().ToString();
+            currentClassName = utlDataAndFile.GetAfter(currentClassName, ".");
+
+            if (currentClassName == this.ClassName)
+            {
+                Rect drawRect = new Rect(WinRect.x - configData.DebugBoxSize,
+                                    WinRect.y - configData.DebugBoxSize,
+                                    WinRect.width + (configData.DebugBoxSize * 2),
+                                    WinRect.height + (configData.DebugBoxSize * 2));
+                artGUIUtils.DrawRect(drawRect, configData.DebugBoxLineSize, configData.DebugBoxLineColor, configData.DebugBoxColor);
+            }
+            //theStateMachineEditor.EditorRepaint();
+
         }
 
         public bool CheckWinNodeToSeeIfItIsLinked(artVisualStateNode winNode)

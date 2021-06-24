@@ -33,8 +33,8 @@ using System.Collections.Generic;
   <State>
     <alias>Rename Alias</alias>
     <comment></comment>
-    <posX>832</posX>
-    <posY>-220</posY>
+    <posX>885</posX>
+    <posY>-177</posY>
     <sizeX>113</sizeX>
     <sizeY>39</sizeY>
   </State>

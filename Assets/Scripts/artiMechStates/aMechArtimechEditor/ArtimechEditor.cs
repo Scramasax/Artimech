@@ -52,6 +52,7 @@ namespace Artimech
         string m_DeleteConditionalClass = "";
         string m_DeleteStateClass = "";
         bool m_DeleteStateBool = false;
+        baseState m_WasState = null;
 
         #endregion
         #region Accessors
@@ -135,11 +136,16 @@ namespace Artimech
         {
             base.Update();
             WasSelectedObj = SelectedObj;
-            if(RepaintOnUpdate)
+            if (RepaintOnUpdate)
             {
                 RepaintOnUpdate = false;
                 Repaint();
             }
+
+            if (m_MachineScript != null && m_WasState != m_MachineScript.GetCurrentState())
+                Repaint();
+            if (m_MachineScript != null)
+                m_WasState = m_MachineScript.GetCurrentState();
         }
 
         new void LateUpdate()
@@ -183,7 +189,7 @@ namespace Artimech
         void AddConfigureMenuEntries(GenericMenu toolsMenu)
         {
             //EditorGUI.BeginDisabledGroup(SelectedObj == null ? true : false);
-          //  EditorGUI.BeginDisabledGroup(true);
+            //  EditorGUI.BeginDisabledGroup(true);
             artConfigurationData[] data = utlDataAndFile.GetAllInstances<artConfigurationData>();
             for (int i = 0; i < data.Length; i++)
             {
@@ -193,7 +199,7 @@ namespace Artimech
                 else
                     toolsMenu.AddItem(new GUIContent("Configure/" + data[i].name, "Select a configuartion file to use."), data[i] == m_ConfigData ? true : false, new GenericMenu.MenuFunction2(this.OnConfigure), data[i]);
             }
-           // EditorGUI.EndDisabledGroup();
+            // EditorGUI.EndDisabledGroup();
         }
 
         public void SetConfigurationDataViaLoadInfo()
@@ -274,13 +280,13 @@ namespace Artimech
             m_CurrentState = AddState(new artStart(this), "artStart");
 
             //<ArtiMechStates>
-            AddState(new artDeleteConditionalState(this),"artDeleteConditionalState");
-            AddState(new artDeleteConditionalStartState(this),"artDeleteConditionalStartState");
-            AddState(new artAddConditionalCreateState(this),"artAddConditionalCreateState");
-            AddState(new artAddConditionalPostState(this),"artAddConditionalPostState");
-            AddState(new artAddConditionalState(this),"artAddConditionalState");
-            AddState(new artAddToObj(this),"artAddToObj");
-            AddState(new artDirectoryAlreadyExistsError(this),"artDirectoryAlreadyExistsError");
+            AddState(new artDeleteConditionalState(this), "artDeleteConditionalState");
+            AddState(new artDeleteConditionalStartState(this), "artDeleteConditionalStartState");
+            AddState(new artAddConditionalCreateState(this), "artAddConditionalCreateState");
+            AddState(new artAddConditionalPostState(this), "artAddConditionalPostState");
+            AddState(new artAddConditionalState(this), "artAddConditionalState");
+            AddState(new artAddToObj(this), "artAddToObj");
+            AddState(new artDirectoryAlreadyExistsError(this), "artDirectoryAlreadyExistsError");
             AddState(new artSetSingleMachine(this), "artSetSingleMachine");
             AddState(new artRefactorStateClass(this), "artRefactorStateClass");
             AddState(new artRefactorEnterData(this), "artRefactorEnterData");

@@ -77,10 +77,8 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artSetSingleMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Move.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artAddConditionalState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachine.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Save_To_Display.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editor_Load_To_Wait.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState_To_artiMechTestMachineStateA.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToWaitConditional.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artMoveMouseDown_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artMachineChooseWindow.cs" />
@@ -110,7 +108,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalPostState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artAskToCreate.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMatrix34.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\iMachineBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorDeleteState.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\Visuals\artRenameWindow.cs" />
@@ -132,10 +129,10 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateRefactorWindow.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorWaitToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAskToCreate.cs" />
+    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExampleTest.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorRestoreToLoadConditional.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlMath.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artAddConditionalState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateA.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechCube\cubeUpThrust_To_cubeNoThrust.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCreateStateDataEnter.cs" />
     <Compile Include="Assets\Scripts\Common\utils\utlSkeleton.cs" />
@@ -159,7 +156,6 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorAddPostCondtionalToDisplay.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRename_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDisplayStates_To_artDeleteConditionalStartState.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineSuperTest.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\editorStateBase.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editorDisplayToMoveConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_Rename.cs" />
@@ -201,7 +197,6 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artChooseStateMachineName_To_artCreateStateMachine.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\BaseStates\artBaseCreateState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEditorExample.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStateA.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorStartToRestoreConditional.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artCheckIfIMachine_To_artNoObject.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorBase.cs" />
@@ -217,10 +212,7 @@
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\display_To_Conditionals\editor_Display_To_DeleteCondition.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artRefactorEnterData_To_artDisplayStates.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateWindowsNode.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachineStartState.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_Resize_To_Display.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechAnotherMachine\artiMechAnotherMachine.cs" />
-    <Compile Include="Assets\Scripts\artiMechStates\artiMechTestMachine\artiMechTestMachineStateE.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\editorCreateToDistplayConditional.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\editorStates\editorConditionals\state_To_Display_Conditionals\editor_CopyStateMachine_To_Display.cs" />
     <Compile Include="Assets\Scripts\Common\statemachine\stateEditor\stateEditorDrawUtils.cs" />
@@ -281,11 +273,13 @@
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artSetSingleMachine_To_artLoadStates.cs" />
     <Compile Include="Assets\Scripts\artiMechStates\aMechArtimechEditor\artDeleteConditionalStartState.cs" />
     <Compile Include="Assets\Scripts\Common\utils\ConditionalHideAttribute.cs" />
-    <Compile Include="Assets\Scripts\Common\statemachine\state_examples\stateEmptyExampleTest.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherTestMachine\artiMechYetAnotherTestMachineStartState.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherTestMachine\artiMechYetAnotherTestMachine.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherTestMachine\artiMechYetAnotherTestMachineStateA.cs" />
+    <Compile Include="Assets\Scripts\artiMechStates\artiMechYetAnotherTestMachine\artiMechYetAnotherTestMachineStartState_To_artiMechYetAnotherTestMachineStateA.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\Common\statemachine\stateEditor\artimech-config.xml" />
-     <None Include="Assets\StateMachine.txt" />
      <None Include="Assets\SaveData.xml" />
      <None Include="Assets\Resources\CreatedState.txt" />
     <Reference Include="UnityEngine">

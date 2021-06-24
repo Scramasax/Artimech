@@ -81,7 +81,9 @@ namespace Artimech
 
             baseState state = m_StateChanger.UpdateChangeStates(StateList, m_CurrentState, this, false);
             if (state != null)
+            {
                 m_CurrentState = state;
+            }
 
             m_CurrentState.Update();
             //m_CurrentStateName = m_CurrentState.m_StateName;
