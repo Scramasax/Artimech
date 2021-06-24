@@ -140,7 +140,8 @@ namespace Artimech
             /// <summary>Loads visualstates via meta data and code.</summary>
             if (stateMachineScript != null)
             {
-                string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassName(theStateMachineEditor.MachineScript.GetType().Name, false);
+                //string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassName(theStateMachineEditor.MachineScript.GetType().Name, false);
+                string machineSourceCodeText = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(theStateMachineEditor.MachineScript.GetType().Name, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
                 //Debug.Log("<color=navy>" + machineSourceCodeText + "</color>");
                 CreateVisualStateNodes(machineSourceCodeText);
                 if (!Error)

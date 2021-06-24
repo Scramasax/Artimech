@@ -60,6 +60,10 @@ namespace Artimech
         [Tooltip("Menu entries for creating a conditional.")]
         CopyConditionalInfo[] m_ConditionalCopyInfo = null;
 
+        [SerializeField]
+        [Tooltip("Search paths for refactoring and contruction.")]
+        folderPathName[] m_RefactoringAndConstructionPaths;
+
         [Space(10)]
         [Header("Naming")]
         [SerializeField]
@@ -190,6 +194,17 @@ namespace Artimech
         public float DebugBoxLineSize { get => m_DebugBoxLineSize; set => m_DebugBoxLineSize = value; }
         public Color DebugBoxColor { get => m_DebugBoxColor; set => m_DebugBoxColor = value; }
         public Color DebugBoxLineColor { get => m_DebugBoxLineColor; set => m_DebugBoxLineColor = value; }
+        public folderPathName[] RefactoringAndConstructionPaths { get => m_RefactoringAndConstructionPaths; set => m_RefactoringAndConstructionPaths = value; }
+
+        public string[] GetRefactorAndConstructionPaths()
+        {
+            string[] pathsOut = new string[RefactoringAndConstructionPaths.Length];
+            for (int i = 0; i < RefactoringAndConstructionPaths.Length; i++)
+            {
+                pathsOut[i] = RefactoringAndConstructionPaths[i].m_PathName;
+            }
+            return pathsOut;
+        }
     }
 }
 

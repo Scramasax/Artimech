@@ -106,7 +106,8 @@ namespace Artimech
 
             string machineName = utlDataAndFile.GetAfter(theStateMachineEditor.MachineScript.GetType().ToString(), ".");
             string className = theStateMachineEditor.MachineScript.GetType().ToString();
-            string fileAndPathForClass = utlDataAndFile.FindPathAndFileByClassName(machineName);
+            //string fileAndPathForClass = utlDataAndFile.FindPathAndFileByClassName(machineName);
+            string fileAndPathForClass = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(machineName,theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             string fileText = utlDataAndFile.LoadTextFromFile(fileAndPathForClass);
             int codeIndex = utlDataAndFile.CountSubstring(fileText, "AddState");
 

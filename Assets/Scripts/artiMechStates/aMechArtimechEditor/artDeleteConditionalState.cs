@@ -112,7 +112,8 @@ namespace Artimech
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             theStateMachineEditor.SaveMetaDataInStates();
 
-            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            //string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(className,theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             File.Delete(pathAndFileForClassName);
 
             utlDataAndFile.RemoveLinesBySubStringInFiles(className, Application.dataPath);

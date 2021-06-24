@@ -144,7 +144,7 @@ namespace Artimech
 
             for (int i = 0; i < m_StateList.Count; i++)
             {
-                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(m_StateList[i].ClassName, false);
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(m_StateList[i].ClassName, null, false);
                 string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
                 PopulateLinkedConditionStates(m_StateList[i], buffer);
             }
@@ -164,7 +164,7 @@ namespace Artimech
             //            TextAsset text = Resources.Load(typeName+".cs") as TextAsset;
             string strBuff = "";
             string fileName = "";
-            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName, false);
+            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName, null, false);
             strBuff = utlDataAndFile.LoadTextFromFile(fileName);
             string[] words = strBuff.Split(new char[] { '<', '>' });
 
@@ -622,7 +622,7 @@ namespace Artimech
             stateEditorUtils.StateMachineName = stateMachName;
             //            m_AddStateMachine = true;
 
-            utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
+            utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, null, false);
         }
 
         /// <summary>
@@ -784,7 +784,7 @@ namespace Artimech
 
 
             //Delete the state inside the statemachine.
-            string pathAndFileForStateMachine = utlDataAndFile.FindPathAndFileByClassName(StateMachineName, false);
+            string pathAndFileForStateMachine = utlDataAndFile.FindPathAndFileByClassName(StateMachineName, null, false);
 
             int lineIndex = 0;
             using (StreamReader reader = new StreamReader(pathAndFileForStateMachine))

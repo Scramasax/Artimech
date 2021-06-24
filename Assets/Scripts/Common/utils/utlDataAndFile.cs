@@ -113,18 +113,41 @@ public static class utlDataAndFile
     }
 
     /// <summary>
+    /// Finds a file name for a class via an array of specific directories.
+    /// </summary>
+    /// <param name="className"></param>
+    /// <param name="paths"></param>
+    /// <param name="showInfo"></param>
+    /// <returns></returns>
+    public static string FindPathAndFileByClassNameByDirectoryArray(string className, string[] paths,bool showInfo = false)
+    {
+        string strBuff = "";
+        for (int i = 0; i < paths.Length; i++)
+        {
+            string classNameOut = FindPathAndFileByClassName(className, paths[i]);
+            if (classNameOut.Length > 1)
+                return classNameOut;
+        }
+        return strBuff;
+    }
+
+    /// <summary>
     /// Finds the file of a same named class.  Complex imbedded classes won't be
     /// found since the name of the class and file have to match.
     /// </summary>
     /// <param name="className"></param>
     /// <param name="showInfo"></param>
     /// <returns>The filename with the associated directory.</returns>
-    public static string FindPathAndFileByClassName(string className, bool showInfo = false)
+    public static string FindPathAndFileByClassName(string className, string pathToSearch = null, bool showInfo = false)
     {
         string strBuff = "";
 
         string searchName = className + ".cs";
-        string pathName = Application.dataPath;
+        string pathName;
+        if (pathToSearch == null)
+            pathName = Application.dataPath;
+        else
+            pathName = pathToSearch;
 
         strBuff = FindAFileInADirectoryRecursively(pathName, searchName);
 
@@ -187,11 +210,11 @@ public static class utlDataAndFile
         int startIndex = strSource.LastIndexOf(searStr);
         if (startIndex == -1)
             return "";
-        
+
         int afterPos = startIndex + searStr.Length;
         if (afterPos >= strSource.Length)
             return "";
-       
+
         return strSource.Substring(afterPos);
     }
 
@@ -450,10 +473,10 @@ public static class utlDataAndFile
 
     public static T[] GetAllInstances<T>() where T : ScriptableObject
     {
-        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name); 
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
 
         T[] a = new T[guids.Length];
-        for (int i = 0; i < guids.Length; i++)   
+        for (int i = 0; i < guids.Length; i++)
         {
             string path = AssetDatabase.GUIDToAssetPath(guids[i]);
             a[i] = AssetDatabase.LoadAssetAtPath<T>(path);

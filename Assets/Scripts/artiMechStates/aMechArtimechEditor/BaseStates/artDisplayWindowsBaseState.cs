@@ -106,8 +106,10 @@ namespace Artimech
         public void EditScriptCallback(object obj)
         {
             artVisualStateNode visualNode = (artVisualStateNode)obj;
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
 
-            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(visualNode.ClassName);
+            //string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(visualNode.ClassName);
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(visualNode.ClassName, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1, 1);
         }
     }

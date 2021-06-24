@@ -73,7 +73,8 @@ namespace Artimech
 
             for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
             {
-                string stateFileName = utlDataAndFile.FindPathAndFileByClassName(theStateMachineEditor.VisualStateNodes[i].ClassName, false);
+                //string stateFileName = utlDataAndFile.FindPathAndFileByClassName(theStateMachineEditor.VisualStateNodes[i].ClassName, false);
+                string stateFileName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(theStateMachineEditor.VisualStateNodes[i].ClassName, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
                 string buffer = utlDataAndFile.LoadTextFromFile(stateFileName);
                 PopulateLinkedConditionStates(theStateMachineEditor.VisualStateNodes[i], buffer);
             }
@@ -94,7 +95,8 @@ namespace Artimech
             string strBuff = "";
             string fileName = "";
 
-            fileName = utlDataAndFile.FindPathAndFileByClassName(typeName, false);
+            //fileName = utlDataAndFile.FindPathAndFileByClassName(typeName, false);
+            fileName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(typeName, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             strBuff = utlDataAndFile.LoadTextFromFile(fileName);
 
             string[] words = strBuff.Split(new char[] { '<', '>' });

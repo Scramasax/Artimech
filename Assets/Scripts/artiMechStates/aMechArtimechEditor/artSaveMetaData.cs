@@ -48,7 +48,7 @@ namespace Artimech
 {
     public class artSaveMetaData : artDisplayWindowsBaseState
     {
-
+        artProcessingWindow m_MessageWindow;
         /// <summary>
         /// State constructor.
         /// </summary>
@@ -80,6 +80,8 @@ namespace Artimech
         /// </summary>
         public override void UpdateEditorGUI()
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
+            m_MessageWindow.Update(theStateMachineEditor);
             base.UpdateEditorGUI();
         }
 
@@ -88,6 +90,8 @@ namespace Artimech
         /// </summary>
         public override void Enter()
         {
+            m_MessageWindow = new artProcessingWindow("Artimech System Status", "Saving Meta Data.....", 16, Color.blue, new Rect(0, 18, Screen.width, Screen.height), new Color(1, 1, 1, 1), 10);
+
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
             for (int i = 0; i < theStateMachineEditor.VisualStateNodes.Count; i++)
                 theStateMachineEditor.VisualStateNodes[i].SaveMetaData();

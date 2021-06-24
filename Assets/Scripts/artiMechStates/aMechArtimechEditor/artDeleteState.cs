@@ -121,7 +121,8 @@ namespace Artimech
                 }
             }
 
-            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            //string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassName(className);
+            string pathAndFileForClassName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(className, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             File.Delete(pathAndFileForClassName);
 
             utlDataAndFile.RemoveLinesBySubStringInFiles(className, Application.dataPath);

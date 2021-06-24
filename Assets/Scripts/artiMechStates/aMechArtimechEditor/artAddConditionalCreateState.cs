@@ -98,7 +98,7 @@ namespace Artimech
 
             theStateMachineEditor.DrawToolBarBool = false;
 
-            CreateConditionalAndAddToState(theStateMachineEditor.FromConditionalStateNode.ClassName, theStateMachineEditor.ToConditionalStateNode.ClassName);
+            CreateConditionalAndAddToState(theStateMachineEditor.FromConditionalStateNode.ClassName, theStateMachineEditor.ToConditionalStateNode.ClassName,theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Artimech
             return node;
         }
 
-        void CreateConditionalAndAddToState(string fromState, string toState)
+        void CreateConditionalAndAddToState(string fromState, string toState, string[] paths)
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)GetScriptableObject;
 
@@ -164,7 +164,8 @@ namespace Artimech
             string text = utlDataAndFile.LoadTextFromFile(templateConditonalPath);
             string modText = text.Replace(copyInfo.m_ReplaceClassString, replaceName);
 
-            string pathAndFile = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            //string pathAndFile = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            string pathAndFile = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(fromState,paths);
             string outDir = Path.GetDirectoryName(pathAndFile);
 
             string pathAndFileName = outDir
@@ -176,7 +177,8 @@ namespace Artimech
             writeStream.Write(modText);
             writeStream.Close();
 
-            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            //            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassName(fromState);
+            string fileAndPathOfState = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(fromState,paths);
 
             AddConditionCodeToStateCode(fileAndPathOfState, replaceName, toState);
 

@@ -223,8 +223,10 @@ namespace Artimech
 
         public void CreateEditConditionalCallback(object obj)
         {
+            ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             string className = (string)obj;
-            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            //string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(className, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(fileAndPathName, 1, 1);
         }
 
@@ -232,7 +234,8 @@ namespace Artimech
         {
             ArtimechEditor theStateMachineEditor = (ArtimechEditor)m_State.m_UnityObject;
             string className = (string)obj;
-            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            //string fileAndPathName = utlDataAndFile.FindPathAndFileByClassName(className);
+            string fileAndPathName = utlDataAndFile.FindPathAndFileByClassNameByDirectoryArray(className, theStateMachineEditor.ConfigData.GetRefactorAndConstructionPaths());
             theStateMachineEditor.DeleteConditionalBool = true;
             theStateMachineEditor.DeleteConditionalPath = fileAndPathName;
             theStateMachineEditor.DeleteConditionalClass = className;

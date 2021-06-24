@@ -158,7 +158,7 @@ namespace Artimech
                 //remember what the state machine class name is.
 
                 stateEditorUtils.StateMachineName = machine.GetType().Name;
-                string strBuff = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, false);
+                string strBuff = utlDataAndFile.FindPathAndFileByClassName(stateEditorUtils.StateMachineName, null, false);
                 if (strBuff != null)
                     stateEditorUtils.CreateStateWindows(strBuff);
                 else
